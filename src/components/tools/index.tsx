@@ -14,7 +14,7 @@ import dai from '../../static/DAI.svg';
 import ssuter from '../../static/S_SUTER.svg';
 import suter from '../../static/SUTER.svg';
 
-const Client = require('../../../suterusu-protocol/lib/suterusu.js');
+const Client = require('/Users/bocai/suterusu/suterusu-protocol/lib/suterusu.js');
 // const Client = require('/Users/jiangchongyang/Desktop/chongyang/waibao/suterusu-protocol/lib/suterusu.js');
 
 const openNotificationWithIcon = (
