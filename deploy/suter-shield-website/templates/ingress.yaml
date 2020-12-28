@@ -1,0 +1,23 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "suter-shield-website.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ include "suter-shield-website.name" . }}
+    helm.sh/chart: {{ include "suter-shield-website.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: shield.{{ .Values.ingress.domain }}
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: {{ template "suter-shield-website.fullname" . }}
+            servicePort: 80
+{{- end }}

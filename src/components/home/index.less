@@ -1,0 +1,104 @@
+.suterProtocol {
+  .ant-layout-header {
+    @media only screen and (max-width: 600px) {
+      padding: 0 5px;
+    }
+
+    .connectWalletBtn {
+      text-transform: uppercase;
+      border-color: rgba(105, 85, 192, 1);
+      color: rgba(105, 85, 192, 1);
+      background-color: #0b000e;
+    }
+    .langBtn {
+      margin-left: 20px;
+      border-color: #fff;
+      color: #fff;
+      background-color: #0b000e;
+    }
+    .successDot {
+      float: left;
+      width: 8px;
+      height: 8px;
+      margin-top: 6.85px;
+      margin-right: 6px;
+      border-radius: 4px;
+      background-color: #3cbc98;
+    }
+  }
+
+  .ant-layout-content {
+    .home {
+      .title {
+        margin: 60px auto;
+        margin-top: 150px;
+        margin-bottom: 57px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: PingFangSC-Thin, sans-serif;
+
+        h1 {
+          font-weight: 400;
+          font-size: 40px;
+          margin-bottom: 0rem;
+          color: #b9aaff;
+          @media only screen and (max-width: 600px) {
+            font-size: 30px;
+          }
+          span.boldFont {
+            font-weight: bold;
+          }
+        }
+        button.tutorialBtn {
+          border-color: #b9aaff;
+          color: #b9aaff;
+          background-color: #0b000e;
+          font-size: 14px;
+          margin-top: 10px;
+        }
+      }
+      .cardContainer {
+        .ant-col {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          div.card {
+            &:hover {
+              border: 1px solid #b9aaff;
+              cursor: pointer;
+              h1 {
+                color: #b9aaff;
+              }
+              p {
+                color: rgb(185, 170, 255, 0.5);
+              }
+            }
+            color: #fff;
+            width: 260px;
+            border: 1px solid #1d1c1e;
+            background: #1d1c1e;
+            padding: 10px 0 10px 10px;
+            border-radius: 15px;
+            margin-right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            div {
+              h1 {
+                margin-bottom: 0;
+                color: #fff;
+              }
+              p {
+                margin-bottom: 0;
+                color: rgba(255, 255, 255, 0.5);
+                font-family: PingFangSC-Thin, sans-serif;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

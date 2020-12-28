@@ -1,0 +1,199 @@
+body {
+  background: #0b000e !important;
+  overflow-y: scroll;
+}
+
+#website__entrypoint {
+  height: 100%;
+  .suterProtocol {
+    min-height: 100%;
+    .ant-layout-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .head-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .left {
+          display: flex;
+          .item-ul {
+            display: flex;
+            li {
+              list-style: none;
+              color: rgba(255, 255, 255, 0.5);
+              margin-right: 30px;
+              cursor: pointer;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      // img.pc{
+      //   display: block;
+      // }
+      img.mobbile {
+        display: none;
+      }
+    }
+  }
+}
+.suterProtocol .ant-layout-header .mobble-English {
+  display: none;
+}
+
+.ant-layout-header {
+  background: transparent !important;
+}
+
+.ant-layout-footer {
+  background: transparent !important;
+  a {
+    margin-right: 20px;
+  }
+}
+
+.ant-layout-content {
+  background: transparent !important;
+}
+
+.suterProtocol {
+  background: transparent !important;
+}
+
+.QA {
+  color: #ffffff;
+  max-width: 1140px;
+  margin: 0 auto;
+  margin-top: 82px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .left {
+    background: rgba(185, 170, 255, 0.2);
+    padding: 40px 30px;
+    width: 330px;
+    height: 476px;
+    margin-right: 90px;
+    h2 {
+      font-family: Helvetica;
+      font-size: 36px;
+      color: #b9aaff;
+      letter-spacing: 0;
+      line-height: 24px;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 51px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      height: 308px;
+      overflow-y: scroll;
+      li {
+        list-style: none;
+        font-family: Helvetica;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        letter-spacing: 0;
+        line-height: 20px;
+        margin-bottom: 40px;
+        width: 270px;
+        cursor: pointer;
+        &.active {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .right {
+    max-width: 720px;
+    padding: 50px 0;
+    h3 {
+      font-family: Helvetica;
+      font-size: 20px;
+      color: #ffffff;
+      letter-spacing: 0;
+      line-height: 24px;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 38px;
+    }
+    i {
+      display: block;
+      width: 400px;
+      border: 1px solid #b9aaff;
+      margin-bottom: 38px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        margin-bottom: 30px;
+        list-style: none;
+        img {
+          width: 100%;
+          display: block;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #website__entrypoint .suterProtocol .ant-layout-header {
+    img.mobbile {
+      display: block;
+    }
+    img.pc {
+      display: none;
+    }
+  }
+  .suterProtocol .ant-layout-content .home .title {
+    text-align: center;
+    margin: 60px auto;
+  }
+  .suterProtocol .ant-layout-content .home .cardContainer .ant-col div.card {
+    margin-bottom: 20px;
+  }
+  #website__entrypoint
+    .suterProtocol
+    .ant-layout-header
+    .head-top
+    .left
+    .item-ul {
+    display: none;
+  }
+  .suterProtocol .balanceContainer {
+    width: 348px;
+  }
+  .suterProtocol .operationContainer {
+    display: flex;
+    justify-content: center;
+    .fund,
+    .transfer {
+      margin-bottom: 20px;
+    }
+  }
+  .suterProtocol .ant-layout-header .mobble-English {
+    display: inline;
+  }
+  .suterProtocol .ant-layout-header .pc-English {
+    display: none;
+  }
+  .QA {
+    justify-content: center;
+    .left {
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    .right {
+      width: 330px;
+      i {
+        width: 200px;
+      }
+    }
+  }
+}
