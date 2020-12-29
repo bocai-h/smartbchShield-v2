@@ -9,11 +9,12 @@ class ConnectModal extends React.Component {
       <>
         <Modal
           className="connectWallet"
-          closable={false}
+          closable={true}
           visible={true}
           footer={null}
           width={300}
           centered
+          onCancel={this.props.closeConnectModal}
         >
           <div>
             <div className="title">

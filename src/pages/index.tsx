@@ -228,6 +228,8 @@ class SuterProtocol extends React.Component {
     this.checkEthNetworkType = this.checkEthNetworkType.bind(this);
     this.showConnectModal = this.showConnectModal.bind(this);
     this.selectCoin = this.selectCoin.bind(this);
+    this.closeConnectModal = this.closeConnectModal.bind(this);
+    this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
   }
 
   componentDidMount() {
@@ -251,6 +253,9 @@ class SuterProtocol extends React.Component {
 
   showConnectModal() {
     this.setState({ showConnectModal: true });
+  }
+  closeConnectModal(){
+    this.setState({ showConnectModal: false });
   }
 
   checkMetaMaskStatus() {
@@ -311,6 +316,9 @@ class SuterProtocol extends React.Component {
 
   selectCoin(coinType) {
     this.setState({ coinType: coinType });
+  }
+  cancelSelectCoin() {
+    this.setState({ coinType: '' });
   }
 
   toggleQA = qa_type => {
@@ -429,7 +437,7 @@ class SuterProtocol extends React.Component {
         </Header>
         <Content>
           {showConnectModal ? (
-            <ConnectModal connectMetaMask={this.connectMetaMask} />
+            <ConnectModal connectMetaMask={this.connectMetaMask} closeConnectModal={this.closeConnectModal}/>
           ) : (
             ''
           )}
@@ -473,7 +481,7 @@ class SuterProtocol extends React.Component {
               checkQA={this.toggleQA}
             />
           ) : (
-            <Form account={account} coinType={coinType} />
+            <Form account={account} coinType={coinType} cancelSelectCoin={this.cancelSelectCoin}/>
           )}
         </Content>
         <Footer>

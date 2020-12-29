@@ -17,6 +17,7 @@ class Register extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.register = this.register.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
   handleInputChange(e) {
     let value = e.target.value;
@@ -64,6 +65,10 @@ class Register extends React.Component {
     this.setState({ spin: false });
     this.setState({ visible: false });
   }
+  onCancel() {
+    this.props.cancelSelectCoin();
+    this.setState({ visible: false });
+  }
   render() {
     let { visible, inputValue, spin, agree } = this.state;
     let submitable = (inputValue !== '' && agree);
@@ -71,11 +76,12 @@ class Register extends React.Component {
       <>
         <Modal
           className="register"
-          closable={false}
+          closable={true}
           visible={visible}
           footer={null}
           width={400}
           centered
+          onCancel={this.onCancel}
         >
           <div>
             <div className="title">
