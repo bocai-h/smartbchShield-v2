@@ -267,8 +267,8 @@ class SuterProtocol extends React.Component {
       // this.accountChanged();
     } else {
       const message =
-        'Suter protocol must work with metamask, please install metamask';
-      openNotificationWithIcon('MetaMask Is Not Install!', message, 'warning');
+        'Suterusu Protocol must work with MetaMask, please install MetaMask';
+      openNotificationWithIcon('MetaMask is not installed!', message, 'warning');
     }
   }
 
