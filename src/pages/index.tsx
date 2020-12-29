@@ -1,7 +1,8 @@
 import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-import { Row, Col, Button, Menu, Dropdown } from 'antd';
+import { Button, Menu, Dropdown } from 'antd';
+const { SubMenu } = Menu;
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
@@ -227,6 +228,8 @@ class SuterProtocol extends React.Component {
     this.checkEthNetworkType = this.checkEthNetworkType.bind(this);
     this.showConnectModal = this.showConnectModal.bind(this);
     this.selectCoin = this.selectCoin.bind(this);
+    this.closeConnectModal = this.closeConnectModal.bind(this);
+    this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
   }
 
   componentDidMount() {
@@ -251,6 +254,9 @@ class SuterProtocol extends React.Component {
   showConnectModal() {
     this.setState({ showConnectModal: true });
   }
+  closeConnectModal(){
+    this.setState({ showConnectModal: false });
+  }
 
   checkMetaMaskStatus() {
     if (typeof window.ethereum !== 'undefined') {
@@ -261,8 +267,8 @@ class SuterProtocol extends React.Component {
       // this.accountChanged();
     } else {
       const message =
-        'Suter protocol must work with metamask, please install metamask';
-      openNotificationWithIcon('MetaMask Is Not Install!', message, 'warning');
+        'Suterusu Protocol must work with MetaMask, please install MetaMask';
+      openNotificationWithIcon('MetaMask is not installed!', message, 'warning');
     }
   }
 
@@ -311,6 +317,9 @@ class SuterProtocol extends React.Component {
   selectCoin(coinType) {
     this.setState({ coinType: coinType });
   }
+  cancelSelectCoin() {
+    this.setState({ coinType: '' });
+  }
 
   toggleQA = qa_type => {
     this.setState({ QA: true, qa_type: qa_type });
@@ -346,33 +355,32 @@ class SuterProtocol extends React.Component {
       account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
-      <Menu>
-        <Menu.Item>
+      <Menu mode="horizontal">
+        <Menu.Item key="dashboard">
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="http://www.alipay.com/"
+            href="#"
           >
             Dashboard
           </a>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="compliance">
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="http://www.taobao.com/"
+            href="#"
           >
             Compliance
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://www.tmall.com/"
-          >
-            Resources
-          </a>
+        <SubMenu key="SubMenu" title="Resources">
+          <Menu.Item key="tutorial">Tutorial</Menu.Item>
+          <Menu.Item key="q&a">Q&A</Menu.Item>
+          <Menu.Item key="privacyTips">Privacy Tips</Menu.Item>
+          <Menu.Item key="about">About</Menu.Item>
+        </SubMenu>
         </Menu.Item>
       </Menu>
     );
@@ -386,11 +394,12 @@ class SuterProtocol extends React.Component {
                 <img src={mLogo} className="logo mobbile" />
               </a>
               <ul className="item-ul">
-                <li onClick={() => this.toggleQA('qa')}>q&a</li>
+                <li onClick={() => this.toggleQA('qa')}>Q&A</li>
                 <li>Dashboard</li>
                 <li>Compliance</li>
                 <li>Resources</li>
               </ul>
+              {/* <div className="menuContainer">{menu}</div> */}
             </div>
           </div>
           <div>
@@ -428,7 +437,7 @@ class SuterProtocol extends React.Component {
         </Header>
         <Content>
           {showConnectModal ? (
-            <ConnectModal connectMetaMask={this.connectMetaMask} />
+            <ConnectModal connectMetaMask={this.connectMetaMask} closeConnectModal={this.closeConnectModal}/>
           ) : (
             ''
           )}
@@ -472,17 +481,17 @@ class SuterProtocol extends React.Component {
               checkQA={this.toggleQA}
             />
           ) : (
-            <Form account={account} coinType={coinType} />
+            <Form account={account} coinType={coinType} cancelSelectCoin={this.cancelSelectCoin}/>
           )}
         </Content>
         <Footer>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://twitter.com/suterusu_io" target="_blank" rel="noreferrer">
             <img src={twitter} alt="" />
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
             <img src={telegram} alt="" />
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://suterusu.medium.com/" target="_blank" rel="noreferrer">
             <img src={medium} alt="" />
           </a>
         </Footer>

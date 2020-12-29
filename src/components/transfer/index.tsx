@@ -88,7 +88,7 @@ class Transfer extends React.Component {
           <div className="title">
             <h1>Transfer</h1>
             <p className="myAddress" onClick={this.openMyAddressModal}>
-              My Address
+              My Suter Account Address
             </p>
           </div>
           <div className="inputContainer">
@@ -108,7 +108,7 @@ class Transfer extends React.Component {
           <div className="addressInputContainer">
             <p>Recipient Address</p>
             <textarea
-              placeholder="Please paster address here"
+              placeholder="Please paste your Suter Account Address Here"
               value={transferAddress}
               onChange={this.handleTransferAddress}
             />
@@ -121,7 +121,7 @@ class Transfer extends React.Component {
               onClick={this.transfer}
               disabled={transferValue === 0 || transferAddress === ''}
             >
-              Confirm transfer
+              Confirm Transfer
             </Button>
           </div>
         </Card>

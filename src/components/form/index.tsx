@@ -51,6 +51,7 @@ class Form extends React.Component {
             account={account}
             coinType={coinType}
             setClient={this.setClient}
+            cancelSelectCoin={this.props.cancelSelectCoin}
           />
         ) : (
           ''

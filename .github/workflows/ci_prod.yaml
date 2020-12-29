@@ -33,7 +33,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: suter-bridge
+        ECR_REPOSITORY: suter-shield
         IMAGE_TAG: ${{ steps.tag-name.outputs.tag }}
       run: |
         # Build a docker container and
