@@ -15,7 +15,10 @@ class SpinModal extends React.Component {
           centered
         >
           <div className="spinContainer">
-            <Spin />
+            <h1 style={{"marginBottom": 0}}>Processing</h1>
+            <h1>Your Request</h1>
+            <p>Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.</p>
+            <Spin size="large" />
           </div>
         </Modal>
       </>
