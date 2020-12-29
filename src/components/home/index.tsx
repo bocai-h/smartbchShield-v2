@@ -40,6 +40,7 @@ class Home extends React.Component {
               <Button
                 className="tutorialBtn"
                 shape="round"
+                size='large'
                 onClick={() => checkQA('help')}
               >
                 Check Tutorial

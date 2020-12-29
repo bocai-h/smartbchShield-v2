@@ -108,7 +108,7 @@ class Transfer extends React.Component {
           <div className="addressInputContainer">
             <p>Recipient Address</p>
             <textarea
-              placeholder="Please paster address here"
+              placeholder="Please paste your Suter Account Address Here"
               value={transferAddress}
               onChange={this.handleTransferAddress}
             />
@@ -121,7 +121,7 @@ class Transfer extends React.Component {
               onClick={this.transfer}
               disabled={transferValue === 0 || transferAddress === ''}
             >
-              Confirm transfer
+              Confirm Transfer
             </Button>
           </div>
         </Card>
