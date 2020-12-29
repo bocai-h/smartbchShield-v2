@@ -26,23 +26,23 @@ class SuterProtocol extends React.Component {
     QA: false,
     qa_type: 'qa',
     QA_help: {
-      title: '使⽤教程',
+      title: 'Tutorial',
       active: {
         index: 0,
         target: {
           active: true,
-          t: '1.⽤你的以太坊账号私钥来注册Suter账号',
+          t: '1.Register Suter account with your Ethereum account private key',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.Select the asset you want to have privacy protection',
               img: require('../static/help01.png'),
             },
             {
-              t: 'b.点击“Connect”连接到你的Metamask钱包',
+              t: 'b.Click "Connect" to connect to your Metamask wallet',
             },
             {
               t:
-                'c.点击“Register”然后输⼊你的以太坊私钥，理论上讲⽤任何字符串数字和字⺟组成的字符串都可以 ⽣成你的Suter账号，甚⾄是“123456“这种简单密码，但是这是及其不安全的，请不要这样操作， 为了您的Suter账号安全，请使⽤您的以太坊账号私钥，并妥善保管。',
+                'c.Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
               img: require('../static/help02.png'),
             },
           ],
@@ -51,78 +51,83 @@ class SuterProtocol extends React.Component {
       list: [
         {
           active: true,
-          t: '1.⽤你的以太坊账号私钥来注册Suter账号',
+          t: '1.Stake your digital assets to the Suter Shield smart contract and get the private version of corresponding assets',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.Select the asset you want to have privacy protection',
               img: require('../static/help01.png'),
             },
             {
-              t: 'b.点击“Connect”连接到你的Metamask钱包',
+              t: 'b.Enter the number of digital assets you want to stake (the unit of measurement is Unit, the Unit ratio of each digital asset is different, please refer to Suter Shield Q&A: Why Suter Shield’s digital assets should set Unit as the unit of measurement)',
             },
             {
               t:
-                'c.点击“Register”然后输⼊你的以太坊私钥，理论上讲⽤任何字符串数字和字⺟组成的字符串都可以 ⽣成你的Suter账号，甚⾄是“123456“这种简单密码，但是这是及其不安全的，请不要这样操作， 为了您的Suter账号安全，请使⽤您的以太坊账号私钥，并妥善保管。',
+                'c.Enter your Suter account private key to stake',
+              img: require('../static/help02.png'),
+            },
+            {
+              t:
+                'd.After the above steps are completed, your Suter account will display the increased corresponding privacy protection assets, and the original assets of your Ethereum account will decrease.',
               img: require('../static/help02.png'),
             },
           ],
         },
         {
           active: false,
-          t: '2.抵押你的数字资产到Suter Shield智能合约并得到隐私版本的对应资产',
+          t: '2.Stake your digital assets to the Suter Shield smart contract and get the private version of corresponding assets',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.Select the asset you want to have privacy protection',
             },
             {
               t:
-                'b.输⼊你要质押的数字资产数量（单位是Unit, 每种数字资产的Unit⽐例并不⼀样，原因请查看Suter Shield Q&A: 为什么Suter Shield的数字资产要设置Unit作为单位）',
+                'b.Enter the number of digital assets you want to stake (the unit of measurement is Unit, the Unit ratio of each digital asset is different, please refer to Suter Shield Q&A: Why Suter Shield’s digital assets should set Unit as the unit of measurement)',
             },
             {
-              t: 'c.输⼊你的Suter账号私钥进⾏抵押操作',
+              t: 'c.Enter your Suter account private key to stake',
             },
             {
               t:
-                'd.操作完毕后，你的Suter账号会显⽰对应增加的隐私保护资产，你的以太坊账号的相应资产会减少。',
+                'd.After the above steps are completed, your Suter account will display the increased corresponding privacy protection assets, and the original assets of your Ethereum account will decrease.',
               img: require('../static/help03.png'),
             },
           ],
         },
         {
           active: false,
-          t: '3.对你的隐私保护数字资产进⾏转账',
+          t: '3.Transfer your privacy protection digital assets',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.Select the asset you want to have privacy protection',
             },
             {
-              t: 'b.注册或者登陆你的Suter账号',
+              t: 'b.Register or log in to your Suter account',
             },
             {
-              t: 'c.输⼊数量以及Suter账号公钥地址，进⾏转账',
+              t: 'c.Enter the quantity and Suter account public key address to transfer',
               img: require('../static/help04.png'),
             },
           ],
         },
         {
           active: false,
-          t: '4.取回（Burn）你的数字资产',
+          t: '4.Retrieve (Burn) your digital assets',
           o: [
             {
-              t: 'a.连接你的Metamask钱包',
+              t: 'a.Connect your Metamask wallet',
             },
             {
-              t: 'b.选择您想要进⾏隐私保护的资产',
+              t: 'b.Select the asset you want to have privacy protection',
             },
             {
-              t: 'c.注册或者登陆你的Suter账号',
+              t: 'c.Register or log in to your Suter account ',
             },
             {
               t:
-                'd.输⼊你想要取回的数字资产的数量，单位同样是Unit，Suter Shield隐私保护的数字资产通常是普通 数字资产前⾯加上⼀个s作为区别，⽐如ETH在Suter⽹络中会是sETH，USDT会是sUSDT，Suter会是 sSUTER',
+                'd.Enter the number of digital assets you want to retrieve. The unit of measurement is also Unit. The digital assets protected by Suter Shield are usually distinguished by putting an “s” in front of ordinary digital assets. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER',
             },
             {
-              t: 'e.你的对应的数字资产会回到你的以太坊账号中',
+              t: 'e.Your corresponding digital assets will be returned to your Ethereum account',
             },
           ],
         },
