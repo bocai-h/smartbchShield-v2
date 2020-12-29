@@ -172,7 +172,7 @@ class SuterProtocol extends React.Component {
           active: false,
           t: "4. What's the core technology of Suter Shield?",
           o: [
-            'Suter Shield的核⼼技术是我们原创的⽆需可信初始化的零知识证明技术。该技术具有接近常数级别 的证明⼤⼩，且证明⽣成和验证时间和同类产品相⽐有10倍左右的提⾼。 The core technology of Suter Shield is our original zero-knowledge proof scheme, which does not require a trusted setup, and has an almost constant proof size, and both the proof generation and verification time has one order of magnitude improvement compared with the similar schemes.',
+            'The core technology of Suter Shield is our original zero-knowledge proof scheme, which does not require a trusted setup, and has an almost constant proof size, and both the proof generation and verification time has one order of magnitude improvement compared with the similar schemes.',
           ],
         },
         {
