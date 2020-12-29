@@ -10,7 +10,7 @@ class Transfer extends React.Component {
     myAddressModal: false,
     transferValue: 0,
     transferAddress: '',
-    proccesing: true,
+    proccesing: false,
   };
   constructor(props) {
     super(props);
