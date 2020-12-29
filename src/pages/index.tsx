@@ -386,7 +386,7 @@ class SuterProtocol extends React.Component {
                 <img src={mLogo} className="logo mobbile" />
               </a>
               <ul className="item-ul">
-                <li onClick={() => this.toggleQA('qa')}>q&a</li>
+                <li onClick={() => this.toggleQA('qa')}>Q&A</li>
                 <li>Dashboard</li>
                 <li>Compliance</li>
                 <li>Resources</li>
@@ -476,13 +476,13 @@ class SuterProtocol extends React.Component {
           )}
         </Content>
         <Footer>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://twitter.com/suterusu_io" target="_blank" rel="noreferrer">
             <img src={twitter} alt="" />
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
             <img src={telegram} alt="" />
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://suterusu.medium.com/" target="_blank" rel="noreferrer">
             <img src={medium} alt="" />
           </a>
         </Footer>

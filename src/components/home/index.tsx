@@ -31,9 +31,9 @@ class Home extends React.Component {
         <Row>
           <Col span={24}>
             <div className="title">
-              <h1>Choose which crypto currencies you</h1>
+              <h1>Choose which crypto currency you</h1>
               <h1>
-                want to <span className="boldFont">transfer anonymously</span>{' '}
+                want to <span className="boldFont">transfer privately and securely</span>{' '}
                 in
               </h1>
               <h1>Suterusu Network</h1>
