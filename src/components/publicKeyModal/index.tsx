@@ -42,12 +42,15 @@ class PublicKeyModal extends React.Component {
           width={400}
           maskClosable={true}
           onCancel={closeMyAddressModeal}
+          centered
         >
           <div>
             <div className="title">
               <h1>My Suter Shield Address</h1>
             </div>
-            <div className="tip">It's a suter shield to transfer</div>
+            <div className="tip">
+             A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.
+            </div>
             <div className="inputContainer">
               <textarea value={pk} ref={this.textArea} readOnly />
             </div>

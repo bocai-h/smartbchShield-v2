@@ -88,7 +88,7 @@ class Transfer extends React.Component {
           <div className="title">
             <h1>Transfer</h1>
             <p className="myAddress" onClick={this.openMyAddressModal}>
-              My Address
+              My Suter Account Address
             </p>
           </div>
           <div className="inputContainer">
