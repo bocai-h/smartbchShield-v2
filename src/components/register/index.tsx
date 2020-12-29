@@ -10,15 +10,20 @@ class Register extends React.Component {
     visible: true,
     inputValue: '',
     spin: false,
+    agree: false
   };
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.register = this.register.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
   }
   handleInputChange(e) {
     let value = e.target.value;
     this.setState({ inputValue: value });
+  }
+  handleCheckbox(e){
+    this.setState({ agree: !this.state.agree })
   }
   async register() {
     this.setState({ spin: true });
@@ -60,8 +65,8 @@ class Register extends React.Component {
     this.setState({ visible: false });
   }
   render() {
-    let { visible, inputValue, spin } = this.state;
-    let submitable = inputValue !== '';
+    let { visible, inputValue, spin, agree } = this.state;
+    let submitable = (inputValue !== '' && agree);
     return (
       <>
         <Modal
@@ -77,15 +82,19 @@ class Register extends React.Component {
               <h1>Register</h1>
               <h1>Suterusu Account</h1>
             </div>
-            <div className="tip">Please register Suterusu Account</div>
+            <div className="tip">Please use your Ethereum account private key as your Suter Account private key and treat it like your Ethereum private key. Never share with anyone.</div>
             <div className="inputContainer">
               <input
-                placeholder="Your private key"
+                placeholder="Insert Your private key"
                 value={inputValue}
                 type="text"
                 onChange={this.handleInputChange}
               />
             </div>
+            <div className="checkboxContainer">
+               <input type="checkbox" onChange={this.handleCheckbox}/> 
+               <p>I use Ethereum account private key as Suter Account private key and keep it secure.</p>
+              </div>
             <div className="registerBtnContainer">
               <Button
                 className="registerBtn"

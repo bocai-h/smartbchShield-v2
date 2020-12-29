@@ -1,7 +1,8 @@
 import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-import { Row, Col, Button, Menu, Dropdown } from 'antd';
+import { Button, Menu, Dropdown } from 'antd';
+const { SubMenu } = Menu;
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
@@ -346,33 +347,32 @@ class SuterProtocol extends React.Component {
       account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
-      <Menu>
-        <Menu.Item>
+      <Menu mode="horizontal">
+        <Menu.Item key="dashboard">
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="http://www.alipay.com/"
+            href="#"
           >
             Dashboard
           </a>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="compliance">
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="http://www.taobao.com/"
+            href="#"
           >
             Compliance
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://www.tmall.com/"
-          >
-            Resources
-          </a>
+        <SubMenu key="SubMenu" title="Resources">
+          <Menu.Item key="tutorial">Tutorial</Menu.Item>
+          <Menu.Item key="q&a">Q&A</Menu.Item>
+          <Menu.Item key="privacyTips">Privacy Tips</Menu.Item>
+          <Menu.Item key="about">About</Menu.Item>
+        </SubMenu>
         </Menu.Item>
       </Menu>
     );
@@ -391,6 +391,7 @@ class SuterProtocol extends React.Component {
                 <li>Compliance</li>
                 <li>Resources</li>
               </ul>
+              {/* <div className="menuContainer">{menu}</div> */}
             </div>
           </div>
           <div>

@@ -13,8 +13,10 @@
       }
     }
     .tip {
-      color: rgba(255, 255, 255, 0.5);
+      color: #FF578E;
+      margin-top: 20px;
       text-align: center;
+      font-size: 13px;
     }
     .inputContainer {
       margin-top: 30px;
@@ -35,6 +37,46 @@
         border: 2px solid #b9aaff;
       }
     }
+    .checkboxContainer{
+      display: flex;
+      margin-top: 30px;
+      // input[type="checkbox"]{
+      //   border: 1px solid  #b9aaff;
+      //   background: #1d1c1e;
+      // }
+      input[type=checkbox]{
+        cursor: pointer;
+        position: relative;
+        width: 15px;
+        height: 15px;
+        font-size: 14px;
+      }
+      input[type=checkbox]::after{
+        position: absolute;
+        top: 0;
+        background-color: #1d1c1e;
+        border: 1px solid  #b9aaff;
+        color: #b9aaff;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        visibility: visible;
+        padding-left: 0px;
+        text-align: center;
+        content: ' ';
+        border-radius: 3px
+     }
+     input[type=checkbox]:checked::after{
+       content: "✓";
+       font-size: 12px;
+       font-weight: bold;
+      }
+      p{
+        margin-top: -5px;
+        margin-left: 10px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
     .registerBtnContainer {
       text-align: center;
       margin-top: 20px;
@@ -43,6 +85,10 @@
         color: rgba(105, 85, 192, 1);
         background-color: rgba(105, 85, 192, 1);
         color: #000000;
+        &:disabled{
+          background-color: transparent;
+          color: rgba(255, 255, 255, 0.5);
+        }
       }
     }
   }
