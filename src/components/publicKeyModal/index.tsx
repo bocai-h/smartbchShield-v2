@@ -18,20 +18,20 @@ class PublicKeyModal extends React.Component {
   }
   async publickKey() {
     let { client } = this.props;
-    console.log('client=', client);
     let pk = await client.account.publicKeyEncoded();
     this.setState({ pk: pk });
   }
   copyPk() {
+    let {intl} = this.props;
     const el = this.textArea;
     el.current.select();
     document.execCommand('copy');
-    openNotificationWithIcon('Tips', 'Copied', 'success', 1);
+    openNotificationWithIcon(intl.get("Tips"), intl.get("Copied"), 'success', 1);
     let { closeMyAddressModeal } = this.props;
     closeMyAddressModeal();
   }
   render() {
-    let { visible, closeMyAddressModeal } = this.props;
+    let { visible, closeMyAddressModeal, intl} = this.props;
     let { pk } = this.state;
     return (
       <>
@@ -46,10 +46,10 @@ class PublicKeyModal extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>My Suter Shield Address</h1>
+              <h1>{intl.get("YourSuterAccountAddress")}</h1>
             </div>
             <div className="tip">
-             A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.
+              {intl.get("pkTips")}
             </div>
             <div className="inputContainer">
               <textarea value={pk} ref={this.textArea} readOnly />
@@ -61,7 +61,7 @@ class PublicKeyModal extends React.Component {
                 block
                 onClick={this.copyPk}
               >
-                Copy
+                {intl.get("Copy")}
               </Button>
             </div>
           </div>

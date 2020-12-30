@@ -27,15 +27,15 @@ class Burn extends React.Component {
     this.setState({ inputValue: value.toString() });
   }
   async burn() {
-    let { client } = this.props;
+    let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
     let result = await client.withdraw(inputValue);
     let txHash = result.transactionHash;
-    const message = `View in etherscan`;
+    const message = intl.get("ViewInEtherScan");
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      'Burn transaction has sent!',
+      `${intl.get('Burn')}${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
@@ -51,16 +51,16 @@ class Burn extends React.Component {
     this.setState({ inputValue: max });
   }
   render() {
-    let { coinType } = this.props;
+    let { coinType, intl } = this.props;
     let { inputValue, proccesing } = this.state;
     let info = Infos[coinType];
     return (
       <div className="burn">
         {proccesing ? <SpinModal /> : ''}
         <Card style={{ width: 350 }}>
-          <h1>Burn</h1>
+          <h1>{intl.get('Burn')}</h1>
           <p>
-            Burn S{info.unit} to {info.unit}
+           {intl.get('Burn')} S{info.unit} {intl.get('To')} {info.unit}
           </p>
           <div className="inputContainer">
             <input
@@ -71,13 +71,13 @@ class Burn extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-                Max
+               {intl.get('Max')}
               </span>
               <img src={info.logo[coinType][1]} width="20px" />
             </div>
           </div>
           <p>
-            You will receive {inputValue} Unit {info.unit}(=
+            {intl.get("YouWillReceive")} {inputValue} Unit {info.unit}(=
             {(inputValue * 1.0) / info.suterShieldUnit} {info.unit})
           </p>
           <div className="confirmContainer">
@@ -88,7 +88,7 @@ class Burn extends React.Component {
               onClick={this.burn}
               disabled={inputValue > 0 ? false : true}
             >
-              Confirm Burn
+              {intl.get('ConfirmBurn')}
             </Button>
           </div>
         </Card>

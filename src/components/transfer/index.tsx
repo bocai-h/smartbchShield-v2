@@ -48,15 +48,15 @@ class Transfer extends React.Component {
   }
 
   async transfer() {
-    let { client, updateKeyFunc } = this.props;
+    let { client, updateKeyFunc, intl } = this.props;
     let { transferValue, transferAddress } = this.state;
     this.setState({ proccesing: true });
     let result = await client.transfer(transferAddress, transferValue);
     let txHash = result.transactionHash;
-    const message = `View in etherscan`;
+    const message = intl.get("ViewInEtherScan");
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      'Transfer transaction has sent!',
+      `${intl.get("Transfer")}${intl.get("TransactionHasSent")}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
@@ -68,7 +68,7 @@ class Transfer extends React.Component {
     updateKeyFunc();
   }
   render() {
-    let { coinType, client } = this.props;
+    let { coinType, client, intl } = this.props;
     let info = Infos[coinType];
     let {
       myAddressModal,
@@ -84,11 +84,12 @@ class Transfer extends React.Component {
             visible={myAddressModal}
             client={client}
             closeMyAddressModeal={this.closeMyAddressModeal}
+            intl={intl}
           />
           <div className="title">
-            <h1>Transfer</h1>
+            <h1>{intl.get("Transfer")}</h1>
             <p className="myAddress" onClick={this.openMyAddressModal}>
-              My Suter Account Address
+              {intl.get("MySuterAccountAddress")}
             </p>
           </div>
           <div className="inputContainer">
@@ -100,15 +101,15 @@ class Transfer extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-                Max
+                {intl.get("Max")}
               </span>
               <img src={info.logo[coinType][1]} width="20px" />
             </div>
           </div>
           <div className="addressInputContainer">
-            <p>Recipient Address</p>
+            <p>{intl.get("RecipientAddress")}</p>
             <textarea
-              placeholder="Please paste your Suter Account Address Here"
+              placeholder={intl.get("PleaseInputSuterAccountAddressHere")}
               value={transferAddress}
               onChange={this.handleTransferAddress}
             />
@@ -121,7 +122,7 @@ class Transfer extends React.Component {
               onClick={this.transfer}
               disabled={transferValue === 0 || transferAddress === ''}
             >
-              Confirm Transfer
+              {intl.get("ConfirmTransfer")}
             </Button>
           </div>
         </Card>

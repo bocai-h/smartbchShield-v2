@@ -111,7 +111,7 @@ class Register extends React.Component {
                 onClick={this.register}
                 loading={spin}
               >
-                Register
+                {intl.get("Register")}
               </Button>
             </div>
           </div>

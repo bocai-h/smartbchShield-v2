@@ -27,16 +27,16 @@ class Fund extends React.Component {
     this.setState({ inputValue: value.toString() });
   }
   async fund() {
-    let { client } = this.props;
+    let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
     let result = await client.deposit(inputValue);
     let txHash = result.transactionHash;
 
-    const message = `View in etherscan`;
+    const message = intl.get("ViewInEtherScan");;
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      'Fund transaction has sent!',
+      `${intl.get('Fund')}${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,

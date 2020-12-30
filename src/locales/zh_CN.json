@@ -27,5 +27,17 @@
   "Deposit": "质押",
   "To": "到",
   "Max": "最大",
-  "ConfirmFund": "确认质押"
+  "ConfirmFund": "确认质押",
+  "Transfer": "隐私转账",
+  "MySuterAccountAddress": "我的Suter账户地址",
+  "PleaseInputSuterAccountAddressHere": "请输入Suter Account 地址",
+  "ConfirmTransfer": "确认转账",
+  "ViewInEtherScan": "在ETH SCAN上查看",
+  "TransactionHasSent": "交易已经发送!",
+  "Burn": "销毁",
+  "ConfirmBurn": "确认销毁",
+  "YouWillReceive": "你将会收到",
+  "Copy": "复制",
+  "Copied": "已复制",
+  "pkTips": "Suter ERC20-20 帐号由一个ElGamal公钥识别。当用户调用质押功能，转移功能和销毁功能时，它将作为输入。"
 }

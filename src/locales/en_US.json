@@ -25,5 +25,19 @@
   "Deposit": "Deposit",
   "To": "to",
   "Max": "Max",
-  "ConfirmFund": "Confirm Fund"
+  "ConfirmFund": "Confirm Fund",
+  "Transfer": "Transfer",
+  "MySuterAccountAddress": "My Suter Account Address",
+  "PleaseInputSuterAccountAddressHere": "Please input Suter Account Address Here",
+  "RecipientAddress": "Recipient Address",
+  "ConfirmTransfer": "Confirm Transfer",
+  "ViewInEtherScan": "View in etherscan",
+  "TransactionHasSent": "transaction has sent!",
+  "Burn": "Burn",
+  "ConfirmBurn": "Confirm Burn",
+  "YouWillReceive": "You Will Receive",
+  "YourSuterAccountAddress": "Your Suter Account Address",
+  "Copy": "Copy",
+  "Copied": "Copied",
+  "pkTips": "A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts."
 }
