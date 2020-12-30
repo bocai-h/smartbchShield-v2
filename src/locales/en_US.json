@@ -19,5 +19,11 @@
   "SuterusuAccount": "Suterusu Account",
   "RegisterWarning": "Please choose your Suter Account private key,which should be as random as your Metamask wallet private key. Make a physical copy of your account private key and keep it safe. Never share your private key with anyone else.",
   "InsertYourprivatekey": "Insert Your private key",
-  "RegisterAgree": "I choose a sufficiently random Suter Account private key. I will be responsible for its security."
+  "RegisterAgree": "I choose a sufficiently random Suter Account private key. I will be responsible for its security.",
+  "Balance": "Balance",
+  "Fund": "Fund",
+  "Deposit": "Deposit",
+  "To": "to",
+  "Max": "Max",
+  "ConfirmFund": "Confirm Fund"
 }
