@@ -3,5 +3,19 @@
   "Q&A": "常见问题解答",
   "Compliance": "合规",
   "Resources": "资源",
-  "Tutorial": "教程"
+  "CheckTutorial": "查看教程",
+  "ConnectWallet": "连接钱包",
+  "ChooseWhichCryptoCurrencyYou": "选择一种加密货币你",
+  "WantTo": "想要",
+  "PrivatelyTransfer": "隐私转账",
+  "Via": "通过",
+  "SuterusuNetwork": "Suterusu网络",
+  "Tips": "提示",
+  "PleaseConnectYourWalletFirst": "请先连接您的钱包",
+  "PleaseConnectToYourMetamaskWallet": "请连接到您的MetaMask钱包",
+  "ConnectToWallet": "连接到钱包",
+  "Register": "注册",
+  "SuterusuAccount": "Suterusu账户",
+  "RegisterWarning": "请使用与您Metamask钱包私钥一样随机的密钥作为Suter账号私钥并抄在纸上妥善保管。永远不要与他人分享您的私钥我选择了足够随机的Suter账号私钥并将",
+  "InsertYourprivatekey": "输入你的私钥"
 }

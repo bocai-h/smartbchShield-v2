@@ -24,7 +24,7 @@ class SuterProtocol extends React.Component {
   state = {
     metamaskInstalled: false,
     account: '',
-    connectWalletTxt: 'Connect Wallet',
+    connectWalletTxt: 'ConnectWallet',
     web3Browser: false,
     ethNetwork: '',
     showConnectModal: false,
@@ -649,7 +649,7 @@ class SuterProtocol extends React.Component {
                   onClick={this.showConnectModal}
                   disabled={!canConnectWallet}
                 >
-                  {connectWalletTxt}
+                  {intl.get(connectWalletTxt)}
                 </Button>
               ) : (
                 <a href={scanLink} target="_blank">
@@ -685,6 +685,7 @@ class SuterProtocol extends React.Component {
               <ConnectModal
                 connectMetaMask={this.connectMetaMask}
                 closeConnectModal={this.closeConnectModal}
+                intl={intl}
               />
             ) : (
               ''
@@ -734,6 +735,7 @@ class SuterProtocol extends React.Component {
                 account={account}
                 coinType={coinType}
                 cancelSelectCoin={this.cancelSelectCoin}
+                intl={intl}
               />
             )}
           </Content>

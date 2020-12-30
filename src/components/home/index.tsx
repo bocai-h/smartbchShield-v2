@@ -9,12 +9,14 @@ import { openNotificationWithIcon } from '../tools';
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.connectWalletTip = this.connectWalletTip.bind(this)
   }
 
   connectWalletTip() {
+    let { intl } = this.props;
     openNotificationWithIcon(
-      'Tips',
-      'Please connect your wallet first.',
+      intl.get("Tips"),
+      intl.get("PleaseConnectYourWalletFirst"),
       'info',
       2,
     );
@@ -31,22 +33,22 @@ class Home extends React.Component {
         <Row>
           <Col span={24}>
             <div className="title">
-              <h1>Choose which crypto currency you</h1>
+              <h1>{intl.get("ChooseWhichCryptoCurrencyYou")}</h1>
               <h1>
-                want to{' '}
+                {intl.get("WantTo")}{' '}
                 <span className="boldFont">
-                  transfer privately and securely
+                {intl.get("PrivatelyTransfer")}
                 </span>{' '}
-                in
+                {intl.get("Via")}
               </h1>
-              <h1>Suterusu Network</h1>
+              <h1>{intl.get("SuterusuNetwork")}</h1>
               <Button
                 className="tutorialBtn"
                 shape="round"
                 size="large"
                 onClick={() => checkQA('help')}
               >
-                {intl.get('Tutorial')}
+                {intl.get('CheckTutorial')}
               </Button>
             </div>
           </Col>

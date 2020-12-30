@@ -35,7 +35,7 @@ class Form extends React.Component {
   }
 
   render() {
-    let { account, coinType } = this.props;
+    let { account, coinType, intl } = this.props;
     let {
       registered,
       client,
@@ -52,6 +52,7 @@ class Form extends React.Component {
             coinType={coinType}
             setClient={this.setClient}
             cancelSelectCoin={this.props.cancelSelectCoin}
+            intl={intl}
           />
         ) : (
           ''
@@ -63,6 +64,7 @@ class Form extends React.Component {
             account={account}
             key={updateKey}
             setBalanceFunc={this.setBalance}
+            intl={intl}
           />
         ) : (
           ''
@@ -75,6 +77,7 @@ class Form extends React.Component {
               account={account}
               updateKeyFunc={this.updateKeyFunc}
               max={balance}
+              intl={intl}
             />
             <Transfer
               coinType={coinType}
@@ -82,6 +85,7 @@ class Form extends React.Component {
               account={account}
               updateKeyFunc={this.updateKeyFunc}
               max={suterShieldBalance}
+              intl={intl}
             />
             <Burn
               coinType={coinType}
@@ -89,6 +93,7 @@ class Form extends React.Component {
               account={account}
               updateKeyFunc={this.updateKeyFunc}
               max={suterShieldBalance}
+              intl={intl}
             />
           </div>
         ) : (

@@ -71,6 +71,7 @@ class Register extends React.Component {
   }
   render() {
     let { visible, inputValue, spin, agree } = this.state;
+    let { intl } = this.props;
     let submitable = (inputValue !== '' && agree);
     return (
       <>
@@ -85,13 +86,13 @@ class Register extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>Register</h1>
-              <h1>Suterusu Account</h1>
+              <h1>{intl.get("Register")}</h1>
+              <h1>{intl.get("SuterusuAccount")}</h1>
             </div>
-            <div className="tip">Please use your Ethereum account private key as your Suter Account private key and treat it like your Ethereum private key. Never share with anyone.</div>
+            <div className="tip">{intl.get("RegisterWarning")}</div>
             <div className="inputContainer">
               <input
-                placeholder="Insert Your private key"
+                placeholder={intl.get("InsertYourprivatekey")}
                 value={inputValue}
                 type="text"
                 onChange={this.handleInputChange}
