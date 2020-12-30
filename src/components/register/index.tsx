@@ -100,7 +100,7 @@ class Register extends React.Component {
             </div>
             <div className="checkboxContainer">
                <input type="checkbox" onChange={this.handleCheckbox}/> 
-               <p>I use Ethereum account private key as Suter Account private key and keep it secure.</p>
+               <p>{intl.get("RegisterAgree")}</p>
               </div>
             <div className="registerBtnContainer">
               <Button
