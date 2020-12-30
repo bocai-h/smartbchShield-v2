@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 import { Button, Menu, Dropdown } from 'antd';
+import intl from 'react-intl-universal';
 const { SubMenu } = Menu;
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import 'antd/dist/antd.css';
@@ -14,6 +15,11 @@ import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
 
+const locales = {
+  'en-US': require('../locales/en_US'),
+  'zh-CN': require('../locales/zh_CN'),
+};
+
 class SuterProtocol extends React.Component {
   state = {
     metamaskInstalled: false,
@@ -23,10 +29,117 @@ class SuterProtocol extends React.Component {
     ethNetwork: '',
     showConnectModal: false,
     coinType: '',
+    initDone: false,
     QA: false,
     qa_type: 'qa',
     QA_help: {
-      title: 'Tutorial',
+      title: 'Suter Shield Tutorial',
+      active: {
+        index: 0,
+        target: {
+          active: true,
+          t: '1.Register Suter account with your Ethereum account private key',
+          o: [
+            {
+              t: 'a. Select the asset you want to have privacy protection',
+              img: require('../static/help01.png'),
+            },
+            {
+              t: 'b. Click "Connect" to connect to your Metamask wallet',
+            },
+            {
+              t:
+                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
+              img: require('../static/help02.png'),
+            },
+          ],
+        },
+      },
+      list: [
+        {
+          active: true,
+          t: '1.Register Suter account with your Ethereum account private key',
+          o: [
+            {
+              t: 'a. Select the asset you want to have privacy protection',
+              img: require('../static/help01.png'),
+            },
+            {
+              t: 'b. Click "Connect" to connect to your Metamask wallet',
+            },
+            {
+              t:
+                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
+              img: require('../static/help02.png'),
+            },
+          ],
+        },
+        {
+          active: false,
+          t:
+            '2.Stake your digital assets to the Suter Shield smart contract and get the private version of corresponding assets',
+          o: [
+            {
+              t: 'a. Select the asset you want to have privacy protection',
+            },
+            {
+              t:
+                'b. Enter the number of digital assets you want to stake (the unit of measurement is Unit, the Unit ratio of each digital asset is different, please refer to Suter Shield Q&A: Why Suter Shield’s digital assets should set Unit as the unit of measurement)',
+            },
+            {
+              t: 'c. Enter your Suter account private key to stake',
+            },
+            {
+              t:
+                'd. After the above steps are completed, your Suter account will display the increased corresponding privacy protection assets, and the original assets of your Ethereum account will decrease.',
+              img: require('../static/help03.png'),
+            },
+          ],
+        },
+        {
+          active: false,
+          t: '3.Transfer your privacy protection digital assets',
+          o: [
+            {
+              t: 'a. Select the asset you want to have privacy protection',
+            },
+            {
+              t: 'b. Register or log in to your Suter account',
+            },
+            {
+              t:
+                'c. Enter the quantity and Suter account public key address to transfer',
+              img: require('../static/help04.png'),
+            },
+          ],
+        },
+        {
+          active: false,
+          t: '4.Retrieve (Burn) your digital assets',
+          o: [
+            {
+              t: 'a. Connect your Metamask wallet',
+            },
+            {
+              t: 'b. Select the asset you want to have privacy protection',
+            },
+            {
+              t: 'c. Register or log in to your Suter account',
+            },
+            {
+              t:
+                'd. Enter the number of digital assets you want to retrieve. The unit of measurement is also Unit. The digital assets protected by Suter Shield are usually distinguished by putting an “s” in front of ordinary digital assets. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER',
+            },
+            {
+              t:
+                'e. Your corresponding digital assets will be returned to your Ethereum account',
+            },
+          ],
+        },
+      ],
+    },
+    QA_help_CN: {
+      title: '使⽤教程',
       active: {
         index: 0,
         target: {
@@ -223,6 +336,94 @@ class SuterProtocol extends React.Component {
         },
       ],
     },
+    QA_qa_CN: {
+      title: '常见问题解答',
+      active: {
+        index: 0,
+        target: {
+          active: true,
+          t: '1.什么是Suter Shield？',
+          o: [
+            'Suter Shield允许用户通Metamask钱包接入Suterusu Protocol，进而调用Suterusu Protocol提供的隐私支付功能。Suter Shield为用户提供了一个和基于我们原创的零知识证明技术的Suter protocol交互的接口，并为构建隐私保护的DeFi生态系统提供了基础技术架构。',
+          ],
+        },
+      },
+      list: [
+        {
+          active: true,
+          t: '1.什么是Suter Shield？',
+          o: [
+            'Suter Shield允许用户通Metamask钱包接入Suterusu Protocol，进而调用Suterusu Protocol提供的隐私支付功能。Suter Shield为用户提供了一个和基于我们原创的零知识证明技术的Suter protocol交互的接口，并为构建隐私保护的DeFi生态系统提供了基础技术架构。',
+          ],
+        },
+        {
+          active: false,
+          t:
+            '2.为什么在Suter Shield中要设置Unit？为什么每种资产的Unit都可能不一样？是根据什么设置的？',
+          o: [
+            `这是由底层的算法决定的，算法的数字型本身能处理的整数是有个上限的，这就导致系统中最终能处理的代币数量是有个上限的，而不同ERC-20代币总量是不一样的，因此必须相应有个代币最小单位才能保证算法与之兼容。由于每个单位的不同代币对应美元金额不同，因此我们设置相应单位代币数值将会重点考虑用户可以接受的最小交易金额。`,
+          ],
+        },
+        {
+          active: false,
+          t: '3.Suter Shield的经济模型是什么？我如何能从中获益？',
+          o: [
+            `Suter Shield初步决定在转账(Transfer)功能中收取当前以太坊网络成本的额外20%手续费，根据当前的gas fee(62gwei)那么Suter Shield在转账中收取的手续费大概是0.97美金。并且Suter Shield会在用户取回(Burn)资产时收取0.03个ETH的固定手续费，大概为15美金。所有的这些手续费将进入Suter Shield手续费分红池，按比例分给所有的Suterusu验证节点。`,
+          ],
+        },
+        {
+          active: false,
+          t: '4.Suter Shield的核心技术是什么？',
+          o: [
+            'Suter Shield的核心技术是我们原创的无需可信初始化的零知识证明技术。该技术具有接近常数级别的证明大小，且证明生成和验证时间和同类产品相比有10倍左右的提高。',
+          ],
+        },
+        {
+          active: false,
+          t: '5.Suter Shield目前市场上有哪些竞争对手？',
+          o: [
+            `我们尚未能找到和Suter Shield功能匹配且效率接近的竞争对手，功能上唯一接近Suter Shield的产品是Tornado.cash，但他们支持的单个用户的ETH的匿名存取，存取的金额无法保密。而且他们的零知识证明方案需要可信初始化，这个在安全性上大打折扣。相对而言，Suter支持任意两方之间的包括ETH在内的ERC-20 token的匿名保密交易，且两方无需提前分享任何秘密信息，而且如上面提到的我们的零知识证明无需可信初始化，因此安全性和透明性上已经登峰造极了。我们的功能极为模块化，还可以轻松支持各种隐私保护DeFi功能。更为细节的比较可以参考这篇medium文章：https://medium.com/suterusu/why-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the-existing-dbc0af45bb0c`,
+          ],
+        },
+        {
+          active: false,
+          t: '6.Suter Shield 和 Suterusu Protocol是什么关系？',
+          o: [
+            `上面说过了Suter Shield是Suterusu protocol和用户交互的一个界面，同时他也是SuterVM中提供的各种隐私保护DeFi产品的一个底层技术架构，所以在Suter项目的技术周期中他起着承上启下中流砥柱的作用。`,
+          ],
+        },
+        {
+          active: false,
+          t: '7.其他项目如何和Suter Shield以及Suterusu Protocol合作？',
+          o: [
+            `Suterusu Protocol作为DeFi协议中的隐私基础设施，可以和各类EVM-Compatible的公链以及DeFi协议进行合作，比如CEX, DEX, Loan, Derivative, Insurance等, 细节合作信息可以看以下文章：https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6bd140fe`,
+          ],
+        },
+        {
+          active: false,
+          t: '8.Suter Shield有办法被破解从而了解到我的隐私信息吗？',
+          o: ['没有办法，所有和用户相关的隐私信息都保留在用户客户端。'],
+        },
+        {
+          active: false,
+          t:
+            '9.社区开发者是否可以也基于Suterusu Protocol 再开发新的隐私应用或者隐私DeFi应用？',
+          o: [
+            `可以，Suterusu基金会鼓励开发社区开发各种基于Suter协议的DeFi隐私应用，例如隐私版本的Curve或者隐私Dex，把Suterusu Protocol的DeFi隐私基础设施的定位发挥到极致。`,
+          ],
+        },
+        {
+          active: false,
+          t: '10.你们收集用户的信息吗？',
+          o: ['从不'],
+        },
+        {
+          active: false,
+          t: '11.代码是否已经开源？',
+          o: ['https://github.com/suterusu-team/suterusu-protocol'],
+        },
+      ],
+    },
   };
 
   constructor(props) {
@@ -239,7 +440,23 @@ class SuterProtocol extends React.Component {
 
   componentDidMount() {
     this.checkMetaMaskStatus();
+    this.loadLocales();
   }
+
+  loadLocales = (lang = 'en-US') => {
+    // init method will load CLDR locale data according to currentLocale
+    // react-intl-universal is singleton, so you should init it only once in your app
+    intl
+      .init({
+        currentLocale: lang, // TODO: determine locale here
+        locales,
+      })
+      .then(() => {
+        console.log(this);
+        // After loading CLDR locale data, start to render
+        this.setState({ initDone: true });
+      });
+  };
 
   setCurrentAccount = (account: string) => {
     const connectWalletTxt = account.slice(0, 7) + '...' + account.slice(-5);
@@ -259,7 +476,7 @@ class SuterProtocol extends React.Component {
   showConnectModal() {
     this.setState({ showConnectModal: true });
   }
-  closeConnectModal(){
+  closeConnectModal() {
     this.setState({ showConnectModal: false });
   }
 
@@ -273,7 +490,11 @@ class SuterProtocol extends React.Component {
     } else {
       const message =
         'Suterusu Protocol must work with MetaMask, please install MetaMask';
-      openNotificationWithIcon('MetaMask is not installed!', message, 'warning');
+      openNotificationWithIcon(
+        'MetaMask is not installed!',
+        message,
+        'warning',
+      );
     }
   }
 
@@ -331,8 +552,15 @@ class SuterProtocol extends React.Component {
   };
 
   handleInfo = (qa_type, it, index) => {
-    const { QA_qa, QA_help } = this.state;
-    let type = qa_type === 'qa' ? QA_qa : QA_help;
+    const { QA_qa, QA_help, QA_qa_CN, QA_help_CN } = this.state;
+    let type =
+      qa_type === 'qa'
+        ? intl.options.currentLocale === 'zh-CN'
+          ? QA_qa_CN
+          : QA_qa
+        : intl.options.currentLocale === 'zh-CN'
+        ? QA_help_CN
+        : QA_help;
     type.active.index = index;
     type.active.target = it;
     type.list.forEach(it => {
@@ -352,155 +580,184 @@ class SuterProtocol extends React.Component {
       coinType,
       QA,
       QA_qa,
+      QA_qa_CN,
+      QA_help_CN,
       QA_help,
       qa_type,
     } = this.state;
-    let info = qa_type === 'qa' ? QA_qa : QA_help;
+    let lang = intl.options.currentLocale;
+
+    let info =
+      qa_type === 'qa'
+        ? lang === 'zh-CN'
+          ? QA_qa_CN
+          : QA_qa
+        : lang === 'zh-CN'
+        ? QA_help_CN
+        : QA_help;
     const canConnectWallet =
       account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
       <Menu mode="horizontal">
         <Menu.Item key="dashboard">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="#"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="#">
             Dashboard
           </a>
         </Menu.Item>
         <Menu.Item key="compliance">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="#"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="#">
             Compliance
           </a>
         </Menu.Item>
         <Menu.Item>
-        <SubMenu key="SubMenu" title="Resources">
-          <Menu.Item key="tutorial">Tutorial</Menu.Item>
-          <Menu.Item key="q&a">Q&A</Menu.Item>
-          <Menu.Item key="privacyTips">Privacy Tips</Menu.Item>
-          <Menu.Item key="about">About</Menu.Item>
-        </SubMenu>
+          <SubMenu key="SubMenu" title="Resources">
+            <Menu.Item key="tutorial">Tutorial</Menu.Item>
+            <Menu.Item key="q&a">Q&A</Menu.Item>
+            <Menu.Item key="privacyTips">Privacy Tips</Menu.Item>
+            <Menu.Item key="about">About</Menu.Item>
+          </SubMenu>
         </Menu.Item>
       </Menu>
     );
     return (
-      <Layout className="suterProtocol">
-        <Header>
-          <div className="head-top">
-            <div className="left">
-              <a href="/">
-                <img src={Logo} className="logo pc" />
-                <img src={mLogo} className="logo mobbile" />
-              </a>
-              <ul className="item-ul">
-                <li onClick={() => this.toggleQA('qa')}>Q&A</li>
-                <li>Dashboard</li>
-                <li>Compliance</li>
-                <li>Resources</li>
-              </ul>
-              {/* <div className="menuContainer">{menu}</div> */}
+      this.state.initDone && (
+        <Layout className="suterProtocol">
+          <Header>
+            <div className="head-top">
+              <div className="left">
+                <a href="/">
+                  <img src={Logo} className="logo pc" />
+                  <img src={mLogo} className="logo mobbile" />
+                </a>
+                <ul className="item-ul">
+                  <li onClick={() => this.toggleQA('qa')}>
+                    {intl.get('Q&A')}{' '}
+                  </li>
+                  <li>{intl.get('Dashboard')}</li>
+                  <li>{intl.get('Compliance')}</li>
+                  <li>{intl.get('Resources')}</li>
+                </ul>
+                {/* <div className="menuContainer">{menu}</div> */}
+              </div>
             </div>
-          </div>
-          <div>
-            {account === '' ? (
-              <Button
-                className="connectWalletBtn"
-                shape="round"
-                onClick={this.showConnectModal}
-                disabled={!canConnectWallet}
-              >
-                {connectWalletTxt}
-              </Button>
-            ) : (
-              <a href={scanLink} target="_blank">
-                <Button className="connectWalletBtn" shape="round">
-                  <div className="successDot"></div>
+            <div>
+              {account === '' ? (
+                <Button
+                  className="connectWalletBtn"
+                  shape="round"
+                  onClick={this.showConnectModal}
+                  disabled={!canConnectWallet}
+                >
                   {connectWalletTxt}
                 </Button>
-              </a>
-            )}
-            <Button className="langBtn pc-English" shape="round">
-              English
-            </Button>
-            <Dropdown className="mobble-English" overlay={menu}>
-              <a
-                className="ant-dropdown-link"
-                onClick={e => e.preventDefault()}
+              ) : (
+                <a href={scanLink} target="_blank">
+                  <Button className="connectWalletBtn" shape="round">
+                    <div className="successDot"></div>
+                    {connectWalletTxt}
+                  </Button>
+                </a>
+              )}
+              <Button
+                className="langBtn pc-English"
+                onClick={() =>
+                  this.loadLocales(`${lang === 'zh-CN' ? 'en-US' : 'zh-CN'}`)
+                }
+                shape="round"
               >
-                <Button className="langBtn" shape="round">
-                  English
-                </Button>
-              </a>
-            </Dropdown>
-          </div>
-        </Header>
-        <Content>
-          {showConnectModal ? (
-            <ConnectModal connectMetaMask={this.connectMetaMask} closeConnectModal={this.closeConnectModal}/>
-          ) : (
-            ''
-          )}
-          {QA ? (
-            <div className="QA">
-              <div className="left">
-                <h2>{info.title}</h2>
-                <ul>
-                  {info.list.map((it, index) => {
-                    return (
-                      <li
-                        onClick={() => this.handleInfo(qa_type, it, index)}
-                        className={it.active ? 'active' : ''}
-                        key={index}
-                      >
-                        {it.t}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div className="right">
-                <h3>{info.active.target.t}</h3>
-                <i></i>
-                <ul>
-                  {info.active.target.o.map((it, index) => {
-                    return (
-                      <li key={index}>
-                        {typeof it === 'object' ? it.t : it}
-                        {it.img && <img src={it.img} alt="" />}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+                {lang === 'zh-CN' ? '中文' : 'English'}
+              </Button>
+              <Dropdown className="mobble-English" overlay={menu}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={e => e.preventDefault()}
+                >
+                  <Button className="langBtn" shape="round">
+                    English
+                  </Button>
+                </a>
+              </Dropdown>
             </div>
-          ) : account === '' || coinType === '' ? (
-            <Home
-              account={account}
-              selectCoin={this.selectCoin}
-              checkQA={this.toggleQA}
-            />
-          ) : (
-            <Form account={account} coinType={coinType} cancelSelectCoin={this.cancelSelectCoin}/>
-          )}
-        </Content>
-        <Footer>
-          <a href="https://twitter.com/suterusu_io" target="_blank" rel="noreferrer">
-            <img src={twitter} alt="" />
-          </a>
-          <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
-            <img src={telegram} alt="" />
-          </a>
-          <a href="https://suterusu.medium.com/" target="_blank" rel="noreferrer">
-            <img src={medium} alt="" />
-          </a>
-        </Footer>
-      </Layout>
+          </Header>
+          <Content>
+            {showConnectModal ? (
+              <ConnectModal
+                connectMetaMask={this.connectMetaMask}
+                closeConnectModal={this.closeConnectModal}
+              />
+            ) : (
+              ''
+            )}
+            {QA ? (
+              <div className="QA">
+                <div className="left">
+                  <h2>{info.title}</h2>
+                  <ul>
+                    {info.list.map((it, index) => {
+                      return (
+                        <li
+                          onClick={() => this.handleInfo(qa_type, it, index)}
+                          className={it.active ? 'active' : ''}
+                          key={index}
+                        >
+                          {it.t}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className="right">
+                  <h3>{info.active.target.t}</h3>
+                  <i></i>
+                  <ul>
+                    {info.active.target.o.map((it, index) => {
+                      return (
+                        <li key={index}>
+                          {typeof it === 'object' ? it.t : it}
+                          {it.img && <img src={it.img} alt="" />}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            ) : account === '' || coinType === '' ? (
+              <Home
+                account={account}
+                selectCoin={this.selectCoin}
+                checkQA={this.toggleQA}
+                intl={intl}
+              />
+            ) : (
+              <Form
+                account={account}
+                coinType={coinType}
+                cancelSelectCoin={this.cancelSelectCoin}
+              />
+            )}
+          </Content>
+          <Footer>
+            <a
+              href="https://twitter.com/suterusu_io"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={twitter} alt="" />
+            </a>
+            <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
+              <img src={telegram} alt="" />
+            </a>
+            <a
+              href="https://suterusu.medium.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={medium} alt="" />
+            </a>
+          </Footer>
+        </Layout>
+      )
     );
   }
 }

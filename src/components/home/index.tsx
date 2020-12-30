@@ -25,7 +25,7 @@ class Home extends React.Component {
   }
 
   render() {
-    let { account, selectCoin, checkQA } = this.props;
+    let { account, selectCoin, checkQA, intl } = this.props;
     return (
       <div className="home">
         <Row>
@@ -33,17 +33,20 @@ class Home extends React.Component {
             <div className="title">
               <h1>Choose which crypto currency you</h1>
               <h1>
-                want to <span className="boldFont">transfer privately and securely</span>{' '}
+                want to{' '}
+                <span className="boldFont">
+                  transfer privately and securely
+                </span>{' '}
                 in
               </h1>
               <h1>Suterusu Network</h1>
               <Button
                 className="tutorialBtn"
                 shape="round"
-                size='large'
+                size="large"
                 onClick={() => checkQA('help')}
               >
-                Check Tutorial
+                {intl.get('Tutorial')}
               </Button>
             </div>
           </Col>
