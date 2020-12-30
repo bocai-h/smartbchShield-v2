@@ -10,6 +10,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.connectWalletTip = this.connectWalletTip.bind(this)
+    this.homeTitle = this.homeTitle.bind(this)
   }
 
   connectWalletTip() {
@@ -26,22 +27,38 @@ class Home extends React.Component {
     openNotificationWithIcon('Tips', 'Developing...', 'info', 2);
   }
 
+  homeTitle() {
+    let { intl } = this.props;
+    if(intl.options.currentLocale === "en-US"){
+      return(<>
+      <h1>{intl.get("ChooseWhichCryptoCurrencyYou")}</h1>
+      <h1>
+        {intl.get("WantTo")}{' '}
+        <span className="boldFont">
+        {intl.get("PrivatelyTransfer")}
+        </span>{' '}
+        {intl.get("Via")}
+      </h1>
+      <h1>{intl.get("SuterusuNetwork")}</h1></>)
+    }else{
+      return(<>
+        <h1>{intl.get("homeTitleCN1")}</h1>
+        <h1>
+        <span className="boldFont">{intl.get("homeTitleCN2")}</span>
+        {intl.get("homeTitleCN3")}</h1>
+      </> )
+    }
+  }
+
   render() {
     let { account, selectCoin, checkQA, intl } = this.props;
+    this.homeTitle();
     return (
       <div className="home">
         <Row>
           <Col span={24}>
             <div className="title">
-              <h1>{intl.get("ChooseWhichCryptoCurrencyYou")}</h1>
-              <h1>
-                {intl.get("WantTo")}{' '}
-                <span className="boldFont">
-                {intl.get("PrivatelyTransfer")}
-                </span>{' '}
-                {intl.get("Via")}
-              </h1>
-              <h1>{intl.get("SuterusuNetwork")}</h1>
+              { this.homeTitle() }
               <Button
                 className="tutorialBtn"
                 shape="round"
