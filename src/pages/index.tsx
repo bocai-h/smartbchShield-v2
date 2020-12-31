@@ -11,6 +11,10 @@ import mLogo from '../static/logo.svg';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
+import twitterLight from '../static/twitter_light.svg';
+import telegramLight from '../static/telegram_light.svg';
+import mediumLight from '../static/medium_light.svg';
+
 import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
@@ -30,6 +34,9 @@ class SuterProtocol extends React.Component {
     showConnectModal: false,
     coinType: '',
     initDone: false,
+    twitterLogo: twitter,
+    telegramLogo: telegram,
+    mediumLogo: medium,
     QA: false,
     qa_type: 'qa',
     QA_help: {
@@ -434,6 +441,8 @@ class SuterProtocol extends React.Component {
     this.selectCoin = this.selectCoin.bind(this);
     this.closeConnectModal = this.closeConnectModal.bind(this);
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
+    this.lightFooterLogo = this.lightFooterLogo.bind(this);
+    this.footerLogo = this.footerLogo.bind(this)
   }
 
   componentDidMount() {
@@ -568,6 +577,29 @@ class SuterProtocol extends React.Component {
     this.setState({ type });
   };
 
+  lightFooterLogo = (ctype) =>{
+    if(ctype === 'twitter') {
+      this.setState({twitterLogo: twitterLight})
+    }
+    if(ctype === 'telegram') {
+      this.setState({telegramLogo: telegramLight})
+    }
+    if(ctype === 'medium') {
+      this.setState({mediumLogo: mediumLight})
+    }
+  }
+
+  footerLogo = (ctype) =>{
+    if(ctype === 'twitter') {
+      this.setState({twitterLogo: twitter})
+    }
+    if(ctype === 'telegram') {
+      this.setState({telegramLogo: telegram})
+    }
+    if(ctype === 'medium') {
+      this.setState({mediumLogo: medium})
+    }
+  }
   render() {
     const {
       connectWalletTxt,
@@ -576,6 +608,9 @@ class SuterProtocol extends React.Component {
       ethNetwork,
       showConnectModal,
       coinType,
+      twitterLogo,
+      telegramLogo,
+      mediumLogo,
       QA,
       QA_qa,
       QA_qa_CN,
@@ -743,17 +778,17 @@ class SuterProtocol extends React.Component {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={twitter} alt="" />
+              <img src={twitterLogo} alt="" onMouseOver={()=>this.lightFooterLogo('twitter')} onMouseOut={()=>this.footerLogo('twitter')}/>
             </a>
             <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
-              <img src={telegram} alt="" />
+              <img src={telegramLogo} alt="" onMouseOver={()=>this.lightFooterLogo('telegram')} onMouseOut={()=>this.footerLogo('telegram')} />
             </a>
             <a
               href="https://suterusu.medium.com/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={medium} alt="" />
+              <img src={mediumLogo} alt="" onMouseOver={()=>this.lightFooterLogo('medium')} onMouseOut={()=>this.footerLogo('medium')}  />
             </a>
           </Footer>
         </Layout>
