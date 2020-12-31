@@ -53,13 +53,13 @@ class Balance extends React.Component {
     this.setState({ suterShieldBalance: balance });
   }
   render() {
-    let { coinType } = this.props;
+    let { coinType, intl } = this.props;
     let info = Infos[coinType];
     let { balance, suterShieldBalance } = this.state;
     return (
       <div className="balanceContainer">
         <div>
-          <h1>{info.suterShiledBalanceDesc}</h1>
+          <h1>{info.suterShiledBalanceDesc} {intl.get("Balance")}</h1>
           <div className="balanceInfoContainer">
             <div>
               <img src={info.logo[coinType][1]} />
@@ -78,7 +78,7 @@ class Balance extends React.Component {
           </div>
         </div>
         <div>
-          <h1>{info.coinBalanceDesc}</h1>
+          <h1>{info.coinBalanceDesc} {intl.get("Balance")}</h1>
           <div className="balanceInfoContainer">
             <div>
               <img src={info.logo[coinType][2]} />

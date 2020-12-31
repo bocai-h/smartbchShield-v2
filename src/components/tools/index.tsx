@@ -113,8 +113,8 @@ const CoinLogoMap = {
 
 const Infos = {
   usdt: {
-    suterShiledBalanceDesc: 'Suter USDT Balance',
-    coinBalanceDesc: 'USDT Balance',
+    suterShiledBalanceDesc: 'Suter USDT',
+    coinBalanceDesc: 'USDT',
     logo: CoinLogoMap,
     valueDesc: 'Suter USDT',
     unit: 'USDT',
@@ -126,8 +126,8 @@ const Infos = {
     decimal: 2,
   },
   eth: {
-    suterShiledBalanceDesc: 'Suter ETH Balance',
-    coinBalanceDesc: 'ETH Balance',
+    suterShiledBalanceDesc: 'Suter ETH',
+    coinBalanceDesc: 'ETH',
     logo: CoinLogoMap,
     valueDesc: 'Suter ETH',
     unit: 'ETH',
@@ -137,8 +137,8 @@ const Infos = {
     decimal: 18,
   },
   dai: {
-    suterShiledBalanceDesc: 'Suter DAI Balance',
-    coinBalanceDesc: 'DAI Balance',
+    suterShiledBalanceDesc: 'Suter DAI',
+    coinBalanceDesc: 'DAI',
     logo: CoinLogoMap,
     valueDesc: 'Suter DAI',
     unit: 'DAI',
@@ -150,8 +150,8 @@ const Infos = {
     decimal: 2,
   },
   suter: {
-    suterShiledBalanceDesc: 'Suter SUTER Balance',
-    coinBalanceDesc: 'SUTER Balance',
+    suterShiledBalanceDesc: 'Suter SUTER',
+    coinBalanceDesc: 'SUTER',
     logo: CoinLogoMap,
     valueDesc: 'Suter SUTER',
     unit: 'SUTER',

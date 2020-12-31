@@ -5,6 +5,7 @@ import './index.less';
 
 class ConnectModal extends React.Component {
   render() {
+    let { intl } = this.props;
     return (
       <>
         <Modal
@@ -18,9 +19,9 @@ class ConnectModal extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>Connect Wallet</h1>
+              <h1>{ intl.get("ConnectWallet") }</h1>
             </div>
-            <div className="tip">Please connect to your metamask wallet</div>
+            <div className="tip">{intl.get("PleaseConnectToYourMetamaskWallet")}</div>
             <div className="metaMaskContainer">
               <img src={metaMask} />
             </div>
@@ -30,7 +31,7 @@ class ConnectModal extends React.Component {
                 shape="round"
                 onClick={this.props.connectMetaMask}
               >
-                Connect to wallet
+                { intl.get("ConnectToWallet") }
               </Button>
             </div>
           </div>

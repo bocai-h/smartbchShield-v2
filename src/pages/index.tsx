@@ -11,6 +11,10 @@ import mLogo from '../static/logo.svg';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
+import twitterLight from '../static/twitter_light.svg';
+import telegramLight from '../static/telegram_light.svg';
+import mediumLight from '../static/medium_light.svg';
+
 import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
@@ -24,12 +28,15 @@ class SuterProtocol extends React.Component {
   state = {
     metamaskInstalled: false,
     account: '',
-    connectWalletTxt: 'Connect Wallet',
+    connectWalletTxt: 'ConnectWallet',
     web3Browser: false,
     ethNetwork: '',
     showConnectModal: false,
     coinType: '',
     initDone: false,
+    twitterLogo: twitter,
+    telegramLogo: telegram,
+    mediumLogo: medium,
     QA: false,
     qa_type: 'qa',
     QA_help: {
@@ -144,98 +151,101 @@ class SuterProtocol extends React.Component {
         index: 0,
         target: {
           active: true,
-          t: '1.⽤你的以太坊账号私钥来注册Suter账号',
+          t: '1.用您的以太坊账号私钥来注册suter账号',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.选择您想要进行隐私保护的资产',
               img: require('../static/help01.png'),
             },
             {
-              t: 'b.点击“Connect”连接到你的Metamask钱包',
+              t: 'b.点击"Connect"连接到您的Metamask钱包',
             },
             {
               t:
-                'c.点击“Register”然后输⼊你的以太坊私钥，理论上讲⽤任何字符串数字和字⺟组成的字符串都可以 ⽣成你的Suter账号，甚⾄是“123456“这种简单密码，但是这是及其不安全的，请不要这样操作， 为了您的Suter账号安全，请使⽤您的以太坊账号私钥，并妥善保管。',
+                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成您的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
               img: require('../static/help02.png'),
             },
           ],
         },
       },
       list: [
+       {
+            active: true,
+            t: '1.用您的以太坊账号私钥来注册suter账号',
+            o: [
+              {
+                t: 'a.选择您想要进行隐私保护的资产',
+                img: require('../static/help01.png'),
+              },
+              {
+                t: 'b.点击"Connect"连接到您的Metamask钱包',
+              },
+              {
+                t:
+                  'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成你的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
+                img: require('../static/help02.png'),
+              },
+            ],
+        },
         {
           active: true,
-          t: '1.⽤你的以太坊账号私钥来注册Suter账号',
+          t: '2.抵押您的数字资产到Suter Shield智能合约并得到隐私版本的对应资产',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.选择您想要进行隐私保护的资产',
               img: require('../static/help01.png'),
             },
             {
-              t: 'b.点击“Connect”连接到你的Metamask钱包',
+              t: 'b.输入您想要只要的数字资产数量(单位是Unit,每种数字资产的Unit比例并不一样，原因请查看Suter ShieldQ&A: 为什么Suter Shield的数字资产要设置Unit作为单位)',
             },
             {
               t:
-                'c.点击“Register”然后输⼊你的以太坊私钥，理论上讲⽤任何字符串数字和字⺟组成的字符串都可以 ⽣成你的Suter账号，甚⾄是“123456“这种简单密码，但是这是及其不安全的，请不要这样操作， 为了您的Suter账号安全，请使⽤您的以太坊账号私钥，并妥善保管。',
+                'c.输入您的Suter账号私钥进行抵押操作',
+              img: require('../static/help02.png'),
+            },
+            {
+              t:
+                'd.操作完毕后，您的Suter账号会显示对应增加的隐私保护资产，你的以太坊账号的相应资产会减少。',
               img: require('../static/help02.png'),
             },
           ],
         },
         {
           active: false,
-          t: '2.抵押你的数字资产到Suter Shield智能合约并得到隐私版本的对应资产',
+          t: '3.对您的隐私保护数字资产进行转账',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.选择您想要进行隐私保护的资产',
             },
             {
               t:
-                'b.输⼊你要质押的数字资产数量（单位是Unit, 每种数字资产的Unit⽐例并不⼀样，原因请查看Suter Shield Q&A: 为什么Suter Shield的数字资产要设置Unit作为单位）',
+                'b.注册或者登陆你的Suter账号',
             },
             {
-              t: 'c.输⼊你的Suter账号私钥进⾏抵押操作',
-            },
-            {
-              t:
-                'd.操作完毕后，你的Suter账号会显⽰对应增加的隐私保护资产，你的以太坊账号的相应资产会减少。',
-              img: require('../static/help03.png'),
-            },
+              t: 'c.输入数量以及Suter账号公钥地址，进行转账',
+              img: require('../static/help03.png')
+            }
           ],
         },
         {
           active: false,
-          t: '3.对你的隐私保护数字资产进⾏转账',
+          t: '4.取回您的数字资产',
           o: [
             {
-              t: 'a.选择您想要进⾏隐私保护的资产',
+              t: 'a.连接您的Metamask钱包',
             },
             {
-              t: 'b.注册或者登陆你的Suter账号',
+              t: 'b.选择您想要进行隐私保护的资产',
             },
             {
-              t: 'c.输⼊数量以及Suter账号公钥地址，进⾏转账',
-              img: require('../static/help04.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t: '4.取回（Burn）你的数字资产',
-          o: [
-            {
-              t: 'a.连接你的Metamask钱包',
-            },
-            {
-              t: 'b.选择您想要进⾏隐私保护的资产',
-            },
-            {
-              t: 'c.注册或者登陆你的Suter账号',
+              t: 'c.注册或登录您的Suter账号 ',
             },
             {
               t:
-                'd.输⼊你想要取回的数字资产的数量，单位同样是Unit，Suter Shield隐私保护的数字资产通常是普通 数字资产前⾯加上⼀个s作为区别，⽐如ETH在Suter⽹络中会是sETH，USDT会是sUSDT，Suter会是 sSUTER',
+                'd.输入您想要取回的数字资产的数量，单位同样是Unit，Suter Shield隐私保护的数字资产通常是普通数字资产前面加上一个s作为区别，比如ETH在Suter网络中会是sETH，USDT会是sUSDT, suter会是sSUTER',
             },
             {
-              t: 'e.你的对应的数字资产会回到你的以太坊账号中',
+              t: 'e.您的对应的数字资产会回到您的以太坊账号中',
             },
           ],
         },
@@ -280,7 +290,7 @@ class SuterProtocol extends React.Component {
           active: false,
           t: "4. What's the core technology of Suter Shield?",
           o: [
-            'Suter Shield的核⼼技术是我们原创的⽆需可信初始化的零知识证明技术。该技术具有接近常数级别 的证明⼤⼩，且证明⽣成和验证时间和同类产品相⽐有10倍左右的提⾼。 The core technology of Suter Shield is our original zero-knowledge proof scheme, which does not require a trusted setup, and has an almost constant proof size, and both the proof generation and verification time has one order of magnitude improvement compared with the similar schemes.',
+            'The core technology of Suter Shield is our original zero-knowledge proof scheme, which does not require a trusted setup, and has an almost constant proof size, and both the proof generation and verification time has one order of magnitude improvement compared with the similar schemes.',
           ],
         },
         {
@@ -299,7 +309,7 @@ class SuterProtocol extends React.Component {
         },
         {
           active: false,
-          t: '7.How other projects can',
+          t: '7.How other projects can cooperate with Suter Shield and Suterusu Protocol?',
           o: [
             'As the privacy infrastructure in the DeFi protocol, Suterusu Protocol can cooperate with various EVM-Compatible public chains and DeFi protocols, such as CEX, DEX, Loan, Derivative, Insurance, etc. For detailed cooperation information, please see the following article: https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6b d140fe',
           ],
@@ -431,6 +441,8 @@ class SuterProtocol extends React.Component {
     this.selectCoin = this.selectCoin.bind(this);
     this.closeConnectModal = this.closeConnectModal.bind(this);
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
+    this.lightFooterLogo = this.lightFooterLogo.bind(this);
+    this.footerLogo = this.footerLogo.bind(this)
   }
 
   componentDidMount() {
@@ -565,6 +577,29 @@ class SuterProtocol extends React.Component {
     this.setState({ type });
   };
 
+  lightFooterLogo = (ctype) =>{
+    if(ctype === 'twitter') {
+      this.setState({twitterLogo: twitterLight})
+    }
+    if(ctype === 'telegram') {
+      this.setState({telegramLogo: telegramLight})
+    }
+    if(ctype === 'medium') {
+      this.setState({mediumLogo: mediumLight})
+    }
+  }
+
+  footerLogo = (ctype) =>{
+    if(ctype === 'twitter') {
+      this.setState({twitterLogo: twitter})
+    }
+    if(ctype === 'telegram') {
+      this.setState({telegramLogo: telegram})
+    }
+    if(ctype === 'medium') {
+      this.setState({mediumLogo: medium})
+    }
+  }
   render() {
     const {
       connectWalletTxt,
@@ -573,6 +608,9 @@ class SuterProtocol extends React.Component {
       ethNetwork,
       showConnectModal,
       coinType,
+      twitterLogo,
+      telegramLogo,
+      mediumLogo,
       QA,
       QA_qa,
       QA_qa_CN,
@@ -644,7 +682,7 @@ class SuterProtocol extends React.Component {
                   onClick={this.showConnectModal}
                   disabled={!canConnectWallet}
                 >
-                  {connectWalletTxt}
+                  {intl.get(connectWalletTxt)}
                 </Button>
               ) : (
                 <a href={scanLink} target="_blank">
@@ -680,6 +718,7 @@ class SuterProtocol extends React.Component {
               <ConnectModal
                 connectMetaMask={this.connectMetaMask}
                 closeConnectModal={this.closeConnectModal}
+                intl={intl}
               />
             ) : (
               ''
@@ -729,6 +768,7 @@ class SuterProtocol extends React.Component {
                 account={account}
                 coinType={coinType}
                 cancelSelectCoin={this.cancelSelectCoin}
+                intl={intl}
               />
             )}
           </Content>
@@ -738,17 +778,17 @@ class SuterProtocol extends React.Component {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={twitter} alt="" />
+              <img src={twitterLogo} alt="" onMouseOver={()=>this.lightFooterLogo('twitter')} onMouseOut={()=>this.footerLogo('twitter')}/>
             </a>
             <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
-              <img src={telegram} alt="" />
+              <img src={telegramLogo} alt="" onMouseOver={()=>this.lightFooterLogo('telegram')} onMouseOut={()=>this.footerLogo('telegram')} />
             </a>
             <a
               href="https://suterusu.medium.com/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={medium} alt="" />
+              <img src={mediumLogo} alt="" onMouseOver={()=>this.lightFooterLogo('medium')} onMouseOut={()=>this.footerLogo('medium')}  />
             </a>
           </Footer>
         </Layout>

@@ -27,16 +27,16 @@ class Fund extends React.Component {
     this.setState({ inputValue: value.toString() });
   }
   async fund() {
-    let { client } = this.props;
+    let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
     let result = await client.deposit(inputValue);
     let txHash = result.transactionHash;
 
-    const message = `View in etherscan`;
+    const message = intl.get("ViewInEtherScan");;
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      'Fund transaction has sent!',
+      `${intl.get('Fund')}${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
@@ -51,16 +51,16 @@ class Fund extends React.Component {
     this.setState({ inputValue: max });
   }
   render() {
-    let { coinType } = this.props;
+    let { coinType, intl } = this.props;
     let { inputValue, processing } = this.state;
     let info = Infos[coinType];
     return (
       <div className="fund">
         {processing ? <SpinModal /> : ''}
         <Card style={{ width: 350 }}>
-          <h1>Fund</h1>
+          <h1>{intl.get("Fund")}</h1>
           <p>
-            Deposit {info.unit} to S{info.unit}
+            { intl.get("Deposit") } {info.unit} { intl.get("To") } S{info.unit}
           </p>
           <div className="inputContainer">
             <input
@@ -71,7 +71,7 @@ class Fund extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-                Max
+                { intl.get("Max") }
               </span>
               <img src={info.logo[coinType][2]} width="20px" />
             </div>
@@ -92,7 +92,7 @@ class Fund extends React.Component {
               disabled={inputValue > 0 ? false : true}
               onClick={this.fund}
             >
-              Confirm Fund
+             { intl.get("ConfirmFund") }
             </Button>
           </div>
         </Card>
