@@ -14,6 +14,7 @@ import medium from '../static/medium.svg';
 import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
+import { MenuOutlined } from '@ant-design/icons';
 
 import Home from '../components/home';
 import Form from '../components/form';
@@ -169,23 +170,23 @@ class SuterProtocol extends React.Component {
         },
       },
       list: [
-       {
-            active: true,
-            t: '1.用您的以太坊账号私钥来注册suter账号',
-            o: [
-              {
-                t: 'a.选择您想要进行隐私保护的资产',
-                img: require('../static/help01.png'),
-              },
-              {
-                t: 'b.点击"Connect"连接到您的Metamask钱包',
-              },
-              {
-                t:
-                  'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成你的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
-                img: require('../static/help02.png'),
-              },
-            ],
+        {
+          active: true,
+          t: '1.用您的以太坊账号私钥来注册suter账号',
+          o: [
+            {
+              t: 'a.选择您想要进行隐私保护的资产',
+              img: require('../static/help01.png'),
+            },
+            {
+              t: 'b.点击"Connect"连接到您的Metamask钱包',
+            },
+            {
+              t:
+                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成你的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
+              img: require('../static/help02.png'),
+            },
+          ],
         },
         {
           active: true,
@@ -196,11 +197,11 @@ class SuterProtocol extends React.Component {
               img: require('../static/help01.png'),
             },
             {
-              t: 'b.输入您想要只要的数字资产数量(单位是Unit,每种数字资产的Unit比例并不一样，原因请查看Suter ShieldQ&A: 为什么Suter Shield的数字资产要设置Unit作为单位)',
+              t:
+                'b.输入您想要只要的数字资产数量(单位是Unit,每种数字资产的Unit比例并不一样，原因请查看Suter ShieldQ&A: 为什么Suter Shield的数字资产要设置Unit作为单位)',
             },
             {
-              t:
-                'c.输入您的Suter账号私钥进行抵押操作',
+              t: 'c.输入您的Suter账号私钥进行抵押操作',
               img: require('../static/help02.png'),
             },
             {
@@ -218,13 +219,12 @@ class SuterProtocol extends React.Component {
               t: 'a.选择您想要进行隐私保护的资产',
             },
             {
-              t:
-                'b.注册或者登陆你的Suter账号',
+              t: 'b.注册或者登陆你的Suter账号',
             },
             {
               t: 'c.输入数量以及Suter账号公钥地址，进行转账',
-              img: require('../static/help03.png')
-            }
+              img: require('../static/help03.png'),
+            },
           ],
         },
         {
@@ -309,7 +309,8 @@ class SuterProtocol extends React.Component {
         },
         {
           active: false,
-          t: '7.How other projects can cooperate with Suter Shield and Suterusu Protocol?',
+          t:
+            '7.How other projects can cooperate with Suter Shield and Suterusu Protocol?',
           o: [
             'As the privacy infrastructure in the DeFi protocol, Suterusu Protocol can cooperate with various EVM-Compatible public chains and DeFi protocols, such as CEX, DEX, Loan, Derivative, Insurance, etc. For detailed cooperation information, please see the following article: https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6b d140fe',
           ],
@@ -442,7 +443,7 @@ class SuterProtocol extends React.Component {
     this.closeConnectModal = this.closeConnectModal.bind(this);
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
-    this.footerLogo = this.footerLogo.bind(this)
+    this.footerLogo = this.footerLogo.bind(this);
   }
 
   componentDidMount() {
@@ -577,29 +578,29 @@ class SuterProtocol extends React.Component {
     this.setState({ type });
   };
 
-  lightFooterLogo = (ctype) =>{
-    if(ctype === 'twitter') {
-      this.setState({twitterLogo: twitterLight})
+  lightFooterLogo = ctype => {
+    if (ctype === 'twitter') {
+      this.setState({ twitterLogo: twitterLight });
     }
-    if(ctype === 'telegram') {
-      this.setState({telegramLogo: telegramLight})
+    if (ctype === 'telegram') {
+      this.setState({ telegramLogo: telegramLight });
     }
-    if(ctype === 'medium') {
-      this.setState({mediumLogo: mediumLight})
+    if (ctype === 'medium') {
+      this.setState({ mediumLogo: mediumLight });
     }
-  }
+  };
 
-  footerLogo = (ctype) =>{
-    if(ctype === 'twitter') {
-      this.setState({twitterLogo: twitter})
+  footerLogo = ctype => {
+    if (ctype === 'twitter') {
+      this.setState({ twitterLogo: twitter });
     }
-    if(ctype === 'telegram') {
-      this.setState({telegramLogo: telegram})
+    if (ctype === 'telegram') {
+      this.setState({ telegramLogo: telegram });
     }
-    if(ctype === 'medium') {
-      this.setState({mediumLogo: medium})
+    if (ctype === 'medium') {
+      this.setState({ mediumLogo: medium });
     }
-  }
+  };
   render() {
     const {
       connectWalletTxt,
@@ -635,6 +636,35 @@ class SuterProtocol extends React.Component {
       <Menu mode="horizontal">
         <Menu.Item key="dashboard">
           <a target="_blank" rel="noopener noreferrer" href="#">
+            Tutorial
+          </a>
+        </Menu.Item>
+        <Menu.Item key="compliance">
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            Q&A
+          </a>
+        </Menu.Item>
+        <Menu.Item key="compliance">
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            Privacy Tips
+          </a>
+        </Menu.Item>
+        <Menu.Item key="compliance">
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            About
+          </a>
+        </Menu.Item>
+      </Menu>
+    );
+    const menu1 = (
+      <Menu mode="horizontal">
+        <Menu.Item key="dashboard">
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            Q&A
+          </a>
+        </Menu.Item>
+        <Menu.Item key="compliance">
+          <a target="_blank" rel="noopener noreferrer" href="#">
             Dashboard
           </a>
         </Menu.Item>
@@ -643,14 +673,28 @@ class SuterProtocol extends React.Component {
             Compliance
           </a>
         </Menu.Item>
-        <Menu.Item>
-          <SubMenu key="SubMenu" title="Resources">
-            <Menu.Item key="tutorial">Tutorial</Menu.Item>
-            <Menu.Item key="q&a">Q&A</Menu.Item>
-            <Menu.Item key="privacyTips">Privacy Tips</Menu.Item>
-            <Menu.Item key="about">About</Menu.Item>
-          </SubMenu>
-        </Menu.Item>
+        <Menu.ItemGroup title="Resources">
+          <Menu.Item key="setting:3">
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              Tutorial
+            </a>
+          </Menu.Item>
+          <Menu.Item key="setting:4">
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              Q&A
+            </a>
+          </Menu.Item>
+          <Menu.Item key="setting:5">
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              Privacy Tips
+            </a>
+          </Menu.Item>
+          <Menu.Item key="setting:6">
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              About
+            </a>
+          </Menu.Item>
+        </Menu.ItemGroup>
       </Menu>
     );
     return (
@@ -669,12 +713,22 @@ class SuterProtocol extends React.Component {
                   </li>
                   <li>{intl.get('Dashboard')}</li>
                   <li>{intl.get('Compliance')}</li>
-                  <li>{intl.get('Resources')}</li>
+                  <li>
+                    <Dropdown
+                      overlay={menu}
+                      arrow
+                      placement="bottomCenter"
+                      trigger={['click']}
+                      onClick={e => e.preventDefault()}
+                    >
+                      <a className="a">{intl.get('Resources')}</a>
+                    </Dropdown>
+                  </li>
                 </ul>
                 {/* <div className="menuContainer">{menu}</div> */}
               </div>
             </div>
-            <div>
+            <div className="header-btn">
               {account === '' ? (
                 <Button
                   className="connectWalletBtn"
@@ -692,7 +746,27 @@ class SuterProtocol extends React.Component {
                   </Button>
                 </a>
               )}
-              <Button
+              <div className="top-btn">
+                <i
+                  onClick={() => this.loadLocales('en-US')}
+                  className={`${lang === 'en-US' ? 'active' : ''}`}
+                >
+                  EN
+                </i>
+                <i
+                  className={`${lang === 'zh-CN' ? 'active' : ''}`}
+                  onClick={() => this.loadLocales('zh-CN')}
+                >
+                  中
+                </i>
+              </div>
+
+              <Dropdown overlay={menu1} className="mobbile-MenuOutlined">
+                <span onClick={e => e.preventDefault()}>
+                  <MenuOutlined className="MenuOutlined" />
+                </span>
+              </Dropdown>
+              {/* <Button
                 className="langBtn pc-English"
                 onClick={() =>
                   this.loadLocales(`${lang === 'zh-CN' ? 'en-US' : 'zh-CN'}`)
@@ -701,6 +775,7 @@ class SuterProtocol extends React.Component {
               >
                 {lang === 'zh-CN' ? '中文' : 'English'}
               </Button>
+
               <Dropdown className="mobble-English" overlay={menu}>
                 <a
                   className="ant-dropdown-link"
@@ -710,7 +785,7 @@ class SuterProtocol extends React.Component {
                     English
                   </Button>
                 </a>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           </Header>
           <Content>
@@ -778,17 +853,32 @@ class SuterProtocol extends React.Component {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={twitterLogo} alt="" onMouseOver={()=>this.lightFooterLogo('twitter')} onMouseOut={()=>this.footerLogo('twitter')}/>
+              <img
+                src={twitterLogo}
+                alt=""
+                onMouseOver={() => this.lightFooterLogo('twitter')}
+                onMouseOut={() => this.footerLogo('twitter')}
+              />
             </a>
             <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
-              <img src={telegramLogo} alt="" onMouseOver={()=>this.lightFooterLogo('telegram')} onMouseOut={()=>this.footerLogo('telegram')} />
+              <img
+                src={telegramLogo}
+                alt=""
+                onMouseOver={() => this.lightFooterLogo('telegram')}
+                onMouseOut={() => this.footerLogo('telegram')}
+              />
             </a>
             <a
               href="https://suterusu.medium.com/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={mediumLogo} alt="" onMouseOver={()=>this.lightFooterLogo('medium')} onMouseOut={()=>this.footerLogo('medium')}  />
+              <img
+                src={mediumLogo}
+                alt=""
+                onMouseOver={() => this.lightFooterLogo('medium')}
+                onMouseOut={() => this.footerLogo('medium')}
+              />
             </a>
           </Footer>
         </Layout>
