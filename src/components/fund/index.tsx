@@ -17,6 +17,9 @@ class Fund extends React.Component {
   }
   handleInputChange(e) {
     let value = parseInt(e.target.value);
+    if(isNaN(value)){
+      value = 0;
+    }
     if (value < 0) {
       value = 0;
     }
@@ -30,7 +33,19 @@ class Fund extends React.Component {
     let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
-    let result = await client.deposit(inputValue);
+    let result
+    try {
+      result = await client.deposit(inputValue);
+    }catch(error){
+      if(error.code !== ''){
+        openNotificationWithIcon("Error", error.message, 'error')
+      }else{
+        openNotificationWithIcon("Error", error.toString(), 'error')
+      }
+      this.setState({ proccesing: false });
+      return
+    }
+    
     let txHash = result.transactionHash;
 
     const message = intl.get("ViewInEtherScan");;
