@@ -447,7 +447,7 @@ class SuterProtocol extends React.Component {
   }
 
   componentDidMount() {
-    this.checkMetaMaskStatus();
+    setTimeout(this.checkMetaMaskStatus, 1000);
     this.loadLocales();
   }
 
