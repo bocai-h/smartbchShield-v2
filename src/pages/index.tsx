@@ -645,7 +645,7 @@ class SuterProtocol extends React.Component {
           </a>
         </Menu.Item>
         <Menu.Item key="privacyTips">
-          <a target="_blank" rel="noopener noreferrer" href="#">
+          <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447">
           { intl.get("PrivacyTips") }
           </a>
         </Menu.Item>
@@ -685,7 +685,7 @@ class SuterProtocol extends React.Component {
             </a>
           </Menu.Item>
           <Menu.Item key="setting:5">
-            <a target="_blank" rel="noopener noreferrer" href="#">
+            <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447">
               { intl.get("PrivacyTips") }
             </a>
           </Menu.Item>
