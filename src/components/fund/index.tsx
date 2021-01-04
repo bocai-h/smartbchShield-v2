@@ -42,7 +42,7 @@ class Fund extends React.Component {
       }else{
         openNotificationWithIcon("Error", error.toString(), 'error')
       }
-      this.setState({ proccesing: false });
+      this.setState({ processing: false });
       return;
     }
     let txHash = result.transactionHash;
