@@ -24,6 +24,7 @@
   "RegisterAgree": "我选择了足够随机的Suter账号私钥并将妥善保存该私钥",
   "Balance": "余额",
   "Fund": "质押",
+  "RecipientAddress": "接收地址",
   "Deposit": "质押",
   "To": "到",
   "Max": "最大",
