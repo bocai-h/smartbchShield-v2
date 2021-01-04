@@ -43,9 +43,8 @@ class Fund extends React.Component {
         openNotificationWithIcon("Error", error.toString(), 'error')
       }
       this.setState({ proccesing: false });
-      return
+      return;
     }
-    
     let txHash = result.transactionHash;
 
     const message = intl.get("ViewInEtherScan");;
@@ -61,6 +60,7 @@ class Fund extends React.Component {
     this.props.updateKeyFunc();
     this.setState({ processing: false });
   }
+
   maxFill() {
     let { max } = this.props;
     this.setState({ inputValue: max });

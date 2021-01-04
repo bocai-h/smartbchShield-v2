@@ -455,7 +455,13 @@ class ClientBase {
 
             })
             .on('error', (error) => {
-                console.log("Withdrawal failed: " + error);
+                if(error.code !== ''){
+                  console.log("Withdrawal failed: " + error.message);
+                  throw error;
+                }else{
+                  console.log("Withdrawal failed: " + error);
+                  throw new Error(error);
+                }
             });
 
         console.log("new balance: " + elgamal.decrypt(elgamal.unserialize(encNewBalance), that.account.privateKey()));
