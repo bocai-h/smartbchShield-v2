@@ -89,7 +89,7 @@ class Transfer extends React.Component {
     } = this.state;
     return (
       <div className="transfer">
-        {proccesing ? <SpinModal /> : ''}
+        {proccesing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <PublicKeyModal
             visible={myAddressModal}

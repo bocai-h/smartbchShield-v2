@@ -71,7 +71,7 @@ class Burn extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="burn">
-        {proccesing ? <SpinModal /> : ''}
+        {proccesing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get('Burn')}</h1>
           <p>

@@ -39,5 +39,8 @@
   "YourSuterAccountAddress": "Your Suter Account Address",
   "Copy": "Copy",
   "Copied": "Copied",
-  "pkTips": "A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts."
+  "pkTips": "A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.",
+  "processing": "Processing",
+  "yourRequest": "Your Request",
+  "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request."
 }

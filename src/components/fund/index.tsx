@@ -71,7 +71,7 @@ class Fund extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="fund">
-        {processing ? <SpinModal /> : ''}
+        {processing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get("Fund")}</h1>
           <p>
