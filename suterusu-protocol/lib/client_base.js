@@ -455,7 +455,13 @@ class ClientBase {
 
             })
             .on('error', (error) => {
-                console.log("Withdrawal failed: " + error);
+                if(error.code !== ''){
+                  console.log("Withdrawal failed: " + error.message);
+                  throw error;
+                }else{
+                  console.log("Withdrawal failed: " + error);
+                  throw new Error(error);
+                }
             });
 
         console.log("new balance: " + elgamal.decrypt(elgamal.unserialize(encNewBalance), that.account.privateKey()));
@@ -625,8 +631,13 @@ class ClientBase {
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
                 })
                 .on('error', (error) => {
-                    console.log("Transfer failed: " + error);
-                    throw new Error(error);
+                    if(error.code !== ''){
+                      console.log("Transfer failed: " + error.message);
+                      throw error;
+                    }else{
+                      console.log("Transfer failed: " + error);
+                      throw new Error(error);
+                    }
                 });
         return transaction;
     }

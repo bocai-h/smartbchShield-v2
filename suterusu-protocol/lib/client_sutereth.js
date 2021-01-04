@@ -12,8 +12,9 @@ class ClientSuterETH extends ClientBase {
         that.checkValue();
         var account = that.account;
         console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " wei)");
-
-        let transaction = that.suter.methods.fund(account.publicKeySerialized(), value)
+        let transaction;
+        try{
+            transaction = that.suter.methods.fund(account.publicKeySerialized(), value)
             .send({from: that.home, value: value * that.unit, gas: that.gasLimit})
             .on('transactionHash', (hash) => {
                 console.log("Deposit submitted (txHash = \"" + hash + "\").");
@@ -25,8 +26,19 @@ class ClientSuterETH extends ClientBase {
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
             })
             .on('error', (error) => {
-                console.log("Deposit failed: " + error);
+                if(error.code !== ''){
+                  console.log("Deposit failed: " + error.message);
+                }else{
+                  console.log("Deposit failed: " + error);
+                }
             });
+        }catch(error){
+            if(error.code !== ''){
+                throw error;
+              }else{
+                throw new Error(error);
+            }
+        }
         return transaction;
     }
 

@@ -17,6 +17,9 @@ class Burn extends React.Component {
   }
   handleInputChange(e) {
     let value = parseInt(e.target.value);
+    if(isNaN(value)){
+      value = 0;
+    }
     if (value < 0) {
       value = 0;
     }
@@ -30,7 +33,19 @@ class Burn extends React.Component {
     let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
-    let result = await client.withdraw(inputValue);
+    let result
+    try{
+      result = await client.withdraw(inputValue);
+    }catch(error){
+      if(error.code !== ''){
+        openNotificationWithIcon("Error", error.message, 'error')
+      }else{
+        openNotificationWithIcon("Error", error.toString(), 'error')
+      }
+      this.setState({ proccesing: false });
+      return
+    }
+    
     let txHash = result.transactionHash;
     const message = intl.get("ViewInEtherScan");
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
@@ -56,7 +71,7 @@ class Burn extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="burn">
-        {proccesing ? <SpinModal /> : ''}
+        {proccesing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get('Burn')}</h1>
           <p>

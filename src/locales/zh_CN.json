@@ -7,6 +7,8 @@
   "ConnectWallet": "连接钱包",
   "ChooseWhichCryptoCurrencyYou": "选择一种加密货币你",
   "WantTo": "想要",
+  "PrivacyTips": "隐私贴士",
+  "About": "关于",
   "PrivatelyTransfer": "隐私转账",
   "Via": "通过",
   "SuterusuNetwork": "Suterusu网络",
@@ -24,6 +26,7 @@
   "RegisterAgree": "我选择了足够随机的Suter账号私钥并将妥善保存该私钥",
   "Balance": "余额",
   "Fund": "质押",
+  "RecipientAddress": "接收地址",
   "Deposit": "质押",
   "To": "到",
   "Max": "最大",
@@ -40,5 +43,8 @@
   "Copy": "复制",
   "Copied": "已复制",
   "pkTips": "Suter ERC20-20 帐号由一个ElGamal公钥识别。当用户调用质押功能，转移功能和销毁功能时，它将作为输入。",
-  "YourSuterAccountAddress": "你的Suter账户地址"
+  "YourSuterAccountAddress": "你的Suter账户地址",
+  "processing": "处理中",
+  "yourRequest": "您的请求",
+  "spinTips": "不要刷新您的页面，可能会花费2到3分钟完成你的请求。"
 }

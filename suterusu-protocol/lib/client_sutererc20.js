@@ -20,7 +20,16 @@ class ClientSuterERC20 extends ClientBase {
         var account = that.account;
         console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " tokens)");
         await that.erc20Token.methods.approve(that.suter.options.address, value * that.unit)
-                .send({from: that.home, gas: that.gasLimit});
+                .send({from: that.home, gas: that.gasLimit})
+                .on('error', (error) => {
+                    if(error.code !== ''){
+                        console.log("Approve failed: " + error.message);
+                        throw error;
+                      }else{
+                        console.log("Approve failed: " + error);
+                        throw new Error(error);
+                      }
+                });
 
         console.log("ERC20 tokens approved. Start deposit...");
 
@@ -36,7 +45,13 @@ class ClientSuterERC20 extends ClientBase {
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
             })
             .on('error', (error) => {
-                console.log("Deposit failed: " + error);
+                if(error.code !== ''){
+                  console.log("Deposit failed: " + error.message);
+                  throw error;
+                }else{
+                  console.log("Deposit failed: " + error);
+                  throw new Error(error);
+                }
             });
         return transaction;
     }

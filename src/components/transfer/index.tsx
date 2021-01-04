@@ -51,7 +51,18 @@ class Transfer extends React.Component {
     let { client, updateKeyFunc, intl } = this.props;
     let { transferValue, transferAddress } = this.state;
     this.setState({ proccesing: true });
-    let result = await client.transfer(transferAddress, transferValue);
+    let result
+    try {
+      result = await client.transfer(transferAddress, transferValue);
+    } catch (error) {
+      if(error.code !== ''){
+        openNotificationWithIcon("Error", error.message, 'error')
+      }else{
+        openNotificationWithIcon("Error", error.toString(), 'warning')
+      }
+      this.setState({ proccesing: false });
+      return
+    }
     let txHash = result.transactionHash;
     const message = intl.get("ViewInEtherScan");
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
@@ -78,7 +89,7 @@ class Transfer extends React.Component {
     } = this.state;
     return (
       <div className="transfer">
-        {proccesing ? <SpinModal /> : ''}
+        {proccesing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <PublicKeyModal
             visible={myAddressModal}

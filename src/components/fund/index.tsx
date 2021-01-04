@@ -17,6 +17,9 @@ class Fund extends React.Component {
   }
   handleInputChange(e) {
     let value = parseInt(e.target.value);
+    if(isNaN(value)){
+      value = 0;
+    }
     if (value < 0) {
       value = 0;
     }
@@ -30,7 +33,18 @@ class Fund extends React.Component {
     let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
-    let result = await client.deposit(inputValue);
+    let result
+    try {
+      result = await client.deposit(inputValue);
+    }catch(error){
+      if(error.code !== ''){
+        openNotificationWithIcon("Error", error.message, 'error')
+      }else{
+        openNotificationWithIcon("Error", error.toString(), 'error')
+      }
+      this.setState({ processing: false });
+      return;
+    }
     let txHash = result.transactionHash;
 
     const message = intl.get("ViewInEtherScan");;
@@ -46,6 +60,7 @@ class Fund extends React.Component {
     this.props.updateKeyFunc();
     this.setState({ processing: false });
   }
+
   maxFill() {
     let { max } = this.props;
     this.setState({ inputValue: max });
@@ -56,7 +71,7 @@ class Fund extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="fund">
-        {processing ? <SpinModal /> : ''}
+        {processing ? <SpinModal intl={intl}/> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get("Fund")}</h1>
           <p>

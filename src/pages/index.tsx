@@ -447,7 +447,7 @@ class SuterProtocol extends React.Component {
   }
 
   componentDidMount() {
-    this.checkMetaMaskStatus();
+    setTimeout(this.checkMetaMaskStatus, 1000);
     this.loadLocales();
   }
 
@@ -633,65 +633,65 @@ class SuterProtocol extends React.Component {
       account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
-      <Menu mode="horizontal">
+      <Menu>
         <Menu.Item key="dashboard">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            Tutorial
+            { intl.get("CheckTutorial") }
           </a>
         </Menu.Item>
-        <Menu.Item key="compliance">
+        <Menu.Item key="q&a">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            Q&A
+            { intl.get("Q&A") }
           </a>
         </Menu.Item>
-        <Menu.Item key="compliance">
+        <Menu.Item key="privacyTips">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            Privacy Tips
+          { intl.get("PrivacyTips") }
           </a>
         </Menu.Item>
-        <Menu.Item key="compliance">
+        <Menu.Item key="about">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            About
+            { intl.get("About") }
           </a>
         </Menu.Item>
       </Menu>
     );
     const menu1 = (
-      <Menu mode="horizontal">
+      <Menu>
+        <Menu.Item key="q&a">
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            { intl.get("Q&A") }
+          </a>
+        </Menu.Item>
         <Menu.Item key="dashboard">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            Q&A
+            { intl.get("Dashboard") }
           </a>
         </Menu.Item>
         <Menu.Item key="compliance">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            Dashboard
+          <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9">
+            { intl.get("Compliance") }
           </a>
         </Menu.Item>
-        <Menu.Item key="compliance">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            Compliance
-          </a>
-        </Menu.Item>
-        <Menu.ItemGroup title="Resources">
+        <Menu.ItemGroup title={intl.get("Resources")}>
           <Menu.Item key="setting:3">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              Tutorial
+              { intl.get("Tutorial") }
             </a>
           </Menu.Item>
           <Menu.Item key="setting:4">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              Q&A
+              { intl.get("Q&A") }
             </a>
           </Menu.Item>
           <Menu.Item key="setting:5">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              Privacy Tips
+              { intl.get("PrivacyTips") }
             </a>
           </Menu.Item>
           <Menu.Item key="setting:6">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              About
+              { intl.get("About") }
             </a>
           </Menu.Item>
         </Menu.ItemGroup>
@@ -712,7 +712,10 @@ class SuterProtocol extends React.Component {
                     {intl.get('Q&A')}{' '}
                   </li>
                   <li>{intl.get('Dashboard')}</li>
-                  <li>{intl.get('Compliance')}</li>
+                  <li>
+                  <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9">
+                    {intl.get('Compliance')}
+                  </a></li>
                   <li>
                     <Dropdown
                       overlay={menu}
