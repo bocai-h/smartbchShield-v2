@@ -659,7 +659,7 @@ class SuterProtocol extends React.Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="#">
+          <a onClick={() => this.toggleQA('qa')}>
             { intl.get("Q&A") }
           </a>
         </Menu.Item>
@@ -675,8 +675,8 @@ class SuterProtocol extends React.Component {
         </Menu.Item>
         <Menu.ItemGroup title={intl.get("Resources")}>
           <Menu.Item key="setting:3">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              { intl.get("Tutorial") }
+            <a onClick={() => this.toggleQA('help')}>
+              { intl.get("CheckTutorial") }
             </a>
           </Menu.Item>
           <Menu.Item key="setting:4">
