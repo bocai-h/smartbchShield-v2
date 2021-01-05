@@ -2,6 +2,8 @@ import React from 'react';
 import './index.less';
 import { Infos } from '../tools';
 import Web3 from 'web3';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 var Contract = require('web3-eth-contract');
 
@@ -59,7 +61,9 @@ class Balance extends React.Component {
     return (
       <div className="balanceContainer">
         <div>
-          <h1>{info.suterShiledBalanceDesc} {intl.get("Balance")}</h1>
+          <h1>
+            {info.suterShiledBalanceDesc} {intl.get('Balance')}
+          </h1>
           <div className="balanceInfoContainer">
             <div>
               <img src={info.logo[coinType][1]} />
@@ -78,7 +82,9 @@ class Balance extends React.Component {
           </div>
         </div>
         <div>
-          <h1>{info.coinBalanceDesc} {intl.get("Balance")}</h1>
+          <h1>
+            {info.coinBalanceDesc} {intl.get('Balance')}
+          </h1>
           <div className="balanceInfoContainer">
             <div>
               <img src={info.logo[coinType][2]} />
@@ -101,6 +107,9 @@ class Balance extends React.Component {
           <div className="unit">
             <h1>1:{info.suterShieldUnit}</h1>
             <p>Unit</p>
+            <Tooltip placement="topLeft" title={intl.get('i')}>
+              <ExclamationCircleOutlined className="i" />
+            </Tooltip>
           </div>
         </div>
 
