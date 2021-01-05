@@ -636,22 +636,22 @@ class SuterProtocol extends React.Component {
       <Menu>
         <Menu.Item key="dashboard">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            { intl.get("CheckTutorial") }
+            {intl.get('CheckTutorial')}
           </a>
         </Menu.Item>
         <Menu.Item key="q&a">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            { intl.get("Q&A") }
+            {intl.get('Q&A')}
           </a>
         </Menu.Item>
         <Menu.Item key="privacyTips">
           <a target="_blank" rel="noopener noreferrer" href="#">
-          { intl.get("PrivacyTips") }
+            {intl.get('PrivacyTips')}
           </a>
         </Menu.Item>
         <Menu.Item key="about">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            { intl.get("About") }
+            {intl.get('About')}
           </a>
         </Menu.Item>
       </Menu>
@@ -660,38 +660,42 @@ class SuterProtocol extends React.Component {
       <Menu>
         <Menu.Item key="q&a">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            { intl.get("Q&A") }
+            {intl.get('Q&A')}
           </a>
         </Menu.Item>
         <Menu.Item key="dashboard">
           <a target="_blank" rel="noopener noreferrer" href="#">
-            { intl.get("Dashboard") }
+            {intl.get('Dashboard')}
           </a>
         </Menu.Item>
         <Menu.Item key="compliance">
-          <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9">
-            { intl.get("Compliance") }
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
+          >
+            {intl.get('Compliance')}
           </a>
         </Menu.Item>
-        <Menu.ItemGroup title={intl.get("Resources")}>
+        <Menu.ItemGroup title={intl.get('Resources')}>
           <Menu.Item key="setting:3">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              { intl.get("Tutorial") }
+              {intl.get('Tutorial')}
             </a>
           </Menu.Item>
           <Menu.Item key="setting:4">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              { intl.get("Q&A") }
+              {intl.get('Q&A')}
             </a>
           </Menu.Item>
           <Menu.Item key="setting:5">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              { intl.get("PrivacyTips") }
+              {intl.get('PrivacyTips')}
             </a>
           </Menu.Item>
           <Menu.Item key="setting:6">
             <a target="_blank" rel="noopener noreferrer" href="#">
-              { intl.get("About") }
+              {intl.get('About')}
             </a>
           </Menu.Item>
         </Menu.ItemGroup>
@@ -713,15 +717,20 @@ class SuterProtocol extends React.Component {
                   </li>
                   <li>{intl.get('Dashboard')}</li>
                   <li>
-                  <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9">
-                    {intl.get('Compliance')}
-                  </a></li>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
+                    >
+                      {intl.get('Compliance')}
+                    </a>
+                  </li>
                   <li>
                     <Dropdown
                       overlay={menu}
                       arrow
                       placement="bottomCenter"
-                      trigger={['click']}
+                      // trigger={['click']}
                       onClick={e => e.preventDefault()}
                     >
                       <a className="a">{intl.get('Resources')}</a>

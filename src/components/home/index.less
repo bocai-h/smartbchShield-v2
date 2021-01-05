@@ -69,6 +69,7 @@
           justify-content: center;
           flex-wrap: wrap;
           div.card {
+            position: relative;
             &:hover {
               border: 1px solid #b9aaff;
               cursor: pointer;
@@ -89,7 +90,10 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            height: 180px;
             div {
+              position: absolute;
+              width: 249px;
               h1 {
                 margin-bottom: 0;
                 color: #fff;
@@ -98,6 +102,9 @@
                 margin-bottom: 0;
                 color: rgba(255, 255, 255, 0.5);
                 font-family: PingFangSC-Thin, sans-serif;
+              }
+              img {
+                float: right;
               }
             }
           }

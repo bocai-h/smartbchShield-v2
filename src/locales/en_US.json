@@ -44,5 +44,6 @@
   "pkTips": "A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.",
   "processing": "Processing",
   "yourRequest": "Your Request",
-  "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request."
+  "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.",
+  "i": "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle."
 }
