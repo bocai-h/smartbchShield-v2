@@ -1,10 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
-const { SubMenu } = Menu;
-import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
 import mLogo from '../static/logo.svg';
@@ -14,11 +11,6 @@ import medium from '../static/medium.svg';
 import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
-import { MenuOutlined } from '@ant-design/icons';
-
-import Home from '../components/home';
-import Form from '../components/form';
-import ConnectModal from '../components/connectModal';
 
 const locales = {
   'en-US': require('../locales/en_US'),
@@ -27,230 +19,9 @@ const locales = {
 
 class SuterProtocol extends React.Component {
   state = {
-    metamaskInstalled: false,
-    account: '',
-    connectWalletTxt: 'ConnectWallet',
-    web3Browser: false,
-    ethNetwork: '',
-    showConnectModal: false,
-    coinType: '',
-    initDone: false,
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
-    QA: false,
-    qa_type: 'qa',
-    QA_help: {
-      title: 'Suter Shield Tutorial',
-      active: {
-        index: 0,
-        target: {
-          active: true,
-          t: '1.Register Suter account with your Ethereum account private key',
-          o: [
-            {
-              t: 'a. Select the asset you want to have privacy protection',
-              img: require('../static/help01.png'),
-            },
-            {
-              t: 'b. Click "Connect" to connect to your Metamask wallet',
-            },
-            {
-              t:
-                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
-              img: require('../static/help02.png'),
-            },
-          ],
-        },
-      },
-      list: [
-        {
-          active: true,
-          t: '1.Register Suter account with your Ethereum account private key',
-          o: [
-            {
-              t: 'a. Select the asset you want to have privacy protection',
-              img: require('../static/help01.png'),
-            },
-            {
-              t: 'b. Click "Connect" to connect to your Metamask wallet',
-            },
-            {
-              t:
-                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
-              img: require('../static/help02.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t:
-            '2.Stake your digital assets to the Suter Shield smart contract and get the private version of corresponding assets',
-          o: [
-            {
-              t: 'a. Select the asset you want to have privacy protection',
-            },
-            {
-              t:
-                'b. Enter the number of digital assets you want to stake (the unit of measurement is Unit, the Unit ratio of each digital asset is different, please refer to Suter Shield Q&A: Why Suter Shield’s digital assets should set Unit as the unit of measurement)',
-            },
-            {
-              t: 'c. Enter your Suter account private key to stake',
-            },
-            {
-              t:
-                'd. After the above steps are completed, your Suter account will display the increased corresponding privacy protection assets, and the original assets of your Ethereum account will decrease.',
-              img: require('../static/help03.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t: '3.Transfer your privacy protection digital assets',
-          o: [
-            {
-              t: 'a. Select the asset you want to have privacy protection',
-            },
-            {
-              t: 'b. Register or log in to your Suter account',
-            },
-            {
-              t:
-                'c. Enter the quantity and Suter account public key address to transfer',
-              img: require('../static/help04.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t: '4.Retrieve (Burn) your digital assets',
-          o: [
-            {
-              t: 'a. Connect your Metamask wallet',
-            },
-            {
-              t: 'b. Select the asset you want to have privacy protection',
-            },
-            {
-              t: 'c. Register or log in to your Suter account',
-            },
-            {
-              t:
-                'd. Enter the number of digital assets you want to retrieve. The unit of measurement is also Unit. The digital assets protected by Suter Shield are usually distinguished by putting an “s” in front of ordinary digital assets. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER',
-            },
-            {
-              t:
-                'e. Your corresponding digital assets will be returned to your Ethereum account',
-            },
-          ],
-        },
-      ],
-    },
-    QA_help_CN: {
-      title: '使⽤教程',
-      active: {
-        index: 0,
-        target: {
-          active: true,
-          t: '1.用您的以太坊账号私钥来注册suter账号',
-          o: [
-            {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
-            },
-            {
-              t: 'b.点击"Connect"连接到您的Metamask钱包',
-            },
-            {
-              t:
-                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成您的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
-              img: require('../static/help02.png'),
-            },
-          ],
-        },
-      },
-      list: [
-        {
-          active: true,
-          t: '1.用您的以太坊账号私钥来注册suter账号',
-          o: [
-            {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
-            },
-            {
-              t: 'b.点击"Connect"连接到您的Metamask钱包',
-            },
-            {
-              t:
-                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成你的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
-              img: require('../static/help02.png'),
-            },
-          ],
-        },
-        {
-          active: true,
-          t: '2.抵押您的数字资产到Suter Shield智能合约并得到隐私版本的对应资产',
-          o: [
-            {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
-            },
-            {
-              t:
-                'b.输入您想要只要的数字资产数量(单位是Unit,每种数字资产的Unit比例并不一样，原因请查看Suter ShieldQ&A: 为什么Suter Shield的数字资产要设置Unit作为单位)',
-            },
-            {
-              t: 'c.输入您的Suter账号私钥进行抵押操作',
-              img: require('../static/help02.png'),
-            },
-            {
-              t:
-                'd.操作完毕后，您的Suter账号会显示对应增加的隐私保护资产，你的以太坊账号的相应资产会减少。',
-              img: require('../static/help02.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t: '3.对您的隐私保护数字资产进行转账',
-          o: [
-            {
-              t: 'a.选择您想要进行隐私保护的资产',
-            },
-            {
-              t: 'b.注册或者登陆你的Suter账号',
-            },
-            {
-              t: 'c.输入数量以及Suter账号公钥地址，进行转账',
-              img: require('../static/help03.png'),
-            },
-          ],
-        },
-        {
-          active: false,
-          t: '4.取回您的数字资产',
-          o: [
-            {
-              t: 'a.连接您的Metamask钱包',
-            },
-            {
-              t: 'b.选择您想要进行隐私保护的资产',
-            },
-            {
-              t: 'c.注册或登录您的Suter账号 ',
-            },
-            {
-              t:
-                'd.输入您想要取回的数字资产的数量，单位同样是Unit，Suter Shield隐私保护的数字资产通常是普通数字资产前面加上一个s作为区别，比如ETH在Suter网络中会是sETH，USDT会是sUSDT, suter会是sSUTER',
-            },
-            {
-              t: 'e.您的对应的数字资产会回到您的以太坊账号中',
-            },
-          ],
-        },
-      ],
-    },
     QA_qa: {
       title: 'Q&A',
       active: {
@@ -434,20 +205,9 @@ class SuterProtocol extends React.Component {
 
   constructor(props) {
     super(props);
-    this.checkMetaMaskStatus = this.checkMetaMaskStatus.bind(this);
-    this.setCurrentAccount = this.setCurrentAccount.bind(this);
-    this.connectMetaMask = this.connectMetaMask.bind(this);
-    this.checkEthNetworkType = this.checkEthNetworkType.bind(this);
-    this.showConnectModal = this.showConnectModal.bind(this);
-    this.selectCoin = this.selectCoin.bind(this);
-    this.closeConnectModal = this.closeConnectModal.bind(this);
-    this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
-    this.lightFooterLogo = this.lightFooterLogo.bind(this);
-    this.footerLogo = this.footerLogo.bind(this);
   }
 
   componentDidMount() {
-    setTimeout(this.checkMetaMaskStatus, 1000);
     this.loadLocales();
   }
 
@@ -464,118 +224,6 @@ class SuterProtocol extends React.Component {
         // After loading CLDR locale data, start to render
         this.setState({ initDone: true });
       });
-  };
-
-  setCurrentAccount = (account: string) => {
-    const connectWalletTxt = account.slice(0, 7) + '...' + account.slice(-5);
-    this.setState({
-      account: account,
-      connectWalletTxt: connectWalletTxt,
-    });
-  };
-
-  async connectMetaMask() {
-    // Will trigger accountsChanged event when refresh page
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    this.setState({ showConnectModal: false });
-    this.setCurrentAccount(accounts[0]);
-  }
-
-  showConnectModal() {
-    this.setState({ showConnectModal: true });
-  }
-  closeConnectModal() {
-    this.setState({ showConnectModal: false });
-  }
-
-  checkMetaMaskStatus() {
-    if (typeof window.ethereum !== 'undefined') {
-      console.log('MetaMask is installed!');
-      this.setState({ metamaskInstalled: true });
-      this.checkEthNetworkType();
-      this.ethChainChanged();
-      // this.accountChanged();
-    } else {
-      const message =
-        'Suterusu Protocol must work with MetaMask, please install MetaMask';
-      openNotificationWithIcon(
-        'MetaMask is not installed!',
-        message,
-        'warning',
-      );
-    }
-  }
-
-  ethChainChanged() {
-    window.ethereum.on('chainChanged', chainId => {
-      openNotificationWithIcon(
-        'ETH Chain changed',
-        'Page will refresh after 2 seconds',
-        'warning',
-        4.5,
-      );
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    });
-  }
-
-  accountChanged() {
-    window.ethereum.on('accountsChanged', function(accounts) {
-      openNotificationWithIcon(
-        'ETH account changed',
-        'Page will refresh after 2 seconds',
-        'warning',
-        4.5,
-      );
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    });
-  }
-
-  checkEthNetworkType() {
-    this.setState({ ethNetwork: window.ethereum.chainId });
-    if (window.ethereum && window.ethereum.chainId != ETH_CHAIN_ID) {
-      openNotificationWithIcon(
-        'ETH network error!',
-        `Please change metamask to ${ethChainNameMap[ETH_CHAIN_ID]} network`,
-        'warning',
-        4.5,
-      );
-    } else {
-      // this.connectMetaMask();
-    }
-  }
-
-  selectCoin(coinType) {
-    this.setState({ coinType: coinType });
-  }
-  cancelSelectCoin() {
-    this.setState({ coinType: '' });
-  }
-
-  toggleQA = qa_type => {
-    this.setState({ QA: true, qa_type: qa_type });
-  };
-
-  handleInfo = (qa_type, it, index) => {
-    const { QA_qa, QA_help, QA_qa_CN, QA_help_CN } = this.state;
-    let type =
-      qa_type === 'qa'
-        ? intl.options.currentLocale === 'zh-CN'
-          ? QA_qa_CN
-          : QA_qa
-        : intl.options.currentLocale === 'zh-CN'
-        ? QA_help_CN
-        : QA_help;
-    type.active.index = index;
-    type.active.target = it;
-    type.list.forEach(it => {
-      it.active = false;
-    });
-    type.list[index].active = true;
-    this.setState({ type });
   };
 
   lightFooterLogo = ctype => {
@@ -603,106 +251,15 @@ class SuterProtocol extends React.Component {
   };
   render() {
     const {
-      connectWalletTxt,
-      account,
-      metamaskInstalled,
-      ethNetwork,
-      showConnectModal,
-      coinType,
       twitterLogo,
       telegramLogo,
       mediumLogo,
-      QA,
-      QA_qa,
       QA_qa_CN,
-      QA_help_CN,
-      QA_help,
-      qa_type,
+      QA_qa
     } = this.state;
     let lang = intl.options.currentLocale;
-
-    let info =
-      qa_type === 'qa'
-        ? lang === 'zh-CN'
-          ? QA_qa_CN
-          : QA_qa
-        : lang === 'zh-CN'
-        ? QA_help_CN
-        : QA_help;
-    const canConnectWallet =
-      account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
-    const scanLink = `${ETHERSCAN}/address/${account}`;
-    const menu = (
-      <Menu>
-        <Menu.Item key="dashboard">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('CheckTutorial')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('Q&A')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="privacyTips">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('PrivacyTips')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="about">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('About')}
-          </a>
-        </Menu.Item>
-      </Menu>
-    );
-    const menu1 = (
-      <Menu>
-        <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('Q&A')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="dashboard">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('Dashboard')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="compliance">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
-          >
-            {intl.get('Compliance')}
-          </a>
-        </Menu.Item>
-        <Menu.ItemGroup title={intl.get('Resources')}>
-          <Menu.Item key="setting:3">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              {intl.get('Tutorial')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="setting:4">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              {intl.get('Q&A')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="setting:5">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              {intl.get('PrivacyTips')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="setting:6">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              {intl.get('About')}
-            </a>
-          </Menu.Item>
-        </Menu.ItemGroup>
-      </Menu>
-    );
+    let info = lang === 'zh-CN' ? QA_qa_CN: QA_qa
     return (
-      this.state.initDone && (
         <Layout className="suterProtocol">
           <Header>
             <div className="head-top">
@@ -711,53 +268,9 @@ class SuterProtocol extends React.Component {
                   <img src={Logo} className="logo pc" />
                   <img src={mLogo} className="logo mobbile" />
                 </a>
-                {/* <ul className="item-ul">
-                  <li onClick={() => this.toggleQA('qa')}>
-                    {intl.get('Q&A')}{' '}
-                  </li>
-                  <li>{intl.get('Dashboard')}</li>
-                  <li>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
-                    >
-                      {intl.get('Compliance')}
-                    </a>
-                  </li>
-                  <li>
-                    <Dropdown
-                      overlay={menu}
-                      arrow
-                      placement="bottomCenter"
-                      // trigger={['click']}
-                      onClick={e => e.preventDefault()}
-                    >
-                      <a className="a">{intl.get('Resources')}</a>
-                    </Dropdown>
-                  </li>
-                </ul> */}
-                {/* <div className="menuContainer">{menu}</div> */}
               </div>
             </div>
             <div className="header-btn">
-              {/* {account === '' ? (
-                <Button
-                  className="connectWalletBtn"
-                  shape="round"
-                  onClick={this.showConnectModal}
-                  disabled={!canConnectWallet}
-                >
-                  {intl.get(connectWalletTxt)}
-                </Button>
-              ) : (
-                <a href={scanLink} target="_blank">
-                  <Button className="connectWalletBtn" shape="round">
-                    <div className="successDot"></div>
-                    {connectWalletTxt}
-                  </Button>
-                </a>
-              )} */}
               <div className="top-btn">
                 <i
                   onClick={() => this.loadLocales('en-US')}
@@ -772,44 +285,9 @@ class SuterProtocol extends React.Component {
                   中
                 </i>
               </div>
-
-              <Dropdown overlay={menu1} className="mobbile-MenuOutlined">
-                <span onClick={e => e.preventDefault()}>
-                  <MenuOutlined className="MenuOutlined" />
-                </span>
-              </Dropdown>
-              {/* <Button
-                className="langBtn pc-English"
-                onClick={() =>
-                  this.loadLocales(`${lang === 'zh-CN' ? 'en-US' : 'zh-CN'}`)
-                }
-                shape="round"
-              >
-                {lang === 'zh-CN' ? '中文' : 'English'}
-              </Button>
-
-              <Dropdown className="mobble-English" overlay={menu}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={e => e.preventDefault()}
-                >
-                  <Button className="langBtn" shape="round">
-                    English
-                  </Button>
-                </a>
-              </Dropdown> */}
             </div>
           </Header>
           <Content>
-            {showConnectModal ? (
-              <ConnectModal
-                connectMetaMask={this.connectMetaMask}
-                closeConnectModal={this.closeConnectModal}
-                intl={intl}
-              />
-            ) : (
-              ''
-            )}
             <div className="QA">
               <div className="left">
                 <h2>{info.title}</h2>
@@ -842,23 +320,6 @@ class SuterProtocol extends React.Component {
                 </ul>
               </div>
             </div>
-            {/* {QA ? (
-             
-            ) : account === '' || coinType === '' ? (
-              <Home
-                account={account}
-                selectCoin={this.selectCoin}
-                checkQA={this.toggleQA}
-                intl={intl}
-              />
-            ) : (
-              <Form
-                account={account}
-                coinType={coinType}
-                cancelSelectCoin={this.cancelSelectCoin}
-                intl={intl}
-              />
-            )} */}
           </Content>
           <Footer>
             <a
@@ -895,7 +356,6 @@ class SuterProtocol extends React.Component {
             </a>
           </Footer>
         </Layout>
-      )
     );
   }
 }
