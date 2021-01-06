@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-// import { history } from 'umi';
 import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
 const { SubMenu } = Menu;
@@ -20,7 +19,6 @@ import { MenuOutlined } from '@ant-design/icons';
 import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
-import Dashboard from '@/components/dashboard';
 
 const locales = {
   'en-US': require('../locales/en_US'),
@@ -41,7 +39,6 @@ class SuterProtocol extends React.Component {
     telegramLogo: telegram,
     mediumLogo: medium,
     QA: false,
-    dashboard: false,
     qa_type: 'qa',
     QA_help: {
       title: 'Suter Shield Tutorial',
@@ -447,7 +444,6 @@ class SuterProtocol extends React.Component {
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
-    this.toggleDashboard = this.toggleDashboard.bind(this);
   }
 
   componentDidMount() {
@@ -560,11 +556,7 @@ class SuterProtocol extends React.Component {
   }
 
   toggleQA = qa_type => {
-    this.setState({ QA: true, qa_type: qa_type, dashboard: false });
-  };
-
-  toggleDashboard = () => {
-    this.setState({ QA: false, dashboard: true });
+    this.setState({ QA: true, qa_type: qa_type });
   };
 
   handleInfo = (qa_type, it, index) => {
@@ -621,7 +613,6 @@ class SuterProtocol extends React.Component {
       telegramLogo,
       mediumLogo,
       QA,
-      dashboard,
       QA_qa,
       QA_qa_CN,
       QA_help_CN,
@@ -654,8 +645,8 @@ class SuterProtocol extends React.Component {
           </a>
         </Menu.Item>
         <Menu.Item key="privacyTips">
-          <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447">
-          { intl.get("PrivacyTips") }
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            {intl.get('PrivacyTips')}
           </a>
         </Menu.Item>
         <Menu.Item key="about">
@@ -668,12 +659,12 @@ class SuterProtocol extends React.Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="q&a">
-          <a onClick={() => this.toggleQA('qa')}>
-            { intl.get("Q&A") }
+          <a target="_blank" rel="noopener noreferrer" href="#">
+            {intl.get('Q&A')}
           </a>
         </Menu.Item>
         <Menu.Item key="dashboard">
-          <a onClick={this.toggleDashboard}>
+          <a target="_blank" rel="noopener noreferrer" href="#">
             {intl.get('Dashboard')}
           </a>
         </Menu.Item>
@@ -688,8 +679,8 @@ class SuterProtocol extends React.Component {
         </Menu.Item>
         <Menu.ItemGroup title={intl.get('Resources')}>
           <Menu.Item key="setting:3">
-            <a onClick={() => this.toggleQA('help')}>
-              { intl.get("CheckTutorial") }
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              {intl.get('Tutorial')}
             </a>
           </Menu.Item>
           <Menu.Item key="setting:4">
@@ -698,8 +689,8 @@ class SuterProtocol extends React.Component {
             </a>
           </Menu.Item>
           <Menu.Item key="setting:5">
-            <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447">
-              { intl.get("PrivacyTips") }
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              {intl.get('PrivacyTips')}
             </a>
           </Menu.Item>
           <Menu.Item key="setting:6">
@@ -720,13 +711,11 @@ class SuterProtocol extends React.Component {
                   <img src={Logo} className="logo pc" />
                   <img src={mLogo} className="logo mobbile" />
                 </a>
-                <ul className="item-ul">
-                  <li>
-                    <a href="/qa" target="_blank">
-                      {intl.get('Q&A')}
-                    </a>
+                {/* <ul className="item-ul">
+                  <li onClick={() => this.toggleQA('qa')}>
+                    {intl.get('Q&A')}{' '}
                   </li>
-                  <li onClick={this.toggleDashboard}>{intl.get('Dashboard')}</li>
+                  <li>{intl.get('Dashboard')}</li>
                   <li>
                     <a
                       target="_blank"
@@ -747,12 +736,12 @@ class SuterProtocol extends React.Component {
                       <a className="a">{intl.get('Resources')}</a>
                     </Dropdown>
                   </li>
-                </ul>
+                </ul> */}
                 {/* <div className="menuContainer">{menu}</div> */}
               </div>
             </div>
             <div className="header-btn">
-              {account === '' ? (
+              {/* {account === '' ? (
                 <Button
                   className="connectWalletBtn"
                   shape="round"
@@ -768,7 +757,7 @@ class SuterProtocol extends React.Component {
                     {connectWalletTxt}
                   </Button>
                 </a>
-              )}
+              )} */}
               <div className="top-btn">
                 <i
                   onClick={() => this.loadLocales('en-US')}
@@ -821,41 +810,41 @@ class SuterProtocol extends React.Component {
             ) : (
               ''
             )}
-            {QA ? (
-              <div className="QA">
-                <div className="left">
-                  <h2>{info.title}</h2>
-                  <ul>
-                    {info.list.map((it, index) => {
-                      return (
-                        <li
-                          onClick={() => this.handleInfo(qa_type, it, index)}
-                          className={it.active ? 'active' : ''}
-                          key={index}
-                        >
-                          {it.t}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className="right">
-                  <h3>{info.active.target.t}</h3>
-                  <i></i>
-                  <ul>
-                    {info.active.target.o.map((it, index) => {
-                      return (
-                        <li key={index}>
-                          {typeof it === 'object' ? it.t : it}
-                          {it.img && <img src={it.img} alt="" />}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+            <div className="QA">
+              <div className="left">
+                <h2>{info.title}</h2>
+                <ul>
+                  {info.list.map((it, index) => {
+                    return (
+                      <li
+                        onClick={() => this.handleInfo(qa_type, it, index)}
+                        className={it.active ? 'active' : ''}
+                        key={index}
+                      >
+                        {it.t}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
+              <div className="right">
+                <h3>{info.active.target.t}</h3>
+                <i></i>
+                <ul>
+                  {info.active.target.o.map((it, index) => {
+                    return (
+                      <li key={index}>
+                        {typeof it === 'object' ? it.t : it}
+                        {it.img && <img src={it.img} alt="" />}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+            {/* {QA ? (
+             
             ) : account === '' || coinType === '' ? (
-              dashboard ? <Dashboard /> :
               <Home
                 account={account}
                 selectCoin={this.selectCoin}
@@ -869,7 +858,7 @@ class SuterProtocol extends React.Component {
                 cancelSelectCoin={this.cancelSelectCoin}
                 intl={intl}
               />
-            )}
+            )} */}
           </Content>
           <Footer>
             <a
