@@ -1,32 +1,34 @@
 import { defineConfig } from 'umi';
-import define from './src/constants/constant_prod'
+import define from './src/constants/constant_prod';
 
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
   layout: false,
-  hash: true,
+  hash: false,
   mountElementId: 'website__entrypoint',
   inlineLimit: 25000,
   define: define,
   history: {
-    type: 'memory'
+    type: 'browser',
   },
   routes: [
     { path: '/', component: '@/pages/index' },
+    { path: '/qa', exact: true, component: '@/pages/qa' },
+    { path: '/tutorial', exact: true, component: '@/pages/tutorial' },
   ],
   proxy: {
     '/kucoin_api': {
       target: 'https://api.kucoin.com',
       pathRewrite: { '^/kucoin_api': '' },
-      changeOrigin: true
-    }
+      changeOrigin: true,
+    },
   },
   theme: {
-    "primary-color": "#6955C0",
-    "link-color": "#6955C0",
-    "btn-primary-color": "#6955C0",
-    "btn-primary-bg": "#6955C0",
+    'primary-color': '#6955C0',
+    'link-color': '#6955C0',
+    'btn-primary-color': '#6955C0',
+    'btn-primary-bg': '#6955C0',
   },
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-// import { history } from 'umi';
 import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
 const { SubMenu } = Menu;
@@ -712,11 +711,9 @@ class SuterProtocol extends React.Component {
                   <img src={Logo} className="logo pc" />
                   <img src={mLogo} className="logo mobbile" />
                 </a>
-                <ul className="item-ul">
-                  <li>
-                    <a href="/qa" target="_blank">
-                      {intl.get('Q&A')}
-                    </a>
+                {/* <ul className="item-ul">
+                  <li onClick={() => this.toggleQA('qa')}>
+                    {intl.get('Q&A')}{' '}
                   </li>
                   <li>{intl.get('Dashboard')}</li>
                   <li>
@@ -739,12 +736,12 @@ class SuterProtocol extends React.Component {
                       <a className="a">{intl.get('Resources')}</a>
                     </Dropdown>
                   </li>
-                </ul>
+                </ul> */}
                 {/* <div className="menuContainer">{menu}</div> */}
               </div>
             </div>
             <div className="header-btn">
-              {account === '' ? (
+              {/* {account === '' ? (
                 <Button
                   className="connectWalletBtn"
                   shape="round"
@@ -760,7 +757,7 @@ class SuterProtocol extends React.Component {
                     {connectWalletTxt}
                   </Button>
                 </a>
-              )}
+              )} */}
               <div className="top-btn">
                 <i
                   onClick={() => this.loadLocales('en-US')}
@@ -813,39 +810,40 @@ class SuterProtocol extends React.Component {
             ) : (
               ''
             )}
-            {QA ? (
-              <div className="QA">
-                <div className="left">
-                  <h2>{info.title}</h2>
-                  <ul>
-                    {info.list.map((it, index) => {
-                      return (
-                        <li
-                          onClick={() => this.handleInfo(qa_type, it, index)}
-                          className={it.active ? 'active' : ''}
-                          key={index}
-                        >
-                          {it.t}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className="right">
-                  <h3>{info.active.target.t}</h3>
-                  <i></i>
-                  <ul>
-                    {info.active.target.o.map((it, index) => {
-                      return (
-                        <li key={index}>
-                          {typeof it === 'object' ? it.t : it}
-                          {it.img && <img src={it.img} alt="" />}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+            <div className="QA">
+              <div className="left">
+                <h2>{info.title}</h2>
+                <ul>
+                  {info.list.map((it, index) => {
+                    return (
+                      <li
+                        onClick={() => this.handleInfo(qa_type, it, index)}
+                        className={it.active ? 'active' : ''}
+                        key={index}
+                      >
+                        {it.t}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
+              <div className="right">
+                <h3>{info.active.target.t}</h3>
+                <i></i>
+                <ul>
+                  {info.active.target.o.map((it, index) => {
+                    return (
+                      <li key={index}>
+                        {typeof it === 'object' ? it.t : it}
+                        {it.img && <img src={it.img} alt="" />}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+            {/* {QA ? (
+             
             ) : account === '' || coinType === '' ? (
               <Home
                 account={account}
@@ -860,7 +858,7 @@ class SuterProtocol extends React.Component {
                 cancelSelectCoin={this.cancelSelectCoin}
                 intl={intl}
               />
-            )}
+            )} */}
           </Content>
           <Footer>
             <a

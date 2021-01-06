@@ -63,13 +63,10 @@ class Home extends React.Component {
           <Col span={24}>
             <div className="title">
               {this.homeTitle()}
-              <Button
-                className="tutorialBtn"
-                shape="round"
-                size="large"
-                onClick={() => checkQA('help')}
-              >
-                {intl.get('CheckTutorial')}
+              <Button className="tutorialBtn" shape="round" size="large">
+                <a href="/tutorial" target="_blank">
+                  {intl.get('CheckTutorial')}
+                </a>
               </Button>
             </div>
           </Col>
