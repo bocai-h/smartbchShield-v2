@@ -19,6 +19,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
+import Dashboard from '@/components/dashboard';
 
 const locales = {
   'en-US': require('../locales/en_US'),
@@ -39,6 +40,7 @@ class SuterProtocol extends React.Component {
     telegramLogo: telegram,
     mediumLogo: medium,
     QA: false,
+    dashboard: false,
     qa_type: 'qa',
     QA_help: {
       title: 'Suter Shield Tutorial',
@@ -444,6 +446,7 @@ class SuterProtocol extends React.Component {
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
+    this.toggleDashboard = this.toggleDashboard.bind(this);
   }
 
   componentDidMount() {
@@ -556,7 +559,11 @@ class SuterProtocol extends React.Component {
   }
 
   toggleQA = qa_type => {
-    this.setState({ QA: true, qa_type: qa_type });
+    this.setState({ QA: true, qa_type: qa_type, dashboard: false });
+  };
+
+  toggleDashboard = () => {
+    this.setState({ QA: false, dashboard: true });
   };
 
   handleInfo = (qa_type, it, index) => {
@@ -613,6 +620,7 @@ class SuterProtocol extends React.Component {
       telegramLogo,
       mediumLogo,
       QA,
+      dashboard,
       QA_qa,
       QA_qa_CN,
       QA_help_CN,
@@ -664,7 +672,7 @@ class SuterProtocol extends React.Component {
           </a>
         </Menu.Item>
         <Menu.Item key="dashboard">
-          <a target="_blank" rel="noopener noreferrer" href="#">
+          <a onClick={this.toggleDashboard}>
             {intl.get('Dashboard')}
           </a>
         </Menu.Item>
@@ -715,7 +723,7 @@ class SuterProtocol extends React.Component {
                   <li onClick={() => this.toggleQA('qa')}>
                     {intl.get('Q&A')}{' '}
                   </li>
-                  <li>{intl.get('Dashboard')}</li>
+                  <li onClick={this.toggleDashboard}>{intl.get('Dashboard')}</li>
                   <li>
                     <a
                       target="_blank"
@@ -844,6 +852,7 @@ class SuterProtocol extends React.Component {
                 </div>
               </div>
             ) : account === '' || coinType === '' ? (
+              dashboard ? <Dashboard /> :
               <Home
                 account={account}
                 selectCoin={this.selectCoin}

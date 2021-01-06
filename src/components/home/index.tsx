@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button, Card } from 'antd';
+import { Row, Col, Button } from 'antd';
 import './index.less';
 import ethLogo from '../../static/ethLogo.svg';
 import daiLogo from '../../static/daiLogo.svg';
