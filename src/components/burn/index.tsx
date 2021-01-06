@@ -17,7 +17,7 @@ class Burn extends React.Component {
   }
   handleInputChange(e) {
     let value = parseInt(e.target.value);
-    if(isNaN(value)){
+    if (isNaN(value)) {
       value = 0;
     }
     if (value < 0) {
@@ -25,7 +25,8 @@ class Burn extends React.Component {
     }
     let { max } = this.props;
     if (value > max) {
-      value = max;
+      // value = max;
+      openNotificationWithIcon('Error', '余额不足', 'error', 2);
     }
     this.setState({ inputValue: value.toString() });
   }
@@ -33,21 +34,21 @@ class Burn extends React.Component {
     let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
-    let result
-    try{
+    let result;
+    try {
       result = await client.withdraw(inputValue);
-    }catch(error){
-      if(error.code !== ''){
-        openNotificationWithIcon("Error", error.message, 'error')
-      }else{
-        openNotificationWithIcon("Error", error.toString(), 'error')
+    } catch (error) {
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'error');
       }
       this.setState({ proccesing: false });
-      return
+      return;
     }
-    
+
     let txHash = result.transactionHash;
-    const message = intl.get("ViewInEtherScan");
+    const message = intl.get('ViewInEtherScan');
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
       `${intl.get('Burn')}${intl.get('TransactionHasSent')}`,
@@ -71,11 +72,11 @@ class Burn extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="burn">
-        {proccesing ? <SpinModal intl={intl}/> : ''}
+        {proccesing ? <SpinModal intl={intl} /> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get('Burn')}</h1>
           <p>
-           {intl.get('Burn')} S{info.unit} {intl.get('To')} {info.unit}
+            {intl.get('Burn')} S{info.unit} {intl.get('To')} {info.unit}
           </p>
           <div className="inputContainer">
             <input
@@ -86,13 +87,13 @@ class Burn extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-               {intl.get('Max')}
+                {intl.get('Max')}
               </span>
               <img src={info.logo[coinType][1]} width="20px" />
             </div>
           </div>
           <p>
-            {intl.get("YouWillReceive")} {inputValue} Unit {info.unit}(=
+            {intl.get('YouWillReceive')} {inputValue} Unit {info.unit}(=
             {(inputValue * 1.0) / info.suterShieldUnit} {info.unit})
           </p>
           <div className="confirmContainer">

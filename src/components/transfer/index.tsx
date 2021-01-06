@@ -34,7 +34,8 @@ class Transfer extends React.Component {
     }
     let { max } = this.props;
     if (value > max) {
-      value = max;
+      // value = max;
+      openNotificationWithIcon('Error', '余额不足', 'error', 2);
     }
     this.setState({ transferValue: value.toString() });
   }
@@ -51,23 +52,23 @@ class Transfer extends React.Component {
     let { client, updateKeyFunc, intl } = this.props;
     let { transferValue, transferAddress } = this.state;
     this.setState({ proccesing: true });
-    let result
+    let result;
     try {
       result = await client.transfer(transferAddress, transferValue);
     } catch (error) {
-      if(error.code !== ''){
-        openNotificationWithIcon("Error", error.message, 'error')
-      }else{
-        openNotificationWithIcon("Error", error.toString(), 'warning')
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'warning');
       }
       this.setState({ proccesing: false });
-      return
+      return;
     }
     let txHash = result.transactionHash;
-    const message = intl.get("ViewInEtherScan");
+    const message = intl.get('ViewInEtherScan');
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      `${intl.get("Transfer")}${intl.get("TransactionHasSent")}`,
+      `${intl.get('Transfer')}${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
@@ -89,7 +90,7 @@ class Transfer extends React.Component {
     } = this.state;
     return (
       <div className="transfer">
-        {proccesing ? <SpinModal intl={intl}/> : ''}
+        {proccesing ? <SpinModal intl={intl} /> : ''}
         <Card style={{ width: 350 }}>
           <PublicKeyModal
             visible={myAddressModal}
@@ -98,9 +99,9 @@ class Transfer extends React.Component {
             intl={intl}
           />
           <div className="title">
-            <h1>{intl.get("Transfer")}</h1>
+            <h1>{intl.get('Transfer')}</h1>
             <p className="myAddress" onClick={this.openMyAddressModal}>
-              {intl.get("MySuterAccountAddress")}
+              {intl.get('MySuterAccountAddress')}
             </p>
           </div>
           <div className="inputContainer">
@@ -112,15 +113,15 @@ class Transfer extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-                {intl.get("Max")}
+                {intl.get('Max')}
               </span>
               <img src={info.logo[coinType][1]} width="20px" />
             </div>
           </div>
           <div className="addressInputContainer">
-            <p>{intl.get("RecipientAddress")}</p>
+            <p>{intl.get('RecipientAddress')}</p>
             <textarea
-              placeholder={intl.get("PleaseInputSuterAccountAddressHere")}
+              placeholder={intl.get('PleaseInputSuterAccountAddressHere')}
               value={transferAddress}
               onChange={this.handleTransferAddress}
             />
@@ -133,7 +134,7 @@ class Transfer extends React.Component {
               onClick={this.transfer}
               disabled={transferValue === 0 || transferAddress === ''}
             >
-              {intl.get("ConfirmTransfer")}
+              {intl.get('ConfirmTransfer')}
             </Button>
           </div>
         </Card>

@@ -17,7 +17,7 @@ class Fund extends React.Component {
   }
   handleInputChange(e) {
     let value = parseInt(e.target.value);
-    if(isNaN(value)){
+    if (isNaN(value)) {
       value = 0;
     }
     if (value < 0) {
@@ -25,7 +25,8 @@ class Fund extends React.Component {
     }
     let { max } = this.props;
     if (value > max) {
-      value = max;
+      // value = max;
+      openNotificationWithIcon('Error', '余额不足', 'error', 2);
     }
     this.setState({ inputValue: value.toString() });
   }
@@ -33,21 +34,21 @@ class Fund extends React.Component {
     let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
-    let result
+    let result;
     try {
       result = await client.deposit(inputValue);
-    }catch(error){
-      if(error.code !== ''){
-        openNotificationWithIcon("Error", error.message, 'error')
-      }else{
-        openNotificationWithIcon("Error", error.toString(), 'error')
+    } catch (error) {
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'error');
       }
       this.setState({ processing: false });
       return;
     }
     let txHash = result.transactionHash;
 
-    const message = intl.get("ViewInEtherScan");;
+    const message = intl.get('ViewInEtherScan');
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
       `${intl.get('Fund')}${intl.get('TransactionHasSent')}`,
@@ -71,11 +72,11 @@ class Fund extends React.Component {
     let info = Infos[coinType];
     return (
       <div className="fund">
-        {processing ? <SpinModal intl={intl}/> : ''}
+        {processing ? <SpinModal intl={intl} /> : ''}
         <Card style={{ width: 350 }}>
-          <h1>{intl.get("Fund")}</h1>
+          <h1>{intl.get('Fund')}</h1>
           <p>
-            { intl.get("Deposit") } {info.unit} { intl.get("To") } S{info.unit}
+            {intl.get('Deposit')} {info.unit} {intl.get('To')} S{info.unit}
           </p>
           <div className="inputContainer">
             <input
@@ -86,7 +87,7 @@ class Fund extends React.Component {
             />
             <div className="inputAppend">
               <span className="maxBtn" onClick={this.maxFill}>
-                { intl.get("Max") }
+                {intl.get('Max')}
               </span>
               <img src={info.logo[coinType][2]} width="20px" />
             </div>
@@ -107,7 +108,7 @@ class Fund extends React.Component {
               disabled={inputValue > 0 ? false : true}
               onClick={this.fund}
             >
-             { intl.get("ConfirmFund") }
+              {intl.get('ConfirmFund')}
             </Button>
           </div>
         </Card>
