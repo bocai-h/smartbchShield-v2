@@ -11,12 +11,12 @@ contract SuterERC20 is SuterBase {
 
     ERC20 token;
 
-    constructor(address _token, address _transfer, address _burn, uint256 _epochBase, uint256 _epochLength, uint256 _unit) SuterBase(_transfer, _burn, _epochBase, _epochLength, _unit) public {
+    constructor(address payable _suterAgency, Utils.G1Point memory _suterAgencyPublicKey, address _token, address _transfer, address _burn, uint256 _epochBase, uint256 _epochLength, uint256 _unit) SuterBase(_suterAgency, _suterAgencyPublicKey, _transfer, _burn, _epochBase, _epochLength, _unit) public {
         token = ERC20(_token);
     }
 
-    function fund(Utils.G1Point memory y, uint256 unitAmount) public {
-        fundBase(y, unitAmount);
+    function fund(Utils.G1Point memory y, uint256 unitAmount, bytes memory encGuess) public {
+        fundBase(y, unitAmount, encGuess);
 
         uint256 nativeAmount = toNativeAmount(unitAmount);
 
@@ -24,11 +24,16 @@ contract SuterERC20 is SuterBase {
         require(token.transferFrom(msg.sender, address(this), nativeAmount), "Native 'transferFrom' failed.");
     }
 
-    function burn(Utils.G1Point memory y, uint256 unitAmount, Utils.G1Point memory u, bytes memory proof) public {
-        burnBase(y, unitAmount, u, proof);
-
+    function burn(Utils.G1Point memory y, uint256 unitAmount, Utils.G1Point memory u, bytes memory proof, bytes memory encGuess) public payable {
         uint256 nativeAmount = toNativeAmount(unitAmount);
-        require(token.transfer(msg.sender, nativeAmount), "Native 'transfer' failed.");
+        uint256 fee = nativeAmount * BURN_FEE_MULTIPLIER / BURN_FEE_DIVIDEND; 
+
+        burnBase(y, unitAmount, u, proof, encGuess);
+
+        if (fee > 0) {
+            require(token.transfer(suterAgency, fee), "Fail to charge fee.");
+        }
+        require(token.transfer(msg.sender, nativeAmount - fee), "Fail to transfer tokens.");
     }
 }
 
