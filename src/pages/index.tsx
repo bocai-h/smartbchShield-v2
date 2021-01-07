@@ -4,7 +4,6 @@ const { Header, Footer, Content } = Layout;
 // import { history } from 'umi';
 import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
-const { SubMenu } = Menu;
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
