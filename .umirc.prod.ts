@@ -24,6 +24,11 @@ export default defineConfig({
       pathRewrite: { '^/kucoin_api': '' },
       changeOrigin: true,
     },
+    '/huobi_api': {
+      target: 'https://api.huobi.pro',
+      pathRewrite: { '^/huobi_api': '' },
+      changeOrigin: true,
+    },
   },
   theme: {
     'primary-color': '#6955C0',

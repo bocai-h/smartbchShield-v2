@@ -15,7 +15,8 @@ class Dashboard extends React.Component {
     totalDeposits: 0,
     totalUSDDeposited: 0,
     totalUsers: 0,
-    suterPrice: 0
+    suterPrice: 0,
+    daiPrice: 0
   };
   constructor(props) {
     super(props);
@@ -23,6 +24,7 @@ class Dashboard extends React.Component {
   async componentDidMount() {
    this.getCurrentETHDeposited();
    await this.fetchSuterPrice();
+   await this.getDaiPrice();
    this.getCurrentStableCoinsDeposited();
   }
   async getCurrentETHDeposited() {
@@ -59,7 +61,66 @@ class Dashboard extends React.Component {
       );
     }
     this.setState({suterPrice: suterPrice})
-};
+  };
+
+  async getETHPrice() {
+    let ethPrice = 0;
+    try {
+      let response = await axios.get(
+       'huobi_api/market/detail/merged?symbol=ethusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        ethPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+         'Price Api Error',
+         'Fetch ETH price error',
+         'error',
+         4.5,
+        );
+      }
+    } catch (error) {
+     console.log(error);
+      openNotificationWithIcon(
+       'Network Error',
+       'Fetch ETH price error',
+       'warning',
+       4.5,
+      );
+    }
+    this.setState({ethPrice: ethPrice})
+  }
+
+  async getDaiPrice() {
+    let daiPrice = 0;
+    try {
+      let response = await axios.get(
+       'huobi_api/market/detail/merged?symbol=daiusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        daiPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+         'Price Api Error',
+         'Fetch DAI price error',
+         'error',
+         4.5,
+        );
+      }
+    } catch (error) {
+     console.log(error);
+      openNotificationWithIcon(
+       'Network Error',
+       'Fetch DAI price error',
+       'warning',
+       4.5,
+      );
+    }
+    this.setState({daiPrice: daiPrice})
+  }
+
 
   async getCurrentStableCoinsDeposited() {
     let totalValue = 0;
@@ -69,10 +130,12 @@ class Dashboard extends React.Component {
       suterShiledTokenContract.setProvider(window.web3.currentProvider);
       let balanceWithDecimal = await suterShiledTokenContract.methods.balanceOf(item[0]).call();
       let decimals = await suterShiledTokenContract.methods.decimals().call();
-      if(item[0] === SUTER_DAI_CONTRACT_ADDRESS) {
+      if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS) {
         totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.suterPrice;
-      }else{
+      }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
         totalValue += balanceWithDecimal * 1.0 / decimals;
+      }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
+        totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.daiPrice;
       }
      }
     this.setState({ currentStableCoinsDeposited: totalValue });
