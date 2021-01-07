@@ -281,6 +281,17 @@ class SuterProtocol extends React.Component {
       this.setState({ mediumLogo: medium });
     }
   };
+  handleInfo = (it, index) => {
+    const { QA_help, QA_help_CN } = this.state;
+    let type = intl.options.currentLocale === 'zh-CN'? QA_help_CN: QA_help
+    type.active.index = index;
+    type.active.target = it;
+    type.list.forEach(it => {
+      it.active = false;
+    });
+    type.list[index].active = true;
+    this.setState({ type });
+  };
   render() {
     const {
       twitterLogo,
@@ -329,7 +340,7 @@ class SuterProtocol extends React.Component {
                   {info.list.map((it, index) => {
                     return (
                       <li
-                        onClick={() => this.handleInfo(qa_type, it, index)}
+                        onClick={() => this.handleInfo(it, index)}
                         className={it.active ? 'active' : ''}
                         key={index}
                       >
