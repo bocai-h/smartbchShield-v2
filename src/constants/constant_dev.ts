@@ -2,7 +2,7 @@ export default {
   ENV: 'dev',
   ETH_CHAIN_ID: '0x3',
   ETHERSCAN: 'https://ropsten.etherscan.io',
-  SUTER_ETH_CONTRACT_ADDRESS: '0x2528ADd95fD8fe0260F3Ef1Fe1bAfb9954F929b3',
+  SUTER_ETH_CONTRACT_ADDRESS: '0xfFcfeF9dd4B0f42E8FD3494af59E53fa38C5dF4e',
   SUTER_ETH_CONTRACT_ABI: [
     {
       "inputs": [
