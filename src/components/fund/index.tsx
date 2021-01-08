@@ -16,17 +16,18 @@ class Fund extends React.Component {
     this.maxFill = this.maxFill.bind(this);
   }
   handleInputChange(e) {
+    let { intl } = this.props;
     let value = parseInt(e.target.value);
     if (isNaN(value)) {
       value = 0;
     }
-    if (value < 0) {
+    if (value < 0 || isNaN(value)) {
       value = 0;
     }
     let { max } = this.props;
     if (value > max) {
       // value = max;
-      openNotificationWithIcon('Error', '余额不足', 'error', 2);
+      openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
     this.setState({ inputValue: value.toString() });
   }
@@ -51,7 +52,7 @@ class Fund extends React.Component {
     const message = intl.get('ViewInEtherScan');
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      `${intl.get('Fund')}${intl.get('TransactionHasSent')}`,
+      `${intl.get('Fund')} ${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
@@ -67,7 +68,7 @@ class Fund extends React.Component {
     this.setState({ inputValue: max });
   }
   render() {
-    let { coinType, intl } = this.props;
+    let { coinType, intl, max } = this.props;
     let { inputValue, processing } = this.state;
     let info = Infos[coinType];
     return (
@@ -105,7 +106,7 @@ class Fund extends React.Component {
               className="confirm"
               shape="round"
               block
-              disabled={inputValue > 0 ? false : true}
+              disabled={inputValue <= 0 || inputValue > max}
               onClick={this.fund}
             >
               {intl.get('ConfirmFund')}

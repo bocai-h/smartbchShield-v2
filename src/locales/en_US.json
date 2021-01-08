@@ -45,5 +45,6 @@
   "processing": "Processing",
   "yourRequest": "Your Request",
   "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.",
-  "i": "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle."
+  "i": "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle.",
+  "BalanceNotEnough": "Inadequate balance"
 }

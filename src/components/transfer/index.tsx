@@ -28,14 +28,15 @@ class Transfer extends React.Component {
     this.setState({ myAddressModal: true });
   }
   handleTransferValue(e) {
+    let { intl } = this.props;
     let value = parseInt(e.target.value);
-    if (value < 0) {
+    if (value < 0 || isNaN(value)) {
       value = 0;
     }
     let { max } = this.props;
     if (value > max) {
       // value = max;
-      openNotificationWithIcon('Error', '余额不足', 'error', 2);
+      openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
     this.setState({ transferValue: value.toString() });
   }
@@ -80,7 +81,7 @@ class Transfer extends React.Component {
     updateKeyFunc();
   }
   render() {
-    let { coinType, client, intl } = this.props;
+    let { coinType, client, intl, max } = this.props;
     let info = Infos[coinType];
     let {
       myAddressModal,
@@ -132,7 +133,7 @@ class Transfer extends React.Component {
               shape="round"
               block
               onClick={this.transfer}
-              disabled={transferValue === 0 || transferAddress === ''}
+              disabled={transferValue <= 0 || transferValue > max || transferAddress === ''}
             >
               {intl.get('ConfirmTransfer')}
             </Button>
