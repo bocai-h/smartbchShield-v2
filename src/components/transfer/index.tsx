@@ -68,7 +68,7 @@ class Transfer extends React.Component {
     const message = intl.get('ViewInEtherScan');
     const aLink = `${ETHERSCAN}/tx/${txHash}`;
     openNotificationWithIcon(
-      `${intl.get('Transfer')}${intl.get('TransactionHasSent')}`,
+      `${intl.get('Transfer')} ${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
       'success',
       10,
