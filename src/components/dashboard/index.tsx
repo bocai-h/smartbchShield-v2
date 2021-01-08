@@ -16,7 +16,11 @@ class Dashboard extends React.Component {
     totalUSDDeposited: 0,
     totalUsers: 0,
     suterPrice: 0,
-    daiPrice: 0
+    daiPrice: 0,
+    ethPrice: 0,
+    usdtDecimals: 1,
+    daiDecimals: 1,
+    suterDecimals: 1
   };
   constructor(props) {
     super(props);
@@ -25,7 +29,9 @@ class Dashboard extends React.Component {
    this.getCurrentETHDeposited();
    await this.fetchSuterPrice();
    await this.getDaiPrice();
-   this.getCurrentStableCoinsDeposited();
+   await this.getETHPrice();
+   await this.getCurrentStableCoinsDeposited();
+   this.getTotalFeesUSD();
   }
   async getCurrentETHDeposited() {
     let newWeb3 = new Web3(window.web3.currentProvider);
@@ -132,17 +138,44 @@ class Dashboard extends React.Component {
       let decimals = await suterShiledTokenContract.methods.decimals().call();
       if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS) {
         totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.suterPrice;
+        this.setState({suterDecimals: decimals})
       }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
         totalValue += balanceWithDecimal * 1.0 / decimals;
+        this.setState({usdtDecimals: decimals})
       }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
         totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.daiPrice;
+        this.setState({daiDecimals: decimals})
       }
      }
     this.setState({ currentStableCoinsDeposited: totalValue });
   }
 
+  async getTotalFeesUSD() {
+    let totalFeesValue = 0;
+    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    for (const item of pools) {
+      var suterShieldContract = new Contract(
+        item[1],
+        item[0],
+      );
+      suterShieldContract.setProvider(window.web3.currentProvider);
+      let fee = await suterShieldContract.methods.totalFee().call();
+      let newWeb3 = new Web3(window.web3.currentProvider);
+      if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
+        totalFeesValue = newWeb3.utils.fromWei(fee, 'ether') * this.state.ethPrice;
+      }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
+        totalFeesValue = fee * 1.0 / this.state.usdtDecimals
+      }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
+        totalFeesValue = fee * 1.0 / this.state.daiDecimals * this.state.daiPrice;
+      }else if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS){
+        totalFeesValue = fee * 1.0 / this.state.suterDecimals * this.state.suterPrice;
+      }
+    }
+    this.setState({totalFeesUSD: totalFeesValue})
+  }
+
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     let { currentETHDeposited, currentStableCoinsDeposited, totalFeesUSD, totalETHDeposited, totalDeposits, totalUSDDeposited, totalUsers }  = this.state
     return (
       <div className="dashboardContainer">
@@ -154,11 +187,11 @@ class Dashboard extends React.Component {
            </div>
            <div className="card">
              <h2>Current Stable Coins Deposited</h2>
-             <h1>{currentStableCoinsDeposited}</h1>
+             <h1>${currentStableCoinsDeposited}</h1>
            </div>
            <div className="card">
              <h2>Total Fees USD</h2>
-             <h1>{totalFeesUSD}</h1>
+             <h1>${totalFeesUSD}</h1>
            </div>
           </Col>
         </div>
