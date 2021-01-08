@@ -42,7 +42,12 @@ class Transfer extends React.Component {
   }
 
   handleTransferAddress(e) {
-    this.setState({ transferAddress: e.target.value });
+    let { intl } = this.props;
+    let suterAccountAddress = e.target.value.replace(/(^\s*)|(\s*$)/g, "");
+    if(suterAccountAddress.length !== 130){
+      openNotificationWithIcon('Warning', intl.get("InvalidAddress"), 'warn', 4);
+    }
+    this.setState({ transferAddress: suterAccountAddress});
   }
   maxFill() {
     let { max } = this.props;
@@ -133,7 +138,7 @@ class Transfer extends React.Component {
               shape="round"
               block
               onClick={this.transfer}
-              disabled={transferValue <= 0 || transferValue > max || transferAddress === ''}
+              disabled={transferValue <= 0 || transferValue > max || transferAddress.length !== 130}
             >
               {intl.get('ConfirmTransfer')}
             </Button>
