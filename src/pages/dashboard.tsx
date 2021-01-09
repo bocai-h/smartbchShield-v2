@@ -36,6 +36,16 @@ class SuterProtocol extends React.Component {
   loadLocales = (lang = 'en-US') => {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
+    var userLang = navigator.language || navigator.userLanguage; 
+    if(userLang) {
+      if(userLang === "zh") {
+        lang = "zh-CN";
+      }
+    }
+    let cacheLang = localStorage.getItem('lang');
+    if(cacheLang) {
+      lang = cacheLang;
+    }
     intl
       .init({
         currentLocale: lang, // TODO: determine locale here
@@ -71,6 +81,11 @@ class SuterProtocol extends React.Component {
       this.setState({ mediumLogo: medium });
     }
   };
+
+  langChangeTo = (lang) => {
+    this.loadLocales(lang)
+    localStorage.setItem('lang', lang);
+  }
   
   render() {
     const {
@@ -93,14 +108,14 @@ class SuterProtocol extends React.Component {
             <div className="header-btn">
               <div className="top-btn">
                 <i
-                  onClick={() => this.loadLocales('en-US')}
+                  onClick={() => this.langChangeTo('en-US')}
                   className={`${lang === 'en-US' ? 'active' : ''}`}
                 >
                   EN
                 </i>
                 <i
                   className={`${lang === 'zh-CN' ? 'active' : ''}`}
-                  onClick={() => this.loadLocales('zh-CN')}
+                  onClick={() => this.langChangeTo('zh-CN')}
                 >
                   中
                 </i>
