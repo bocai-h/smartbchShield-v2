@@ -47,5 +47,13 @@
   "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.",
   "i": "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle.",
   "BalanceNotEnough": "Inadequate balance",
-  "InvalidAddress": "Invalid recipient address"
+  "InvalidAddress": "Invalid recipient address",
+  "MetamaskAccountChanged": "Metamask account has changed",
+  "PageWillRefresh": "Page will refresh after 2 seconds",
+  "NeedMetaMaskTips": "Suterusu Protocol must work with MetaMask, please install MetaMask",
+  "MetaMaskIsNotInstalled": "MetaMask is not installed!",
+  "ETHNetworkChanged": "ETH network has changed",
+  "ETHNetworkError": "ETH network error!",
+  "PleaseChangeMetamaskTo": "Please change MetaMask to",
+  "Network": "network"
 }

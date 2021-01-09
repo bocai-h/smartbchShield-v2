@@ -49,5 +49,13 @@
   "spinTips": "不要刷新您的页面，可能会花费2到3分钟完成你的请求。",
   "i": "我们引入\"单位\"这个概念的原因这是由底层的算法决定的，算法的数字型本身能处理的整数是有个上限的，这就导致系统中最终能处理的代币数量是有个上限的，而不同ERC-20代币总量是不一样的，因此必须相应有个代币最小单位才能保证算法与之兼容。",
   "BalanceNotEnough": "余额不足",
-  "InvalidAddress": "无效的接收地址"
+  "InvalidAddress": "无效的接收地址",
+  "MetamaskAccountChanged": "Metamask账户已经改变",
+  "PageWillRefresh": "页面即将在2秒后刷新",
+  "NeedMetaMaskTips": "Suterusu协议必须安装MetaMask插件才能工作,请安装MetaMask插件",
+  "MetaMaskIsNotInstalled": "MetaMask未安装!",
+  "ETHNetworkChanged": "以太坊网络已经改变",
+  "ETHNetworkError": "以太坊网络错误!",
+  "PleaseChangeMetamaskTo": "请将MetaMask网络切换到",
+  "Network": "网络"
 }

@@ -19,7 +19,6 @@ import { MenuOutlined } from '@ant-design/icons';
 import Home from '../components/home';
 import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
-import Dashboard from '@/components/dashboard';
 
 const locales = {
   'en-US': require('../locales/en_US'),
@@ -103,12 +102,12 @@ class SuterProtocol extends React.Component {
       this.setState({ metamaskInstalled: true });
       this.checkEthNetworkType();
       this.ethChainChanged();
-      // this.accountChanged();
+      this.accountChanged();
     } else {
       const message =
-        'Suterusu Protocol must work with MetaMask, please install MetaMask';
+        intl.get("NeedMetaMaskTips");
       openNotificationWithIcon(
-        'MetaMask is not installed!',
+        intl.get("MetaMaskIsNotInstalled"),
         message,
         'warning',
       );
@@ -118,8 +117,8 @@ class SuterProtocol extends React.Component {
   ethChainChanged() {
     window.ethereum.on('chainChanged', chainId => {
       openNotificationWithIcon(
-        'ETH Chain changed',
-        'Page will refresh after 2 seconds',
+        intl.get("ETHNetworkChanged"),
+        intl.get("PageWillRefresh"),
         'warning',
         4.5,
       );
@@ -132,8 +131,8 @@ class SuterProtocol extends React.Component {
   accountChanged() {
     window.ethereum.on('accountsChanged', function(accounts) {
       openNotificationWithIcon(
-        'ETH account changed',
-        'Page will refresh after 2 seconds',
+        intl.get("MetamaskAccountChanged"),
+        intl.get("PageWillRefresh"),
         'warning',
         4.5,
       );
@@ -147,8 +146,8 @@ class SuterProtocol extends React.Component {
     this.setState({ ethNetwork: window.ethereum.chainId });
     if (window.ethereum && window.ethereum.chainId != ETH_CHAIN_ID) {
       openNotificationWithIcon(
-        'ETH network error!',
-        `Please change metamask to ${ethChainNameMap[ETH_CHAIN_ID]} network`,
+        intl.get("ETHNetworkError"),
+        `${intl.get("PleaseChangeMetamaskTo")} ${ethChainNameMap[ETH_CHAIN_ID]} ${intl.get("Network")}`,
         'warning',
         4.5,
       );
