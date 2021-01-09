@@ -2,6 +2,7 @@ export default {
 	ENV: 'staging',
 	ETH_CHAIN_ID: '0x3',
 	ETHERSCAN: 'https://ropsten.etherscan.io',
+	JSONRPC_URL: 'https://ropsten.infura.io/v3/d80602309b7c48e78b80a372a3f6c825',
 	SUTER_ETH_CONTRACT_ADDRESS: '0x5e3959EFfa2A1D8192239F893B85D5586eE11B90',
 	SUTER_ETH_CONTRACT_ABI: [
 	  {

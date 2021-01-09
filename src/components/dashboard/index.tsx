@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
    await this.getTotalUser();
   }
   async getCurrentETHDeposited() {
-    let newWeb3 = new Web3(window.web3.currentProvider);
+    let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
     let balanceWithDecimal = await newWeb3.eth.getBalance(SUTER_ETH_CONTRACT_ADDRESS);
     let balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     this.setState({ currentETHDeposited: balance });
@@ -136,7 +136,7 @@ class Dashboard extends React.Component {
     let pools = [[SUTER_USDT_CONTRACT_ADDRESS, USDT_TOKEN_CONTRACT_ADDRESS, USDT_TOKEN_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, DAI_TOKEN_CONTRACT_ADDRESS, DAI_TOKEN_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_TOKEN_CONTRACT_ADDRESS, SUTER_TOKEN_CONTRACT_ABI]];
     for (const item of pools) {
       var suterShiledTokenContract = new Contract(item[2],item[1]);
-      suterShiledTokenContract.setProvider(window.web3.currentProvider);
+      suterShiledTokenContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let balanceWithDecimal = await suterShiledTokenContract.methods.balanceOf(item[0]).call();
       let decimals = await suterShiledTokenContract.methods.decimals().call();
       if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS) {
@@ -161,11 +161,10 @@ class Dashboard extends React.Component {
         item[1],
         item[0],
       );
-      suterShieldContract.setProvider(window.web3.currentProvider);
+      suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let fee = await suterShieldContract.methods.totalFee().call();
-      console.log("fee=", fee)
-      let newWeb3 = new Web3(window.web3.currentProvider);
       if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
+        let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
         totalFeesValue += newWeb3.utils.fromWei(fee, 'ether') * this.state.ethPrice;
       }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
         totalFeesValue += fee * 1.0 / this.state.usdtDecimals
@@ -183,7 +182,7 @@ class Dashboard extends React.Component {
       SUTER_ETH_CONTRACT_ABI,
       SUTER_ETH_CONTRACT_ADDRESS,
     );
-    suterETHShieldContract.setProvider(window.web3.currentProvider);
+    suterETHShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
     let totalETHDeposited = await suterETHShieldContract.methods.totalBalance().call();
     this.setState({totalETHDeposited: totalETHDeposited})
   }
@@ -196,9 +195,9 @@ class Dashboard extends React.Component {
         item[1],
         item[0],
       );
-      suterShieldContract.setProvider(window.web3.currentProvider);
+      suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let amount = await suterShieldContract.methods.totalBalance().call();
-      let newWeb3 = new Web3(window.web3.currentProvider);
+      let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
       if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
         totalValue += newWeb3.utils.fromWei(amount, 'ether') * this.state.ethPrice;
       }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
@@ -220,7 +219,7 @@ class Dashboard extends React.Component {
         item[1],
         item[0],
       );
-      suterShieldContract.setProvider(window.web3.currentProvider);
+      suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let userAmount = await suterShieldContract.methods.totalUsers().call();
       totalUsers += parseInt(userAmount)
     }
@@ -235,15 +234,15 @@ class Dashboard extends React.Component {
          <Col span={24}>
            <div className="card">
              <h2>Current ETH Deposited</h2>
-             <h1>{currentETHDeposited}</h1>
+             <h1>{currentETHDeposited.toLocaleString()}</h1>
            </div>
            <div className="card">
              <h2>Current Stable Coins Deposited</h2>
-             <h1>${currentStableCoinsDeposited}</h1>
+             <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
            </div>
            <div className="card">
              <h2>Total Fees USD</h2>
-             <h1>${totalFeesUSD}</h1>
+             <h1>${totalFeesUSD.toLocaleString()}</h1>
            </div>
           </Col>
         </div>
@@ -251,15 +250,15 @@ class Dashboard extends React.Component {
          <Col span={24}>
            <div className="card">
               <h2>Total ETH Deposited</h2>
-              <h1>{totalETHDeposited}</h1>
+              <h1>{totalETHDeposited.toLocaleString()}</h1>
            </div>
            <div className="card">
              <h2>Total USD Deposited</h2>
-             <h1>{totalUSDDeposited}</h1>
+             <h1>{totalUSDDeposited.toLocaleString()}</h1>
            </div>
            <div className="card">
              <h2>Total Deposits</h2>
-             <h1>${totalDeposits}</h1>
+             <h1>${totalDeposits.toLocaleString()}</h1>
            </div>
           </Col>
         </div>
@@ -267,7 +266,7 @@ class Dashboard extends React.Component {
           <Col span={24}>
            <div className="card">
              <h2>Total Users</h2>
-             <h1>{totalUsers}</h1>
+             <h1>{totalUsers.toLocaleString()}</h1>
            </div>
           </Col>
         </div>
