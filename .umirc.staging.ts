@@ -17,6 +17,7 @@ export default defineConfig({
     { path: '/', component: '@/pages/index' },
     { path: '/qa', exact: true, component: '@/pages/qa' },
     { path: '/tutorial', exact: true, component: '@/pages/tutorial' },
+    { path: '/dashboard', exact: true, component: '@/pages/dashboard' },
   ],
   proxy: {
     '/kucoin_api': {

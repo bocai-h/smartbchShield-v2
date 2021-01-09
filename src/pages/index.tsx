@@ -39,7 +39,6 @@ class SuterProtocol extends React.Component {
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
-    dashboard: false
   };
 
   constructor(props) {
@@ -54,7 +53,6 @@ class SuterProtocol extends React.Component {
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
-    this.toggleDashboard = this.toggleDashboard.bind(this);
   }
 
   componentDidMount() {
@@ -166,10 +164,6 @@ class SuterProtocol extends React.Component {
     this.setState({ coinType: '' });
   }
 
-  toggleDashboard = () => {
-    this.setState({ QA: false, dashboard: true });
-  };
-
   lightFooterLogo = ctype => {
     if (ctype === 'twitter') {
       this.setState({ twitterLogo: twitterLight });
@@ -203,8 +197,7 @@ class SuterProtocol extends React.Component {
       coinType,
       twitterLogo,
       telegramLogo,
-      mediumLogo,
-      dashboard
+      mediumLogo
     } = this.state;
     let lang = intl.options.currentLocale;
 
@@ -213,13 +206,13 @@ class SuterProtocol extends React.Component {
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
       <Menu>
-        <Menu.Item key="dashboard">
-          <a target="_blank" rel="noopener noreferrer" href="#">
+        <Menu.Item key="tutorial">
+          <a target="_blank" rel="noopener noreferrer" href="/tutorial">
             {intl.get('CheckTutorial')}
           </a>
         </Menu.Item>
         <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="#">
+          <a target="_blank" rel="noopener noreferrer" href="/qa">
             {intl.get('Q&A')}
           </a>
         </Menu.Item>
@@ -238,12 +231,12 @@ class SuterProtocol extends React.Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="q&a">
-          <a>
+          <a target="_blank" rel="noopener noreferrer" href="/qa">
             { intl.get("Q&A") }
           </a>
         </Menu.Item>
         <Menu.Item key="dashboard">
-          <a onClick={this.toggleDashboard}>
+          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
             {intl.get('Dashboard')}
           </a>
         </Menu.Item>
@@ -258,12 +251,12 @@ class SuterProtocol extends React.Component {
         </Menu.Item>
         <Menu.ItemGroup title={intl.get('Resources')}>
           <Menu.Item key="tutotial">
-            <a>
+            <a target="_blank" rel="noopener noreferrer" href="/tutotial">
               { intl.get("CheckTutorial") }
             </a>
           </Menu.Item>
           <Menu.Item key="q&a">
-            <a target="_blank" rel="noopener noreferrer" href="#">
+            <a target="_blank" rel="noopener noreferrer" href="/qa">
               {intl.get('Q&A')}
             </a>
           </Menu.Item>
@@ -296,7 +289,11 @@ class SuterProtocol extends React.Component {
                       {intl.get('Q&A')}
                     </a>
                   </li>
-                  <li onClick={this.toggleDashboard}>{intl.get('Dashboard')}</li>
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="/dashboard">
+                      {intl.get('Dashboard')}
+                     </a>
+                  </li>
                   <li>
                     <a
                       target="_blank"
@@ -371,7 +368,7 @@ class SuterProtocol extends React.Component {
             ) : (
               ''
             )}
-            {  dashboard ? <Dashboard /> : (account === '' || coinType === '') ? (
+            { (account === '' || coinType === '') ? (
               <Home
                 account={account}
                 selectCoin={this.selectCoin}
