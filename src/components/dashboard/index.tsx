@@ -12,8 +12,8 @@ class Dashboard extends React.Component {
     currentStableCoinsDeposited: 0,
     totalFeesUSD: 0,
     totalETHDeposited: 0,
-    totalDeposits: 0,
     totalUSDDeposited: 0,
+    totalDeposits: 0,
     totalUsers: 0,
     suterPrice: 0,
     daiPrice: 0,
@@ -33,7 +33,8 @@ class Dashboard extends React.Component {
    await this.getCurrentStableCoinsDeposited();
    await this.getTotalFeesUSD();
    await this.getTotalETHDeposited();
-   await this.getTotalDeposited();
+   await this.getTotalUSDDeposited();
+   await this.totalDeposits();
    await this.getTotalUser();
   }
   async getCurrentETHDeposited() {
@@ -183,11 +184,11 @@ class Dashboard extends React.Component {
       SUTER_ETH_CONTRACT_ADDRESS,
     );
     suterETHShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
-    let totalETHDeposited = await suterETHShieldContract.methods.totalBalance().call();
+    let totalETHDeposited = await suterETHShieldContract.methods.totalDeposits().call();
     this.setState({totalETHDeposited: totalETHDeposited})
   }
 
-  async getTotalDeposited() {
+  async getTotalUSDDeposited() {
     let totalValue = 0;
     let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
     for (const item of pools) {
@@ -196,7 +197,7 @@ class Dashboard extends React.Component {
         item[0],
       );
       suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
-      let amount = await suterShieldContract.methods.totalBalance().call();
+      let amount = await suterShieldContract.methods.totalDeposits().call();
       let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
       if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
         totalValue += newWeb3.utils.fromWei(amount, 'ether') * this.state.ethPrice;
@@ -208,7 +209,7 @@ class Dashboard extends React.Component {
         totalValue += amount * 1.0 / this.state.suterDecimals * this.state.suterPrice;
       }
     }
-    this.setState({totalDeposits: totalValue})
+    this.setState({totalUSDDeposited: totalValue})
   }
 
   async getTotalUser() {
@@ -224,6 +225,21 @@ class Dashboard extends React.Component {
       totalUsers += parseInt(userAmount)
     }
     this.setState({totalUsers: totalUsers})
+  }
+
+  async totalDeposits(){
+    let totalDepositCount = 0;
+    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    for (const item of pools) {
+      var suterShieldContract = new Contract(
+        item[1],
+        item[0],
+      );
+      suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
+      let count = await suterShieldContract.methods.totalFundCount().call();
+      totalDepositCount += parseInt(count)
+    }
+    this.setState({totalDeposits: totalDepositCount})
   }
   render() {
     // console.log(this.state)
@@ -255,11 +271,11 @@ class Dashboard extends React.Component {
            </div>
            <div className="card">
              <h2>{intl.get("TotalUSDDeposited")}</h2>
-             <h1>{totalUSDDeposited.toLocaleString()}</h1>
+             <h1>${totalUSDDeposited.toLocaleString()}</h1>
            </div>
            <div className="card">
              <h2>{intl.get("TotalDeposits")}</h2>
-             <h1>${totalDeposits.toLocaleString()}</h1>
+             <h1>{totalDeposits.toLocaleString()}</h1>
            </div>
           </Col>
         </div>
