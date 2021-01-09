@@ -123,7 +123,7 @@ class SuterProtocol extends React.Component {
             </div>
           </Header>
           <Content>
-            <Dashboard />
+            <Dashboard intl={intl}/>
           </Content>
           <Footer>
             <a

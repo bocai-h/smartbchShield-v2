@@ -55,5 +55,12 @@
   "ETHNetworkChanged": "ETH network has changed",
   "ETHNetworkError": "ETH network error!",
   "PleaseChangeMetamaskTo": "Please change MetaMask to",
-  "Network": "network"
+  "Network": "network",
+  "CurrentETHDeposited": "Current ETH Deposited",
+  "CurrentStableCoinsDeposited": "Current Stable Coins Deposited",
+  "TotalFeesUSD": "Total Fees USD",
+  "TotalETHDeposited": "Total ETH Deposited",
+  "TotalUSDDeposited": "Total USD Deposited",
+  "TotalDeposits": "Total Deposits",
+  "TotalUsers": "Total Users"
 }

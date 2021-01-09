@@ -57,5 +57,12 @@
   "ETHNetworkChanged": "以太坊网络已经改变",
   "ETHNetworkError": "以太坊网络错误!",
   "PleaseChangeMetamaskTo": "请将MetaMask网络切换到",
-  "Network": "网络"
+  "Network": "网络",
+  "CurrentETHDeposited": "ETH当前存币量",
+  "CurrentStableCoinsDeposited": "稳定币当前存币量",
+  "TotalFeesUSD": "手续费总量",
+  "TotalETHDeposited": "ETH历史存币总额",
+  "TotalUSDDeposited": "历史存币总额",
+  "TotalDeposits": "总存款笔数",
+  "TotalUsers": "总用户数"
 }
