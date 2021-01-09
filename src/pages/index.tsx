@@ -155,7 +155,7 @@ class SuterProtocol extends React.Component {
         4.5,
       );
     } else {
-      // this.connectMetaMask();
+      this.connectMetaMask();
     }
   }
 

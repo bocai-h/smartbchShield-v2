@@ -227,7 +227,7 @@ class Dashboard extends React.Component {
     this.setState({totalUsers: totalUsers})
   }
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     let { currentETHDeposited, currentStableCoinsDeposited, totalFeesUSD, totalETHDeposited, totalDeposits, totalUSDDeposited, totalUsers }  = this.state
     return (
       <div className="dashboardContainer">
