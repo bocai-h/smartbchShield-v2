@@ -46,7 +46,7 @@
   "yourRequest": "Your Request",
   "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.",
   "i": "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle.",
-  "BalanceNotEnough": "Inadequate balance",
+  "BalanceNotEnough": "Insufficient balance",
   "InvalidAddress": "Invalid recipient address",
   "MetamaskAccountChanged": "Metamask account has changed",
   "PageWillRefresh": "Page will refresh after 2 seconds",
@@ -62,5 +62,6 @@
   "TotalETHDeposited": "Total ETH Deposited",
   "TotalUSDDeposited": "Total USD Deposited",
   "TotalDeposits": "Total Deposits",
-  "TotalUsers": "Total Users"
+  "TotalUsers": "Total Users",
+  "EnterAnAmount": "Enter an amount"
 }

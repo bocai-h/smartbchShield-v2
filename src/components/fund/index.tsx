@@ -7,29 +7,41 @@ import SpinModal from '../spinModal';
 class Fund extends React.Component {
   state = {
     inputValue: 0,
-    processing: false,
+    inputFill: "0.00 Unit",
+    processing: false
   };
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.fund = this.fund.bind(this);
     this.maxFill = this.maxFill.bind(this);
+    this.assignRef = this.assignRef.bind(this);
+  }
+  assignRef(c: HTMLElement) {
+    this.inputRef = c;
   }
   handleInputChange(e) {
     let { intl } = this.props;
-    let value = parseInt(e.target.value);
+    let value = parseInt(e.target.value.replace("Unit", '').replace(/,/gi, ''));
     if (isNaN(value)) {
       value = 0;
     }
     if (value < 0 || isNaN(value)) {
       value = 0;
     }
+    if (value > 10000000000) {
+      value = 10000000000;
+    }
     let { max } = this.props;
     if (value > max) {
       // value = max;
       openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
-    this.setState({ inputValue: value.toString() });
+    this.setState({ inputFill: `${value.toLocaleString()} Unit`, inputValue: value}, () => {
+      let pos = this.inputRef.value.length - "Unit".length - 1;
+      this.inputRef.selectionStart = pos;
+      this.inputRef.selectionEnd = pos;
+    });
   }
   async fund() {
     let { client, intl } = this.props;
@@ -69,7 +81,7 @@ class Fund extends React.Component {
   }
   render() {
     let { coinType, intl, max } = this.props;
-    let { inputValue, processing } = this.state;
+    let { inputValue, inputFill, processing } = this.state;
     let info = Infos[coinType];
     return (
       <div className="fund">
@@ -81,9 +93,10 @@ class Fund extends React.Component {
           </p>
           <div className="inputContainer">
             <input
-              placeholder="0 Unit"
-              type="number"
-              value={inputValue}
+              placeholder="0.00 Unit"
+              className={`${inputValue <= 0 || inputValue > max ? "InvalidInput" : ""}`}
+              value={inputFill}
+              ref={this.assignRef}
               onChange={this.handleInputChange}
             />
             <div className="inputAppend">
@@ -94,11 +107,8 @@ class Fund extends React.Component {
             </div>
           </div>
           <p>
-            {isNaN(inputValue) ? 0 : inputValue} Unit {info.unit} ={' '}
-            {(
-              (inputValue < 0 ? 0 * 1.0 : inputValue * 1.0) /
-              info.suterShieldUnit
-            ).toFixed(5)}{' '}
+            {isNaN(inputValue) ? 0 : inputValue.toLocaleString()} Unit {info.unit} ={' '}
+            {(inputValue * 1.0 / info.suterShieldUnit).toLocaleString()}{' '}
             {info.unit}
           </p>
           <div className="confirmContainer">
@@ -109,7 +119,7 @@ class Fund extends React.Component {
               disabled={inputValue <= 0 || inputValue > max}
               onClick={this.fund}
             >
-              {intl.get('ConfirmFund')}
+              {intl.get("ConfirmFund")}
             </Button>
           </div>
         </Card>

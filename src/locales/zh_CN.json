@@ -64,5 +64,6 @@
   "TotalETHDeposited": "ETH历史存币总额",
   "TotalUSDDeposited": "历史存币总额",
   "TotalDeposits": "总存款笔数",
-  "TotalUsers": "总用户数"
+  "TotalUsers": "总用户数",
+  "EnterAnAmount": "输入数量"
 }
