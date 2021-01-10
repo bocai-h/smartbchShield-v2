@@ -63,5 +63,6 @@
   "TotalUSDDeposited": "Total USD Deposited",
   "TotalDeposits": "Total Deposits",
   "TotalUsers": "Total Users",
-  "EnterAnAmount": "Enter an amount"
+  "EnterAnAmount": "Enter an amount",
+  "InsufficientBalance": "Insufficient balance"
 }

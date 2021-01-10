@@ -65,5 +65,6 @@
   "TotalUSDDeposited": "历史存币总额",
   "TotalDeposits": "总存款笔数",
   "TotalUsers": "总用户数",
-  "EnterAnAmount": "输入数量"
+  "EnterAnAmount": "输入数量",
+  "InsufficientBalance": "余额不足"
 }

@@ -7,8 +7,9 @@ import SpinModal from '../spinModal';
 class Fund extends React.Component {
   state = {
     inputValue: 0,
-    inputFill: "0.00 Unit",
-    processing: false
+    inputFill: "",
+    processing: false,
+    buttonTxt: "EnterAnAmount"
   };
   constructor(props) {
     super(props);
@@ -16,9 +17,18 @@ class Fund extends React.Component {
     this.fund = this.fund.bind(this);
     this.maxFill = this.maxFill.bind(this);
     this.assignRef = this.assignRef.bind(this);
+    this.adjustPointer = this.adjustPointer.bind(this);
+  }
+  componentDidMount() {
+    this.adjustPointer();
   }
   assignRef(c: HTMLElement) {
     this.inputRef = c;
+  }
+  adjustPointer() {
+    let pos = this.inputRef.value.length - "Unit".length - 1;
+    this.inputRef.selectionStart = pos;
+    this.inputRef.selectionEnd = pos;
   }
   handleInputChange(e) {
     let { intl } = this.props;
@@ -32,15 +42,19 @@ class Fund extends React.Component {
     if (value > 10000000000) {
       value = 10000000000;
     }
+    if(value === 0){
+      this.setState({buttonTxt: "EnterAnAmount"})
+    }else{
+      this.setState({buttonTxt: "ConfirmFund"})
+    }
     let { max } = this.props;
     if (value > max) {
       // value = max;
-      openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
+      this.setState({buttonTxt: "InsufficientBalance"})
+      // openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
     this.setState({ inputFill: `${value.toLocaleString()} Unit`, inputValue: value}, () => {
-      let pos = this.inputRef.value.length - "Unit".length - 1;
-      this.inputRef.selectionStart = pos;
-      this.inputRef.selectionEnd = pos;
+      this.adjustPointer();
     });
   }
   async fund() {
@@ -77,11 +91,11 @@ class Fund extends React.Component {
 
   maxFill() {
     let { max } = this.props;
-    this.setState({ inputValue: max });
+    this.setState({ inputValue: max, inputFill: `${max.toLocaleString()} Unit` });
   }
   render() {
     let { coinType, intl, max } = this.props;
-    let { inputValue, inputFill, processing } = this.state;
+    let { inputValue, inputFill, processing, buttonTxt } = this.state;
     let info = Infos[coinType];
     return (
       <div className="fund">
@@ -93,10 +107,11 @@ class Fund extends React.Component {
           </p>
           <div className="inputContainer">
             <input
-              placeholder="0.00 Unit"
-              className={`${inputValue <= 0 || inputValue > max ? "InvalidInput" : ""}`}
+              placeholder="0 Unit"
+              className={`${inputValue > max ? "insufficientInput" : ""}`}
               value={inputFill}
               ref={this.assignRef}
+              type="text"
               onChange={this.handleInputChange}
             />
             <div className="inputAppend">
@@ -113,13 +128,13 @@ class Fund extends React.Component {
           </p>
           <div className="confirmContainer">
             <Button
-              className="confirm"
+              className={`confirm ${inputValue===0? 'grey' : ''} ${inputValue > max ? "insufficientInput" : ""}`}
               shape="round"
               block
               disabled={inputValue <= 0 || inputValue > max}
               onClick={this.fund}
             >
-              {intl.get("ConfirmFund")}
+              {intl.get(buttonTxt)}
             </Button>
           </div>
         </Card>
