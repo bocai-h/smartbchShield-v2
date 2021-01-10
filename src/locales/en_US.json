@@ -64,5 +64,6 @@
   "TotalDeposits": "Total Deposits",
   "TotalUsers": "Total Users",
   "EnterAnAmount": "Enter an amount",
-  "InsufficientBalance": "Insufficient balance"
+  "InsufficientBalance": "Insufficient balance",
+  "InvalidSuterAccount": "Invalid Address"
 }

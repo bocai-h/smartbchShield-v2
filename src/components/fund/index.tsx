@@ -19,9 +19,6 @@ class Fund extends React.Component {
     this.assignRef = this.assignRef.bind(this);
     this.adjustPointer = this.adjustPointer.bind(this);
   }
-  componentDidMount() {
-    this.adjustPointer();
-  }
   assignRef(c: HTMLElement) {
     this.inputRef = c;
   }

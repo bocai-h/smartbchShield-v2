@@ -66,5 +66,6 @@
   "TotalDeposits": "总存款笔数",
   "TotalUsers": "总用户数",
   "EnterAnAmount": "输入数量",
-  "InsufficientBalance": "余额不足"
+  "InsufficientBalance": "余额不足",
+  "InvalidSuterAccount": "无效地址"
 }
