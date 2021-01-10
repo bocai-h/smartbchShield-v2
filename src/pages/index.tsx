@@ -230,8 +230,8 @@ class SuterProtocol extends React.Component {
           </a>
         </Menu.Item>
         <Menu.Item key="privacyTips">
-          <a target="_blank" rel="noopener noreferrer" href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447">
-          { intl.get("PrivacyTips") }
+          <a target="_blank" rel="noopener noreferrer" href={lang === 'en-US' ? "https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447" : "https://mp.weixin.qq.com/s/DzufO3h-gb4j4GgW3XrQGA"}>
+           { intl.get("PrivacyTips") }
           </a>
         </Menu.Item>
         <Menu.Item key="about">
