@@ -273,8 +273,8 @@ class SuterProtocol extends React.Component {
   };
 
   langChangeTo = (lang) => {
-    this.loadLocales(lang)
     localStorage.setItem('lang', lang);
+    this.loadLocales(lang)
   }
 
   render() {
