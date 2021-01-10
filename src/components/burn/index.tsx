@@ -7,29 +7,52 @@ import SpinModal from '../spinModal';
 class Burn extends React.Component {
   state = {
     inputValue: 0,
+    inputFill: "",
     proccesing: false,
+    buttonTxt: "EnterAnAmount"
   };
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.burn = this.burn.bind(this);
     this.maxFill = this.maxFill.bind(this);
+    this.assignRef = this.assignRef.bind(this);
+    this.adjustPointer = this.adjustPointer.bind(this);
+  }
+  assignRef(c: HTMLElement) {
+    this.inputRef = c;
+  }
+  adjustPointer() {
+    let pos = this.inputRef.value.length - "Unit".length - 1;
+    this.inputRef.selectionStart = pos;
+    this.inputRef.selectionEnd = pos;
   }
   handleInputChange(e) {
     let { intl } = this.props;
-    let value = parseInt(e.target.value);
+    let value = parseInt(e.target.value.replace("Unit", '').replace(/,/gi, ''));
     if (isNaN(value)) {
       value = 0;
     }
     if (value < 0 || isNaN(value)) {
       value = 0;
     }
+    if (value > 10000000000) {
+      value = 10000000000;
+    }
+    if(value === 0){
+      this.setState({buttonTxt: "EnterAnAmount"})
+    }else{
+      this.setState({buttonTxt: "ConfirmBurn"})
+    }
     let { max } = this.props;
     if (value > max) {
+      this.setState({buttonTxt: "InsufficientBalance"})
       // value = max;
-      openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
+      // openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
-    this.setState({ inputValue: value.toString() });
+    this.setState({ inputFill: `${value.toLocaleString()} Unit`, inputValue: value}, () => {
+      this.adjustPointer();
+    });
   }
   async burn() {
     let { client, intl } = this.props;
@@ -65,11 +88,11 @@ class Burn extends React.Component {
   }
   maxFill() {
     let { max } = this.props;
-    this.setState({ inputValue: max });
+    this.setState({ inputValue: max, inputFill: `${max.toLocaleString()} Unit` });
   }
   render() {
     let { coinType, intl, max } = this.props;
-    let { inputValue, proccesing } = this.state;
+    let { inputValue, proccesing, inputFill, buttonTxt } = this.state;
     let info = Infos[coinType];
     return (
       <div className="burn">
@@ -82,8 +105,10 @@ class Burn extends React.Component {
           <div className="inputContainer">
             <input
               placeholder="0 Unit"
-              type="number"
-              value={inputValue}
+              className={`${inputValue > max ? "insufficientInput" : ""}`}
+              type="text"
+              value={inputFill}
+              ref={this.assignRef}
               onChange={this.handleInputChange}
             />
             <div className="inputAppend">
@@ -94,18 +119,18 @@ class Burn extends React.Component {
             </div>
           </div>
           <p>
-            {intl.get('YouWillReceive')} {inputValue} Unit {info.unit}(=
-            {(inputValue * 1.0) / info.suterShieldUnit} {info.unit})
+            {intl.get('YouWillReceive')} {inputValue.toLocaleString()} Unit {info.unit}(=
+            {((inputValue * 1.0) / info.suterShieldUnit).toLocaleString()} {info.unit})
           </p>
           <div className="confirmContainer">
             <Button
-              className="confirm"
+              className={`confirm ${inputValue===0? 'grey' : ''} ${inputValue > max ? "insufficientInput" : ""}`}
               shape="round"
               block
               onClick={this.burn}
               disabled={inputValue <= 0 || inputValue > max}
             >
-              {intl.get('ConfirmBurn')}
+              {intl.get(buttonTxt)}
             </Button>
           </div>
         </Card>
