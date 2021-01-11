@@ -43,7 +43,7 @@ class Balance extends React.Component {
       let balanceWithDecimal = await newWeb3.eth.getBalance(account);
       balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     }
-    this.setState({ balance: parseInt(balance * info.suterShieldUnit) });
+    this.setState({ balance: parseInt((balance * (10 ** info.decimal)) / info.suterShieldUnit)});
   }
 
   async suterShieldBalance() {
@@ -73,8 +73,7 @@ class Balance extends React.Component {
               <p className="value">
                 {info.valueDesc}(=
                 {(
-                  (suterShieldBalance * 1.0) /
-                  info.suterShieldUnit
+                  (suterShieldBalance * 1.0 * info.suterShieldUnit) / (10 ** info.decimal)
                 ).toLocaleString()}{' '}
                 {info.unit})
               </p>
@@ -93,7 +92,7 @@ class Balance extends React.Component {
               <h2>{balance.toLocaleString()} Unit</h2>
               <p className="value">
                 {info.unit}(=
-                {((balance * 1.0) / info.suterShieldUnit).toLocaleString()}{' '}
+                {(balance * info.suterShieldUnit * 1.0 / (10**info.decimal)).toLocaleString()}{' '}
                 {info.unit})
               </p>
             </div>
