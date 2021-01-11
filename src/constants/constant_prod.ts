@@ -1392,7 +1392,7 @@ export default {
 		coinBalanceDesc: 'ETH',
 		valueDesc: 'Suter ETH',
 		unit: 'ETH',
-		suterShieldUnit: 100,
+		suterShieldUnit: 10**16,
 		suterShiledContractABI: [
 		  {
 			"inputs": [
@@ -2129,7 +2129,7 @@ export default {
 		  }
 		],
 		suterShiledContractAddress: '0x2b6D94D7c43cF30Cb72BdBb94b5D9347D28eee6c',
-		decimal: 10 ** 18
+		decimal: 18
 	  },
 	  dai: {
 		suterShiledBalanceDesc: 'Suter DAI',
