@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import { Infos, Client } from '../tools';
+import { Client } from '../tools';
 import Web3 from 'web3';
 import './index.less';
 
@@ -30,7 +30,7 @@ class Register extends React.Component {
     this.setState({ spin: true });
     let { account, coinType, setClient } = this.props;
     let { inputValue } = this.state;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     var suterShieldContract = new Contract(
       info.suterShiledContractABI,
       info.suterShiledContractAddress,

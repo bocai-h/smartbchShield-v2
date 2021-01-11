@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import './index.less';
-import { Infos, MessageWithAlink, openNotificationWithIcon } from '../tools';
+import { CoinLogoMap, MessageWithAlink, openNotificationWithIcon } from '../tools';
 import PublicKeyModal from '../publicKeyModal';
 import SpinModal from '../spinModal';
 
@@ -116,7 +116,7 @@ class Transfer extends React.Component {
   }
   render() {
     let { coinType, client, intl, max } = this.props;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let {
       myAddressModal,
       transferValue,
@@ -154,7 +154,7 @@ class Transfer extends React.Component {
               <span className="maxBtn" onClick={this.maxFill}>
                 {intl.get('Max')}
               </span>
-              <img src={info.logo[coinType][1]} width="20px" />
+              <img src={CoinLogoMap[coinType][1]} width="20px" />
             </div>
           </div>
           <div className="addressInputContainer">

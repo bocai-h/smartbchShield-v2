@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import './index.less';
-import { Infos, MessageWithAlink, openNotificationWithIcon } from '../tools';
+import { CoinLogoMap, MessageWithAlink, openNotificationWithIcon } from '../tools';
 import SpinModal from '../spinModal';
 
 class Burn extends React.Component {
@@ -58,7 +58,7 @@ class Burn extends React.Component {
     let { client, intl, coinType } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let result;
     try {
       result = await client.withdraw(inputValue);
@@ -94,7 +94,7 @@ class Burn extends React.Component {
   render() {
     let { coinType, intl, max } = this.props;
     let { inputValue, proccesing, inputFill, buttonTxt } = this.state;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     return (
       <div className="burn">
         {proccesing ? <SpinModal intl={intl} /> : ''}
@@ -116,7 +116,7 @@ class Burn extends React.Component {
               <span className="maxBtn" onClick={this.maxFill}>
                 {intl.get('Max')}
               </span>
-              <img src={info.logo[coinType][1]} width="20px" />
+              <img src={CoinLogoMap[coinType][1]} width="20px" />
             </div>
           </div>
           <p>

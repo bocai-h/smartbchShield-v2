@@ -111,59 +111,6 @@ const CoinLogoMap = {
   suter: [suterLogo, ssuter, suter],
 };
 
-const Infos = {
-  usdt: {
-    suterShiledBalanceDesc: 'Suter USDT',
-    coinBalanceDesc: 'USDT',
-    logo: CoinLogoMap,
-    valueDesc: 'Suter USDT',
-    unit: 'USDT',
-    suterShieldUnit: 1,
-    contractABI: USDT_TOKEN_CONTRACT_ABI,
-    contractAddress: USDT_TOKEN_CONTRACT_ADDRESS,
-    suterShiledContractABI: SUTER_USDT_CONTRACT_ABI,
-    suterShiledContractAddress: SUTER_USDT_CONTRACT_ADDRESS,
-    decimal: 2,
-  },
-  eth: {
-    suterShiledBalanceDesc: 'Suter ETH',
-    coinBalanceDesc: 'ETH',
-    logo: CoinLogoMap,
-    valueDesc: 'Suter ETH',
-    unit: 'ETH',
-    suterShieldUnit: 100,
-    suterShiledContractABI: SUTER_ETH_CONTRACT_ABI,
-    suterShiledContractAddress: SUTER_ETH_CONTRACT_ADDRESS,
-    decimal: 18,
-  },
-  dai: {
-    suterShiledBalanceDesc: 'Suter DAI',
-    coinBalanceDesc: 'DAI',
-    logo: CoinLogoMap,
-    valueDesc: 'Suter DAI',
-    unit: 'DAI',
-    suterShieldUnit: 1,
-    contractABI: DAI_TOKEN_CONTRACT_ABI,
-    contractAddress: DAI_TOKEN_CONTRACT_ADDRESS,
-    suterShiledContractABI: SUTER_DAI_CONTRACT_ABI,
-    suterShiledContractAddress: SUTER_DAI_CONTRACT_ADDRESS,
-    decimal: 2,
-  },
-  suter: {
-    suterShiledBalanceDesc: 'Suter SUTER',
-    coinBalanceDesc: 'SUTER',
-    logo: CoinLogoMap,
-    valueDesc: 'Suter SUTER',
-    unit: 'SUTER',
-    suterShieldUnit: 1,
-    contractABI: SUTER_TOKEN_CONTRACT_ABI,
-    contractAddress: SUTER_TOKEN_CONTRACT_ADDRESS,
-    suterShiledContractABI: SUTER_SUTER_CONTRACT_ABI,
-    suterShiledContractAddress: SUTER_SUTER_CONTRACT_ADDRESS,
-    decimal: 2,
-  },
-};
-
 export {
   openNotificationWithIcon,
   openNotificationWithKey,
@@ -171,6 +118,5 @@ export {
   ethChainNameMap,
   tronChainNameMap,
   Client,
-  CoinLogoMap,
-  Infos,
+  CoinLogoMap
 };

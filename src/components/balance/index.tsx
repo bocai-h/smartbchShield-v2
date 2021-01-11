@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.less';
-import { Infos } from '../tools';
+import { CoinLogoMap } from '../tools';
 import Web3 from 'web3';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -25,7 +25,7 @@ class Balance extends React.Component {
   }
   async getBalance() {
     let { account, coinType } = this.props;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let balance = 0;
     if (coinType !== 'eth') {
       var suterShiledTokenContract = new Contract(
@@ -56,7 +56,7 @@ class Balance extends React.Component {
   }
   render() {
     let { coinType, intl } = this.props;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let { balance, suterShieldBalance } = this.state;
     return (
       <div className="balanceContainer">
@@ -66,7 +66,7 @@ class Balance extends React.Component {
           </h1>
           <div className="balanceInfoContainer">
             <div>
-              <img src={info.logo[coinType][1]} />
+              <img src={CoinLogoMap[coinType][1]} />
             </div>
             <div className="info">
               <h2>{suterShieldBalance.toLocaleString()}</h2>
@@ -87,7 +87,7 @@ class Balance extends React.Component {
           </h1>
           <div className="balanceInfoContainer">
             <div>
-              <img src={info.logo[coinType][2]} />
+              <img src={CoinLogoMap[coinType][2]} />
             </div>
             <div className="info">
               <h2>{balance.toLocaleString()} Unit</h2>
@@ -101,8 +101,8 @@ class Balance extends React.Component {
         </div>
         <div className="three">
           <div className="twoLogo">
-            <img src={info.logo[coinType][2]} />
-            <img src={info.logo[coinType][1]} className="ml-1" />
+            <img src={CoinLogoMap[coinType][2]} />
+            <img src={CoinLogoMap[coinType][1]} className="ml-1" />
           </div>
           <div className="unit">
             <h1>1:{info.suterShieldUnit}</h1>
@@ -114,7 +114,7 @@ class Balance extends React.Component {
         </div>
 
         <div>
-          <img src={info.logo[coinType][0]} />
+          <img src={CoinLogoMap[coinType][0]} />
         </div>
       </div>
     );
