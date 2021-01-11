@@ -54,6 +54,20 @@ class Balance extends React.Component {
     let balance = await client.readBalanceFromContract();
     this.setState({ suterShieldBalance: balance });
   }
+  transformRate(a, b) {
+    let molecular = a 
+    let denominator = b
+    let min = Math.min(molecular, denominator);
+    // for (let i = min; i > 1; i --) {
+    //   if (!(molecular % i) && !(denominator % i)) {
+    //     molecular = molecular / i;
+    //     denominator = denominator / i;
+    //     min = Math.min(molecular, denominator);
+    //   }
+    // }
+    return `${molecular / min}:${denominator / min}`;
+  }
+
   render() {
     let { coinType, intl } = this.props;
     let info = CoinInfos[coinType];
@@ -104,7 +118,7 @@ class Balance extends React.Component {
             <img src={CoinLogoMap[coinType][1]} className="ml-1" />
           </div>
           <div className="unit">
-            <h1>1:{info.suterShieldUnit}</h1>
+            <h1>{this.transformRate(info.suterShieldUnit, 10 ** info.decimal)}</h1>
             <p>Unit</p>
             <Tooltip placement="topLeft" title={intl.get('i')}>
               <ExclamationCircleOutlined className="i" />

@@ -162,16 +162,16 @@ class Dashboard extends React.Component {
       let fee = await suterShieldContract.methods.totalFee().call();
       if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
         let info = CoinInfos["eth"]
-        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.ethPrice;
+        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"]
-        totalFeesValue += fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)
+        totalFeesValue += fee * 1.0 / (10 ** info.decimal)
       }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
         let info = CoinInfos["dai"]
-        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
+        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
       }else if(item[0] === CoinInfos["suter"].suterShiledContractAddress){
         let info = CoinInfos["suter"]
-        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
+        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
       }
     }
     this.setState({totalFeesUSD: totalFeesValue})
