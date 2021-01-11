@@ -55,12 +55,18 @@ class Fund extends React.Component {
     });
   }
   async fund() {
-    let { client, intl } = this.props;
+    let { client, intl, coinType } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
+    let info = Infos[coinType];
     let result;
     try {
-      result = await client.deposit(inputValue);
+      if(coinType !== "eth") {
+        console.log("inputValue * info.decimal=", inputValue * (10 ** info.decimal))
+        result = await client.deposit(inputValue * (10 ** info.decimal));
+      }else{
+        result = await client.deposit(inputValue);
+      }
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
@@ -81,7 +87,7 @@ class Fund extends React.Component {
       10,
     );
     // refetch suter shield balance
-    this.setState({ inputValue: 0 });
+    this.setState({ inputValue: 0, inputFill: "" });
     this.props.updateKeyFunc();
     this.setState({ processing: false });
   }

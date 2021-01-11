@@ -55,12 +55,17 @@ class Burn extends React.Component {
     });
   }
   async burn() {
-    let { client, intl } = this.props;
+    let { client, intl, coinType } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
+    let info = Infos[coinType];
     let result;
     try {
-      result = await client.withdraw(inputValue);
+      if(coinType !== "eth") {
+        result = await client.withdraw(inputValue * (10 ** info.decimal));
+      }else{
+        result = await client.withdraw(inputValue);
+      }
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
@@ -82,7 +87,7 @@ class Burn extends React.Component {
     );
 
     // refetch suter shield balance
-    this.setState({ inputValue: 0 });
+    this.setState({ inputValue: 0, inputFill: "" });
     this.setState({ proccesing: false });
     this.props.updateKeyFunc();
   }
