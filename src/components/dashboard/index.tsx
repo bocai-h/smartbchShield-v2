@@ -281,7 +281,7 @@ class Dashboard extends React.Component {
            </div>
           </Col>
         </div>
-        <div className="cardContainer">
+        <div className="cardContainer lastCardContainer">
           <Col span={24}>
            <div className="card">
              <h2>{intl.get("TotalUsers")}</h2>

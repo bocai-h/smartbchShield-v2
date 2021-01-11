@@ -7,12 +7,15 @@
         }
         .cardContainer {
             margin-top: 25px;
+            @media screen and (max-width: 480px){
+              margin-top: 5px;
+            }
             @media screen and (max-width: 1024px){
               margin-left: 25px;
             }
             .ant-col {
               display: flex;
-              justify-content: space-between;
+              justify-content: center;
               flex-wrap: wrap;
               div.card {
                 @media screen and (max-width: 1024px){
@@ -40,9 +43,18 @@
                 h1{
                   color: #fff;
                   font-family: PingFangSC-Thin, sans-serif;
+                  font-size: 24px;
                 }
               }
             }
         }
+        @media screen and (min-width: 1024px){
+          .lastCardContainer{
+            padding-left: 15px;
+            .ant-col {
+              justify-content: left;
+            }
+          }
+        }  
     }
 }
