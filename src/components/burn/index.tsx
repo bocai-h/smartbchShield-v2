@@ -61,11 +61,7 @@ class Burn extends React.Component {
     let info = Infos[coinType];
     let result;
     try {
-      if(coinType !== "eth") {
-        result = await client.withdraw(inputValue * (10 ** info.decimal));
-      }else{
-        result = await client.withdraw(inputValue);
-      }
+      result = await client.withdraw(inputValue);
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');

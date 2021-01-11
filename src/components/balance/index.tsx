@@ -101,8 +101,8 @@ class Balance extends React.Component {
         </div>
         <div className="three">
           <div className="twoLogo">
-            <img src={info.logo[coinType][1]} />
-            <img src={info.logo[coinType][2]} className="ml-1" />
+            <img src={info.logo[coinType][2]} />
+            <img src={info.logo[coinType][1]} className="ml-1" />
           </div>
           <div className="unit">
             <h1>1:{info.suterShieldUnit}</h1>

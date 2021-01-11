@@ -61,12 +61,7 @@ class Fund extends React.Component {
     let info = Infos[coinType];
     let result;
     try {
-      if(coinType !== "eth") {
-        console.log("inputValue * info.decimal=", inputValue * (10 ** info.decimal))
-        result = await client.deposit(inputValue * (10 ** info.decimal));
-      }else{
-        result = await client.deposit(inputValue);
-      }
+      result = await client.deposit(inputValue);
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
