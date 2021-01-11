@@ -66,7 +66,7 @@ class Form extends React.Component {
           ''
         )}
         { warningTips ? <div className="tipsContainer">
-          <img src={WarningIcon} />
+          <img src={WarningIcon} className="warningIcon"/>
           <div>{intl.get("warningTips")}</div>
           <img src={CloseIcon} className="closeIcon" onClick={this.closeWarningTips}/>
         </div> : ""}
