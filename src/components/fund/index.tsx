@@ -121,7 +121,7 @@ class Fund extends React.Component {
           </div>
           <p>
             {isNaN(inputValue) ? 0 : inputValue.toLocaleString()} Unit {info.unit} ={' '}
-            {(inputValue * 1.0 / info.suterShieldUnit).toLocaleString()}{' '}
+            {(inputValue * 1.0 * info.suterShieldUnit / (10 ** info.decimal)).toLocaleString()}{' '}
             {info.unit}
           </p>
           <div className="confirmContainer">
