@@ -58,13 +58,6 @@ class Balance extends React.Component {
     let molecular = a 
     let denominator = b
     let min = Math.min(molecular, denominator);
-    // for (let i = min; i > 1; i --) {
-    //   if (!(molecular % i) && !(denominator % i)) {
-    //     molecular = molecular / i;
-    //     denominator = denominator / i;
-    //     min = Math.min(molecular, denominator);
-    //   }
-    // }
     return `${molecular / min}:${denominator / min}`;
   }
 
