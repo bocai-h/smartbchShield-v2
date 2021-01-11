@@ -17,10 +17,7 @@ class Dashboard extends React.Component {
     totalUsers: 0,
     suterPrice: 0,
     daiPrice: 0,
-    ethPrice: 0,
-    usdtDecimals: 1,
-    daiDecimals: 1,
-    suterDecimals: 1
+    ethPrice: 0
   };
   constructor(props) {
     super(props);
@@ -39,7 +36,7 @@ class Dashboard extends React.Component {
   }
   async getCurrentETHDeposited() {
     let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
-    let balanceWithDecimal = await newWeb3.eth.getBalance(SUTER_ETH_CONTRACT_ADDRESS);
+    let balanceWithDecimal = await newWeb3.eth.getBalance(CoinInfos["eth"].suterShiledContractAddress);
     let balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     this.setState({ currentETHDeposited: balance });
   }
@@ -134,21 +131,20 @@ class Dashboard extends React.Component {
 
   async getCurrentStableCoinsDeposited() {
     let totalValue = 0;
-    let pools = [[SUTER_USDT_CONTRACT_ADDRESS, USDT_TOKEN_CONTRACT_ADDRESS, USDT_TOKEN_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, DAI_TOKEN_CONTRACT_ADDRESS, DAI_TOKEN_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_TOKEN_CONTRACT_ADDRESS, SUTER_TOKEN_CONTRACT_ABI]];
+    let pools = [[CoinInfos["usdt"].suterShiledContractAddress, CoinInfos["usdt"].contractAddress, CoinInfos["usdt"].contractABI], [CoinInfos["dai"].suterShiledContractAddress, CoinInfos["dai"].contractAddress, CoinInfos["dai"].contractABI], [CoinInfos["suter"].suterShiledContractAddress, CoinInfos["suter"].contractAddress, CoinInfos["suter"].contractABI]];
     for (const item of pools) {
       var suterShiledTokenContract = new Contract(item[2],item[1]);
       suterShiledTokenContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let balanceWithDecimal = await suterShiledTokenContract.methods.balanceOf(item[0]).call();
-      let decimals = await suterShiledTokenContract.methods.decimals().call();
-      if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS) {
-        totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.suterPrice;
-        this.setState({suterDecimals: decimals})
-      }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
-        totalValue += balanceWithDecimal * 1.0 / decimals;
-        this.setState({usdtDecimals: decimals})
-      }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
-        totalValue += (balanceWithDecimal * 1.0 / decimals) * this.state.daiPrice;
-        this.setState({daiDecimals: decimals})
+      if(item[0] === CoinInfos["suter"].suterShiledContractAddress) {
+        let info = CoinInfos["suter"];
+        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
+      }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
+        let info = CoinInfos["usdt"];
+        totalValue += balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal);
+      }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
+        let info = CoinInfos["dai"];
+        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
       }
      }
     this.setState({ currentStableCoinsDeposited: totalValue });
@@ -156,7 +152,7 @@ class Dashboard extends React.Component {
 
   async getTotalFeesUSD() {
     let totalFeesValue = 0;
-    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    let pools = [[CoinInfos["eth"].suterShiledContractAddress, CoinInfos["eth"].suterShiledContractABI], [CoinInfos["usdt"].suterShiledContractAddress,CoinInfos["usdt"].suterShiledContractABI], [CoinInfos["dai"].suterShiledContractAddress,CoinInfos["dai"].suterShiledContractABI], [CoinInfos["suter"].suterShiledContractAddress,CoinInfos["suter"].suterShiledContractABI]];
     for (const item of pools) {
       var suterShieldContract = new Contract(
         item[1],
@@ -164,15 +160,18 @@ class Dashboard extends React.Component {
       );
       suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let fee = await suterShieldContract.methods.totalFee().call();
-      if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
-        let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
-        totalFeesValue += newWeb3.utils.fromWei(fee, 'ether') * this.state.ethPrice;
-      }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
-        totalFeesValue += fee * 1.0 / this.state.usdtDecimals
-      }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
-        totalFeesValue += fee * 1.0 / this.state.daiDecimals * this.state.daiPrice;
-      }else if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS){
-        totalFeesValue += fee * 1.0 / this.state.suterDecimals * this.state.suterPrice;
+      if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
+        let info = CoinInfos["eth"]
+        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.ethPrice;
+      }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
+        let info = CoinInfos["usdt"]
+        totalFeesValue += fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)
+      }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
+        let info = CoinInfos["dai"]
+        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
+      }else if(item[0] === CoinInfos["suter"].suterShiledContractAddress){
+        let info = CoinInfos["suter"]
+        totalFeesValue += (fee * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
       }
     }
     this.setState({totalFeesUSD: totalFeesValue})
@@ -180,8 +179,8 @@ class Dashboard extends React.Component {
 
   async getTotalETHDeposited() {
     var suterETHShieldContract = new Contract(
-      SUTER_ETH_CONTRACT_ABI,
-      SUTER_ETH_CONTRACT_ADDRESS,
+      CoinInfos["eth"].suterShiledContractABI,
+      CoinInfos["eth"].suterShiledContractAddress
     );
     suterETHShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
     let totalETHDeposited = await suterETHShieldContract.methods.totalDeposits().call();
@@ -190,7 +189,7 @@ class Dashboard extends React.Component {
 
   async getTotalUSDDeposited() {
     let totalValue = 0;
-    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    let pools = [[CoinInfos["eth"].suterShiledContractAddress, CoinInfos["eth"].suterShiledContractABI], [CoinInfos["usdt"].suterShiledContractAddress, CoinInfos["usdt"].suterShiledContractABI], [CoinInfos["dai"].suterShiledContractAddress, CoinInfos["dai"].suterShiledContractABI], [CoinInfos["suter"].suterShiledContractAddress, CoinInfos["suter"].suterShiledContractABI]];
     for (const item of pools) {
       var suterShieldContract = new Contract(
         item[1],
@@ -198,15 +197,18 @@ class Dashboard extends React.Component {
       );
       suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
       let amount = await suterShieldContract.methods.totalDeposits().call();
-      let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
-      if(item[0] === SUTER_ETH_CONTRACT_ADDRESS ){
-        totalValue += newWeb3.utils.fromWei(amount, 'ether') * this.state.ethPrice;
-      }else if(item[0] === SUTER_USDT_CONTRACT_ADDRESS){
-        totalValue += amount * 1.0 / this.state.usdtDecimals
-      }else if(item[0] === SUTER_DAI_CONTRACT_ADDRESS){
-        totalValue += amount * 1.0 / this.state.daiDecimals * this.state.daiPrice;
-      }else if(item[0] === SUTER_SUTER_CONTRACT_ADDRESS){
-        totalValue += amount * 1.0 / this.state.suterDecimals * this.state.suterPrice;
+      if(item[0] === CoinInfos["eth"].suterShiledContractAddress){
+        let info = CoinInfos["eth"]
+        totalValue += (amount * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.ethPrice;
+      }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
+        let info = CoinInfos["usdt"]
+        totalValue += amount * 1.0 * info.suterShieldUnit / (10 ** info.decimal);
+      }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
+        let info = CoinInfos["dai"]
+        totalValue += (amount * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
+      }else if(item[0] === CoinInfos["suter"].suterShiledContractAddress){
+        let info = CoinInfos["suter"]
+        totalValue += (amount * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
       }
     }
     this.setState({totalUSDDeposited: totalValue})
@@ -214,7 +216,7 @@ class Dashboard extends React.Component {
 
   async getTotalUser() {
     let totalUsers = 0;
-    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    let pools = [[CoinInfos["eth"].suterShiledContractAddress, CoinInfos["eth"].suterShiledContractABI], [CoinInfos["usdt"].suterShiledContractAddress, CoinInfos["usdt"].suterShiledContractABI], [CoinInfos["dai"].suterShiledContractAddress, CoinInfos["dai"].suterShiledContractABI], [CoinInfos["suter"].suterShiledContractAddress, CoinInfos["suter"].suterShiledContractABI]];
     for (const item of pools) {
       var suterShieldContract = new Contract(
         item[1],
@@ -229,7 +231,7 @@ class Dashboard extends React.Component {
 
   async totalDeposits(){
     let totalDepositCount = 0;
-    let pools = [[SUTER_ETH_CONTRACT_ADDRESS,SUTER_ETH_CONTRACT_ABI], [SUTER_USDT_CONTRACT_ADDRESS, SUTER_USDT_CONTRACT_ABI], [SUTER_DAI_CONTRACT_ADDRESS, SUTER_DAI_CONTRACT_ABI], [SUTER_SUTER_CONTRACT_ADDRESS, SUTER_SUTER_CONTRACT_ABI]];
+    let pools = [[CoinInfos["eth"].suterShiledContractAddress, CoinInfos["eth"].suterShiledContractABI], [CoinInfos["usdt"].suterShiledContractAddress, CoinInfos["usdt"].suterShiledContractABI], [CoinInfos["dai"].suterShiledContractAddress, CoinInfos["dai"].suterShiledContractABI], [CoinInfos["suter"].suterShiledContractAddress, CoinInfos["suter"].suterShiledContractABI]];
     for (const item of pools) {
       var suterShieldContract = new Contract(
         item[1],
