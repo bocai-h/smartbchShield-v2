@@ -121,7 +121,7 @@ class Burn extends React.Component {
           </div>
           <p>
             {intl.get('YouWillReceive')} {inputValue.toLocaleString()} Unit {info.unit}(=
-            {((inputValue * 1.0) / info.suterShieldUnit).toLocaleString()} {info.unit})
+            {(inputValue * 1.0 * info.suterShieldUnit / (10**info.decimal)).toLocaleString()} {info.unit})
           </p>
           <div className="confirmContainer">
             <Button
