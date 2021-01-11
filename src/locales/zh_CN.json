@@ -67,5 +67,6 @@
   "TotalUsers": "总用户数",
   "EnterAnAmount": "输入数量",
   "InsufficientBalance": "余额不足",
-  "InvalidSuterAccount": "无效地址"
+  "InvalidSuterAccount": "无效地址",
+  "warningTips": "Suter Shield已通过审计。但是它仍然是一个实验软件。请您自己承担风险使用。"
 }
