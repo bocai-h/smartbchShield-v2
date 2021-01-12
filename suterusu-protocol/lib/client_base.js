@@ -764,7 +764,7 @@ class ClientBase {
         // console.log("Home balance: ", (await this.web3.eth.getBalance(that.home)));
         // console.log("Suter balance: ", (await this.web3.eth.getBalance(that.suter.options.address)));
         // console.log("Agency balance: ", (await this.web3.eth.getBalance(await that.suter.methods.suterAgency().call())));
-    
+
         let transaction = 
             that.suter.methods.transfer(C, D, serializedY, u, proof)
                 .send({from: that.home, value: that.gasLimit * gasPrice, gas: that.gasLimit})
