@@ -159,19 +159,23 @@ class Dashboard extends React.Component {
         item[0],
       );
       suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
-      let fee = await suterShieldContract.methods.totalFee().call();
+      let burnFee = await suterShieldContract.methods.totalBurnFee().call();
+      let transferFee = await suterShieldContract.methods.totalTransferFee().call();
+      let ethInfo = CoinInfos["eth"]
       if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
-        let info = CoinInfos["eth"]
-        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.ethPrice;
+        totalFeesValue += ((burnFee + transferFee) * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"]
-        totalFeesValue += fee * 1.0 / (10 ** info.decimal)
+        totalFeesValue += burnFee * 1.0 / (10 ** info.decimal)
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
         let info = CoinInfos["dai"]
-        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
+        totalFeesValue += (burnFee * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["suter"].suterShiledContractAddress){
         let info = CoinInfos["suter"]
-        totalFeesValue += (fee * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
+        totalFeesValue += (burnFee * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
       }
     }
     this.setState({totalFeesUSD: totalFeesValue})
