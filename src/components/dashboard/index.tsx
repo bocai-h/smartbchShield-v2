@@ -255,44 +255,38 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboardContainer">
         <div className="cardContainer">
-         <Col span={24}>
-           <div className="card">
-             <h2>{intl.get("CurrentETHDeposited")}</h2>
-             <h1>{currentETHDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("CurrentStableCoinsDeposited")}</h2>
-             <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("TotalFeesUSD")}</h2>
-             <h1>${totalFeesUSD.toLocaleString()}</h1>
-           </div>
-          </Col>
-        </div>
-        <div className="cardContainer">
-         <Col span={24}>
-           <div className="card">
+            <div className="card">
+              <h2>{intl.get("CurrentETHDeposited")}</h2>
+              <h1>{currentETHDeposited.toLocaleString()}</h1>
+            </div>
+            <div className="card">
               <h2>{intl.get("TotalETHDeposited")}</h2>
               <h1>{totalETHDeposited.toLocaleString()}</h1>
            </div>
-           <div className="card">
-             <h2>{intl.get("TotalUSDDeposited")}</h2>
-             <h1>${totalUSDDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("TotalDeposits")}</h2>
-             <h1>{totalDeposits.toLocaleString()}</h1>
-           </div>
-          </Col>
-        </div>
-        <div className="cardContainer lastCardContainer">
-          <Col span={24}>
-           <div className="card">
+            <div className="card">
              <h2>{intl.get("TotalUsers")}</h2>
              <h1>{totalUsers.toLocaleString()}</h1>
            </div>
-          </Col>
+        </div>
+        <div className="cardContainer">
+          <div className="card">
+            <h2>{intl.get("CurrentStableCoinsDeposited")}</h2>
+            <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
+          </div>
+          <div className="card">
+            <h2>{intl.get("TotalUSDDeposited")}</h2>
+            <h1>${totalUSDDeposited.toLocaleString()}</h1>
+          </div>
+        </div>
+        <div className="cardContainer">
+          <div className="card">
+            <h2>{intl.get("TotalFeesUSD")}</h2>
+            <h1>${totalFeesUSD.toLocaleString()}</h1>
+          </div>
+          <div className="card">
+            <h2>{intl.get("TotalDeposits")}</h2>
+            <h1>{totalDeposits.toLocaleString()}</h1>
+          </div>
         </div>
       </div>
     );

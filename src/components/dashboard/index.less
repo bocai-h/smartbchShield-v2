@@ -1,60 +1,41 @@
 .suterProtocol {
-    .dashboardContainer{
-        margin-top: 40px;
-        padding: 0 150px;
-        @media screen and (max-width: 1024px){
-          padding: 0; 
+  .dashboardContainer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .cardContainer {
+      @media only screen and (min-width: 1024px) {
+        margin-right: 20px;
+      }
+      div.card {
+        margin-bottom: 20px;
+        position: relative;
+        &:hover {
+          border: 1px solid #b9aaff;
         }
-        .cardContainer {
-            margin-top: 25px;
-            @media screen and (max-width: 480px){
-              margin-top: 5px;
-            }
-            @media screen and (max-width: 1024px){
-              margin-left: 25px;
-            }
-            .ant-col {
-              display: flex;
-              justify-content: center;
-              flex-wrap: wrap;
-              div.card {
-                @media screen and (max-width: 1024px){
-                  margin-bottom: 20px;
-                }
-                position: relative;
-                &:hover {
-                  border: 1px solid #b9aaff;
-                }
-                color: #fff;
-                width: 350px;
-                border: 1px solid #1d1c1e;
-                background: #1d1c1e;
-                padding: 20px 10px;
-                border-radius: 15px;
-                margin-right: 20px;
-                justify-content: space-between;
-                align-items: flex-end;
-                height: 120px;
-                h2{
-                  color: #b9aaff;
-                  font-family: PingFangSC-Thin, sans-serif;
-                  font-size: 16px;
-                }
-                h1{
-                  color: #fff;
-                  font-family: PingFangSC-Thin, sans-serif;
-                  font-size: 24px;
-                }
-              }
-            }
+        color: #fff;
+        width: 350px;
+        border: 1px solid #1d1c1e;
+        background: #1d1c1e;
+        padding: 20px 10px;
+        border-radius: 15px;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 120px;
+
+        h2 {
+          color: #b9aaff;
+          font-family: PingFangSC-Thin, sans-serif;
+          font-size: 16px;
         }
-        @media screen and (min-width: 1024px){
-          .lastCardContainer{
-            padding-left: 15px;
-            .ant-col {
-              justify-content: left;
-            }
-          }
-        }  
+
+        h1 {
+          color: #fff;
+          font-family: PingFangSC-Thin, sans-serif;
+          font-size: 24px;
+        }
+      }
     }
+  }
 }
