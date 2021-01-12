@@ -25,6 +25,7 @@ const openNotificationWithIcon = (
   onClickFunc = () => {},
 ) => {
   notification[type]({
+    className: type,
     message: title,
     description: desc,
     duration: duration,
