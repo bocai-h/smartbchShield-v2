@@ -61,7 +61,7 @@ class Fund extends React.Component {
     let info = CoinInfos[coinType];
     let result;
     try {
-      result = await client.deposit(inputValue);
+      result = await client.deposit(inputValue.toString());
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');

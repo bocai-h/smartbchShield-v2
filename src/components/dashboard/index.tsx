@@ -182,13 +182,14 @@ class Dashboard extends React.Component {
   }
 
   async getTotalETHDeposited() {
+    let ethInfo = CoinInfos["eth"];
     var suterETHShieldContract = new Contract(
-      CoinInfos["eth"].suterShiledContractABI,
-      CoinInfos["eth"].suterShiledContractAddress
+      ethInfo.suterShiledContractABI,
+      ethInfo.suterShiledContractAddress
     );
     suterETHShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
     let totalETHDeposited = await suterETHShieldContract.methods.totalDeposits().call();
-    this.setState({totalETHDeposited: totalETHDeposited})
+    this.setState({totalETHDeposited: (totalETHDeposited * 1.0 * ethInfo.suterShieldUnit) / (10 ** ethInfo.decimal)})
   }
 
   async getTotalUSDDeposited() {

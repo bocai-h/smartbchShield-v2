@@ -1397,7 +1397,7 @@ export default {
           "type": "function"
         }
       ],
-      suterShiledContractAddress: "0x9FDC909CfDd16e2Ef5c47f35Ff76aEBFe4F0F714",
+      suterShiledContractAddress: "0x7c6BBCFFaE07abFE1c8338c939dd4C24a03DB5ed",
       decimal: 18
     },
     eth: {
@@ -3550,7 +3550,7 @@ export default {
           "type": "function"
         }
       ],
-      suterShiledContractAddress: '0x7050bdeA98Cf9aE73aE2dBf9af5Aa0aFA01753c0',
+      suterShiledContractAddress: '0x70E22CD2Ed11491ECC5257D5fd607F1B3422581A',
       decimal: 18
     },
     suter: {
@@ -4946,7 +4946,7 @@ export default {
           "type": "function"
         }
       ],
-      suterShiledContractAddress: '0x0552c7b87440D5DfA1CC9475523da1e1b83a21FA',
+      suterShiledContractAddress: '0x02a32b975c2c1FbF1367B19c79eC1BFB5cb45746',
       decimal: 18
     },
   }
