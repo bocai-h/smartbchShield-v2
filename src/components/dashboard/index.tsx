@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col} from 'antd';
+import { Skeleton, Spin } from 'antd';
 import './index.less';
 import Web3 from 'web3';
 import axios from 'axios';
@@ -17,7 +17,14 @@ class Dashboard extends React.Component {
     totalUsers: 0,
     suterPrice: 0,
     daiPrice: 0,
-    ethPrice: 0
+    ethPrice: 0,
+    currentETHDepositedLoading: true,
+    currentStableCoinsDepositedLoading: true,
+    totalFeesUSDLoading: true,
+    totalETHDepositedLoading: true,
+    totalUSDDepositedLoading: true,
+    totalDepositsLoading: true,
+    totalUsersLoading: true
   };
   constructor(props) {
     super(props);
@@ -38,7 +45,7 @@ class Dashboard extends React.Component {
     let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
     let balanceWithDecimal = await newWeb3.eth.getBalance(CoinInfos["eth"].suterShiledContractAddress);
     let balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
-    this.setState({ currentETHDeposited: balance });
+    this.setState({ currentETHDeposited: balance, currentETHDepositedLoading: false });
   }
 
   async fetchSuterPrice(){
@@ -147,7 +154,7 @@ class Dashboard extends React.Component {
         totalValue += (balanceWithDecimal * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
       }
      }
-    this.setState({ currentStableCoinsDeposited: totalValue });
+    this.setState({ currentStableCoinsDeposited: totalValue, currentStableCoinsDepositedLoading: false });
   }
 
   async getTotalFeesUSD() {
@@ -163,7 +170,8 @@ class Dashboard extends React.Component {
       let transferFee = await suterShieldContract.methods.totalTransferFee().call();
       let ethInfo = CoinInfos["eth"]
       if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
-        totalFeesValue += ((burnFee + transferFee) * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+        totalFeesValue += (burnFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+        totalFeesValue += (transferFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"]
         totalFeesValue += burnFee * 1.0 / (10 ** info.decimal)
@@ -178,7 +186,7 @@ class Dashboard extends React.Component {
         totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
       }
     }
-    this.setState({totalFeesUSD: totalFeesValue})
+    this.setState({totalFeesUSD: totalFeesValue, totalFeesUSDLoading: false})
   }
 
   async getTotalETHDeposited() {
@@ -189,7 +197,7 @@ class Dashboard extends React.Component {
     );
     suterETHShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
     let totalETHDeposited = await suterETHShieldContract.methods.totalDeposits().call();
-    this.setState({totalETHDeposited: (totalETHDeposited * 1.0 * ethInfo.suterShieldUnit) / (10 ** ethInfo.decimal)})
+    this.setState({totalETHDepositedLoading: false, totalETHDeposited: (totalETHDeposited * 1.0 * ethInfo.suterShieldUnit) / (10 ** ethInfo.decimal)})
   }
 
   async getTotalUSDDeposited() {
@@ -216,7 +224,7 @@ class Dashboard extends React.Component {
         totalValue += (amount * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
       }
     }
-    this.setState({totalUSDDeposited: totalValue})
+    this.setState({totalUSDDeposited: totalValue, totalUSDDepositedLoading: false})
   }
 
   async getTotalUser() {
@@ -231,7 +239,7 @@ class Dashboard extends React.Component {
       let userAmount = await suterShieldContract.methods.totalUsers().call();
       totalUsers += parseInt(userAmount)
     }
-    this.setState({totalUsers: totalUsers})
+    this.setState({totalUsers: totalUsers, totalUsersLoading: false})
   }
 
   async totalDeposits(){
@@ -246,46 +254,47 @@ class Dashboard extends React.Component {
       let count = await suterShieldContract.methods.totalFundCount().call();
       totalDepositCount += parseInt(count)
     }
-    this.setState({totalDeposits: totalDepositCount})
+    this.setState({totalDeposits: totalDepositCount, totalDepositsLoading: false})
   }
   render() {
     // console.log(this.state)
     let { intl } = this.props;
     let { currentETHDeposited, currentStableCoinsDeposited, totalFeesUSD, totalETHDeposited, totalDeposits, totalUSDDeposited, totalUsers }  = this.state
+    let { currentETHDepositedLoading, currentStableCoinsDepositedLoading, totalFeesUSDLoading, totalETHDepositedLoading, totalUSDDepositedLoading, totalDepositsLoading, totalUsersLoading} = this.state
     return (
       <div className="dashboardContainer">
         <div className="cardContainer">
             <div className="card">
               <h2>{intl.get("CurrentETHDeposited")}</h2>
-              <h1>{currentETHDeposited.toLocaleString()}</h1>
+              { currentETHDepositedLoading ? <Spin size="large"/> : <h1>{currentETHDeposited.toLocaleString()}</h1>}
             </div>
             <div className="card">
               <h2>{intl.get("TotalETHDeposited")}</h2>
-              <h1>{totalETHDeposited.toLocaleString()}</h1>
+              { totalETHDepositedLoading ? <Spin size="large"/> : <h1>{totalETHDeposited.toLocaleString()}</h1>}
            </div>
             <div className="card">
              <h2>{intl.get("TotalUsers")}</h2>
-             <h1>{totalUsers.toLocaleString()}</h1>
+             { totalUsersLoading ? <Spin size="large"/> : <h1>{totalUsers.toLocaleString()}</h1>}
            </div>
         </div>
         <div className="cardContainer">
           <div className="card">
             <h2>{intl.get("CurrentStableCoinsDeposited")}</h2>
-            <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
+            { currentStableCoinsDepositedLoading ? <Spin size="large"/> : <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>}
           </div>
           <div className="card">
             <h2>{intl.get("TotalUSDDeposited")}</h2>
-            <h1>${totalUSDDeposited.toLocaleString()}</h1>
+            { totalUSDDepositedLoading ? <Spin size="large"/> : <h1>${totalUSDDeposited.toLocaleString()}</h1>}
           </div>
         </div>
         <div className="cardContainer">
           <div className="card">
             <h2>{intl.get("TotalFeesUSD")}</h2>
-            <h1>${totalFeesUSD.toLocaleString()}</h1>
+            { totalFeesUSDLoading ? <Spin size="large"/> : <h1>${totalFeesUSD.toLocaleString()}</h1>}
           </div>
           <div className="card">
             <h2>{intl.get("TotalDeposits")}</h2>
-            <h1>{totalDeposits.toLocaleString()}</h1>
+            { totalDepositsLoading ? <Spin size="large"/> : <h1>{totalDeposits.toLocaleString()}</h1>}
           </div>
         </div>
       </div>

@@ -109,9 +109,7 @@ class Transfer extends React.Component {
       10,
     );
 
-    this.setState({ transferValue: '0' });
-    this.setState({ transferAddress: '' });
-    this.setState({ proccesing: false });
+    this.setState({ transferValue: 0, transferAddress: '',  inputFill: '', proccesing: false });
     updateKeyFunc();
   }
   render() {
