@@ -138,13 +138,13 @@ class Dashboard extends React.Component {
       let balanceWithDecimal = await suterShiledTokenContract.methods.balanceOf(item[0]).call();
       if(item[0] === CoinInfos["suter"].suterShiledContractAddress) {
         let info = CoinInfos["suter"];
-        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
+        totalValue += (balanceWithDecimal * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"];
-        totalValue += balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal);
+        totalValue += balanceWithDecimal * 1.0 / (10 ** info.decimal);
       }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
         let info = CoinInfos["dai"];
-        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
+        totalValue += (balanceWithDecimal * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
       }
      }
     this.setState({ currentStableCoinsDeposited: totalValue });
