@@ -138,13 +138,13 @@ class Dashboard extends React.Component {
       let balanceWithDecimal = await suterShiledTokenContract.methods.balanceOf(item[0]).call();
       if(item[0] === CoinInfos["suter"].suterShiledContractAddress) {
         let info = CoinInfos["suter"];
-        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.suterPrice;
+        totalValue += (balanceWithDecimal * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"];
-        totalValue += balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal);
+        totalValue += balanceWithDecimal * 1.0 / (10 ** info.decimal);
       }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
         let info = CoinInfos["dai"];
-        totalValue += (balanceWithDecimal * 1.0 * info.suterShieldUnit / (10 ** info.decimal)) * this.state.daiPrice;
+        totalValue += (balanceWithDecimal * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
       }
      }
     this.setState({ currentStableCoinsDeposited: totalValue });
@@ -255,44 +255,38 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboardContainer">
         <div className="cardContainer">
-         <Col span={24}>
-           <div className="card">
-             <h2>{intl.get("CurrentETHDeposited")}</h2>
-             <h1>{currentETHDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("CurrentStableCoinsDeposited")}</h2>
-             <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("TotalFeesUSD")}</h2>
-             <h1>${totalFeesUSD.toLocaleString()}</h1>
-           </div>
-          </Col>
-        </div>
-        <div className="cardContainer">
-         <Col span={24}>
-           <div className="card">
+            <div className="card">
+              <h2>{intl.get("CurrentETHDeposited")}</h2>
+              <h1>{currentETHDeposited.toLocaleString()}</h1>
+            </div>
+            <div className="card">
               <h2>{intl.get("TotalETHDeposited")}</h2>
               <h1>{totalETHDeposited.toLocaleString()}</h1>
            </div>
-           <div className="card">
-             <h2>{intl.get("TotalUSDDeposited")}</h2>
-             <h1>${totalUSDDeposited.toLocaleString()}</h1>
-           </div>
-           <div className="card">
-             <h2>{intl.get("TotalDeposits")}</h2>
-             <h1>{totalDeposits.toLocaleString()}</h1>
-           </div>
-          </Col>
-        </div>
-        <div className="cardContainer lastCardContainer">
-          <Col span={24}>
-           <div className="card">
+            <div className="card">
              <h2>{intl.get("TotalUsers")}</h2>
              <h1>{totalUsers.toLocaleString()}</h1>
            </div>
-          </Col>
+        </div>
+        <div className="cardContainer">
+          <div className="card">
+            <h2>{intl.get("CurrentStableCoinsDeposited")}</h2>
+            <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
+          </div>
+          <div className="card">
+            <h2>{intl.get("TotalUSDDeposited")}</h2>
+            <h1>${totalUSDDeposited.toLocaleString()}</h1>
+          </div>
+        </div>
+        <div className="cardContainer">
+          <div className="card">
+            <h2>{intl.get("TotalFeesUSD")}</h2>
+            <h1>${totalFeesUSD.toLocaleString()}</h1>
+          </div>
+          <div className="card">
+            <h2>{intl.get("TotalDeposits")}</h2>
+            <h1>{totalDeposits.toLocaleString()}</h1>
+          </div>
         </div>
       </div>
     );
