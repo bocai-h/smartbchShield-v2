@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col} from 'antd';
+import { Skeleton } from 'antd';
 import './index.less';
 import Web3 from 'web3';
 import axios from 'axios';
@@ -17,7 +17,14 @@ class Dashboard extends React.Component {
     totalUsers: 0,
     suterPrice: 0,
     daiPrice: 0,
-    ethPrice: 0
+    ethPrice: 0,
+    currentETHDepositedLoading: true,
+    currentStableCoinsDepositedLoading: true,
+    totalFeesUSDLoading: true,
+    totalETHDepositedLoading: true,
+    totalUSDDepositedLoading: true,
+    totalDepositsLoading: true,
+    totalUsersLoading: true
   };
   constructor(props) {
     super(props);
@@ -163,7 +170,8 @@ class Dashboard extends React.Component {
       let transferFee = await suterShieldContract.methods.totalTransferFee().call();
       let ethInfo = CoinInfos["eth"]
       if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
-        totalFeesValue += ((burnFee + transferFee) * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+        totalFeesValue += (burnFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+        totalFeesValue += (transferFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
       }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
         let info = CoinInfos["usdt"]
         totalFeesValue += burnFee * 1.0 / (10 ** info.decimal)

@@ -52,7 +52,6 @@ class SuterProtocol extends React.Component {
         locales,
       })
       .then(() => {
-        console.log(this);
         // After loading CLDR locale data, start to render
         this.setState({ initDone: true });
       });
