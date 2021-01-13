@@ -86,7 +86,7 @@ class Register extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>{intl.get("Register")}</h1>
+              <h1>{intl.get("RegisterOrLogin")}</h1>
               <h1>{intl.get("SuterusuAccount")}</h1>
             </div>
             <div className="tip">{intl.get("RegisterWarning")}</div>
@@ -94,7 +94,7 @@ class Register extends React.Component {
               <input
                 placeholder={intl.get("InsertYourprivatekey")}
                 value={inputValue}
-                type="text"
+                type="password"
                 onChange={this.handleInputChange}
               />
             </div>
@@ -111,7 +111,7 @@ class Register extends React.Component {
                 onClick={this.register}
                 loading={spin}
               >
-                {intl.get("Register")}
+                {intl.get("RegisterOrLogin")}
               </Button>
             </div>
           </div>

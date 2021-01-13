@@ -19,7 +19,7 @@
   "PleaseConnectYourWalletFirst": "请先连接您的钱包",
   "PleaseConnectToYourMetamaskWallet": "请连接到您的MetaMask钱包",
   "ConnectToWallet": "连接到钱包",
-  "Register": "注册",
+  "RegisterOrLogin": "注册或登录",
   "SuterusuAccount": "Suterusu账户",
   "RegisterWarning": "请使用与您Metamask钱包私钥一样随机的密钥作为Suter账号私钥并抄在纸上妥善保管。永远不要与他人分享您的私钥.",
   "InsertYourprivatekey": "输入你的私钥",
