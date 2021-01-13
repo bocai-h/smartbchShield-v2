@@ -66,5 +66,7 @@
   "EnterAnAmount": "Enter an amount",
   "InsufficientBalance": "Insufficient balance",
   "InvalidSuterAccount": "Invalid Address",
-  "warningTips": "Suter Shield was audited. However, it is still an experimental software. Please use at your own risk."
+  "warningTips": "Suter Shield was audited. However, it is still an experimental software. Please use at your own risk.",
+  "privateKeyTips": "The private key you enter must contain at least 16 characters, but no more than 32 characters. It must also contain at least one uppercase letter, one lowercase letter and one digital number.",
+  "invalidPrivateKeyTips": "Invalid Private Key"
 }

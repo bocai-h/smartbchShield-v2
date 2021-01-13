@@ -18,13 +18,25 @@
     .tip {
       color: #ff578e;
       margin-top: 20px;
-      text-align: center;
+      // text-align: center;
       font-size: 13px;
     }
+    p.privateKeyTips{
+      color: #ff578e;
+      font-size: 13px;
+      margin-top: 20px;
+    }
     .inputContainer {
-      margin-top: 30px;
       margin-bottom: 10px;
-      display: flex;
+      position: relative;
+      .inputAppend{
+        img{
+          cursor: pointer;
+        }
+        position: absolute;
+        top: 7px;
+        right: 8px;
+      }
       input {
         background-color: rgba(216, 216, 216, 0.1);
         border: 1px solid rgba(216, 216, 216, 0.5);
@@ -38,6 +50,9 @@
       input:focus {
         background: rgba(216, 216, 216, 0.12);
         border: 2px solid #b9aaff;
+      }
+      input.invalidPrivateKey{
+        border: 2px solid #ff578e;
       }
     }
     .checkboxContainer {
@@ -93,6 +108,9 @@
           background-color: transparent;
           color: rgba(255, 255, 255, 0.5);
         }
+      }
+      button.invalidPrivateKey{
+        border-color: #ff578e;
       }
     }
   }
