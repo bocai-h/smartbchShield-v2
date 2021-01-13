@@ -2274,7 +2274,7 @@ export default {
 			  "type": "function"
 			}
 		  ],
-		  suterShiledContractAddress: '0xa4ce902da7a007dbaa2bdfab82b64f3738d609ad',
+		  suterShiledContractAddress: '0x02b4E089E96a0A672dE0a0d93E2869B899b15a44',
 		  decimal: 18
 		},
 		dai: {
