@@ -44,6 +44,18 @@ body {
     letter-spacing: 0;
     line-height: 16px;
   }
+  .ant-notification-notice.warning{
+    background: #1E0F14 !important;
+    border: 2px solid #FF578E !important;
+  }
+  .ant-notification-notice.error{
+    background: #2C270F !important;
+    border: 2px solid #FFD200 !important;
+  }
+  .ant-notification-notice.success{
+    background: #113028 !important;
+    border: 2px solid #39BC9A !important;
+  }
 }
 .mobbile-MenuOutlined {
   display: none;
@@ -75,12 +87,13 @@ body {
           }
           .item-ul {
             display: flex;
+            margin: 0;
             li {
               list-style: none;
               color: rgba(255, 255, 255, 0.5);
               margin-right: 30px;
               cursor: pointer;
-              font-size: 16px;
+              font-size: 18px;
               &:hover {
                 color: #b9aaff;
               }

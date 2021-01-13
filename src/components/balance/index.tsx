@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.less';
-import { Infos } from '../tools';
+import { CoinLogoMap } from '../tools';
 import Web3 from 'web3';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -25,7 +25,7 @@ class Balance extends React.Component {
   }
   async getBalance() {
     let { account, coinType } = this.props;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let balance = 0;
     if (coinType !== 'eth') {
       var suterShiledTokenContract = new Contract(
@@ -37,13 +37,13 @@ class Balance extends React.Component {
       let balanceWithDecimal = await suterShiledTokenContract.methods
         .balanceOf(account)
         .call();
-      balance = (balanceWithDecimal * 1.0) / 10 ** info.decimal;
+      balance = (balanceWithDecimal * 1.0) / (10 ** info.decimal);
     } else {
       let newWeb3 = new Web3(window.web3.currentProvider);
       let balanceWithDecimal = await newWeb3.eth.getBalance(account);
       balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     }
-    this.setState({ balance: parseInt(balance * info.suterShieldUnit) });
+    this.setState({ balance: parseInt((balance * (10 ** info.decimal)) / info.suterShieldUnit)});
   }
 
   async suterShieldBalance() {
@@ -54,9 +54,16 @@ class Balance extends React.Component {
     let balance = await client.readBalanceFromContract();
     this.setState({ suterShieldBalance: balance });
   }
+  transformRate(a, b) {
+    let molecular = a 
+    let denominator = b
+    let min = Math.min(molecular, denominator);
+    return `${molecular / min}:${denominator / min}`;
+  }
+
   render() {
     let { coinType, intl } = this.props;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     let { balance, suterShieldBalance } = this.state;
     return (
       <div className="balanceContainer">
@@ -66,15 +73,14 @@ class Balance extends React.Component {
           </h1>
           <div className="balanceInfoContainer">
             <div>
-              <img src={info.logo[coinType][1]} />
+              <img src={CoinLogoMap[coinType][1]} />
             </div>
             <div className="info">
               <h2>{suterShieldBalance.toLocaleString()}</h2>
               <p className="value">
                 {info.valueDesc}(=
                 {(
-                  (suterShieldBalance * 1.0) /
-                  info.suterShieldUnit
+                  (suterShieldBalance * 1.0 * info.suterShieldUnit) / (10 ** info.decimal)
                 ).toLocaleString()}{' '}
                 {info.unit})
               </p>
@@ -87,13 +93,13 @@ class Balance extends React.Component {
           </h1>
           <div className="balanceInfoContainer">
             <div>
-              <img src={info.logo[coinType][2]} />
+              <img src={CoinLogoMap[coinType][2]} />
             </div>
             <div className="info">
               <h2>{balance.toLocaleString()} Unit</h2>
               <p className="value">
                 {info.unit}(=
-                {((balance * 1.0) / info.suterShieldUnit).toLocaleString()}{' '}
+                {(balance * info.suterShieldUnit * 1.0 / (10**info.decimal)).toLocaleString()}{' '}
                 {info.unit})
               </p>
             </div>
@@ -101,11 +107,11 @@ class Balance extends React.Component {
         </div>
         <div className="three">
           <div className="twoLogo">
-            <img src={info.logo[coinType][1]} />
-            <img src={info.logo[coinType][2]} className="ml-1" />
+            <img src={CoinLogoMap[coinType][2]} />
+            <img src={CoinLogoMap[coinType][1]} className="ml-1" />
           </div>
           <div className="unit">
-            <h1>1:{info.suterShieldUnit}</h1>
+            <h1>{this.transformRate(info.suterShieldUnit, 10 ** info.decimal)}</h1>
             <p>Unit</p>
             <Tooltip placement="topLeft" title={intl.get('i')}>
               <ExclamationCircleOutlined className="i" />
@@ -114,7 +120,7 @@ class Balance extends React.Component {
         </div>
 
         <div>
-          <img src={info.logo[coinType][0]} />
+          <img src={CoinLogoMap[coinType][0]} />
         </div>
       </div>
     );

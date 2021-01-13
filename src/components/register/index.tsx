@@ -1,7 +1,9 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import { Infos, Client } from '../tools';
+import { Client } from '../tools';
 import Web3 from 'web3';
+import openEye from '../../static/openEye.svg';
+import closeEye from '../../static/closeEye.svg';
 import './index.less';
 
 var Contract = require('web3-eth-contract');
@@ -10,7 +12,9 @@ class Register extends React.Component {
     visible: true,
     inputValue: '',
     spin: false,
-    agree: false
+    agree: false,
+    toggleShowPrivateKey: false,
+    buttonTxt: 'RegisterOrLogin'
   };
   constructor(props) {
     super(props);
@@ -18,19 +22,26 @@ class Register extends React.Component {
     this.register = this.register.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.toggleShowPrivateKey = this.toggleShowPrivateKey.bind(this);
   }
   handleInputChange(e) {
     let value = e.target.value;
-    this.setState({ inputValue: value });
+    this.setState({ inputValue: value, buttonTxt: 'RegisterOrLogin'});
+    if(value !== "" && !this.isPrivateKeyValid(value)){
+      this.setState({ buttonTxt: 'invalidPrivateKeyTips'})
+    }
   }
   handleCheckbox(e){
     this.setState({ agree: !this.state.agree })
+  }
+  toggleShowPrivateKey(){
+    this.setState({toggleShowPrivateKey: !this.state.toggleShowPrivateKey})
   }
   async register() {
     this.setState({ spin: true });
     let { account, coinType, setClient } = this.props;
     let { inputValue } = this.state;
-    let info = Infos[coinType];
+    let info = CoinInfos[coinType];
     var suterShieldContract = new Contract(
       info.suterShiledContractABI,
       info.suterShiledContractAddress,
@@ -69,10 +80,14 @@ class Register extends React.Component {
     this.props.cancelSelectCoin();
     this.setState({ visible: false });
   }
+  isPrivateKeyValid(privateKey){
+    let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{16,32}$/
+    return reg.test(privateKey)
+  }
   render() {
-    let { visible, inputValue, spin, agree } = this.state;
+    let { visible, inputValue, spin, agree, toggleShowPrivateKey, buttonTxt } = this.state;
     let { intl } = this.props;
-    let submitable = (inputValue !== '' && agree);
+    let submitable = inputValue !== '' && agree && this.isPrivateKeyValid(inputValue);
     return (
       <>
         <Modal
@@ -86,17 +101,22 @@ class Register extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>{intl.get("Register")}</h1>
+              <h1>{intl.get("RegisterOrLogin")}</h1>
               <h1>{intl.get("SuterusuAccount")}</h1>
             </div>
             <div className="tip">{intl.get("RegisterWarning")}</div>
+            <p className="privateKeyTips">{intl.get("privateKeyTips")}</p>
             <div className="inputContainer">
               <input
                 placeholder={intl.get("InsertYourprivatekey")}
                 value={inputValue}
-                type="text"
+                type={toggleShowPrivateKey ? "text" : "password"}
+                className={ inputValue != "" && !this.isPrivateKeyValid(inputValue) ? "invalidPrivateKey" : ""}
                 onChange={this.handleInputChange}
-              />
+              /> 
+              <div className="inputAppend">
+                <img src={toggleShowPrivateKey ? closeEye : openEye} onClick={this.toggleShowPrivateKey} />
+              </div>
             </div>
             <div className="checkboxContainer">
                <input type="checkbox" onChange={this.handleCheckbox}/> 
@@ -104,14 +124,14 @@ class Register extends React.Component {
               </div>
             <div className="registerBtnContainer">
               <Button
-                className="registerBtn"
+                className={`registerBtn ${inputValue != "" && !this.isPrivateKeyValid(inputValue) ? "invalidPrivateKey" : ""}`}
                 shape="round"
                 block
                 disabled={!submitable}
                 onClick={this.register}
                 loading={spin}
               >
-                {intl.get("Register")}
+                {intl.get(buttonTxt)}
               </Button>
             </div>
           </div>

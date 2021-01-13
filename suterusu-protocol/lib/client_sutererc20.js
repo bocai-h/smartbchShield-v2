@@ -1,5 +1,8 @@
 
 const ClientBase = require('./client_base.js');
+const aes = require('./utils/aes.js');
+const BN = require('bn.js');
+const BigNumber = require('bignumber.js');
 
 class ClientSuterERC20 extends ClientBase {
     
@@ -19,39 +22,27 @@ class ClientSuterERC20 extends ClientBase {
         that.checkValue();
         var account = that.account;
         console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " tokens)");
-        await that.erc20Token.methods.approve(that.suter.options.address, value * that.unit)
-                .send({from: that.home, gas: that.gasLimit})
-                .on('error', (error) => {
-                    if(error.code !== ''){
-                        console.log("Approve failed: " + error.message);
-                        throw error;
-                      }else{
-                        console.log("Approve failed: " + error);
-                        throw new Error(error);
-                      }
-                });
+        var nativeValue = that.web3.utils.toBN(new BigNumber(value * that.unit)).toString();
+        await that.erc20Token.methods.approve(that.suter.options.address, nativeValue)
+                .send({from: that.home, gas: that.gasLimit});
 
         console.log("ERC20 tokens approved. Start deposit...");
 
-        let transaction = that.suter.methods.fund(account.publicKeySerialized(), value)
+        let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
+
+        let transaction = that.suter.methods.fund(account.publicKeySerialized(), value, encGuess)
             .send({from: that.home, gas: that.gasLimit})
             .on('transactionHash', (hash) => {
                 console.log("Deposit submitted (txHash = \"" + hash + "\").");
             })
             .on('receipt', async (receipt) => {
                 account._state = await account.update();
-                account._state.pending += value;
+                account._state.pending += parseInt(value);
                 console.log("Deposit of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
             })
             .on('error', (error) => {
-                if(error.code !== ''){
-                  console.log("Deposit failed: " + error.message);
-                  throw error;
-                }else{
-                  console.log("Deposit failed: " + error);
-                  throw new Error(error);
-                }
+                console.log("Deposit failed: " + error);
             });
         return transaction;
     }

@@ -23,13 +23,16 @@
           margin: 0;
         }
         /* Firefox */
-        input[type='number'] {
+        input[type='text'] {
           -moz-appearance: textfield;
           outline: none;
         }
         input:focus {
           background: rgba(216, 216, 216, 0.12);
           border: 2px solid #b9aaff;
+        }
+        input.insufficientInput{
+          border: 2px solid #FF578E;
         }
         .inputAppend {
           // border: 1px solid rgba(216, 216, 216, 0.5);
@@ -45,8 +48,8 @@
           border-bottom-left-radius: 0;
           padding: 0 10px;
           .maxBtn {
-            border: 1px solid rgba(105, 85, 192, 1);
-            color: rgba(105, 85, 192, 1);
+            border: 1px solid #b9aaff;
+            color: #b9aaff;
             border-radius: 5px;
             margin-right: 8px;
             padding: 1px 5px;
@@ -60,20 +63,33 @@
       }
       .confirmContainer {
         margin-top: 45px;
+        button {
+          border-color: #b9aaff;
+          color: rgba(105, 85, 192, 1);
+          background-color: transparent;
+          background-image: none;
+          &:hover{
+            background-image: linear-gradient(
+              to right,
+              rgba(185, 170, 255, 1),
+              rgba(171, 202, 255, 1)
+            );
+            color: #000000;
+          }
+        }
         button[disabled] {
-          border-color: rgba(105, 85, 192, 1);
+          border-color: #b9aaff;
           color: rgba(105, 85, 192, 1);
           background-color: transparent;
           background-image: none;
         }
-        button {
-          border-color: rgba(105, 85, 192, 1);
-          color: rgba(105, 85, 192, 1);
-          background-image: linear-gradient(
-            to right,
-            rgba(185, 170, 255, 1),
-            rgba(171, 202, 255, 1)
-          );
+        button.insufficientInput{
+          border-color:#FF578E;
+          color: #FF578E;
+        }
+        button.grey{
+          border-color: #979797;
+          color: #979797;
         }
       }
     }

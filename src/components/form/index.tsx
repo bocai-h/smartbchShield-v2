@@ -5,6 +5,8 @@ import Fund from '../fund';
 import Transfer from '../transfer';
 import Burn from '../burn';
 import Register from '../register';
+import WarningIcon from '../../static/warning.svg';
+import CloseIcon from '../../static/close.svg';
 class Form extends React.Component {
   state = {
     registered: false,
@@ -12,6 +14,7 @@ class Form extends React.Component {
     updateKey: '',
     balance: 0,
     suterShieldBalance: 0,
+    warningTips: true
   };
 
   constructor(props) {
@@ -19,6 +22,7 @@ class Form extends React.Component {
     this.setClient = this.setClient.bind(this);
     this.updateKeyFunc = this.updateKeyFunc.bind(this);
     this.setBalance = this.setBalance.bind(this);
+    this.closeWarningTips = this.closeWarningTips.bind(this);
   }
   setBalance(balance, suterShieldBalance) {
     this.setState({ balance: balance, suterShieldBalance: suterShieldBalance });
@@ -33,6 +37,9 @@ class Form extends React.Component {
   setClient(client) {
     this.setState({ client: client, registered: true });
   }
+  closeWarningTips() {
+    this.setState({warningTips: false})
+  }
 
   render() {
     let { account, coinType, intl } = this.props;
@@ -42,6 +49,7 @@ class Form extends React.Component {
       updateKey,
       balance,
       suterShieldBalance,
+      warningTips
     } = this.state;
 
     return (
@@ -57,6 +65,11 @@ class Form extends React.Component {
         ) : (
           ''
         )}
+        { warningTips ? <div className="tipsContainer">
+          <img src={WarningIcon} className="warningIcon"/>
+          <div>{intl.get("warningTips")}</div>
+          <img src={CloseIcon} className="closeIcon" onClick={this.closeWarningTips}/>
+        </div> : ""}
         {registered ? (
           <Balance
             coinType={coinType}

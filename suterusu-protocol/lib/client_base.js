@@ -2,6 +2,7 @@ const BN = require('bn.js');
 const utils = require('./utils/utils.js');
 const bn128 = require('./utils/bn128.js');
 const elgamal = require('./utils/elgamal.js');
+const aes = require('./utils/aes.js');
 const Service = require('./utils/service.js'); 
 const ABICoder = require('web3-eth-abi');
 const { soliditySha3 } = require('web3-utils');
@@ -56,6 +57,7 @@ class ClientBase {
 
         that.epochBase = await that.suter.methods.epochBase().call();
         that.epochLength = await that.suter.methods.epochLength().call();
+        //that.burnFee = await that.suter.methods.BURN_FEE().call();
 
         // 3100 is the estimated milliseconds of mining a block. Determined empirically. IBFT, block time.
         that.blockMinedTime = 3100;
@@ -131,6 +133,7 @@ class ClientBase {
         */
         this.account = new function() {
             this.keypair = undefined;
+            this.aesKey = undefined;
             this._state = {
                 available: 0,
                 pending: 0,
@@ -213,6 +216,130 @@ class ClientBase {
         return await suter.methods.registered(hashedKey).call();
     }
 
+    //async changeBurnFeeStrategy (multiplier, dividend) {
+        //var that = this;
+        //var nonce = web3.utils.toBN(utils.randomUint256()).toString();
+        //var [c, s] = utils.signFeeStrategy(that.suter.options.address, multiplier, dividend, 'burn', nonce, that.account.keypair);
+        //let transaction = that.suter.methods.changeBurnFeeStrategy(multiplier, dividend, nonce, c, s)
+                //.send({from: that.home, gas: that.gasLimit})
+                //.on('transactionHash', (hash) => {
+                    //console.log("Change burn fee submitted (txHash = \"" + hash + "\").");
+                //})
+                //.on('receipt', (receipt) => {
+                    //console.log("Change burn fee successful.");
+                //})
+                //.on('error', (error) => {
+                    //console.log("Change burn fee failed: " + error);
+                    //throw error;
+                //});
+        //return transaction;
+    //}
+
+    async setBurnFeeStrategy (multiplier, dividend) {
+        var that = this;
+        let transaction = that.suter.methods.setBurnFeeStrategy(multiplier, dividend)
+                .send({from: that.home, gas: that.gasLimit})
+                .on('transactionHash', (hash) => {
+                    console.log("Change burn fee submitted (txHash = \"" + hash + "\").");
+                })
+                .on('receipt', (receipt) => {
+                    console.log("Change burn fee successful.");
+                })
+                .on('error', (error) => {
+                    console.log("Change burn fee failed: " + error);
+                    throw error;
+                });
+        return transaction;
+    }
+
+    //async changeTransferFeeStrategy (multiplier, dividend) {
+        //var that = this;
+        //var nonce = web3.utils.toBN(utils.randomUint256()).toString();
+        //var [c, s] = utils.signFeeStrategy(that.suter.options.address, multiplier, dividend, 'transfer', nonce, that.account.keypair);
+        //let transaction = that.suter.methods.changeTransferFeeStrategy(multiplier, dividend, nonce, c, s)
+                //.send({from: that.home, gas: that.gasLimit})
+                //.on('transactionHash', (hash) => {
+                    //console.log("Change transfer fee submitted (txHash = \"" + hash + "\").");
+                //})
+                //.on('receipt', (receipt) => {
+                    //console.log("Change transfer fee successful.");
+                //})
+                //.on('error', (error) => {
+                    //console.log("Change transfer fee failed: " + error);
+                    //throw error;
+                //});
+        //return transaction;
+    //}
+
+    async setTransferFeeStrategy (multiplier, dividend) {
+        var that = this;
+        let transaction = that.suter.methods.setTransferFeeStrategy(multiplier, dividend)
+                .send({from: that.home, gas: that.gasLimit})
+                .on('transactionHash', (hash) => {
+                    console.log("Change transfer fee submitted (txHash = \"" + hash + "\").");
+                })
+                .on('receipt', (receipt) => {
+                    console.log("Change transfer fee successful.");
+                })
+                .on('error', (error) => {
+                    console.log("Change transfer fee failed: " + error);
+                    throw error;
+                });
+        return transaction;
+    }
+
+    async setEpochBase (epochBase) {
+        var that = this;
+        let transaction = that.suter.methods.setEpochBase(epochBase)
+                .send({from: that.home, gas: that.gasLimit})
+                .on('transactionHash', (hash) => {
+                    console.log("Set epoch base submitted (txHash = \"" + hash + "\").");
+                })
+                .on('receipt', (receipt) => {
+                    console.log("Set epoch base successful.");
+                })
+                .on('error', (error) => {
+                    console.log("Set epohc base failed: " + error);
+                    throw error;
+                });
+        return transaction;
+    }
+
+    async setEpochLength (epochLength) {
+        var that = this;
+        let transaction = that.suter.methods.setEpochLength(epochLength)
+                .send({from: that.home, gas: that.gasLimit})
+                .on('transactionHash', (hash) => {
+                    console.log("Set epoch length submitted (txHash = \"" + hash + "\").");
+                })
+                .on('receipt', (receipt) => {
+                    console.log("Set epoch length successful.");
+                })
+                .on('error', (error) => {
+                    console.log("Set epohc length failed: " + error);
+                    throw error;
+                });
+        return transaction;
+    }
+
+    async setSuterAgency (suterAgency) {
+        var that = this;
+        let transaction = that.suter.methods.setSuterAgency(suterAgency)
+                .send({from: that.home, gas: that.gasLimit})
+                .on('transactionHash', (hash) => {
+                    console.log("Set suter agency submitted (txHash = \"" + hash + "\").");
+                })
+                .on('receipt', (receipt) => {
+                    console.log("Set suter agency successful.");
+                })
+                .on('error', (error) => {
+                    console.log("Set suter agency failed: " + error);
+                    throw error;
+                });
+        return transaction;
+    }
+
+
     /**
     Get the epoch corresponding to the given timestamp (if not given, use current time).
     This epoch is based on time, and does not start from 0, because it simply divides the timestamp by epoch length.
@@ -265,6 +392,19 @@ class ClientBase {
             throw "Invalid value: " + value;
     }
 
+    async getGuess () {
+        var that = this;
+        that.checkRegistered();
+        let encGuess = await that.suter.methods.getGuess(that.account.publicKeySerialized()).call();
+        console.log("enc guess: ", encGuess);
+        if (encGuess == null)
+            return 0;
+        var guess = aes.decrypt(encGuess.slice(2), that.account.aesKey);
+        guess = parseInt(guess, 16);
+        console.log("guess: ", guess);
+        return guess;
+    }
+
     /**
     Read account balance from Suter contract.
     
@@ -276,7 +416,10 @@ class ClientBase {
         let currentEpoch = await that._getEpoch();
         let encBalances = await that.suter.methods.getBalance([that.account.publicKeySerialized()], currentEpoch + 1).call();
         var encBalance = elgamal.unserialize(encBalances[0]);
-        var balance = elgamal.decrypt(encBalance, that.account.privateKey());
+
+        var guess = await that.getGuess();
+
+        var balance = elgamal.decrypt(encBalance, that.account.privateKey(), guess);
         console.log("Read balance successfully: " + balance);
         return balance;
     }
@@ -293,8 +436,11 @@ class ClientBase {
         let encState = await that.suter.methods.getAccountState(that.account.publicKeySerialized()).call();
         var encAvailable = elgamal.unserialize(encState['y_available']);
         var encPending = elgamal.unserialize(encState['y_pending']);
+
+        var guess = await that.getGuess();
+
         that.account.setAvailable(
-            elgamal.decrypt(encAvailable, that.account.privateKey())
+            elgamal.decrypt(encAvailable, that.account.privateKey(), guess)
         );
         that.account.setPending(
             elgamal.decrypt(encPending, that.account.privateKey())
@@ -323,8 +469,10 @@ class ClientBase {
         var that = this;
         if (secret === undefined) {
             that.account.keypair = utils.createAccount();
+            that.account.aesKey = aes.generateKey();
         } else {
             that.account.keypair = utils.keyPairFromSecret(secret);
+            that.account.aesKey = aes.generateKey(secret);
         }
         let isRegistered = await ClientBase.registered(that.suter, that.account.publicKeySerialized());
         if (isRegistered) {
@@ -441,7 +589,10 @@ class ClientBase {
             state.available - value
         ); 
         var u = bn128.serialize(utils.u(state.lastRollOver, account.privateKey()));
-        let transaction = that.suter.methods.burn(account.publicKeySerialized(), value, u, proof)
+
+        let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
+
+        let transaction = that.suter.methods.burn(account.publicKeySerialized(), value, u, proof, encGuess)
             .send({from: that.home, gas: that.gasLimit})
             .on('transactionHash', (hash) => {
                 console.log("Withdrawal submitted (txHash = \"" + hash + "\").");
@@ -455,25 +606,10 @@ class ClientBase {
 
             })
             .on('error', (error) => {
-                if(error.code !== ''){
-                  console.log("Withdrawal failed: " + error.message);
-                  throw error;
-                }else{
-                  console.log("Withdrawal failed: " + error);
-                  throw new Error(error);
-                }
+                console.log("Withdrawal failed: " + error);
             });
 
-        console.log("new balance: " + elgamal.decrypt(elgamal.unserialize(encNewBalance), that.account.privateKey()));
-        var debugPubKey = bn128.serialize(bn128.curve.g.mul(account.privateKey()));
-        console.log("account pub key: " + account.publicKeySerialized());
-        console.log("debug pub key: " + debugPubKey);
-        console.log("state.available: " + state.available);
-        console.log("state.pending: " + state.pending);
-        console.log("state.available - value: " + (state.available - value));
-        console.log("client epoch: " + state.lastRollOver);
-        var contractEpoch = await that.suter.methods.lastRollOver(that.account.publicKeyHash()).call();
-        console.log("contract epoch: " + contractEpoch);
+        console.log("Client epoch: ", state.lastRollOver);
 
         return transaction;
     }
@@ -543,7 +679,7 @@ class ClientBase {
             // If the remaining window of the current epoch is less than 1/4-th of the epoch length, then we will wait until the next epoch.
             if ((that.epochLength / 4) >= wait) {
                 console.log("[Short window] Your transfer has been queued. Please wait " + wait + " " + unit + ", until the next epoch...");
-                return sleep(wait * that.epochUnitTime).then(() => this.withdraw(value));
+                return sleep(wait * that.epochUnitTime).then(() => that.transfer(receiver, value));
             }
         }
 
@@ -616,9 +752,22 @@ class ClientBase {
         C = C.map(bn128.serialize);
         D = bn128.serialize(D);
 
+
+        /* Can't use this estimate here because it seems to modify the contract state, making the proof invalid... */
+        //var transferGas = await that.suter.methods.transfer(C, D, serializedY, u, proof)
+            //.estimateGas({from: that.home, value: that.gasLimit, gas: that.gasLimit});
+        //console.log("Estimated transfer gas: ", transferGas);
+
+        var gasPrice = await this.web3.eth.getGasPrice();
+
+        // console.log("Gas Price: ", gasPrice);
+        // console.log("Home balance: ", (await this.web3.eth.getBalance(that.home)));
+        // console.log("Suter balance: ", (await this.web3.eth.getBalance(that.suter.options.address)));
+        // console.log("Agency balance: ", (await this.web3.eth.getBalance(await that.suter.methods.suterAgency().call())));
+
         let transaction = 
             that.suter.methods.transfer(C, D, serializedY, u, proof)
-                .send({from: that.home, gas: that.gasLimit})
+                .send({from: that.home, value: that.gasLimit * gasPrice, gas: that.gasLimit})
                 .on('transactionHash', (hash) => {
                     that._transfers.add(hash);
                     console.log("Transfer submitted (txHash = \"" + hash + "\")");
@@ -631,14 +780,12 @@ class ClientBase {
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
                 })
                 .on('error', (error) => {
-                    if(error.code !== ''){
-                      console.log("Transfer failed: " + error.message);
-                      throw error;
-                    }else{
-                      console.log("Transfer failed: " + error);
-                      throw new Error(error);
-                    }
+                    console.log("Transfer failed: " + error);
+                    throw new Error(error);
                 });
+
+        console.log("Client epoch: ", state.lastRollOver);
+
         return transaction;
     }
 

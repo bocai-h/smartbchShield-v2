@@ -1,11 +1,35 @@
 .suterProtocol {
+  .form{
+    .tipsContainer{
+      color: #FF578E;
+      background: #1D1C1E;
+      margin: 0 auto;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      max-width: 800px;
+      @media only screen and (max-width: 480px){
+        max-width: 350px;
+      }
+      .closeIcon{
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .warningIcon{
+        margin-right: 10px;
+      }
+    }
+  }
   .operationContainer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     max-width: 1140px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 30px;  
     .ant-card {
       background: #1d1c1e;
       border: 1px solid #1d1c1e;
@@ -14,7 +38,7 @@
       width: 500px;
     }
     h1 {
-      color: rgba(105, 85, 192, 1);
+      color: #b9aaff;
       margin-bottom: 0;
       font-family: PingFangSC-Thin, sans-serif;
       font-size: 30px;

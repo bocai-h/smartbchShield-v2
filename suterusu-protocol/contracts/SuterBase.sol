@@ -11,10 +11,23 @@ contract SuterBase {
     using Utils for uint256;
     using Utils for Utils.G1Point;
 
+    address payable public suterAgency; 
+    //Utils.G1Point public suterAgencyPublicKey;
+
+    /* burn fee: 1/100 of burn amount */
+    uint256 public BURN_FEE_MULTIPLIER = 1;
+    uint256 public BURN_FEE_DIVIDEND = 100;
+    /* transfer fee: 1/5 of gas */
+    uint256 public TRANSFER_FEE_MULTIPLIER = 1;
+    uint256 public TRANSFER_FEE_DIVIDEND = 5;
+
+    //mapping(uint256 => bool) usedFeeStrategyNonces;
+
+
     TransferVerifier transferverifier;
     BurnVerifier burnverifier;
-    uint256 public epochLength; 
-    uint256 public epochBase; // 0 for block, 1 for second (usually just for test)
+    uint256 public epochLength = 12; 
+    uint256 public epochBase = 0; // 0 for block, 1 for second (usually just for test)
 
     /* 
        The # of tokens that constitute one unit.
@@ -23,12 +36,17 @@ contract SuterBase {
     uint256 public unit; 
 
     /*
-       Max units that can handle by suter.
+       Max units that can be handled by suter.
        (No sload for constants...!)
     */
     uint256 public constant MAX = 2**32-1;
 
     uint256 public totalBalance = 0;
+    uint256 public totalUsers = 0;
+    uint256 public totalBurnFee = 0;
+    uint256 public totalTransferFee = 0;
+    uint256 public totalDeposits = 0;
+    uint256 public totalFundCount = 0;
     
 
     mapping(bytes32 => Utils.G1Point[2]) acc; // main account mapping
@@ -38,20 +56,25 @@ contract SuterBase {
     uint256 public lastGlobalUpdate = 0; // will be also used as a proxy for "current epoch", seeing as rollovers will be anticipated
     //// not implementing account locking for now...revisit
 
+    mapping(bytes32 => bytes) guess;
+
     event TransferOccurred(Utils.G1Point[] parties); // all parties will be notified, client can determine whether it was real or not.
     //// arg is still necessary for transfers---not even so much to know when you received a transfer, as to know when you got rolled over.
     event LogUint256(string label, uint256 indexed value);
 
-    constructor(address _transfer, address _burn, uint256 _epochBase, uint256 _epochLength, uint256 _unit) public {
+    //constructor(address payable _suterAgency, Utils.G1Point memory _suterAgencyPublicKey, address _transfer, address _burn, uint256 _epochBase, uint256 _epochLength, uint256 _unit) public {
+    constructor(address _transfer, address _burn, uint256 _unit) public {
+        suterAgency = msg.sender;
+        //suterAgencyPublicKey = _suterAgencyPublicKey;
         transferverifier = TransferVerifier(_transfer);
         burnverifier = BurnVerifier(_burn);
-        epochBase = _epochBase;
-        epochLength = _epochLength;
+        //epochBase = _epochBase;
+        //epochLength = _epochLength;
         unit = _unit;
     }
 
     function toUnitAmount(uint256 nativeAmount) internal view returns (uint256) {
-        require(msg.value % unit == 0, "Amount must be multiple of 1e16 wei (0.01 ETH).");
+        require(nativeAmount % unit == 0, "Native amount must be multiple of a unit.");
         uint256 amount = nativeAmount / unit;
         require(0 <= amount && amount <= MAX, "Amount out of range."); 
         return amount;
@@ -60,6 +83,63 @@ contract SuterBase {
     function toNativeAmount(uint256 unitAmount) internal view returns (uint256) {
         require(0 <= unitAmount && unitAmount <= MAX, "Amount out of range");
         return unitAmount * unit;
+    }
+
+    //function changeBurnFeeStrategy(uint256 multiplier, uint256 dividend, uint256 nonce, uint256 c, uint256 s) public {
+        //require(!usedFeeStrategyNonces[nonce], "Fee strategy nonce has been used!");
+        //usedFeeStrategyNonces[nonce] = true;
+
+        //Utils.G1Point memory K = Utils.g().pMul(s).pAdd(suterAgencyPublicKey.pMul(c.gNeg()));
+        //// Use block number to avoid replay attack
+        //uint256 challenge = uint256(keccak256(abi.encode(address(this), multiplier, dividend, "burn", nonce, suterAgencyPublicKey, K))).gMod();
+        ////uint256 challenge = uint256(keccak256(abi.encode(multiplier, dividend, "burn", block.number, suterAgencyPublicKey, K))).gMod();
+        //require(challenge == c, string(abi.encodePacked("Invalid signature for changing the burn strategy.", Utils.uint2str(nonce))));
+        //BURN_FEE_MULTIPLIER = multiplier;
+        //BURN_FEE_DIVIDEND = dividend;
+    //}
+
+    function setBurnFeeStrategy(uint256 multiplier, uint256 dividend) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change burn fee strategy.");
+        BURN_FEE_MULTIPLIER = multiplier;
+        BURN_FEE_DIVIDEND = dividend;
+    }
+
+    //function changeTransferFeeStrategy(uint256 multiplier, uint256 dividend, uint256 nonce, uint256 c, uint256 s) public {
+        //require(!usedFeeStrategyNonces[nonce], "Fee strategy nonce has been used!");
+        //usedFeeStrategyNonces[nonce] = true;
+
+        //Utils.G1Point memory K = Utils.g().pMul(s).pAdd(suterAgencyPublicKey.pMul(c.gNeg()));
+        //// Use block number to avoid replay attack
+        //uint256 challenge = uint256(keccak256(abi.encode(address(this), multiplier, dividend, "transfer", nonce, suterAgencyPublicKey, K))).gMod();
+        //require(challenge == c, "Invalid signature for changing the transfer strategy.");
+        //TRANSFER_FEE_MULTIPLIER = multiplier;
+        //TRANSFER_FEE_DIVIDEND = dividend;
+    //}
+
+    function setTransferFeeStrategy(uint256 multiplier, uint256 dividend) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change transfer fee strategy.");
+        TRANSFER_FEE_MULTIPLIER = multiplier;
+        TRANSFER_FEE_DIVIDEND = dividend;
+    }
+
+    function setEpochBase (uint256 _epochBase) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change epoch base.");
+        epochBase = _epochBase;
+    }
+
+    function setEpochLength (uint256 _epochLength) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change epoch length.");
+        epochLength = _epochLength;
+    }
+
+    function setUnit (uint256 _unit) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change unit.");
+        unit = _unit;
+    }
+
+    function setSuterAgency (address payable _suterAgency) public {
+        require(msg.sender == suterAgency, "Permission denied: Only admin can change agency.");
+        suterAgency = _suterAgency;
     }
 
     function register(Utils.G1Point memory y, uint256 c, uint256 s) public {
@@ -83,6 +163,8 @@ contract SuterBase {
         */
         pending[yHash][0] = y;
         pending[yHash][1] = Utils.g();
+
+        totalUsers = totalUsers + 1;
     }
 
     function registered(bytes32 yHash) public view returns (bool) {
@@ -118,6 +200,12 @@ contract SuterBase {
         return (y_available, y_pending);
     }
 
+    function getGuess (Utils.G1Point memory y) public view returns (bytes memory y_guess) {
+        bytes32 yHash = keccak256(abi.encode(y));
+        y_guess = guess[yHash];
+        return y_guess;
+    }
+
     function rollOver(bytes32 yHash) internal {
         uint256 e = 0;
         if (epochBase == 0)
@@ -141,9 +229,11 @@ contract SuterBase {
         }
     }
 
-    function fundBase(Utils.G1Point memory y, uint256 amount) internal {
+    function fundBase(Utils.G1Point memory y, uint256 amount, bytes memory encGuess) internal {
         require(amount <= MAX && totalBalance + amount <= MAX, "Fund pushes contract past maximum value.");
         totalBalance += amount;
+        totalDeposits += amount;
+        totalFundCount += 1;
 
         bytes32 yHash = keccak256(abi.encode(y));
         require(registered(yHash), "Account not yet registered.");
@@ -152,9 +242,13 @@ contract SuterBase {
         Utils.G1Point memory scratch = pending[yHash][0];
         scratch = scratch.pAdd(Utils.g().pMul(amount));
         pending[yHash][0] = scratch;
+
+        guess[yHash] = encGuess;
     }
 
-    function burnBase(Utils.G1Point memory y, uint256 amount, Utils.G1Point memory u, bytes memory proof) internal {
+    function burnBase(Utils.G1Point memory y, uint256 amount, Utils.G1Point memory u, bytes memory proof, bytes memory encGuess) internal {
+        //require(msg.value == BURN_FEE, "0.03 ETH for the burn transaction is expected to be sent along.");
+
         require(totalBalance >= amount, "Burn fails the sanity check.");
         totalBalance -= amount;
         
@@ -174,10 +268,18 @@ contract SuterBase {
         }
         nonceSet.push(uHash);
 
+        guess[yHash] = encGuess;
+
         require(burnverifier.verifyBurn(scratch[0], scratch[1], y, lastGlobalUpdate, u, msg.sender, proof), "Burn proof verification failed!");
+        //suterAgency.transfer(BURN_FEE);
     }
 
-    function transfer(Utils.G1Point[] memory C, Utils.G1Point memory D, Utils.G1Point[] memory y, Utils.G1Point memory u, bytes memory proof) public {
+    function transfer(Utils.G1Point[] memory C, Utils.G1Point memory D, 
+                      Utils.G1Point[] memory y, Utils.G1Point memory u, 
+                      bytes memory proof) public payable {
+
+        uint256 startGas = gasleft();
+
         // TODO: check that sender and receiver should NOT be equal.
         uint256 size = y.length;
         Utils.G1Point[] memory CLn = new Utils.G1Point[](size);
@@ -205,6 +307,16 @@ contract SuterBase {
         nonceSet.push(uHash);
 
         require(transferverifier.verifyTransfer(CLn, CRn, C, D, y, lastGlobalUpdate, u, proof), "Transfer proof verification failed!");
+
+        uint256 usedGas = startGas - gasleft();
+        
+        uint256 fee = (usedGas * TRANSFER_FEE_MULTIPLIER / TRANSFER_FEE_DIVIDEND) * tx.gasprice;
+        if (fee > 0) {
+            require(msg.value >= fee, "Not enough fee sent with the transfer transaction.");
+            suterAgency.transfer(fee);
+            totalTransferFee = totalTransferFee + fee;
+        }
+        msg.sender.transfer(msg.value - fee);
 
         emit TransferOccurred(y);
     }
