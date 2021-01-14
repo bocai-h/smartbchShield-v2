@@ -29,19 +29,19 @@ class SuterProtocol extends React.Component {
         index: 0,
         target: {
           active: true,
-          t: '1.Register Suter account with your Ethereum account private key',
+          t: '1.Register a Suter account or Login to your Suter account',
           o: [
             {
-              t: 'a. Select the asset you want to have privacy protection',
-              img: require('../static/help01.png'),
+              t: 'a.Click "CONNECT WALLE" to connect to your Metamask wallet',
             },
             {
-              t: 'b. Click "Connect" to connect to your Metamask wallet',
+              t: 'b.Select the token you wish to transfer privately via Suter network.',
+              img: require('../static/help01.jpg'),
             },
             {
               t:
-                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
-              img: require('../static/help02.png'),
+                'c.Click “Register or Login“ and enter your private key. Please make sure your private key is sufficiently random. We will require your private key to be at least 16 characters long and contain at least one uppercase letter, one lowercase letter and one number. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please keep your private key in a safe place.',
+              img: require('../static/help02.jpg'),
             },
           ],
         },
@@ -49,81 +49,81 @@ class SuterProtocol extends React.Component {
       list: [
         {
           active: true,
-          t: '1.Register Suter account with your Ethereum account private key',
+          t: '1.Register a Suter account or Login to your Suter account',
           o: [
             {
-              t: 'a. Select the asset you want to have privacy protection',
-              img: require('../static/help01.png'),
+              t: 'a.Select the token you wish to transfer privately via Suter network.',
+              img: require('../static/help01.jpg'),
             },
             {
-              t: 'b. Click "Connect" to connect to your Metamask wallet',
+              t: 'b.Click "Connect" to connect to your Metamask wallet',
             },
             {
               t:
-                'c. Click "Register" and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it properly',
-              img: require('../static/help02.png'),
+                'c.Click “Register or Login“ and enter your Ethereum private key. In theory, any string of numbers and letters can be used to generate your Suter account, even a simple password such as "123456", but this is extremely insecure, please do not do this. For the safety of your Suter account, please use your Ethereum account private key and keep it in a safe place.',
+              img: require('../static/help02.jpg'),
             },
           ],
         },
         {
           active: false,
           t:
-            '2.Stake your digital assets to the Suter Shield smart contract and get the private version of corresponding assets',
+            '2.Stake your token to the Suter Shield smart contract and get an anonymized version of your token',
           o: [
             {
-              t: 'a. Select the asset you want to have privacy protection',
+              t: 'a. Select the token you wish to transfer privately.',
             },
             {
               t:
-                'b. Enter the number of digital assets you want to stake (the unit of measurement is Unit, the Unit ratio of each digital asset is different, please refer to Suter Shield Q&A: Why Suter Shield’s digital assets should set Unit as the unit of measurement)',
+                'b. Enter the amount of tokens you want to stake (the unit of measurement is Unit, the unit ratio for each token is different, please refer to Suter Shield Q&A: Why Suter Shield’s tokens use Unit as the unit of measurement).',
             },
             {
-              t: 'c. Enter your Suter account private key to stake',
+              t: 'c. Enter your Suter account private key to stake.',
             },
             {
               t:
-                'd. After the above steps are completed, your Suter account will display the increased corresponding privacy protection assets, and the original assets of your Ethereum account will decrease.',
-              img: require('../static/help03.png'),
+                'd. After the above steps are completed, your Suter account will display the updated Suter token amount in units, and the native token amount in your Ethereum account will decrease correspondingly. The Suter token, which is the anonymized version of the native token are usually presented as “s”+the name of the native token. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER.',
+              img: require('../static/help03.jpg'),
             },
           ],
         },
         {
           active: false,
-          t: '3.Transfer your privacy protection digital assets',
+          t: '3.Transfer your Suter token.',
           o: [
             {
-              t: 'a. Select the asset you want to have privacy protection',
+              t: 'a. Select the token you wish to transfer privately.',
             },
             {
-              t: 'b. Register or log in to your Suter account',
+              t: 'b. Login to your Suter account.',
             },
             {
               t:
-                'c. Enter the quantity and Suter account public key address to transfer',
-              img: require('../static/help04.png'),
+                'c. Enter the amount of Suter token and the receiver Suter account public key to transfer.',
+              img: require('../static/help04.jpg'),
             },
           ],
         },
         {
           active: false,
-          t: '4.Retrieve (Burn) your digital assets',
+          t: '4.Withdrawal (Burn) your Suter token',
           o: [
             {
               t: 'a. Connect your Metamask wallet',
             },
             {
-              t: 'b. Select the asset you want to have privacy protection',
+              t: 'b. Select the token you wish to transfer privately.',
             },
             {
-              t: 'c. Register or log in to your Suter account',
-            },
-            {
-              t:
-                'd. Enter the number of digital assets you want to retrieve. The unit of measurement is also Unit. The digital assets protected by Suter Shield are usually distinguished by putting an “s” in front of ordinary digital assets. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER',
+              t: 'c. Login to your Suter account.',
             },
             {
               t:
-                'e. Your corresponding digital assets will be returned to your Ethereum account',
+                'd. Enter the amount of Suter token in units you wish to withdrawal.',
+            },
+            {
+              t:
+                'e. The amount of Suter token in your Suter account will be reduced by the entered amount, and the same amount of token minus fee will be returned to your Ethereum account.                ',
             },
           ],
         },
@@ -135,19 +135,19 @@ class SuterProtocol extends React.Component {
         index: 0,
         target: {
           active: true,
-          t: '1.用您的以太坊账号私钥来注册suter账号',
+          t: '1.注册一个Suter账号或者登入您的账号',
           o: [
             {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
+              t: 'a.点击”连接钱包“来导入您的Metamask钱包。',
             },
             {
-              t: 'b.点击"Connect"连接到您的Metamask钱包',
+              t: 'b.选择您希望通过suter网络来隐私转账的代币。',
+              img: require('../static/help01.jpg'),
             },
             {
               t:
-                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成您的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
-              img: require('../static/help02.png'),
+                'c.单击“注册或登录”，输入您的私钥。请务必保证您的私钥足够随机，我们会要求您的私钥长度至少为16个字符，且至少包含一个大写字母，一个小写字母和一个数字。从理论上讲，任何数字和字母字符串都可以用于生成您的Suter帐户，甚至可以使用非常简单的密码（例如“ 123456”）来生成您的Suter帐户，但这是绝对不安全，请不要这样做。 为了确保您的Suter账户的安全，请将您的私钥保存在安全的地方。',
+              img: require('../static/help02.jpg'),
             },
           ],
         },
@@ -155,80 +155,79 @@ class SuterProtocol extends React.Component {
       list: [
         {
           active: true,
-          t: '1.用您的以太坊账号私钥来注册suter账号',
+          t: '1.注册一个Suter账号或者登入您的账号',
           o: [
             {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
+              t: 'a.点击链接来导入您的Metamask钱包。',
             },
             {
-              t: 'b.点击"Connect"连接到您的Metamask钱包',
+              t: 'b.选择您希望通过suter网络来隐私转账的代币。',
+              img: require('../static/help01.jpg'),
             },
+            
             {
               t:
-                'c.点击"Register"然后输入您的以太坊私钥.理论上讲任何字符串数字和字母组成的字符串都可以生成你的Suter账号，甚至是"12345"这种简单密码，但是这是不安全的，请不要这样操作，为了您的Suter账号安全，请使用您的以太坊账号私钥，并妥善保管。',
-              img: require('../static/help02.png'),
+                'c.单击“注册或登录”，输入您的私钥。请务必保证您的私钥足够随机，我们会要求您的私钥长度至少为16个字符，且至少包含一个大写字母，一个小写字母和一个数字。从理论上讲，任何数字和字母字符串都可以用于生成您的Suter帐户，甚至可以使用非常简单的密码（例如“ 123456”）来生成您的Suter帐户，但这是绝对不安全，请不要这样做。 为了确保您的Suter账户的安全，请将您的私钥保存在安全的地方。',
+              img: require('../static/help02.jpg'),
             },
           ],
         },
         {
           active: true,
-          t: '2.抵押您的数字资产到Suter Shield智能合约并得到隐私版本的对应资产',
+          t: '2.将您的代币存入Suter Shield智能合约，并获得相应代币的匿名版本',
           o: [
             {
-              t: 'a.选择您想要进行隐私保护的资产',
-              img: require('../static/help01.png'),
+              t: 'a. 选择您需要隐私转账的代币。',
+              img: require('../static/help01.jpg'),
             },
             {
               t:
-                'b.输入您想要只要的数字资产数量(单位是Unit,每种数字资产的Unit比例并不一样，原因请查看Suter ShieldQ&A: 为什么Suter Shield的数字资产要设置Unit作为单位)',
+                'b. 输入您要存入的代币数量（度量单位为Unit，每个代币的单位汇率不同，请参阅Suter Shield问答：为什么Suter Shield的代币使用Unit作为度量单位）',
             },
             {
-              t: 'c.输入您的Suter账号私钥进行抵押操作',
-              img: require('../static/help02.png'),
+              t: 'c. 输入您的Suter帐户私钥。'
             },
             {
               t:
-                'd.操作完毕后，您的Suter账号会显示对应增加的隐私保护资产，你的以太坊账号的相应资产会减少。',
-              img: require('../static/help02.png'),
+                'd. 完成上述步骤后，您的Suter帐户将显示更新后的Suter令牌数量（单位是Units），而以太坊帐户中的代币数量将相应减少。 Suter代币是原始代币的匿名版本，通常显示为“ s” +原始代币的名称。 例如，在Suter网络中，ETH将显示为sETH，USDT将显示为sUSDT，Suter将显示为sSUTER。',
+              img: require('../static/help03.jpg'),
             },
           ],
         },
         {
           active: false,
-          t: '3.对您的隐私保护数字资产进行转账',
+          t: '3.转账您的Suter代币',
           o: [
             {
-              t: 'a.选择您想要进行隐私保护的资产',
+              t: 'a. 选择您需要隐私转账的代币。',
             },
             {
-              t: 'b.注册或者登陆你的Suter账号',
+              t: 'b. 登录您的Suter帐户。',
             },
             {
-              t: 'c.输入数量以及Suter账号公钥地址，进行转账',
-              img: require('../static/help03.png'),
+              t: 'c. 输入Suter代币数量和接收方Suter帐户公钥进行转账。',
+              img: require('../static/help03.jpg'),
             },
           ],
         },
         {
           active: false,
-          t: '4.取回您的数字资产',
+          t: '4.取出您的Suter代币',
           o: [
             {
-              t: 'a.连接您的Metamask钱包',
+              t:'a.连接您的Metamask钱包。',
             },
             {
-              t: 'b.选择您想要进行隐私保护的资产',
+              t:'b. 选择您需要隐私转账的代币。',
             },
             {
-              t: 'c.注册或登录您的Suter账号 ',
+              t:'c. 登录到您的Suter帐户。',
             },
             {
-              t:
-                'd.输入您想要取回的数字资产的数量，单位同样是Unit，Suter Shield隐私保护的数字资产通常是普通数字资产前面加上一个s作为区别，比如ETH在Suter网络中会是sETH，USDT会是sUSDT, suter会是sSUTER',
+              t:'d. 输入您要提取的Suter代币数量。',
             },
             {
-              t: 'e.您的对应的数字资产会回到您的以太坊账号中',
+              t:'e.您的Suter账户中的Suter代币数量将相应减少，并且相同数量的代币减去费用将会被退回到您的以太坊账户中。',
             },
           ],
         },
