@@ -30,7 +30,7 @@ class SuterProtocol extends React.Component {
           active: true,
           t: '1. What is Suter Shield?',
           o: [
-            'Suter Shield allows the users to invoke the Suterusu Protocol via the Metamask wallet, and then run the private payment module provided by the Suterusu protocol. Suter Shield provides the users with an interface to interact with the Suter protocol constructed on our original zero- knowledge proof technology. In addition, it also provides a fundamental technical architecture for the privacy-preserving DeFi ecosystem.',
+            'Suter Shield allows the users to invoke the Suterusu Protocol via the Metamask wallet, and then run the private payment module provided by the Suterusu protocol. Suter Shield provides the users with an interface to interact with the Suter protocol constructed on our original zero-knowledge proof technology. In addition, it also provides a fundamental technical architecture for the privacy-preserving DeFi ecosystem.',
           ],
         },
       },
@@ -39,22 +39,22 @@ class SuterProtocol extends React.Component {
           active: true,
           t: '1. What is Suter Shield?',
           o: [
-            'Suter Shield allows the users to invoke the Suterusu Protocol via the Metamask wallet, and then run the private payment module provided by the Suterusu protocol. Suter Shield provides the users with an interface to interact with the Suter protocol constructed on our original zero- knowledge proof technology. In addition, it also provides a fundamental technical architecture for the privacy-preserving DeFi ecosystem.',
+            'Suter Shield allows the users to invoke the Suterusu Protocol via the Metamask wallet, and then run the private payment module provided by the Suterusu protocol. Suter Shield provides the users with an interface to interact with the Suter protocol constructed on our original zero-knowledge proof technology. In addition, it also provides a fundamental technical architecture for the privacy-preserving DeFi ecosystem.',
           ],
         },
         {
           active: false,
           t:
             '2. Why does Suter Shield have Unit? Why does the Unit of every token vary? How do you choose the Unit?',
-          o: [
-            "The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle. This leads to an upper limit on the number of tokens that can be processed in the system, and since the total amounts of different tokens are different, there must be a respective minimum amount of tokens to ensure it's compatible with the underlying algorithm. Since each unit of different token has different dollar value, we will focus on the minimum acceptable transaction amount when choosing the corresponding token unit.",
+          o: [`The reason why we have Unit is due to the way the underlying algorithm works. There is an upper limit on the number of integers that the algorithm can handle. This leads to an upper limit on the number of tokens that can be processed in the system, and since the total amounts of different tokens are different, there must be a respective minimum amount of tokens to ensure it's compatible with the underlying algorithm.`,
+            `Since each unit of different token has different dollar value, we will focus on the minimum acceptable transaction amount when choosing the corresponding token unit.`,
           ],
         },
         {
           active: false,
           t: "3.What is Suter Shield's economic model?",
           o: [
-            'Suter Shield initially decided to charge an additional 20% handling fee of the current Ethereum network cost in the Transfer function. According to the current gas fee (62gwei), the handling fee charged by Suter Shield in the Transfer is approximately US$0.97. And Suter Shield will also charge a fixed fee of 0.03 ETH when the user Burn their privacy crypto assets, which is about $15. All these handling fees will enter the Suter Shield dividend pool and will be distributed to all Suterusu Validator nodes in proportion.',
+            'Suter Shield initially decided to charge an additional 20% handling fee of the current Ethereum network cost in the Transfer function. According to the current gas fee (62gwei), the handling fee charged by Suter Shield in the Transfer is approximately US$0.97. Suter Shield will also charge 0.2% of the withdrawal amount as service fee when the user Burn their privacy crypto assets, which is about $15. All these handling fees will enter the Suter Shield dividend pool and will be distributed to all Suterusu Validator nodes in proportion.',
           ],
         },
         {
@@ -68,7 +68,8 @@ class SuterProtocol extends React.Component {
           active: false,
           t: '5.Is there any competitor for Suter Shield in the market?',
           o: [
-            "We have not yet been able to find a competitor that nearly matches Suter Shield's functionality and has a close performance. The only product that is functionally close to Suter Shield is Tornado.cash, but they only support the anonymous deposit and withdrawal of ETH for a single user, and cannot guarantee the balance confidentiality of deposit and withdrawal. Moreover, their zero-knowledge proof scheme requires trusted setup, which is potentially a huge security loophole. In contrast, Suter supports the anonymous and confidential transactions of any ERC-20 token including ETH between any two parties, who are not required to share any secret information beforehand, and our zero-knowledge proof does not require the trusted setup, and hence can guarantee the unprecedented level of security and transparency. Our technical modules are extremely modular and can easily support various privacy-preserving DeFi functionalities. For a more detailed comparison, please refer to this medium article: https://medium.com/suterusu/w hy-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the- existing-dbc0af45bb0c.",
+            `We have not yet been able to find a competitor that nearly matches Suter Shield's functionality and has a close performance. The only product that is functionally close to Suter Shield is Tornado.cash, but they only support the anonymous deposit and withdrawal of ETH for a single user, and cannot guarantee the balance confidentiality of deposit and withdrawal. Moreover, their zero-knowledge proof scheme requires trusted setup, which is potentially a huge security loophole. 
+            In contrast, Suter supports the anonymous and confidential transactions of any ERC-20 token including ETH between any two parties, who are not required to share any secret information beforehand, and our zero-knowledge proof does not require the trusted setup, and hence can guarantee the unprecedented level of security and transparency. Our technical modules are extremely modular and can easily support various privacy-preserving DeFi functionalities. For a more detailed comparison, please refer to <a href="https://medium.com/suterusu/why-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the- existing-dbc0af45bb0c" target="_blank">this medium article</a>.`
           ],
         },
         {
@@ -83,7 +84,7 @@ class SuterProtocol extends React.Component {
           t:
             '7.How other projects can cooperate with Suter Shield and Suterusu Protocol?',
           o: [
-            'As the privacy infrastructure in the DeFi protocol, Suterusu Protocol can cooperate with various EVM-Compatible public chains and DeFi protocols, such as CEX, DEX, Loan, Derivative, Insurance, etc. For detailed cooperation information, please see the following article: https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6b d140fe',
+            'As the privacy infrastructure in the DeFi protocol, Suterusu Protocol can cooperate with various EVM-Compatible public chains and DeFi protocols, such as CEX, DEX, Loan, Derivative, Insurance, etc. For detailed cooperation information, please see <a href="https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6bd140fe" target="_blank">the following article</a>',
           ],
         },
         {
@@ -96,7 +97,7 @@ class SuterProtocol extends React.Component {
         {
           active: false,
           t:
-            '9.Can community developers also develop new privacy applications or privacy DeFi applications based on Suterusu Protocol',
+            '9.Can community developers also develop new privacy applications or privacy DeFi applications based on Suterusu Protocol?',
           o: [
             "Yes, the Suterusu Foundation encourages the development community to develop various DeFi privacy applications based on the Suter protocol, such as the privacy version of Curve or Privacy Dex, to maximize the positioning of Suterusu Protocol's DeFi privacy infrastructure.",
           ],
@@ -109,7 +110,12 @@ class SuterProtocol extends React.Component {
         {
           active: false,
           t: '11.Is the code open source?',
-          o: ['https://github.com/suterusu-team/suterusu-protocol'],
+          o: ['<a target="_blank" href="https://github.com/suterusu-team/suterusu-protocol">https://github.com/suterusu-team/suterusu-protocol</a>'],
+        },
+        {
+          active: false,
+          t: '12.Why does Suter Shield require the users to pick their private key? How do you make sure it is secure?',
+          o: ["The scheme we adopt requires the users to generate a Suter account before invoking our zero-knowledge proof solution. The user's private key is the only identifier that identifies your digital assets, so we will provide indication to the user on how to generate a secure private key when the user selects the private key. Your private key should be sufficiently random as long as you follow our advice. Please keep your private key safe. We will keep working on improving the usability of our login system in our next step."]
         },
       ],
     },
@@ -138,14 +144,15 @@ class SuterProtocol extends React.Component {
           t:
             '2.为什么在Suter Shield中要设置Unit？为什么每种资产的Unit都可能不一样？是根据什么设置的？',
           o: [
-            `这是由底层的算法决定的，算法的数字型本身能处理的整数是有个上限的，这就导致系统中最终能处理的代币数量是有个上限的，而不同ERC-20代币总量是不一样的，因此必须相应有个代币最小单位才能保证算法与之兼容。由于每个单位的不同代币对应美元金额不同，因此我们设置相应单位代币数值将会重点考虑用户可以接受的最小交易金额。`,
+            `这是由底层的算法决定的，算法的数字型本身能处理的整数是有个上限的，这就导致系统中最终能处理的代币数量是有个上限的，而不同ERC-20代币总量是不一样的，因此必须相应有个代币最小单位才能保证算法与之兼容。`,
+            `由于每个单位的不同代币对应美元金额不同，因此我们设置相应单位代币数值将会重点考虑用户可以接受的最小交易金额。`,
           ],
         },
         {
           active: false,
           t: '3.Suter Shield的经济模型是什么？我如何能从中获益？',
           o: [
-            `Suter Shield初步决定在转账(Transfer)功能中收取当前以太坊网络成本的额外20%手续费，根据当前的gas fee(62gwei)那么Suter Shield在转账中收取的手续费大概是0.97美金。并且Suter Shield会在用户取回(Burn)资产时收取0.03个ETH的固定手续费，大概为15美金。所有的这些手续费将进入Suter Shield手续费分红池，按比例分给所有的Suterusu验证节点。`,
+            `Suter Shield初步决定在转账(Transfer)功能中收取当前以太坊网络成本的额外20%手续费，根据当前的gas fee(62gwei)那么Suter Shield在转账中收取的手续费大概是0.97美金。并且Suter Shield会在用户取回(Burn)资产时收取用户取出资产金额的0.2%，大概为15美金。所有的这些手续费将进入Suter Shield手续费分红池，按比例分给所有的Suterusu验证节点。`,
           ],
         },
         {
@@ -159,7 +166,7 @@ class SuterProtocol extends React.Component {
           active: false,
           t: '5.Suter Shield目前市场上有哪些竞争对手？',
           o: [
-            `我们尚未能找到和Suter Shield功能匹配且效率接近的竞争对手，功能上唯一接近Suter Shield的产品是Tornado.cash，但他们支持的单个用户的ETH的匿名存取，存取的金额无法保密。而且他们的零知识证明方案需要可信初始化，这个在安全性上大打折扣。相对而言，Suter支持任意两方之间的包括ETH在内的ERC-20 token的匿名保密交易，且两方无需提前分享任何秘密信息，而且如上面提到的我们的零知识证明无需可信初始化，因此安全性和透明性上已经登峰造极了。我们的功能极为模块化，还可以轻松支持各种隐私保护DeFi功能。更为细节的比较可以参考这篇medium文章：https://medium.com/suterusu/why-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the-existing-dbc0af45bb0c`,
+            `我们尚未能找到和Suter Shield功能匹配且效率接近的竞争对手，功能上唯一接近Suter Shield的产品是Tornado.cash，但他们支持的单个用户的ETH的匿名存取，存取的金额无法保密。而且他们的零知识证明方案需要可信初始化，这个在安全性上大打折扣。相对而言，Suter支持任意两方之间的包括ETH在内的ERC-20 token的匿名保密交易，且两方无需提前分享任何秘密信息，而且如上面提到的我们的零知识证明无需可信初始化，因此安全性和透明性上已经登峰造极了。我们的功能极为模块化，还可以轻松支持各种隐私保护DeFi功能。更为细节的比较可以参考<a target="_blank" href="https://medium.com/suterusu/why-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the-existing-dbc0af45bb0c">这篇medium文章</a>。`,
           ],
         },
         {
@@ -173,13 +180,13 @@ class SuterProtocol extends React.Component {
           active: false,
           t: '7.其他项目如何和Suter Shield以及Suterusu Protocol合作？',
           o: [
-            `Suterusu Protocol作为DeFi协议中的隐私基础设施，可以和各类EVM-Compatible的公链以及DeFi协议进行合作，比如CEX, DEX, Loan, Derivative, Insurance等, 细节合作信息可以看以下文章：https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6bd140fe`,
+            `Suterusu Protocol作为DeFi协议中的隐私基础设施，可以和各类EVM-Compatible的公链以及DeFi协议进行合作，比如CEX, DEX, Loan, Derivative, Insurance等, 细节合作信息可以看<a href="https://medium.com/suterusu/how-to-build-privacy-preserving-defi-based-on-suterusu-protocol-ebbd6bd140fe" target="_blank">以下文章</a>。`,
           ],
         },
         {
           active: false,
           t: '8.Suter Shield有办法被破解从而了解到我的隐私信息吗？',
-          o: ['没有办法，所有和用户相关的隐私信息都保留在用户客户端。'],
+          o: ['不能，所有和用户相关的隐私信息都保留在用户客户端。'],
         },
         {
           active: false,
@@ -197,7 +204,12 @@ class SuterProtocol extends React.Component {
         {
           active: false,
           t: '11.代码是否已经开源？',
-          o: ['https://github.com/suterusu-team/suterusu-protocol'],
+          o: ['<a href="https://github.com/suterusu-team/suterusu-protocol" target="_blank">https://github.com/suterusu-team/suterusu-protocol</a>']
+        },
+        {
+          active: false,
+          t: '12. Suter Shield目前为什么需要用户自己设置私钥，安全性是怎么样的？',
+          o: [`我们使用的方案需要用户生成一个Suter账号，然后才能调用我们的零知识证明方案。用户的私钥是识别您的资产的唯一标志，所以我们在用户输入密码时给用户提示如何生成安全的私钥。只要您按照我们的安全提示选择密码，您的账号安全性就有保证。请您务必保护好您的私钥，我们下一步会在账号私钥生成可用性上继续改进。`],
         },
       ],
     },
@@ -338,8 +350,8 @@ class SuterProtocol extends React.Component {
                 <ul>
                   {info.active.target.o.map((it, index) => {
                     return (
-                      <li key={index}>
-                        {typeof it === 'object' ? it.t : it}
+                      <li key={index} >
+                        <div dangerouslySetInnerHTML={{__html: typeof it === 'object' ? it.t : it}}></div>
                         {it.img && <img src={it.img} alt="" />}
                       </li>
                     );
