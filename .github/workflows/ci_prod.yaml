@@ -58,6 +58,6 @@ jobs:
         HELM_BIN: ${{ steps.helm-install.outputs.helm-path }}
       run: |
         echo "Helm upgrade suter shield $IMAGE_TAG"
-        $HELM_BIN upgrade -f $GITHUB_WORKSPACE/deploy/suter-shield-website/values.prod.yaml --namespace=production  suter-shield-website-production $GITHUB_WORKSPACE/deploy/suter-shield-website --set=image.tag=$IMAGE_TAG
+        $HELM_BIN upgrade -f $GITHUB_WORKSPACE/deploy/suter-shield-website/values.prod.yaml --namespace=production  suter-shield-website-prod $GITHUB_WORKSPACE/deploy/suter-shield-website --set=image.tag=$IMAGE_TAG
 
    
