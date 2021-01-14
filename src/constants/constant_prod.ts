@@ -1,6 +1,6 @@
 export default {
 	ENV: 'prod',
-	ETH_CHAIN_ID: '0x3',
+	ETH_CHAIN_ID: '0x1',
 	ETHERSCAN: 'https://etherscan.io',
 	JSONRPC_URL: 'https://mainnet.infura.io/v3/d80602309b7c48e78b80a372a3f6c825',
 	CoinInfos: {
@@ -2274,7 +2274,7 @@ export default {
 			  "type": "function"
 			}
 		  ],
-		  suterShiledContractAddress: '0xa4ce902da7a007dbaa2bdfab82b64f3738d609ad',
+		  suterShiledContractAddress: '0x02b4E089E96a0A672dE0a0d93E2869B899b15a44',
 		  decimal: 18
 		},
 		dai: {
