@@ -9,7 +9,7 @@ export default {
       coinBalanceDesc: 'USDT',
       valueDesc: 'Suter USDT',
       unit: 'USDT',
-      suterShieldUnit: 10**18,
+      suterShieldUnit: 10**6,
       contractABI: [
         {
           "inputs": [],
@@ -643,8 +643,8 @@ export default {
           "type": "function"
         }
       ],
-      contractAddress: "0x2CAe8Fd599bD0F9F9A65C6da9a532B2494fe10B0",
-      suterShiledContractABI: [
+      contractAddress: "0xe3c380c4E63AD99F8f994f416cce0cb28d0dAB5D",
+      suterShiledContractABI: [   
         {
           "inputs": [
             {
@@ -1397,8 +1397,8 @@ export default {
           "type": "function"
         }
       ],
-      suterShiledContractAddress: "0x7c6BBCFFaE07abFE1c8338c939dd4C24a03DB5ed",
-      decimal: 18
+      suterShiledContractAddress: "0x3D1db46CA7170d30F2b2a9795061ADbd0C4B8F04",
+      decimal: 6
     },
     eth: {
       suterShiledBalanceDesc: 'Suter ETH',
