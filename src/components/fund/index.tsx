@@ -61,7 +61,11 @@ class Fund extends React.Component {
     let info = CoinInfos[coinType];
     let result;
     try {
-      result = await client.deposit(inputValue.toString());
+      if(coinType === 'usdt'){
+        result = await client.depositUSDT(inputValue.toString());
+      }else{
+        result = await client.deposit(inputValue.toString());
+      }
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
