@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skeleton, Spin } from 'antd';
+import { Spin } from 'antd';
 import './index.less';
 import Web3 from 'web3';
 import axios from 'axios';

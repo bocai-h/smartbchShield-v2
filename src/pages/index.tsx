@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Tooltip } from 'antd';
+import { Spin, Layout, Tooltip } from 'antd';
 const { Header, Footer, Content } = Layout;
 import { Button, Menu, Dropdown } from 'antd';
+import { openNotificationWithIcon } from '../components/tools';
+import Web3 from 'web3';
+import axios from 'axios';
 import intl from 'react-intl-universal';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
@@ -19,20 +22,109 @@ const locales = {
   'zh-CN': require('../locales/zh_CN'),
 };
 
+var Contract = require('web3-eth-contract');
+
 class Portal extends Component {
   state = {
-    metamaskInstalled: false,
-    account: '',
-    connectWalletTxt: 'ConnectWallet',
-    web3Browser: false,
-    ethNetwork: '',
-    showConnectModal: false,
-    coinType: '',
-    initDone: false,
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
+    suterPrice: 0,
+    daiPrice: 0,
+    ethPrice: 0,
+    totalFund: 0,
+    totalFeesUSD: 0,
+    totalDepositsCount: 0,
+    totalFeesUSDLoading: true
   };
+
+  async fetchSuterPrice(){
+    let suterPrice = 0;
+    try {
+      let response = await axios.get(
+       'kucoin_api/api/v1/market/orderbook/level1?symbol=SUTER-USDT',
+      );
+      if (response.status == 200) {
+        let price = response.data.data.price;
+        suterPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+         'Price Api Error',
+         'Fetch suter price error',
+         'error',
+         4.5,
+        );
+      }
+    } catch (error) {
+     console.log(error);
+      openNotificationWithIcon(
+       'Network Error',
+       'Fetch suter price error',
+       'warning',
+       4.5,
+      );
+    }
+    this.setState({suterPrice: suterPrice})
+  };
+
+  async getETHPrice() {
+    let ethPrice = 0;
+    try {
+      let response = await axios.get(
+       'huobi_api/market/detail/merged?symbol=ethusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        ethPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+         'Price Api Error',
+         'Fetch ETH price error',
+         'error',
+         4.5,
+        );
+      }
+    } catch (error) {
+     console.log(error);
+      openNotificationWithIcon(
+       'Network Error',
+       'Fetch ETH price error',
+       'warning',
+       4.5,
+      );
+    }
+    this.setState({ethPrice: ethPrice})
+  }
+
+  async getDaiPrice() {
+    let daiPrice = 0;
+    try {
+      let response = await axios.get(
+       'huobi_api/market/detail/merged?symbol=daiusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        daiPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+         'Price Api Error',
+         'Fetch DAI price error',
+         'error',
+         4.5,
+        );
+      }
+    } catch (error) {
+     console.log(error);
+      openNotificationWithIcon(
+       'Network Error',
+       'Fetch DAI price error',
+       'warning',
+       4.5,
+      );
+    }
+    this.setState({daiPrice: daiPrice})
+  }
+
 
   langChangeTo = (lang: string) => {
     localStorage.setItem('lang', lang);
@@ -87,8 +179,45 @@ class Portal extends Component {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.loadLocales();
+    await this.fetchSuterPrice();
+    await this.getDaiPrice();
+    await this.getETHPrice();
+    await this.getTotalFeesUSD();
+  }
+
+
+  async getTotalFeesUSD() {
+    let totalFeesValue = 0;
+    let pools = [[CoinInfos["eth"].suterShiledContractAddress, CoinInfos["eth"].suterShiledContractABI], [CoinInfos["usdt"].suterShiledContractAddress,CoinInfos["usdt"].suterShiledContractABI], [CoinInfos["dai"].suterShiledContractAddress,CoinInfos["dai"].suterShiledContractABI], [CoinInfos["suter"].suterShiledContractAddress,CoinInfos["suter"].suterShiledContractABI]];
+    for (const item of pools) {
+      var suterShieldContract = new Contract(
+        item[1],
+        item[0],
+      );
+      suterShieldContract.setProvider(new Web3.providers.HttpProvider(JSONRPC_URL));
+      let burnFee = await suterShieldContract.methods.totalBurnFee().call();
+      let transferFee = await suterShieldContract.methods.totalTransferFee().call();
+      let ethInfo = CoinInfos["eth"]
+      if(item[0] === CoinInfos["eth"].suterShiledContractAddress ){
+        totalFeesValue += (burnFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+        totalFeesValue += (transferFee * 1.0 / (10 ** ethInfo.decimal)) * this.state.ethPrice;
+      }else if(item[0] === CoinInfos["usdt"].suterShiledContractAddress){
+        let info = CoinInfos["usdt"]
+        totalFeesValue += burnFee * 1.0 / (10 ** info.decimal)
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
+      }else if(item[0] === CoinInfos["dai"].suterShiledContractAddress){
+        let info = CoinInfos["dai"]
+        totalFeesValue += (burnFee * 1.0 / (10 ** info.decimal)) * this.state.daiPrice;
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
+      }else if(item[0] === CoinInfos["suter"].suterShiledContractAddress){
+        let info = CoinInfos["suter"]
+        totalFeesValue += (burnFee * 1.0 / (10 ** info.decimal)) * this.state.suterPrice;
+        totalFeesValue += transferFee * 1.0 / (10 ** ethInfo.decimal) * this.state.ethPrice;
+      }
+    }
+    this.setState({totalFeesUSD: totalFeesValue, totalFeesUSDLoading: false})
   }
 
   render() {
@@ -96,6 +225,8 @@ class Portal extends Component {
       twitterLogo,
       telegramLogo,
       mediumLogo,
+      totalFeesUSD,
+      totalFeesUSDLoading
     } = this.state;
 
     let lang = intl.options.currentLocale;
@@ -109,7 +240,7 @@ class Portal extends Component {
         </Menu.Item>
         <Menu.Item key="mining">
           <Tooltip title="Coming Soon">
-            <a href="javascript:void(0);" >
+            <a>
               {intl.get('Mining')}
             </a>
           </Tooltip>
@@ -144,7 +275,7 @@ class Portal extends Component {
                 </li>
                 <li>
                  <Tooltip title="Coming Soon">
-                  <a href="javascript:void(0);" >
+                  <a>
                     {intl.get('Mining')}
                   </a>
                   </Tooltip>
@@ -298,7 +429,8 @@ class Portal extends Component {
               </div>
               <div className="flex-item">
                 <div className="card-item">
-                  <div className="amount">$12312.12</div>
+                  <div className="amount"> 
+                  { totalFeesUSDLoading ? <Spin size="large"/> : `$${totalFeesUSD.toLocaleString()}`}</div>
                   <div className="title">{intl.get('FeePool')}</div>
                   <div className="subtitle">subtite here</div>
                 </div>
