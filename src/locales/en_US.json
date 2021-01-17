@@ -1,7 +1,9 @@
 {
+  "ComingSoon": "Coming soon",
   "Dashboard": "Dashboard",
   "Q&A": "Q&A",
   "Compliance": "Compliance",
+  "ComplianceUrl": "https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9",
   "Resources": "Resources",
   "CheckTutorial": "Check Tutorial",
   "ConnectWallet": "Connect Wallet",
@@ -9,6 +11,7 @@
   "SuterusuNetwork": "Suterusu Network",
   "Via": "via",
   "PrivacyTips": "Privacy Tips",
+  "PrivacyTipsUrl": "https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447",
   "About": "About",
   "PrivatelyTransfer": "privately transfer",
   "WantTo": "want to",
@@ -69,12 +72,13 @@
   "warningTips": "Suter Shield was audited. However, it is still an experimental software. Please use at your own risk.",
   "privateKeyTips": "The private key you enter must contain at least 16 characters, but no more than 32 characters. It must also contain at least one uppercase letter, one lowercase letter and one digital number.",
   "invalidPrivateKeyTips": "Invalid Private Key",
+  "Stats": "Stats",
   "Mining": "Mining",
   "Tutorial": "Tutorial",
   "Info": "Info",
   "LaunchApp": "Launch App",
-  "Slogan1": "Anonymous PayPal for Cryptocurrency",
-  "SloganDescription": "Suter Shield allows the users to enjoy the amazing private payment functionality provided by the <a target=\"_blank\" href=\"https://medium.com/suterusu/an-introduction-to-the-suterusu-protocol-fe890bc49ead\">Suterusu protocol</a>. The Suterusu protocol is built upon our original <a href=\"https://medium.com/suterusu/new-development-on-the-zk-consnark-scheme-8a4ec673bbb4\" target=\"_blank\">ZK-ConSNARK</a> technology, which strikes a perfect balance between performance and security.",
+  "Slogan1": "Anonymized PayPal for Cryptocurrency",
+  "SloganDescription": "Suter Shield allows the users to enjoy the cutting-edge private payment functionality provided by the Suterusu protocol. The <a target=\"_blank\" href=\"https://medium.com/suterusu/an-introduction-to-the-suterusu-protocol-fe890bc49ead\">Suterusu protocol</a> is based on our original <a href=\"https://medium.com/suterusu/new-development-on-the-zk-consnark-scheme-8a4ec673bbb4\" target=\"_blank\">ZK-ConSNARK</a> technology, which strikes a perfect balance between performance and security.",
   "TransferAnonymous": "Transfer Anonymous",
   "Slogan2": "How <strong>Suter Shield</strong>&nbsp; works",
   "Register": "Register",
@@ -84,8 +88,5 @@
   "BurnDescription": "The user can then invoke the burn module and convert the Suter-token back to its original form. As long as the user uses a different Ethereum account to invoke this module from the fund module, the connection between the funded token and the burned token is severed. ",
   "Slogan3": "<a href=\"https://medium.com/suterusu/why-suterusus-privacy-preserving-defi-solution-based-on-zk-consnark-is-superior-to-the-existing-dbc0af45bb0c\" target=\"_blank\">Why <strong>Suter Shield</strong>&nbsp; has better Privacy Protection</a>",
   "Slogan3Description1": "The connection between Suter account and Ethereum address is severed through invoking the fund module. When the attacker traces the payment records of Ethereum address, it would be like tracing the direction of a small stream of water, you cannot predict where the stream goes when it reaches the ocean. ",
-  "Slogan3Description2": "The miners might still be able to observe the payment records between different Suter accounts when they verify the transactions. We adopt homomorphic public key encryption to ensure the transferred amount confidentiality and apply zero-knowledge proof to guarantee the anonymity of the Suter accounts.",
-  "TotalFund": "Total Fund",
-  "UsageCount": "Usage Count",
-  "FeePool": "Fee Pool"
+  "Slogan3Description2": "The miners might still be able to observe the payment records between different Suter accounts when they verify the transactions. We adopt homomorphic public key encryption to ensure the transferred amount confidentiality and apply zero-knowledge proof to guarantee the anonymity of the Suter accounts."
 }

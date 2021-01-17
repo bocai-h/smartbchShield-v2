@@ -225,6 +225,11 @@ body {
 .header-btn {
   display: flex;
   align-items: center;
+  .launchAppBtn {
+    border-color: #b9aaff;
+    color: #b9aaff;
+    background-color: #0b000e;
+  }
   .top-btn {
     width: 70px;
     height: 32px;
@@ -317,13 +322,22 @@ body {
 }
 
 .portal {
-  a {
-    color: rgba(255, 255, 255, 0.75);
+  .description a {
+    color: #b9aaff;
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   strong {
     font-family: PingFangSC-Medium;
     font-style: oblique;
+  }
+  button {
+    &:hover {
+      background-color: #b9aaff !important;
+      color: #0b000e !important;
+    }
   }
   .portal-body {
     .portal-section {
@@ -343,11 +357,11 @@ body {
         }
         .description {
           margin-top: 8px;
-          font-family: PingFangSC-Medium;
           font-size: 14px;
           color: rgba(255, 255, 255, 0.75);
           letter-spacing: 0;
           padding-right: 70px;
+          font-weight: lighter;
         }
         button {
           margin-top: 36px;
@@ -406,10 +420,10 @@ body {
           }
           .description {
             margin-top: 24px;
-            font-family: PingFangSC-Medium;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.77);
             letter-spacing: 0;
+            font-weight: lighter;
           }
         }
       }
@@ -427,10 +441,10 @@ body {
           }
         }
         .description {
-          font-family: PingFangSC-Medium;
           font-size: 14px;
           color: rgba(255, 255, 255, 0.77);
           letter-spacing: 0;
+          font-weight: lighter;
         }
         img {
           width: 424px;
