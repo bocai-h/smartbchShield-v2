@@ -22,7 +22,7 @@ class SuterProtocol extends React.Component {
   state = {
     twitterLogo: twitter,
     telegramLogo: telegram,
-    mediumLogo: medium
+    mediumLogo: medium,
   };
 
   constructor(props) {
@@ -36,14 +36,14 @@ class SuterProtocol extends React.Component {
   loadLocales = (lang = 'en-US') => {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
-    var userLang = navigator.language || navigator.userLanguage; 
-    if(userLang) {
-      if(userLang === "zh") {
-        lang = "zh-CN";
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang) {
+      if (userLang === 'zh') {
+        lang = 'zh-CN';
       }
     }
     let cacheLang = localStorage.getItem('lang');
-    if(cacheLang) {
+    if (cacheLang) {
       lang = cacheLang;
     }
     intl
@@ -81,84 +81,80 @@ class SuterProtocol extends React.Component {
     }
   };
 
-  langChangeTo = (lang) => {
+  langChangeTo = lang => {
     localStorage.setItem('lang', lang);
-    this.loadLocales(lang)
-  }
-  
+    this.loadLocales(lang);
+  };
+
   render() {
-    const {
-      twitterLogo,
-      telegramLogo,
-      mediumLogo,
-    } = this.state;
+    const { twitterLogo, telegramLogo, mediumLogo } = this.state;
     let lang = intl.options.currentLocale;
     return (
-        <Layout className="suterProtocol">
-          <Header>
-            <div className="head-top">
-              <div className="left">
-                <a href="/">
-                  <img src={Logo} className="logo pc" />
-                  <img src={mLogo} className="logo mobbile" />
-                </a>
-              </div>
+      <Layout className="suterProtocol">
+        <Header>
+          <div className="head-top">
+            <div className="left">
+              <a href="/">
+                <img src={Logo} className="logo pc" />
+                <img src={mLogo} className="logo mobbile" />
+              </a>
             </div>
-            <div className="header-btn">
-              <div className="top-btn">
-                <i
-                  onClick={() => this.langChangeTo('en-US')}
-                  className={`${lang === 'en-US' ? 'active' : ''}`}
-                >
-                  EN
-                </i>
-                <i
-                  className={`${lang === 'zh-CN' ? 'active' : ''}`}
-                  onClick={() => this.langChangeTo('zh-CN')}
-                >
-                  中
-                </i>
-              </div>
+          </div>
+          <div className="header-btn">
+            <div className="top-btn">
+              <i
+                onClick={() => this.langChangeTo('en-US')}
+                className={`${lang === 'en-US' ? 'active' : ''}`}
+              >
+                EN
+              </i>
+              <i
+                className={`${lang === 'zh-CN' ? 'active' : ''}`}
+                onClick={() => this.langChangeTo('zh-CN')}
+              >
+                中
+              </i>
             </div>
-          </Header>
-          <Content>
-            <Dashboard intl={intl}/>
-          </Content>
-          <Footer>
-            <a
-              href="https://twitter.com/suterusu_io"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={twitterLogo}
-                alt=""
-                onMouseOver={() => this.lightFooterLogo('twitter')}
-                onMouseOut={() => this.footerLogo('twitter')}
-              />
-            </a>
-            <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
-              <img
-                src={telegramLogo}
-                alt=""
-                onMouseOver={() => this.lightFooterLogo('telegram')}
-                onMouseOut={() => this.footerLogo('telegram')}
-              />
-            </a>
-            <a
-              href="https://suterusu.medium.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={mediumLogo}
-                alt=""
-                onMouseOver={() => this.lightFooterLogo('medium')}
-                onMouseOut={() => this.footerLogo('medium')}
-              />
-            </a>
-          </Footer>
-        </Layout>
+          </div>
+        </Header>
+        <Content>
+          <Dashboard intl={intl} />
+        </Content>
+        <Footer>
+          <a
+            href="https://twitter.com/suterusu_io"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={twitterLogo}
+              alt=""
+              onMouseOver={() => this.lightFooterLogo('twitter')}
+              onMouseOut={() => this.footerLogo('twitter')}
+            />
+          </a>
+          <a href="https://t.me/suterusu_en" target="_blank" rel="noreferrer">
+            <img
+              src={telegramLogo}
+              alt=""
+              onMouseOver={() => this.lightFooterLogo('telegram')}
+              onMouseOut={() => this.footerLogo('telegram')}
+            />
+          </a>
+          <a
+            href="https://suterusu.medium.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={mediumLogo}
+              alt=""
+              onMouseOver={() => this.lightFooterLogo('medium')}
+              onMouseOut={() => this.footerLogo('medium')}
+            />
+          </a>
+        </Footer>
+      </Layout>
     );
   }
 }
