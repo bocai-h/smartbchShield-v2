@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Tooltip } from 'antd';
 const { Header, Footer, Content } = Layout;
 import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
@@ -93,12 +93,6 @@ class Portal extends Component {
 
   render() {
     const {
-      connectWalletTxt,
-      account,
-      metamaskInstalled,
-      ethNetwork,
-      showConnectModal,
-      coinType,
       twitterLogo,
       telegramLogo,
       mediumLogo,
@@ -109,14 +103,16 @@ class Portal extends Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="transfer">
-          <a target="_blank" rel="noopener noreferrer" href="/transfer">
+          <a target="_blank" rel="noopener noreferrer" href="/app">
             {intl.get('Transfer')}
           </a>
         </Menu.Item>
         <Menu.Item key="mining">
-          <a target="_blank" rel="noopener noreferrer" href="/mining">
-            {intl.get('Mining')}
-          </a>
+          <Tooltip title="Coming Soon">
+            <a href="javascript:void(0);" >
+              {intl.get('Mining')}
+            </a>
+          </Tooltip>
         </Menu.Item>
         <Menu.Item key="tutorial">
           <a target="_blank" rel="noopener noreferrer" href="/tutorial">
@@ -124,7 +120,7 @@ class Portal extends Component {
           </a>
         </Menu.Item>
         <Menu.Item key="info">
-          <a target="_blank" rel="noopener noreferrer" href="/info">
+          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
             {intl.get('Info')}
           </a>
         </Menu.Item>
@@ -142,22 +138,24 @@ class Portal extends Component {
               </a>
               <ul className="item-ul">
                 <li>
-                  <a href="/transfer" target="_blank">
+                  <a href="/app" target="_blank" rel="noopener noreferrer">
                     {intl.get('Transfer')}
                   </a>
                 </li>
                 <li>
-                  <a href="/mining" target="_blank">
+                 <Tooltip title="Coming Soon">
+                  <a href="javascript:void(0);" >
                     {intl.get('Mining')}
                   </a>
+                  </Tooltip>
                 </li>
                 <li>
-                  <a href="/tutorial" target="_blank">
+                  <a href="/tutorial" rel="noopener noreferrer" target="_blank">
                     {intl.get('Tutorial')}
                   </a>
                 </li>
                 <li>
-                  <a href="/info" target="_blank">
+                  <a href="/dashboard" rel="noopener noreferrer" target="_blank">
                     {intl.get('Info')}
                   </a>
                 </li>
@@ -166,8 +164,8 @@ class Portal extends Component {
           </div>
           {
             <div className="header-btn">
-              <Button className="connectWalletBtn" shape="round">
-                <a href="/launch">{intl.get('LaunchApp')}</a>
+              <Button className="launchAppBtn" shape="round">
+                <a href="/app">{intl.get('LaunchApp')}</a>
               </Button>
               <div className="top-btn">
                 <i
