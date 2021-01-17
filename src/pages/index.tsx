@@ -24,14 +24,6 @@ const locales = {
 
 class Portal extends Component {
   state = {
-    metamaskInstalled: false,
-    account: '',
-    connectWalletTxt: 'ConnectWallet',
-    web3Browser: false,
-    ethNetwork: '',
-    showConnectModal: false,
-    coinType: '',
-    initDone: false,
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
@@ -54,6 +46,64 @@ class Portal extends Component {
     totalDepositsLoading: true,
     totalUsersLoading: true,
   };
+
+  async getETHPrice() {
+    let ethPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=ethusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        ethPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch ETH price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch ETH price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ ethPrice: ethPrice });
+  }
+
+  async getDaiPrice() {
+    let daiPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=daiusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        daiPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch DAI price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch DAI price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ daiPrice: daiPrice });
+  }
 
   langChangeTo = (lang: string) => {
     localStorage.setItem('lang', lang);
@@ -451,7 +501,7 @@ class Portal extends Component {
                   </Tooltip>
                 </li>
                 <li>
-                  <a href="/tutorial" target="_blank">
+                  <a href="/tutorial" rel="noopener noreferrer" target="_blank">
                     {intl.get('Tutorial')}
                   </a>
                 </li>
@@ -475,8 +525,8 @@ class Portal extends Component {
           </div>
           {
             <div className="header-btn">
-              <Button className="connectWalletBtn" shape="round">
-                <a href="/launch">{intl.get('LaunchApp')}</a>
+              <Button className="launchAppBtn" shape="round">
+                <a href="/app">{intl.get('LaunchApp')}</a>
               </Button>
               <div className="top-btn">
                 <i
