@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Tooltip } from 'antd';
 const { Header, Footer, Content } = Layout;
 // import { history } from 'umi';
 import { Button, Menu, Dropdown } from 'antd';
@@ -224,85 +224,106 @@ class SuterProtocol extends React.Component {
     const scanLink = `${ETHERSCAN}/address/${account}`;
     const menu = (
       <Menu>
-        <Menu.Item key="tutorial">
-          <a target="_blank" rel="noopener noreferrer" href="/tutorial">
-            {intl.get('CheckTutorial')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="/qa">
-            {intl.get('Q&A')}
+        <Menu.Item key="compliance">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={intl.get('ComplianceUrl')}
+          >
+            {intl.get('Compliance')}
           </a>
         </Menu.Item>
         <Menu.Item key="privacyTips">
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={
-              lang === 'en-US'
-                ? 'https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447'
-                : 'https://mp.weixin.qq.com/s/DzufO3h-gb4j4GgW3XrQGA'
-            }
+            href={intl.get('PrivacyTipsUrl')}
           >
             {intl.get('PrivacyTips')}
           </a>
         </Menu.Item>
         <Menu.Item key="about">
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            {intl.get('About')}
-          </a>
+          <Tooltip title={intl.get('ComingSoon')}>
+            <a
+              rel="noopener noreferrer"
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              {intl.get('About')}
+            </a>
+          </Tooltip>
         </Menu.Item>
       </Menu>
     );
+
     const menu1 = (
       <Menu>
+        <Menu.Item key="stats">
+          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
+            {intl.get('Stats')}
+          </a>
+        </Menu.Item>
+        <Menu.Item key="mining">
+          <Tooltip title={intl.get('ComingSoon')}>
+            <a
+              rel="noopener noreferrer"
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              {intl.get('Mining')}
+            </a>
+          </Tooltip>
+        </Menu.Item>
+        <Menu.Item key="tutorial">
+          <a target="_blank" rel="noopener noreferrer" href="/tutorial">
+            {intl.get('Tutorial')}
+          </a>
+        </Menu.Item>
         <Menu.Item key="q&a">
           <a target="_blank" rel="noopener noreferrer" href="/qa">
             {intl.get('Q&A')}
           </a>
         </Menu.Item>
-        <Menu.Item key="dashboard">
-          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
-            {intl.get('Dashboard')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="compliance">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
-          >
-            {intl.get('Compliance')}
-          </a>
-        </Menu.Item>
-        <Menu.ItemGroup title={intl.get('Resources')}>
-          <Menu.Item key="tutotial">
-            <a target="_blank" rel="noopener noreferrer" href="/tutotial">
-              {intl.get('CheckTutorial')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="q&a">
-            <a target="_blank" rel="noopener noreferrer" href="/qa">
-              {intl.get('Q&A')}
+        <Menu.ItemGroup title={intl.get('Info')}>
+          <Menu.Item key="compliance">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={intl.get('ComplianceUrl')}
+            >
+              {intl.get('Compliance')}
             </a>
           </Menu.Item>
           <Menu.Item key="privacyTips">
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://medium.com/suterusu/privacy-tips-for-suterusu-shield-user-96496bb81447"
+              href={intl.get('PrivacyTipsUrl')}
             >
               {intl.get('PrivacyTips')}
             </a>
           </Menu.Item>
           <Menu.Item key="about">
-            <a target="_blank" rel="noopener noreferrer" href="#">
-              {intl.get('About')}
-            </a>
+            <Tooltip title={intl.get('ComingSoon')}>
+              <a
+                rel="noopener noreferrer"
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+              >
+                {intl.get('About')}
+              </a>
+            </Tooltip>
           </Menu.Item>
         </Menu.ItemGroup>
       </Menu>
     );
+
     return (
       this.state.initDone && (
         <Layout className="suterProtocol">
@@ -315,26 +336,29 @@ class SuterProtocol extends React.Component {
                 </a>
                 <ul className="item-ul">
                   <li>
+                    <a href="/dashboard" target="_blank">
+                      {intl.get('Stats')}
+                    </a>
+                  </li>
+                  <li>
+                    <Tooltip title={intl.get('ComingSoon')}>
+                      <a
+                        href="#"
+                        target="_blank"
+                        onClick={e => e.preventDefault()}
+                      >
+                        {intl.get('Mining')}
+                      </a>
+                    </Tooltip>
+                  </li>
+                  <li>
+                    <a href="/tutorial" target="_blank">
+                      {intl.get('Tutorial')}
+                    </a>
+                  </li>
+                  <li>
                     <a href="/qa" target="_blank">
                       {intl.get('Q&A')}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="/dashboard"
-                    >
-                      {intl.get('Dashboard')}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://medium.com/suterusu/regulation-compliance-of-suterusu-625abc752eb9"
-                    >
-                      {intl.get('Compliance')}
                     </a>
                   </li>
                   <li>
@@ -342,10 +366,9 @@ class SuterProtocol extends React.Component {
                       overlay={menu}
                       arrow
                       placement="bottomCenter"
-                      // trigger={['click']}
                       onClick={e => e.preventDefault()}
                     >
-                      <a className="a">{intl.get('Resources')}</a>
+                      <a>{intl.get('Info')}</a>
                     </Dropdown>
                   </li>
                 </ul>
