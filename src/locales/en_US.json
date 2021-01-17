@@ -78,7 +78,7 @@
   "Info": "Info",
   "LaunchApp": "Launch App",
   "Slogan1": "Anonymized PayPal for Cryptocurrency",
-  "SloganDescription": "Suter Shield allows the users to enjoy the cutting-edge private payment functionality provided by the Suterusu protocol. The Suterusu <a target=\"_blank\" href=\"https://medium.com/suterusu/an-introduction-to-the-suterusu-protocol-fe890bc49ead\">protocol</a> is based on our original <a href=\"https://medium.com/suterusu/new-development-on-the-zk-consnark-scheme-8a4ec673bbb4\" target=\"_blank\">ZK-ConSNARK</a> technology, which strikes a perfect balance between performance and security.",
+  "SloganDescription": "Suter Shield allows the users to enjoy the cutting-edge private payment functionality provided by the Suterusu protocol. The <a target=\"_blank\" href=\"https://medium.com/suterusu/an-introduction-to-the-suterusu-protocol-fe890bc49ead\">Suterusu protocol</a> is based on our original <a href=\"https://medium.com/suterusu/new-development-on-the-zk-consnark-scheme-8a4ec673bbb4\" target=\"_blank\">ZK-ConSNARK</a> technology, which strikes a perfect balance between performance and security.",
   "TransferAnonymous": "Transfer Anonymous",
   "Slogan2": "How <strong>Suter Shield</strong>&nbsp; works",
   "Register": "Register",

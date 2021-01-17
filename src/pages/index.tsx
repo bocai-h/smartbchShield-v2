@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Tooltip } from 'antd';
 const { Header, Footer, Content } = Layout;
 import { Button, Menu, Dropdown, Spin } from 'antd';
+import { openNotificationWithIcon } from '../components/tools';
 import intl from 'react-intl-universal';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
@@ -13,6 +14,7 @@ import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
 import { MenuOutlined } from '@ant-design/icons';
+import axios from 'axios';
 import Web3 from 'web3';
 
 const Contract = require('web3-eth-contract');
@@ -27,21 +29,14 @@ class Portal extends Component {
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
-
-    currentETHDeposited: 0,
-    currentStableCoinsDeposited: 0,
     totalFeesUSD: 0,
-    totalETHDeposited: 0,
     totalUSDDeposited: 0,
     totalDeposits: 0,
     totalUsers: 0,
     suterPrice: 0,
     daiPrice: 0,
     ethPrice: 0,
-    currentETHDepositedLoading: true,
-    currentStableCoinsDepositedLoading: true,
     totalFeesUSDLoading: true,
-    totalETHDepositedLoading: true,
     totalUSDDepositedLoading: true,
     totalDepositsLoading: true,
     totalUsersLoading: true,
@@ -160,11 +155,101 @@ class Portal extends Component {
 
   async componentDidMount() {
     this.loadLocales();
+    await this.fetchSuterPrice();
+    await this.getDaiPrice();
+    await this.getETHPrice();
 
     await this.getTotalFeesUSD();
     await this.getTotalUSDDeposited();
     await this.totalDeposits();
     await this.getTotalUser();
+  }
+
+  async fetchSuterPrice() {
+    let suterPrice = 0;
+    try {
+      let response = await axios.get(
+        'kucoin_api/api/v1/market/orderbook/level1?symbol=SUTER-USDT',
+      );
+      if (response.status == 200) {
+        let price = response.data.data.price;
+        suterPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch suter price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch suter price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ suterPrice: suterPrice });
+  }
+
+  async getETHPrice() {
+    let ethPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=ethusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        ethPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch ETH price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch ETH price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ ethPrice: ethPrice });
+  }
+
+  async getDaiPrice() {
+    let daiPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=daiusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        daiPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch DAI price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch DAI price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ daiPrice: daiPrice });
   }
 
   async getTotalUser() {
