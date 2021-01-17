@@ -483,7 +483,7 @@ class Portal extends Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="stats">
-          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
+          <a target="_blank" rel="noopener noreferrer" href="/stats">
             {intl.get('Stats')}
           </a>
         </Menu.Item>
@@ -557,7 +557,7 @@ class Portal extends Component {
               </a>
               <ul className="item-ul">
                 <li>
-                  <a href="/dashboard" target="_blank">
+                  <a href="/stats" target="_blank">
                     {intl.get('Stats')}
                   </a>
                 </li>

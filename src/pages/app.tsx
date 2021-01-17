@@ -261,7 +261,7 @@ class SuterProtocol extends React.Component {
     const menu1 = (
       <Menu>
         <Menu.Item key="stats">
-          <a target="_blank" rel="noopener noreferrer" href="/dashboard">
+          <a target="_blank" rel="noopener noreferrer" href="/stats">
             {intl.get('Stats')}
           </a>
         </Menu.Item>
@@ -330,13 +330,13 @@ class SuterProtocol extends React.Component {
           <Header>
             <div className="head-top">
               <div className="left">
-                <a href="/">
+                <a href="/app">
                   <img src={Logo} className="logo pc" />
                   <img src={mLogo} className="logo mobbile" />
                 </a>
                 <ul className="item-ul">
                   <li>
-                    <a href="/dashboard" target="_blank">
+                    <a href="/stats" target="_blank">
                       {intl.get('Stats')}
                     </a>
                   </li>
