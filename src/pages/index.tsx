@@ -161,11 +161,10 @@ class Portal extends Component {
   async componentDidMount() {
     this.loadLocales();
 
-    this.getCurrentETHDeposited();
-    this.getTotalFeesUSD();
-    this.getTotalUSDDeposited();
-    this.totalDeposits();
-    this.getTotalUser();
+    await this.getTotalFeesUSD();
+    await this.getTotalUSDDeposited();
+    await this.totalDeposits();
+    await this.getTotalUser();
   }
 
   async getTotalUser() {
@@ -341,18 +340,6 @@ class Portal extends Component {
       }
     }
     this.setState({ totalFeesUSD: totalFeesValue, totalFeesUSDLoading: false });
-  }
-
-  async getCurrentETHDeposited() {
-    let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
-    let balanceWithDecimal = await newWeb3.eth.getBalance(
-      CoinInfos['eth'].suterShiledContractAddress,
-    );
-    let balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
-    this.setState({
-      currentETHDeposited: balance,
-      currentETHDepositedLoading: false,
-    });
   }
 
   render() {
@@ -563,7 +550,7 @@ class Portal extends Component {
                   }}
                 ></div>
                 <Button className="connectWalletBtn" shape="round" size="large">
-                  {intl.get('TransferAnonymous')}
+                  <a href="/app">{intl.get('LaunchApp')}</a>
                 </Button>
               </div>
               <div className="flex-item">
