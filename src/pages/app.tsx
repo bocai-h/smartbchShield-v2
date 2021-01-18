@@ -5,6 +5,7 @@ const { Header, Footer, Content } = Layout;
 import { Button, Menu, Dropdown } from 'antd';
 import intl from 'react-intl-universal';
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
+import detectEthereumProvider from '@metamask/detect-provider';
 import 'antd/dist/antd.css';
 import Logo from '../static/suterShield.svg';
 import mLogo from '../static/logo.svg';
@@ -106,8 +107,9 @@ class SuterProtocol extends React.Component {
     this.setState({ showConnectModal: false });
   }
 
-  checkMetaMaskStatus() {
-    if (typeof window.ethereum !== 'undefined') {
+  async checkMetaMaskStatus() {
+    const provider = await detectEthereumProvider();
+    if (provider === window.ethereum) {
       console.log('MetaMask is installed!');
       this.setState({ metamaskInstalled: true });
       this.checkEthNetworkType();
