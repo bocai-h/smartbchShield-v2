@@ -93,7 +93,7 @@ class SuterProtocol extends React.Component {
 
   async connectMetaMask() {
     // Will trigger accountsChanged event when refresh page
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     this.setState({ showConnectModal: false });
     this.setCurrentAccount(accounts[0]);
   }
