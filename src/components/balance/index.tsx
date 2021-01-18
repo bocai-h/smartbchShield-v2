@@ -32,14 +32,14 @@ class Balance extends React.Component {
         info.contractABI,
         info.contractAddress,
       );
-      suterShiledTokenContract.setProvider(window.web3.currentProvider);
+      suterShiledTokenContract.setProvider(window.ethereum);
       // console.log(suterShiledTokenContract)
       let balanceWithDecimal = await suterShiledTokenContract.methods
         .balanceOf(account)
         .call();
       balance = (balanceWithDecimal * 1.0) / (10 ** info.decimal);
     } else {
-      let newWeb3 = new Web3(window.web3.currentProvider);
+      let newWeb3 = new Web3(window.ethereum);
       let balanceWithDecimal = await newWeb3.eth.getBalance(account);
       balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     }
