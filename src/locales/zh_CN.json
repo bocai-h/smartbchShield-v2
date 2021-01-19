@@ -90,5 +90,6 @@
   "BurnDescription": "用户可以接着调用Burn模块将s-代币转换回原代币。只要用户在调用Burn模块时使用与Fund模块不同的以太坊账户，Fund与Burn操作之间就再无关联。",
   "Slogan3": "<a href=\"https://www.chainnews.com/articles/272155769768.htm\" target=\"_blank\">为什么<strong>Suter Shield</strong>&nbsp;能更好地保护您的隐私</a>",
   "Slogan3Description1": "通过调用Fund模块，Suter账号与以太坊地址之间的联系被切断。当攻击者追踪以太坊地址的支付记录时，就像水滴入海，无踪可觅。",
-  "Slogan3Description2": "当矿工验证交易时，他们仍可以观察到不同Suter账号间的付款记录。我们采用同态公钥加密来保证支付金额的保密性，并通过零知识证明来保证Suter账号的匿名性。"
+  "Slogan3Description2": "当矿工验证交易时，他们仍可以观察到不同Suter账号间的付款记录。我们采用同态公钥加密来保证支付金额的保密性，并通过零知识证明来保证Suter账号的匿名性。",
+  "PleaseConnectToMetaMask": "请链接到Metamask账户"
 }

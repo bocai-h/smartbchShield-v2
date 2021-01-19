@@ -53,6 +53,7 @@ class SuterProtocol extends React.Component {
     this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
+    this.handleAccountChanged = this.handleAccountChanged.bind(this);
   }
 
   componentDidMount() {
@@ -139,18 +140,36 @@ class SuterProtocol extends React.Component {
     });
   }
 
-  accountChanged() {
-    window.ethereum.on('accountsChanged', function(accounts) {
+  handleAccountChanged(accounts){
+    let { account } = this.state;
+    if (accounts.length === 0) {
+      // MetaMask is locked or the user has not connected any accounts
+      // console.log('Please connect to MetaMask.');
       openNotificationWithIcon(
         intl.get('MetamaskAccountChanged'),
-        intl.get('PageWillRefresh'),
+        intl.get('PleaseConnectToMetaMask'),
         'warning',
         4.5,
       );
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    });
+      window.location.reload();
+    } else if (accounts[0] !== account) {
+      this.setCurrentAccount(accounts[0])
+    }
+  }
+
+  accountChanged() {
+    window.ethereum.on('accountsChanged', (accounts) => { this.handleAccountChanged(accounts) });
+    // window.ethereum.on('accountsChanged', function(accounts) {
+    //   openNotificationWithIcon(
+    //     intl.get('MetamaskAccountChanged'),
+    //     intl.get('PageWillRefresh'),
+    //     'warning',
+    //     4.5,
+    //   );
+    //   setTimeout(() => {
+    //     window.location.reload();
+    //   }, 2000);
+    // });
   }
 
   checkEthNetworkType() {
