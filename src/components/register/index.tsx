@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import { Client } from '../tools';
+import { Client, openNotificationWithIcon } from '../tools';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -49,28 +49,38 @@ class Register extends React.Component {
     suterShieldContract.setProvider(window.ethereum);
     var lastestWeb3 = new Web3(window.ethereum);
     let suterShieldClient;
-    if (coinType !== 'eth') {
-      var suterShiledTokenContract = new Contract(
-        info.contractABI,
-        info.contractAddress,
-      );
-      suterShiledTokenContract.setProvider(window.ethereum);
-
-      suterShieldClient = new Client.ClientSuterERC20(
-        lastestWeb3,
-        suterShieldContract,
-        account,
-        suterShiledTokenContract,
-      );
-    } else {
-      suterShieldClient = new Client.ClientSuterETH(
-        lastestWeb3,
-        suterShieldContract,
-        account,
-      );
+    try {
+      if (coinType !== 'eth') {
+        var suterShiledTokenContract = new Contract(
+          info.contractABI,
+          info.contractAddress,
+        );
+        suterShiledTokenContract.setProvider(window.ethereum);
+  
+        suterShieldClient = new Client.ClientSuterERC20(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+          suterShiledTokenContract,
+        );
+      } else {
+        suterShieldClient = new Client.ClientSuterETH(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+        );
+      }
+      await suterShieldClient.init();
+      await suterShieldClient.register(inputValue);
+    }catch(error){
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'warning');
+      }
+      this.setState({ spin: false });
+      return;
     }
-    await suterShieldClient.init();
-    await suterShieldClient.register(inputValue);
     // set client to form component
     setClient(suterShieldClient);
     this.setState({ spin: false });

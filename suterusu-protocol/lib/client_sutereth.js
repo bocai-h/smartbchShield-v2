@@ -10,15 +10,18 @@ class ClientSuterETH extends ClientBase {
     }
 
     async deposit (value, fundGasLimit) {
+        console.time("LocalCalc");
         var that = this;
         that.checkRegistered();
         that.checkValue();
         var account = that.account;
         console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " wei)");
-
         let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
-
         var nativeValue = that.web3.utils.toBN(new BigNumber(value * that.unit)).toString();
+        console.log("%cLocalCalc spend time","color:red");
+        console.timeEnd("LocalCalc");
+        
+        console.time("ChainSpend");
         if (fundGasLimit === undefined)
             fundGasLimit = 400000;
         let transaction = that.suter.methods.fund(account.publicKeySerialized(), value, encGuess)
@@ -31,6 +34,9 @@ class ClientSuterETH extends ClientBase {
                 account._state.pending += parseInt(value);
                 console.log("Deposit of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
+
+                console.log("%cChainSpend spend time","color:red");
+                console.timeEnd("ChainSpend");  
             })
             .on('error', (error) => {
                 console.log("Deposit failed: " + error);
