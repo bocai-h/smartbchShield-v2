@@ -79,7 +79,7 @@ class Dashboard extends React.Component {
         4.5,
       );
     }
-    this.setState({ suterPrice: suterPrice });
+    this.setState({ suterPrice: suterPrice * 2 });
   }
 
   async getETHPrice() {
