@@ -1,21 +1,44 @@
-.suterProtocol{
-  .form{
-    .loginContainer{
+.suterProtocol {
+  .form {
+    .loginContainer {
       display: flex;
       justify-content: space-between;
       max-width: 1100px;
       margin: 100px auto 0 auto;
-      .left{
-        h1, p, .goToRegister{
-          color: #B9AAFF;
+      .right {
+        @media only screen and (max-width: 600px) {
+          display: none;
         }
-        .btnContainer{
+      }
+      .left {
+        h1,
+        p,
+        .goToRegister {
+          color: #b9aaff;
+        }
+        h1 {
+          font-size: 48px;
+          margin-bottom: 0;
+        }
+        p {
+          font-size: 21px;
+        }
+        .goToRegister {
+          margin-top: 5px;
+          .registerLink {
+            color: #b9aaff;
+            font-weight: bold;
+          }
+        }
+        .btnContainer {
+          padding-bottom: 20px;
+          border-bottom: 1px solid#B9AAFF;
           button {
             border-color: #b9aaff;
             color: #b9aaff;
             background-color: transparent;
             background-image: none;
-            &:hover{
+            &:hover {
               background-image: linear-gradient(
                 to right,
                 rgba(185, 170, 255, 1),
@@ -31,11 +54,12 @@
             background-image: none;
           }
         }
-        .inputContainer{
-          margin-bottom: 10px;
+        .inputContainer {
+          margin-top: 40px;
+          margin-bottom: 40px;
           position: relative;
-          .inputAppend{
-            img{
+          .inputAppend {
+            img {
               cursor: pointer;
             }
             position: absolute;
