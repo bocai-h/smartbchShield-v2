@@ -5,6 +5,7 @@ import Fund from '../fund';
 import Transfer from '../transfer';
 import Burn from '../burn';
 import Register from '../register';
+import Login from '../Login';
 import WarningIcon from '../../static/warning.svg';
 import CloseIcon from '../../static/close.svg';
 class Form extends React.Component {
@@ -14,7 +15,8 @@ class Form extends React.Component {
     updateKey: '',
     balance: 0,
     suterShieldBalance: 0,
-    warningTips: true
+    warningTips: true,
+    logined: false
   };
 
   constructor(props) {
@@ -49,23 +51,18 @@ class Form extends React.Component {
       updateKey,
       balance,
       suterShieldBalance,
-      warningTips
+      warningTips,
+      logined,
     } = this.state;
 
     return (
       <div className="form">
-        {!registered ? (
-          <Register
-            account={account}
-            coinType={coinType}
-            setClient={this.setClient}
-            cancelSelectCoin={this.props.cancelSelectCoin}
-            intl={intl}
-          />
+        { warningTips ? <div className="tipsContainer">
+        {!logined ? (
+          <Login/>
         ) : (
           ''
         )}
-        { warningTips ? <div className="tipsContainer">
           <img src={WarningIcon} className="warningIcon"/>
           <div>{intl.get("warningTips")}</div>
           <img src={CloseIcon} className="closeIcon" onClick={this.closeWarningTips}/>

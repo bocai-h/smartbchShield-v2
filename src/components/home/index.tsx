@@ -55,7 +55,7 @@ class Home extends React.Component {
   }
 
   render() {
-    let { account, selectCoin, checkQA, intl } = this.props;
+    let { account, selectCoin, intl } = this.props;
     this.homeTitle();
     return (
       <div className="home">
