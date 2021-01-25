@@ -212,8 +212,8 @@ class ClientBase {
 
     static async registered (suter, pubKey) {
         var encoded = ABICoder.encodeParameter("bytes32[2]", pubKey);
-        var hashedKey = soliditySha3(encoded);
-        return await suter.methods.registered(hashedKey).call();
+        var hashedKey = soliditySha3(encoded);  
+        return await suter.methods.registered(hashedKey).call(); 
     }
 
     //async changeBurnFeeStrategy (multiplier, dividend) {
@@ -465,6 +465,7 @@ class ClientBase {
         registraction transaction.
     */
     async register (secret, registerGasLimit) {
+        console.time("RegisterLocalCalc");
         var that = this;
         if (secret === undefined) {
             that.account.keypair = utils.createAccount();
@@ -473,12 +474,15 @@ class ClientBase {
             that.account.keypair = utils.keyPairFromSecret(secret);
             that.account.aesKey = aes.generateKey(secret);
         }
+        console.log("%cRegisterLocalCalc spend time","color:red");
+        console.timeEnd("RegisterLocalCalc");
+
+        console.time("RegisterChainSpend");
         let isRegistered = await ClientBase.registered(that.suter, that.account.publicKeySerialized());
         if (isRegistered) {
             // This branch would recover the account previously bound to the secret, and the corresponding balance.
             return await that.syncAccountState();
         } else {
-
             var [c, s] = utils.sign(that.suter._address, that.account.keypair);
             if (registerGasLimit === undefined)
                 registerGasLimit = 190000;
@@ -488,6 +492,8 @@ class ClientBase {
                     console.log("Registration submitted (txHash = \"" + hash + "\").");
                 })
                 .on('receipt', (receipt) => {
+                    console.log("%RegisterChainSpend spend time","color:red");
+                    console.timeEnd("RegisterChainSpend");  
                     console.log("Registration successful.");
                 })
                 .on('error', (error) => {
@@ -531,6 +537,7 @@ class ClientBase {
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction.
     */
     async withdraw (value, burnGasLimit) {
+        console.time("LocalCalc");
         var that = this;
         that.checkRegistered();
         that.checkValue();
@@ -592,7 +599,10 @@ class ClientBase {
         var u = bn128.serialize(utils.u(state.lastRollOver, account.privateKey()));
 
         let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
+        console.log("%cLocalCalc spend time","color:red");
+        console.timeEnd("LocalCalc");
 
+        console.time("ChainSpend");
         if (burnGasLimit === undefined)
             burnGasLimit = 3000000;
         let transaction = that.suter.methods.burn(account.publicKeySerialized(), value, u, proof, encGuess)
@@ -605,8 +615,11 @@ class ClientBase {
                 account._state.nonceUsed = true;
                 account._state.pending -= value;
                 console.log("Withdrawal of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
-                console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
 
+                console.log("%cChainSpend spend time","color:red");
+                console.timeEnd("ChainSpend"); 
+
+                console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
             })
             .on('error', (error) => {
                 console.log("Withdrawal failed: " + error);
@@ -630,6 +643,7 @@ class ClientBase {
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction. 
     */
     async transfer (receiver, value, transferGasLimit) {
+        console.time("LocalCalc");
         /*
         Estimation of running time for a transfer.
         */
@@ -768,6 +782,10 @@ class ClientBase {
         // console.log("Suter balance: ", (await this.web3.eth.getBalance(that.suter.options.address)));
         // console.log("Agency balance: ", (await this.web3.eth.getBalance(await that.suter.methods.suterAgency().call())));
 
+        console.log("%cLocalCalc spend time","color:red");
+        console.timeEnd("LocalCalc");
+
+        console.time("ChainSpend");
         if (transferGasLimit === undefined)
             transferGasLimit = 5470000;
         let transaction = 
@@ -783,6 +801,9 @@ class ClientBase {
                     account._state.pending -= value;
                     console.log("Transfer of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
+
+                console.log("%cChainSpend spend time","color:red");
+                console.timeEnd("ChainSpend");  
                 })
                 .on('error', (error) => {
                     console.log("Transfer failed: " + error);

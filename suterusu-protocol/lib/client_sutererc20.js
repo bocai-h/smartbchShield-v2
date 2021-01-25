@@ -23,18 +23,27 @@ class ClientSuterERC20 extends ClientBase {
         var account = that.account;
         console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " tokens)");
         var nativeValue = that.web3.utils.toBN(new BigNumber(value * that.unit)).toString();
+
+        console.time("Approve");
         if (approveGasLimit === undefined)
             approveGasLimit = 60000;
-
+      
         var allowance =  await that.erc20Token.methods.allowance(that.home, that.suter.options.address).call();
         if(allowance < nativeValue) {
           await that.erc20Token.methods.approve(that.suter.options.address, nativeValue)
           .send({from: that.home, gas: approveGasLimit});
         }
+        console.log("%cApprove spend time","color:red");
+        console.timeEnd("Approve");
+
         console.log("ERC20 tokens approved. Start deposit...");
 
+        console.time("LocalCalc");
         let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
+        console.log("%cLocalCalc spend time","color:red");
+        console.timeEnd("LocalCalc");
 
+        console.time("ChainSpend");
         if (fundGasLimit === undefined)
             fundGasLimit = 400000;
         let transaction = that.suter.methods.fund(account.publicKeySerialized(), value, encGuess)
@@ -47,6 +56,9 @@ class ClientSuterERC20 extends ClientBase {
                 account._state.pending += parseInt(value);
                 console.log("Deposit of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
                 console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
+
+                console.log("%cChainSpend spend time","color:red");
+                console.timeEnd("ChainSpend");  
             })
             .on('error', (error) => {
                 console.log("Deposit failed: " + error);
@@ -61,6 +73,8 @@ class ClientSuterERC20 extends ClientBase {
       var account = that.account;
       console.log("Initiating deposit: value of " + value + " units (" + value * that.unit + " tokens)");
       var nativeValue = that.web3.utils.toBN(new BigNumber(value * that.unit)).toString();
+
+      console.time("Approve");
       if (approveGasLimit === undefined)
           approveGasLimit = 60000;
 
@@ -75,10 +89,16 @@ class ClientSuterERC20 extends ClientBase {
         await that.erc20Token.methods.approve(that.suter.options.address, nativeValue)
               .send({from: that.home, gas: approveGasLimit});
       }
+      console.log("%cApprove spend time","color:red");
+      console.timeEnd("Approve");
       console.log("ERC20 tokens approved. Start deposit...");
 
+      console.time("LocalCalc");
       let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
-
+      console.log("%cLocalCalc spend time","color:red");
+      console.timeEnd("LocalCalc");
+      
+      console.time("ChainSpend");
       if (fundGasLimit === undefined)
           fundGasLimit = 400000;
       let transaction = that.suter.methods.fund(account.publicKeySerialized(), value, encGuess)
@@ -91,6 +111,8 @@ class ClientSuterERC20 extends ClientBase {
               account._state.pending += parseInt(value);
               console.log("Deposit of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
               console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
+              console.log("%cChainSpend spend time","color:red");
+              console.timeEnd("ChainSpend");  
           })
           .on('error', (error) => {
               console.log("Deposit failed: " + error);
