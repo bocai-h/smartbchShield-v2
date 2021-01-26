@@ -272,6 +272,7 @@ class Login extends React.Component {
               </>
             ) : (
               <div className="createByYourself">
+                <p className="privateKeyTips">{intl.get('privateKeyTips')}</p>
                 <div className="inputContainer">
                   <p>{intl.get('InputYourPrivateKey')}</p>
                   <input

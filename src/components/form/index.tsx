@@ -6,6 +6,8 @@ import Transfer from '../transfer';
 import Burn from '../burn';
 import Login from '../login';
 import Register from '../newRegister';
+import WarningIcon from '../../static/warning.svg';
+import CloseIcon from '../../static/close.svg';
 class Form extends React.Component {
   state = {
     client: '',
@@ -41,6 +43,9 @@ class Form extends React.Component {
   setBeforeFilter(ctype: string) {
     this.setState({ beforeFilter: ctype });
   }
+  closeWarningTips() {
+    this.setState({ warningTips: false });
+  }
 
   render() {
     let { account, coinType, intl } = this.props;
@@ -51,10 +56,25 @@ class Form extends React.Component {
       suterShieldBalance,
       beforeFilter,
       logined,
+      warningTips,
     } = this.state;
 
     return (
       <div className="form">
+        {warningTips ? (
+          <div className="tipsContainer">
+            <img src={WarningIcon} className="warningIcon" />
+            <div>{intl.get('warningTips')}</div>
+            <img
+              src={CloseIcon}
+              className="closeIcon"
+              onClick={this.closeWarningTips}
+            />
+          </div>
+        ) : (
+          ''
+        )}
+
         {!logined ? (
           beforeFilter === 'login' ? (
             <Login
