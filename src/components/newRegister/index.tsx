@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Client, openNotificationWithIcon } from '../tools';
+import SpinModal from '../spinModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -19,6 +20,7 @@ class Login extends React.Component {
     confirmPrivateKey: '',
     agree: false,
     registerBtnTxt: 'InputYourPrivateKey',
+    proccessing: false,
   };
 
   constructor(props) {
@@ -40,6 +42,7 @@ class Login extends React.Component {
   }
 
   async register() {
+    this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
     let { inputValue } = this.state;
     let info = CoinInfos[coinType];
@@ -79,10 +82,12 @@ class Login extends React.Component {
       } else {
         openNotificationWithIcon('Error', error.toString(), 'warning');
       }
+      this.setState({ proccessing: false });
       return;
     }
     // set client to form component
     setClient(suterShieldClient);
+    this.setState({ proccessing: false });
   }
 
   handlePrivateKeyInput(e) {
@@ -192,6 +197,7 @@ class Login extends React.Component {
       confirmPrivateKey,
       agree,
       registerBtnTxt,
+      proccessing,
     } = this.state;
     let submitable =
       privateKey !== '' &&
@@ -200,6 +206,7 @@ class Login extends React.Component {
       agree;
     return (
       <>
+        {proccessing ? <SpinModal intl={intl} /> : ''}
         <div className="registerContainer">
           <div className="left">
             <div className="title">
