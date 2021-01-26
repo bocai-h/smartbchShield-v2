@@ -7,30 +7,58 @@ import closeEye from '../../static/closeEye.svg';
 import registerLogo from '../../static/register.svg';
 import './index.less';
 
+var randomstring = require('randomstring');
 var Contract = require('web3-eth-contract');
 class Login extends React.Component {
   state = {
-    inputValue: '',
+    generatedPrivateKey: '',
     toggleShowPrivateKey: false,
+    PrivateKeyGenerated: false,
   };
 
   constructor(props) {
     super(props);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.toggleShowPrivateKey = this.toggleShowPrivateKey.bind(this);
+    this.generatePrivateKey = this.generatePrivateKey.bind(this);
   }
 
-  handleInputChange(e) {
-    let value = e.target.value;
-    this.setState({ inputValue: value });
-  }
   toggleShowPrivateKey() {
     this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
 
+  generatePrivateKey() {
+    let lastestWeb3 = new Web3(window.ethereum);
+    let entropy = randomstring.generate({ length: 32, charset: 'alphabetic' });
+    let privateKey = lastestWeb3.eth.accounts.create(entropy)['privateKey'];
+    this.setState({
+      PrivateKeyGenerated: true,
+      generatedPrivateKey: privateKey,
+    });
+    this.downloadString(privateKey, 'text/text', 'privatekey.txt');
+  }
+
+  downloadString(text, fileType, fileName) {
+    var blob = new Blob([text], { type: fileType });
+    var a = document.createElement('a');
+    a.download = fileName;
+    a.href = URL.createObjectURL(blob);
+    a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() {
+      URL.revokeObjectURL(a.href);
+    }, 1500);
+  }
+
   render() {
     let { intl, setBeforeFilter } = this.props;
-    let { inputValue, toggleShowPrivateKey } = this.state;
+    let {
+      toggleShowPrivateKey,
+      PrivateKeyGenerated,
+      generatedPrivateKey,
+    } = this.state;
     return (
       <>
         <div className="registerContainer">
@@ -49,9 +77,35 @@ class Login extends React.Component {
               .
             </div>
             <div className="btnContainer">
-              <Button shape="round" block className="PrivateKeyGenerator">
-                Private Key Generator
-              </Button>
+              {!PrivateKeyGenerated ? (
+                <Button
+                  shape="round"
+                  block
+                  className="PrivateKeyGenerator"
+                  onClick={this.generatePrivateKey}
+                >
+                  Private Key Generator
+                </Button>
+              ) : (
+                <div>
+                  <div className="inputContainer">
+                    <input
+                      value={generatedPrivateKey}
+                      readOnly
+                      type={toggleShowPrivateKey ? 'text' : 'password'}
+                    />
+                    <div className="inputAppend">
+                      <img
+                        src={toggleShowPrivateKey ? closeEye : openEye}
+                        onClick={this.toggleShowPrivateKey}
+                      />
+                    </div>
+                  </div>
+                  <Button shape="round" block className="PrivateKeyGenerator">
+                    Copy and Next
+                  </Button>
+                </div>
+              )}
               <p style={{ textAlign: 'center', marginBottom: 0 }}>or</p>
               <Button shape="round" block>
                 Create By Yourself
