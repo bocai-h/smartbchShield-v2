@@ -24,7 +24,8 @@
   "ConnectToWallet": "连接到钱包",
   "RegisterOrLogin": "注册或登录",
   "SuterusuAccount": "Suterusu账户",
-  "RegisterWarning": "请使用与您Metamask钱包私钥一样随机的密钥作为Suter账号私钥并抄在纸上妥善保管。永远不要与他人分享您的私钥.",
+  "RegisterWarning": "请使用我们的私钥生成器或者使用与您Metamask钱包私钥一样随机的密钥作为Suter账号私钥并抄在纸上妥善保管。",
+  "NeverShareYourPrivateKey": "永远不要向别人分享您的私钥",
   "InsertYourPrivatekey": "输入你的私钥",
   "RegisterAgree": "我选择了足够随机的Suter账号私钥并将妥善保存该私钥",
   "Balance": "余额",
@@ -93,5 +94,15 @@
   "Slogan3Description2": "当矿工验证交易时，他们仍可以观察到不同Suter账号间的付款记录。我们采用同态公钥加密来保证支付金额的保密性，并通过零知识证明来保证Suter账号的匿名性。",
   "PleaseConnectToMetaMask": "请链接到Metamask账户",
   "invalidConfirmPrivateKeyTips": "确认私钥与私钥不一致",
-  "InputYourPrivateKey": "输入你的私钥"
+  "InputYourPrivateKey": "输入您的私钥",
+  "Login": "登录",
+  "YourSuterusuAccount": "你的Suterusu账户",
+  "DoNotHaveAAccount": "没有Suterusu账户?",
+  "PrivateKeyGenerator": "私钥生成器",
+  "CreateByYourself": "自己生成",
+  "CopyAndNext": "复制和下一步",
+  "ConfirmYourPrivateKey": "确认密钥",
+  "AlreadyHaveAnAccount": "已经有了一个Suterusu账户",
+  "or": "或",
+  "ThisSuterAccountNotExists": "当前Suterusu账户不存在"
 }

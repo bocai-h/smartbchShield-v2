@@ -210,17 +210,15 @@ class Login extends React.Component {
         <div className="registerContainer">
           <div className="left">
             <div className="title">
-              <h1>Register</h1>
-              <p>Your Suterusu Account</p>
+              <h1>{intl.get('Register')}</h1>
+              <p>{intl.get('YourSuterusuAccount')}</p>
             </div>
             {!createdByYourself ? (
               <>
                 <div className="registerTipsContainer">
-                  Please use our key generator or use a key that is as random as
-                  your Metamask wallet private key as the Suter account private
-                  key, and copy it on paper for safekeeping.{' '}
+                  {intl.get('RegisterWarning')}
                   <span className="tips">
-                    Never share your private key with others
+                    {intl.get('NeverShareYourPrivateKey')}
                   </span>
                   .
                 </div>
@@ -232,7 +230,7 @@ class Login extends React.Component {
                       className="PrivateKeyGenerator"
                       onClick={this.generatePrivateKey}
                     >
-                      Private Key Generator
+                      {intl.get('PrivateKeyGenerator')}
                     </Button>
                   ) : (
                     <div className="privateKeyGeneratorInput">
@@ -255,22 +253,29 @@ class Login extends React.Component {
                         className="PrivateKeyGenerator"
                         onClick={this.copyGeneratedPrivateKey}
                       >
-                        Copy and Next
+                        {intl.get('CopyAndNext')}
                       </Button>
                     </div>
                   )}
-                  <p style={{ textAlign: 'center', marginBottom: 0 }}>or</p>
-                  <Button shape="round" block onClick={this.createdByYourself}>
-                    Create By Yourself
+                  <p style={{ textAlign: 'center', marginBottom: 0 }}>
+                    {intl.get('or')}
+                  </p>
+                  <Button
+                    shape="round"
+                    block
+                    onClick={this.createdByYourself}
+                    className="createdByYourself"
+                  >
+                    {intl.get('CreateByYourself')}
                   </Button>
                 </div>
               </>
             ) : (
               <div className="createByYourself">
                 <div className="inputContainer">
-                  <p>Input Your Private Key</p>
+                  <p>{intl.get('InputYourPrivateKey')}</p>
                   <input
-                    placeholder={intl.get('InsertYourPrivatekey')}
+                    placeholder={intl.get('InputYourPrivateKey')}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
                     onChange={this.handlePrivateKeyInput}
                     className={
@@ -288,9 +293,9 @@ class Login extends React.Component {
                 </div>
 
                 <div className="inputContainer" style={{ marginTop: '20px' }}>
-                  <p>Confirm Your Private Key</p>
+                  <p>{intl.get('ConfirmYourPrivateKey')}</p>
                   <input
-                    placeholder={intl.get('InsertYourPrivatekey')}
+                    placeholder={intl.get('InputYourPrivateKey')}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
                     onChange={this.handleConfirmPrivateKeyInput}
                     className={
@@ -324,9 +329,9 @@ class Login extends React.Component {
             )}
 
             <div className="goToLogin">
-              Already have an account?{' '}
+              {intl.get('AlreadyHaveAnAccount')}{' '}
               <a className="loginLink" onClick={setBeforeFilter}>
-                Login
+                {intl.get('Login')}
               </a>
               .
             </div>

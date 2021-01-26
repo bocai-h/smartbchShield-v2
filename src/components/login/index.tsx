@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Client, openNotificationWithIcon } from '../tools';
+import SpinModal from '../spinModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -12,6 +13,7 @@ class Login extends React.Component {
   state = {
     inputValue: '',
     toggleShowPrivateKey: false,
+    proccessing: false,
   };
 
   constructor(props) {
@@ -29,6 +31,7 @@ class Login extends React.Component {
     this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
   async login() {
+    this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
     let { inputValue } = this.state;
     let info = CoinInfos[coinType];
@@ -62,26 +65,29 @@ class Login extends React.Component {
     await suterShieldClient.init();
     let ok = await suterShieldClient.login(inputValue);
     if (ok === -1) {
+      this.setState({ proccessing: false });
       openNotificationWithIcon(
         'Warning',
-        'This suter account not exists',
+        this.props.intl.get('ThisSuterAccountNotExists'),
         'warn',
         4,
       );
     } else {
       setClient(suterShieldClient);
+      this.setState({ proccessing: false });
     }
   }
 
   render() {
     let { intl, setBeforeFilter } = this.props;
-    let { inputValue, toggleShowPrivateKey } = this.state;
+    let { inputValue, toggleShowPrivateKey, proccessing } = this.state;
     return (
       <>
+        {proccessing ? <SpinModal intl={intl} /> : ''}
         <div className="loginContainer">
           <div className="left">
-            <h1>Login</h1>
-            <p>Your Suterusu Account</p>
+            <h1>{intl.get('Login')}</h1>
+            <p>{intl.get('YourSuterusuAccount')}</p>
             <div className="inputContainer">
               <input
                 placeholder={intl.get('InsertYourPrivatekey')}
@@ -104,13 +110,13 @@ class Login extends React.Component {
                 disabled={inputValue === ''}
                 onClick={this.login}
               >
-                Login
+                {intl.get('Login')}
               </Button>
             </div>
             <div className="goToRegister">
-              Don't have a account?{' '}
+              {intl.get('DoNotHaveAAccount')}{' '}
               <a className="registerLink" onClick={setBeforeFilter}>
-                Register
+                {intl.get('Register')}
               </a>
               .
             </div>
