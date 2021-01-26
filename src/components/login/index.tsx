@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Client } from '../tools';
+import { Client, openNotificationWithIcon } from '../tools';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -18,6 +18,7 @@ class Login extends React.Component {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.toggleShowPrivateKey = this.toggleShowPrivateKey.bind(this);
+    this.login = this.login.bind(this);
   }
 
   handleInputChange(e) {
@@ -27,7 +28,50 @@ class Login extends React.Component {
   toggleShowPrivateKey() {
     this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
-  async login() {}
+  async login() {
+    let { account, coinType, setClient } = this.props;
+    let { inputValue } = this.state;
+    let info = CoinInfos[coinType];
+    var suterShieldContract = new Contract(
+      info.suterShiledContractABI,
+      info.suterShiledContractAddress,
+    );
+    suterShieldContract.setProvider(window.ethereum);
+    var lastestWeb3 = new Web3(window.ethereum);
+    let suterShieldClient;
+    if (coinType !== 'eth') {
+      var suterShiledTokenContract = new Contract(
+        info.contractABI,
+        info.contractAddress,
+      );
+      suterShiledTokenContract.setProvider(window.ethereum);
+
+      suterShieldClient = new Client.ClientSuterERC20(
+        lastestWeb3,
+        suterShieldContract,
+        account,
+        suterShiledTokenContract,
+      );
+    } else {
+      suterShieldClient = new Client.ClientSuterETH(
+        lastestWeb3,
+        suterShieldContract,
+        account,
+      );
+    }
+    await suterShieldClient.init();
+    let ok = await suterShieldClient.login(inputValue);
+    if (ok === -1) {
+      openNotificationWithIcon(
+        'Warning',
+        'This suter account not exists',
+        'warn',
+        4,
+      );
+    } else {
+      setClient(suterShieldClient);
+    }
+  }
 
   render() {
     let { intl } = this.props;

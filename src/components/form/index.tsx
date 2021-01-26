@@ -5,7 +5,7 @@ import Fund from '../fund';
 import Transfer from '../transfer';
 import Burn from '../burn';
 import Register from '../register';
-import Login from '../Login';
+import Login from '../login';
 import WarningIcon from '../../static/warning.svg';
 import CloseIcon from '../../static/close.svg';
 class Form extends React.Component {
@@ -15,7 +15,7 @@ class Form extends React.Component {
     balance: 0,
     suterShieldBalance: 0,
     warningTips: true,
-    logined: false
+    logined: false,
   };
 
   constructor(props) {
@@ -36,10 +36,10 @@ class Form extends React.Component {
   }
 
   setClient(client) {
-    this.setState({ client: client, registered: true });
+    this.setState({ client: client, logined: true });
   }
   closeWarningTips() {
-    this.setState({warningTips: false})
+    this.setState({ warningTips: false });
   }
 
   render() {
@@ -54,44 +54,51 @@ class Form extends React.Component {
 
     return (
       <div className="form">
-        {
-         !logined ? <Login intl={intl}/> : <div>
-         <Balance
-            coinType={coinType}
-            client={client}
-            account={account}
-            key={updateKey}
-            setBalanceFunc={this.setBalance}
+        {!logined ? (
+          <Login
             intl={intl}
+            setClient={this.setClient}
+            account={account}
+            coinType={coinType}
           />
-          <div className="operationContainer">
-            <Fund
+        ) : (
+          <div>
+            <Balance
               coinType={coinType}
               client={client}
               account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={balance}
+              key={updateKey}
+              setBalanceFunc={this.setBalance}
               intl={intl}
             />
-            <Transfer
-              coinType={coinType}
-              client={client}
-              account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={suterShieldBalance}
-              intl={intl}
-            />
-            <Burn
-              coinType={coinType}
-              client={client}
-              account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={suterShieldBalance}
-              intl={intl}
-            />
+            <div className="operationContainer">
+              <Fund
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={balance}
+                intl={intl}
+              />
+              <Transfer
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={suterShieldBalance}
+                intl={intl}
+              />
+              <Burn
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={suterShieldBalance}
+                intl={intl}
+              />
+            </div>
           </div>
-        </div>
-        }
+        )}
       </div>
     );
   }
