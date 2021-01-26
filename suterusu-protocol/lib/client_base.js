@@ -172,12 +172,6 @@ class ClientBase {
       this.setAvailable = value => {
         this._state.available = value;
       };
-      
-      static async registered (suter, pubKey) {
-        var encoded = ABICoder.encodeParameter("bytes32[2]", pubKey);
-        var hashedKey = soliditySha3(encoded);  
-        return await suter.methods.registered(hashedKey).call(); 
-      };
 
       this.pending = () => {
         return this._state.pending;
@@ -505,44 +499,15 @@ class ClientBase {
     @return A promise that is resolved (or rejected) with the execution status of the
         registraction transaction.
     */
-    async register (secret, registerGasLimit) {
-        console.time("RegisterLocalCalc");
-        var that = this;
-        if (secret === undefined) {
-            that.account.keypair = utils.createAccount();
-            that.account.aesKey = aes.generateKey();
-        } else {
-            that.account.keypair = utils.keyPairFromSecret(secret);
-            that.account.aesKey = aes.generateKey(secret);
-        }
-        console.log("%cRegisterLocalCalc spend time","color:red");
-        console.timeEnd("RegisterLocalCalc");
-
-        console.time("RegisterChainSpend");
-        let isRegistered = await ClientBase.registered(that.suter, that.account.publicKeySerialized());
-        if (isRegistered) {
-            // This branch would recover the account previously bound to the secret, and the corresponding balance.
-            return await that.syncAccountState();
-        } else {
-            var [c, s] = utils.sign(that.suter._address, that.account.keypair);
-            if (registerGasLimit === undefined)
-                registerGasLimit = 190000;
-            let transaction = that.suter.methods.register(that.account.publicKeySerialized(), c, s)
-                .send({from: that.home, gas: registerGasLimit})
-                .on('transactionHash', (hash) => {
-                    console.log("Registration submitted (txHash = \"" + hash + "\").");
-                })
-                .on('receipt', (receipt) => {
-                    console.log("%RegisterChainSpend spend time","color:red");
-                    console.timeEnd("RegisterChainSpend");  
-                    console.log("Registration successful.");
-                })
-                .on('error', (error) => {
-                    that.account.keypair = undefined;
-                    console.log("Registration failed: " + error);
-                });
-            return transaction;
-        }
+  async register(secret, registerGasLimit) {
+    var that = this;
+    if (secret === undefined) {
+      that.account.keypair = utils.createAccount();
+      that.account.aesKey = aes.generateKey();
+    } else {
+      that.account.keypair = utils.keyPairFromSecret(secret);
+      that.account.aesKey = aes.generateKey(secret);
+    }
     let isRegistered = await ClientBase.registered(
       that.suter,
       that.account.publicKeySerialized(),
@@ -623,28 +588,45 @@ class ClientBase {
 
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction.
     */
-    async withdraw (value, burnGasLimit) {
-        console.time("LocalCalc");
-        var that = this;
-        that.checkRegistered();
-        that.checkValue();
-        var account = that.account;
-        var state = await account.update();
-        if (value > account.balance())
-            throw new Error("Requested withdrawal amount of " + value + " exceeds account balance of " + account.balance() + ".");
-        var wait = await that._away();
-        //var seconds = Math.ceil(wait / 1000);
-        var unit = that.epochBase == 0 ? "blocks" : "seconds";
+  async withdraw(value, burnGasLimit) {
+    var that = this;
+    that.checkRegistered();
+    that.checkValue();
+    var account = that.account;
+    var state = await account.update();
+    if (value > account.balance())
+      throw new Error(
+        'Requested withdrawal amount of ' +
+          value +
+          ' exceeds account balance of ' +
+          account.balance() +
+          '.',
+      );
+    var wait = await that._away();
+    //var seconds = Math.ceil(wait / 1000);
+    var unit = that.epochBase == 0 ? 'blocks' : 'seconds';
 
-        // Wait for the pending incoming cash to be merged into the main available balance.
-        if (value > state.available) {
-            console.log("[Pending unmerged] Your withdrawal has been queued. Please wait " + wait + " " + unit + " for the release of your funds... ");
-            return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
-        }
-        if (state.nonceUsed) {
-            console.log("[Nonce used] Your withdrawal has been queued. Please wait " + wait + " " + unit + ", until the next epoch...");
-            return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
-        }
+    // Wait for the pending incoming cash to be merged into the main available balance.
+    if (value > state.available) {
+      console.log(
+        '[Pending unmerged] Your withdrawal has been queued. Please wait ' +
+          wait +
+          ' ' +
+          unit +
+          ' for the release of your funds... ',
+      );
+      return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
+    }
+    if (state.nonceUsed) {
+      console.log(
+        '[Nonce used] Your withdrawal has been queued. Please wait ' +
+          wait +
+          ' ' +
+          unit +
+          ', until the next epoch...',
+      );
+      return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
+    }
 
     if (that.epochBase == 0) {
       // Heuristic condition to help reduce the possibility of failed transaction.
@@ -683,50 +665,60 @@ class ClientBase {
       }
     }
 
-        console.log("Initiating withdrawal.");
+    console.log('Initiating withdrawal.');
 
-        let currentEpoch = await that._getEpoch();
-        let encBalances = await that.suter.methods.getBalance([account.publicKeySerialized()], currentEpoch).call();
-        var encBalance = elgamal.unserialize(encBalances[0]);
-        var encNewBalance = elgamal.serialize(elgamal.subPlain(encBalance, value));
-        
-        var proof = that.service.proveBurn(
-            encNewBalance[0], 
-            encNewBalance[1], 
-            account.publicKeySerialized(), 
-            state.lastRollOver, 
-            that.home, 
-            account.privateKey(),
-            state.available - value
-        ); 
-        var u = bn128.serialize(utils.u(state.lastRollOver, account.privateKey()));
+    let currentEpoch = await that._getEpoch();
+    let encBalances = await that.suter.methods
+      .getBalance([account.publicKeySerialized()], currentEpoch)
+      .call();
+    var encBalance = elgamal.unserialize(encBalances[0]);
+    var encNewBalance = elgamal.serialize(elgamal.subPlain(encBalance, value));
 
-        let encGuess = '0x' + aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
-        console.log("%cLocalCalc spend time","color:red");
-        console.timeEnd("LocalCalc");
+    var proof = that.service.proveBurn(
+      encNewBalance[0],
+      encNewBalance[1],
+      account.publicKeySerialized(),
+      state.lastRollOver,
+      that.home,
+      account.privateKey(),
+      state.available - value,
+    );
+    var u = bn128.serialize(utils.u(state.lastRollOver, account.privateKey()));
 
-        console.time("ChainSpend");
-        if (burnGasLimit === undefined)
-            burnGasLimit = 3000000;
-        let transaction = that.suter.methods.burn(account.publicKeySerialized(), value, u, proof, encGuess)
-            .send({from: that.home, gas: burnGasLimit})
-            .on('transactionHash', (hash) => {
-                console.log("Withdrawal submitted (txHash = \"" + hash + "\").");
-            })
-            .on('receipt', async (receipt) => {
-                account._state = await account.update();
-                account._state.nonceUsed = true;
-                account._state.pending -= value;
-                console.log("Withdrawal of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
+    let encGuess =
+      '0x' +
+      aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
 
-                console.log("%cChainSpend spend time","color:red");
-                console.timeEnd("ChainSpend"); 
-
-                console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
-            })
-            .on('error', (error) => {
-                console.log("Withdrawal failed: " + error);
-            });
+    if (burnGasLimit === undefined) burnGasLimit = 3000000;
+    let transaction = that.suter.methods
+      .burn(account.publicKeySerialized(), value, u, proof, encGuess)
+      .send({ from: that.home, gas: burnGasLimit })
+      .on('transactionHash', hash => {
+        console.log('Withdrawal submitted (txHash = "' + hash + '").');
+      })
+      .on('receipt', async receipt => {
+        account._state = await account.update();
+        account._state.nonceUsed = true;
+        account._state.pending -= value;
+        console.log(
+          'Withdrawal of ' +
+            value +
+            ' was successful (uses gas: ' +
+            receipt['gasUsed'] +
+            ')',
+        );
+        console.log(
+          'Account state: available = ',
+          that.account.available(),
+          ', pending = ',
+          that.account.pending(),
+          ', lastRollOver = ',
+          that.account.lastRollOver(),
+        );
+      })
+      .on('error', error => {
+        console.log('Withdrawal failed: ' + error);
+      });
 
     console.log('Client epoch: ', state.lastRollOver);
 
@@ -745,9 +737,8 @@ class ClientBase {
 
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction. 
     */
-    async transfer (receiver, value, transferGasLimit) {
-        console.time("LocalCalc");
-        /*
+  async transfer(receiver, value, transferGasLimit) {
+    /*
         Estimation of running time for a transfer.
         */
     var estimate = (size, contract) => {
@@ -976,53 +967,8 @@ class ClientBase {
         throw new Error(error);
       });
 
-        var u = bn128.serialize(utils.u(state.lastRollOver, account.privateKey()));
+    console.log('Client epoch: ', state.lastRollOver);
 
-        C = C.map(bn128.serialize);
-        D = bn128.serialize(D);
-
-
-        /* Can't use this estimate here because it seems to modify the contract state, making the proof invalid... */
-        //var transferGas = await that.suter.methods.transfer(C, D, serializedY, u, proof)
-            //.estimateGas({from: that.home, value: that.gasLimit, gas: that.gasLimit});
-        //console.log("Estimated transfer gas: ", transferGas);
-
-        var gasPrice = await this.web3.eth.getGasPrice();
-
-        // console.log("Gas Price: ", gasPrice);
-        // console.log("Home balance: ", (await this.web3.eth.getBalance(that.home)));
-        // console.log("Suter balance: ", (await this.web3.eth.getBalance(that.suter.options.address)));
-        // console.log("Agency balance: ", (await this.web3.eth.getBalance(await that.suter.methods.suterAgency().call())));
-
-        console.log("%cLocalCalc spend time","color:red");
-        console.timeEnd("LocalCalc");
-
-        console.time("ChainSpend");
-        if (transferGasLimit === undefined)
-            transferGasLimit = 5470000;
-        let transaction = 
-            that.suter.methods.transfer(C, D, serializedY, u, proof)
-                .send({from: that.home, value: transferGasLimit * gasPrice, gas: transferGasLimit})
-                .on('transactionHash', (hash) => {
-                    that._transfers.add(hash);
-                    console.log("Transfer submitted (txHash = \"" + hash + "\")");
-                })
-                .on('receipt', async (receipt) => {
-                    account._state = await account.update();
-                    account._state.nonceUsed = true;
-                    account._state.pending -= value;
-                    console.log("Transfer of " + value + " was successful (uses gas: " + receipt["gasUsed"] + ")");  
-                console.log("Account state: available = ", that.account.available(), ", pending = ", that.account.pending(), ", lastRollOver = ", that.account.lastRollOver());
-
-                console.log("%cChainSpend spend time","color:red");
-                console.timeEnd("ChainSpend");  
-                })
-                .on('error', (error) => {
-                    console.log("Transfer failed: " + error);
-                    throw new Error(error);
-                });
-
-        console.log("Client epoch: ", state.lastRollOver);
     return transaction;
   }
 
