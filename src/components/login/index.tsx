@@ -84,7 +84,7 @@ class Login extends React.Component {
             <p>Your Suterusu Account</p>
             <div className="inputContainer">
               <input
-                placeholder={intl.get('InsertYourprivatekey')}
+                placeholder={intl.get('InsertYourPrivatekey')}
                 value={inputValue}
                 type={toggleShowPrivateKey ? 'text' : 'password'}
                 onChange={this.handleInputChange}

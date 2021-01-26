@@ -15,6 +15,10 @@ class Login extends React.Component {
     toggleShowPrivateKey: false,
     PrivateKeyGenerated: false,
     createdByYourself: false,
+    privateKey: '',
+    confirmPrivateKey: '',
+    agree: false,
+    registerBtnTxt: 'InputYourPrivateKey',
   };
 
   constructor(props) {
@@ -23,16 +27,102 @@ class Login extends React.Component {
     this.generatePrivateKey = this.generatePrivateKey.bind(this);
     this.copyGeneratedPrivateKey = this.copyGeneratedPrivateKey.bind(this);
     this.createdByYourself = this.createdByYourself.bind(this);
+    this.handlePrivateKeyInput = this.handlePrivateKeyInput.bind(this);
+    this.handleConfirmPrivateKeyInput = this.handleConfirmPrivateKeyInput.bind(
+      this,
+    );
+    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.register = this.register.bind(this);
   }
 
   toggleShowPrivateKey() {
     this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
 
+  async register() {
+    let { account, coinType, setClient } = this.props;
+    let { inputValue } = this.state;
+    let info = CoinInfos[coinType];
+    var suterShieldContract = new Contract(
+      info.suterShiledContractABI,
+      info.suterShiledContractAddress,
+    );
+    suterShieldContract.setProvider(window.ethereum);
+    var lastestWeb3 = new Web3(window.ethereum);
+    let suterShieldClient;
+    try {
+      if (coinType !== 'eth') {
+        var suterShiledTokenContract = new Contract(
+          info.contractABI,
+          info.contractAddress,
+        );
+        suterShiledTokenContract.setProvider(window.ethereum);
+
+        suterShieldClient = new Client.ClientSuterERC20(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+          suterShiledTokenContract,
+        );
+      } else {
+        suterShieldClient = new Client.ClientSuterETH(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+        );
+      }
+      await suterShieldClient.init();
+      await suterShieldClient.register(inputValue);
+    } catch (error) {
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'warning');
+      }
+      return;
+    }
+    // set client to form component
+    setClient(suterShieldClient);
+  }
+
+  handlePrivateKeyInput(e) {
+    let value = e.target.value;
+    this.setState({ privateKey: value, registerBtnTxt: 'Register' });
+    let { confirmPrivateKey } = this.state;
+    if (confirmPrivateKey !== value) {
+      this.setState({ registerBtnTxt: 'invalidConfirmPrivateKeyTips' });
+    }
+    if (!this.isPrivateKeyValid(value)) {
+      this.setState({ registerBtnTxt: 'invalidPrivateKeyTips' });
+    }
+  }
+  handleConfirmPrivateKeyInput(e) {
+    let { privateKey } = this.state;
+    let value = e.target.value;
+    this.setState({ confirmPrivateKey: value, registerBtnTxt: 'Register' });
+
+    if (privateKey !== '' && !this.isPrivateKeyValid(privateKey)) {
+      this.setState({ registerBtnTxt: 'invalidPrivateKeyTips' });
+    }
+    if (value !== privateKey) {
+      this.setState({ registerBtnTxt: 'invalidConfirmPrivateKeyTips' });
+    }
+  }
+  handleCheckbox(e) {
+    this.setState({ agree: !this.state.agree });
+  }
+
+  isPrivateKeyValid(privateKey) {
+    let reg = /^(?=.*[a-z])(?=.*\d)[^]{16,64}$/;
+    return reg.test(privateKey);
+  }
+
   generatePrivateKey() {
     let lastestWeb3 = new Web3(window.ethereum);
     let entropy = randomstring.generate({ length: 32, charset: 'alphabetic' });
-    let privateKey = lastestWeb3.eth.accounts.create(entropy)['privateKey'];
+    let privateKey = lastestWeb3.eth.accounts
+      .create(entropy)
+      ['privateKey'].substring(2);
     this.setState({
       PrivateKeyGenerated: true,
       generatedPrivateKey: privateKey,
@@ -98,7 +188,16 @@ class Login extends React.Component {
       PrivateKeyGenerated,
       generatedPrivateKey,
       createdByYourself,
+      privateKey,
+      confirmPrivateKey,
+      agree,
+      registerBtnTxt,
     } = this.state;
+    let submitable =
+      privateKey !== '' &&
+      this.isPrivateKeyValid(privateKey) &&
+      privateKey === confirmPrivateKey &&
+      agree;
     return (
       <>
         <div className="registerContainer">
@@ -164,8 +263,14 @@ class Login extends React.Component {
                 <div className="inputContainer">
                   <p>Input Your Private Key</p>
                   <input
-                    placeholder={intl.get('InsertYourprivatekey')}
+                    placeholder={intl.get('InsertYourPrivatekey')}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
+                    onChange={this.handlePrivateKeyInput}
+                    className={
+                      privateKey != '' && !this.isPrivateKeyValid(privateKey)
+                        ? 'invalidPrivateKey'
+                        : ''
+                    }
                   />
                   <div className="inputAppend">
                     <img
@@ -178,8 +283,14 @@ class Login extends React.Component {
                 <div className="inputContainer" style={{ marginTop: '20px' }}>
                   <p>Confirm Your Private Key</p>
                   <input
-                    placeholder={intl.get('InsertYourprivatekey')}
+                    placeholder={intl.get('InsertYourPrivatekey')}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
+                    onChange={this.handleConfirmPrivateKeyInput}
+                    className={
+                      privateKey != '' && privateKey !== confirmPrivateKey
+                        ? 'invalidConfirmPrivateKey'
+                        : ''
+                    }
                   />
                   <div className="inputAppend">
                     <img
@@ -189,12 +300,17 @@ class Login extends React.Component {
                   </div>
                 </div>
                 <div className="checkboxContainer">
-                  <input type="checkbox" />
+                  <input type="checkbox" onChange={this.handleCheckbox} />
                   <p>{intl.get('RegisterAgree')}</p>
                 </div>
                 <div className="btnContainer">
-                  <Button shape="round" block>
-                    Please Confirm Your Private Key
+                  <Button
+                    shape="round"
+                    block
+                    disabled={!submitable}
+                    onClick={this.register}
+                  >
+                    {intl.get(registerBtnTxt)}
                   </Button>
                 </div>
               </div>
