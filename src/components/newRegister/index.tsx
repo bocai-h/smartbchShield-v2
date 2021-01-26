@@ -14,12 +14,15 @@ class Login extends React.Component {
     generatedPrivateKey: '',
     toggleShowPrivateKey: false,
     PrivateKeyGenerated: false,
+    createdByYourself: false,
   };
 
   constructor(props) {
     super(props);
     this.toggleShowPrivateKey = this.toggleShowPrivateKey.bind(this);
     this.generatePrivateKey = this.generatePrivateKey.bind(this);
+    this.copyGeneratedPrivateKey = this.copyGeneratedPrivateKey.bind(this);
+    this.createdByYourself = this.createdByYourself.bind(this);
   }
 
   toggleShowPrivateKey() {
@@ -34,7 +37,43 @@ class Login extends React.Component {
       PrivateKeyGenerated: true,
       generatedPrivateKey: privateKey,
     });
-    this.downloadString(privateKey, 'text/text', 'privatekey.txt');
+    this.downloadString(
+      privateKey,
+      'text/text',
+      `${this.fileNameGenerator('privateKey')}.txt`,
+    );
+  }
+
+  fileNameGenerator(baseName: string): string {
+    let d = new Date();
+    let fileName = `${baseName}_${d.getFullYear()}_${d.getMonth()}_${d.getDate()}_${d.getHours()}_${d.getMinutes()}_${d.getSeconds()}`;
+    return fileName;
+  }
+
+  copyGeneratedPrivateKey() {
+    let { generatedPrivateKey } = this.state;
+    let textArea = document.createElement('textarea');
+    textArea.value = generatedPrivateKey;
+    // Avoid scrolling to bottom
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    let { intl } = this.props;
+    openNotificationWithIcon(
+      intl.get('Tips'),
+      intl.get('Copied'),
+      'success',
+      1,
+    );
+    this.setState({ createdByYourself: true });
+  }
+  createdByYourself() {
+    this.setState({ createdByYourself: true });
   }
 
   downloadString(text, fileType, fileName) {
@@ -58,6 +97,7 @@ class Login extends React.Component {
       toggleShowPrivateKey,
       PrivateKeyGenerated,
       generatedPrivateKey,
+      createdByYourself,
     } = this.state;
     return (
       <>
@@ -67,50 +107,99 @@ class Login extends React.Component {
               <h1>Register</h1>
               <p>Your Suterusu Account</p>
             </div>
-            <div className="registerTipsContainer">
-              Please use our key generator or use a key that is as random as
-              your Metamask wallet private key as the Suter account private key,
-              and copy it on paper for safekeeping.{' '}
-              <span className="tips">
-                Never share your private key with others
-              </span>
-              .
-            </div>
-            <div className="btnContainer">
-              {!PrivateKeyGenerated ? (
-                <Button
-                  shape="round"
-                  block
-                  className="PrivateKeyGenerator"
-                  onClick={this.generatePrivateKey}
-                >
-                  Private Key Generator
-                </Button>
-              ) : (
-                <div>
-                  <div className="inputContainer">
-                    <input
-                      value={generatedPrivateKey}
-                      readOnly
-                      type={toggleShowPrivateKey ? 'text' : 'password'}
-                    />
-                    <div className="inputAppend">
-                      <img
-                        src={toggleShowPrivateKey ? closeEye : openEye}
-                        onClick={this.toggleShowPrivateKey}
-                      />
+            {!createdByYourself ? (
+              <>
+                <div className="registerTipsContainer">
+                  Please use our key generator or use a key that is as random as
+                  your Metamask wallet private key as the Suter account private
+                  key, and copy it on paper for safekeeping.{' '}
+                  <span className="tips">
+                    Never share your private key with others
+                  </span>
+                  .
+                </div>
+                <div className="btnContainer">
+                  {!PrivateKeyGenerated ? (
+                    <Button
+                      shape="round"
+                      block
+                      className="PrivateKeyGenerator"
+                      onClick={this.generatePrivateKey}
+                    >
+                      Private Key Generator
+                    </Button>
+                  ) : (
+                    <div className="privateKeyGeneratorInput">
+                      <div className="inputContainer">
+                        <input
+                          value={generatedPrivateKey}
+                          readOnly
+                          type={toggleShowPrivateKey ? 'text' : 'password'}
+                        />
+                        <div className="inputAppend">
+                          <img
+                            src={toggleShowPrivateKey ? closeEye : openEye}
+                            onClick={this.toggleShowPrivateKey}
+                          />
+                        </div>
+                      </div>
+                      <Button
+                        shape="round"
+                        block
+                        className="PrivateKeyGenerator"
+                        onClick={this.copyGeneratedPrivateKey}
+                      >
+                        Copy and Next
+                      </Button>
                     </div>
-                  </div>
-                  <Button shape="round" block className="PrivateKeyGenerator">
-                    Copy and Next
+                  )}
+                  <p style={{ textAlign: 'center', marginBottom: 0 }}>or</p>
+                  <Button shape="round" block onClick={this.createdByYourself}>
+                    Create By Yourself
                   </Button>
                 </div>
-              )}
-              <p style={{ textAlign: 'center', marginBottom: 0 }}>or</p>
-              <Button shape="round" block>
-                Create By Yourself
-              </Button>
-            </div>
+              </>
+            ) : (
+              <div className="createByYourself">
+                <div className="inputContainer">
+                  <p>Input Your Private Key</p>
+                  <input
+                    placeholder={intl.get('InsertYourprivatekey')}
+                    type={toggleShowPrivateKey ? 'text' : 'password'}
+                  />
+                  <div className="inputAppend">
+                    <img
+                      src={toggleShowPrivateKey ? closeEye : openEye}
+                      onClick={this.toggleShowPrivateKey}
+                    />
+                  </div>
+                </div>
+
+                <div className="inputContainer" style={{ marginTop: '20px' }}>
+                  <p>Confirm Your Private Key</p>
+                  <input
+                    placeholder={intl.get('InsertYourprivatekey')}
+                    type={toggleShowPrivateKey ? 'text' : 'password'}
+                  />
+                  <div className="inputAppend">
+                    <img
+                      src={toggleShowPrivateKey ? closeEye : openEye}
+                      onClick={this.toggleShowPrivateKey}
+                    />
+                  </div>
+                </div>
+                <div className="checkboxContainer">
+                  <input type="checkbox" />
+                  <p>{intl.get('RegisterAgree')}</p>
+                </div>
+                <div className="btnContainer">
+                  <Button shape="round" block>
+                    Please Confirm Your Private Key
+                  </Button>
+                </div>
+              </div>
+            )}
+
             <div className="goToLogin">
               Already have an account?{' '}
               <a className="loginLink" onClick={setBeforeFilter}>
