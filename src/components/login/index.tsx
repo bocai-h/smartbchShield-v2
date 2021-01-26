@@ -74,7 +74,7 @@ class Login extends React.Component {
   }
 
   render() {
-    let { intl } = this.props;
+    let { intl, setBeforeFilter } = this.props;
     let { inputValue, toggleShowPrivateKey } = this.state;
     return (
       <>
@@ -108,7 +108,11 @@ class Login extends React.Component {
               </Button>
             </div>
             <div className="goToRegister">
-              Don't have a account? <a className="registerLink">Register</a>.
+              Don't have a account?{' '}
+              <a className="registerLink" onClick={setBeforeFilter}>
+                Register
+              </a>
+              .
             </div>
           </div>
           <div className="right">

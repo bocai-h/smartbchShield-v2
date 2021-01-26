@@ -4,10 +4,8 @@ import Balance from '../balance';
 import Fund from '../fund';
 import Transfer from '../transfer';
 import Burn from '../burn';
-import Register from '../register';
 import Login from '../login';
-import WarningIcon from '../../static/warning.svg';
-import CloseIcon from '../../static/close.svg';
+import Register from '../newRegister';
 class Form extends React.Component {
   state = {
     client: '',
@@ -16,6 +14,7 @@ class Form extends React.Component {
     suterShieldBalance: 0,
     warningTips: true,
     logined: false,
+    beforeFilter: 'login',
   };
 
   constructor(props) {
@@ -23,7 +22,7 @@ class Form extends React.Component {
     this.setClient = this.setClient.bind(this);
     this.updateKeyFunc = this.updateKeyFunc.bind(this);
     this.setBalance = this.setBalance.bind(this);
-    this.closeWarningTips = this.closeWarningTips.bind(this);
+    this.setBeforeFilter = this.setBeforeFilter.bind(this);
   }
   setBalance(balance, suterShieldBalance) {
     this.setState({ balance: balance, suterShieldBalance: suterShieldBalance });
@@ -38,8 +37,9 @@ class Form extends React.Component {
   setClient(client) {
     this.setState({ client: client, logined: true });
   }
-  closeWarningTips() {
-    this.setState({ warningTips: false });
+
+  setBeforeFilter(ctype: string) {
+    this.setState({ beforeFilter: ctype });
   }
 
   render() {
@@ -49,18 +49,34 @@ class Form extends React.Component {
       updateKey,
       balance,
       suterShieldBalance,
+      beforeFilter,
       logined,
     } = this.state;
 
     return (
       <div className="form">
         {!logined ? (
-          <Login
-            intl={intl}
-            setClient={this.setClient}
-            account={account}
-            coinType={coinType}
-          />
+          beforeFilter === 'login' ? (
+            <Login
+              intl={intl}
+              setClient={this.setClient}
+              account={account}
+              coinType={coinType}
+              setBeforeFilter={() => {
+                this.setBeforeFilter('register');
+              }}
+            />
+          ) : (
+            <Register
+              intl={intl}
+              setClient={this.setClient}
+              account={account}
+              coinType={coinType}
+              setBeforeFilter={() => {
+                this.setBeforeFilter('login');
+              }}
+            />
+          )
         ) : (
           <div>
             <Balance
