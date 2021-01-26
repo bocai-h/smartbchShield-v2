@@ -56,7 +56,6 @@ class Register extends React.Component {
           info.contractAddress,
         );
         suterShiledTokenContract.setProvider(window.ethereum);
-
         suterShieldClient = new Client.ClientSuterERC20(
           lastestWeb3,
           suterShieldContract,
