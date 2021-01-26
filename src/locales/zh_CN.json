@@ -73,7 +73,7 @@
   "InsufficientBalance": "余额不足",
   "InvalidSuterAccount": "无效地址",
   "warningTips": "Suter Shield已通过审计。但是它仍然是一个实验软件。请您自己承担风险使用。",
-  "privateKeyTips": "您输入的私钥必须至少包含有16个字符，但不多于32个字符，且至少包含一个大写字母，一个小写字母和一个数字。",
+  "privateKeyTips": "您输入的私钥必须至少包含有16个字符，但不多于64个字符，且至少包含一个小写字母和一个数字。",
   "invalidPrivateKeyTips": "无效私钥",
   "Stats": "数据统计",
   "Mining": "隐私挖矿",
