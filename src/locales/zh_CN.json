@@ -102,7 +102,7 @@
   "CreateByYourself": "自己生成",
   "CopyAndNext": "复制和下一步",
   "ConfirmYourPrivateKey": "确认密钥",
-  "AlreadyHaveAnAccount": "已经有了一个Suterusu账户",
+  "AlreadyHaveAnAccount": "已经有了一个Suterusu账户?",
   "or": "或",
   "ThisSuterAccountNotExists": "当前Suterusu账户不存在"
 }
