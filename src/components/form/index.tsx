@@ -25,6 +25,7 @@ class Form extends React.Component {
     this.updateKeyFunc = this.updateKeyFunc.bind(this);
     this.setBalance = this.setBalance.bind(this);
     this.setBeforeFilter = this.setBeforeFilter.bind(this);
+    this.closeWarningTips = this.closeWarningTips.bind(this);
   }
   setBalance(balance, suterShieldBalance) {
     this.setState({ balance: balance, suterShieldBalance: suterShieldBalance });

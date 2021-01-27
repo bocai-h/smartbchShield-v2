@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Client, openNotificationWithIcon } from '../tools';
+import { Client, openNotificationWithIcon, CoinLogoMap } from '../tools';
 import SpinModal from '../spinModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
-import loginLogo from '../../static/login.svg';
 import './index.less';
 
 var Contract = require('web3-eth-contract');
@@ -89,7 +88,7 @@ class Login extends React.Component {
   }
 
   render() {
-    let { intl, setBeforeFilter } = this.props;
+    let { intl, setBeforeFilter, coinType } = this.props;
     let { inputValue, toggleShowPrivateKey, proccessing, btnTxt } = this.state;
     let submitable = inputValue !== '' && this.isPrivateKeyValid(inputValue);
     return (
@@ -97,8 +96,15 @@ class Login extends React.Component {
         {proccessing ? <SpinModal intl={intl} /> : ''}
         <div className="loginContainer">
           <div className="left">
-            <h1>{intl.get('Login')}</h1>
-            <p>{intl.get('YourSuterusuAccount')}</p>
+            <div className="title">
+              <div className="tleft">
+                <h1>{intl.get('Login')}</h1>
+                <p>{intl.get('YourSuterusuAccount')}</p>
+              </div>
+              <div className="tright">
+                <img src={CoinLogoMap[coinType][0]} />
+              </div>
+            </div>
             <div className="inputContainer">
               <input
                 placeholder={intl.get('InsertYourPrivatekey')}
@@ -136,9 +142,6 @@ class Login extends React.Component {
               </a>
               .
             </div>
-          </div>
-          <div className="right">
-            <img src={loginLogo} />
           </div>
         </div>
       </>
