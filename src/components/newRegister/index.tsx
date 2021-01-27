@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Client, openNotificationWithIcon } from '../tools';
+import { Client, openNotificationWithIcon, CoinLogoMap } from '../tools';
 import SpinModal from '../spinModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
-import registerLogo from '../../static/register.svg';
 import './index.less';
 
 var randomstring = require('randomstring');
@@ -138,11 +137,6 @@ class Login extends React.Component {
       PrivateKeyGenerated: true,
       generatedPrivateKey: privateKey,
     });
-    // this.downloadString(
-    //   privateKey,
-    //   'text/text',
-    //   `${this.fileNameGenerator('privateKey')}.txt`,
-    // );
   }
 
   fileNameGenerator(baseName: string): string {
@@ -193,7 +187,7 @@ class Login extends React.Component {
   }
 
   render() {
-    let { intl, setBeforeFilter } = this.props;
+    let { intl, setBeforeFilter, coinType } = this.props;
     let {
       toggleShowPrivateKey,
       PrivateKeyGenerated,
@@ -216,8 +210,13 @@ class Login extends React.Component {
         <div className="registerContainer">
           <div className="left">
             <div className="title">
-              <h1>{intl.get('Register')}</h1>
-              <p>{intl.get('YourSuterusuAccount')}</p>
+              <div className="tleft">
+                <h1>{intl.get('Register')}</h1>
+                <p>{intl.get('YourSuterusuAccount')}</p>
+              </div>
+              <div className="tright">
+                <img src={CoinLogoMap[coinType][0]} />
+              </div>
             </div>
             {!createdByYourself ? (
               <>
@@ -342,9 +341,6 @@ class Login extends React.Component {
               </a>
               .
             </div>
-          </div>
-          <div className="right">
-            <img src={registerLogo} />
           </div>
         </div>
       </>
