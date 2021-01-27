@@ -45,6 +45,12 @@ class Login extends React.Component {
     this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
     let { privateKey } = this.state;
+    this.downloadString(
+      privateKey,
+      'text/text',
+      `${this.fileNameGenerator('privateKey')}.txt`,
+    );
+
     let info = CoinInfos[coinType];
     var suterShieldContract = new Contract(
       info.suterShiledContractABI,
@@ -132,11 +138,11 @@ class Login extends React.Component {
       PrivateKeyGenerated: true,
       generatedPrivateKey: privateKey,
     });
-    this.downloadString(
-      privateKey,
-      'text/text',
-      `${this.fileNameGenerator('privateKey')}.txt`,
-    );
+    // this.downloadString(
+    //   privateKey,
+    //   'text/text',
+    //   `${this.fileNameGenerator('privateKey')}.txt`,
+    // );
   }
 
   fileNameGenerator(baseName: string): string {
