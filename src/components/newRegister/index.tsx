@@ -44,7 +44,7 @@ class Login extends React.Component {
   async register() {
     this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
-    let { inputValue } = this.state;
+    let { privateKey } = this.state;
     let info = CoinInfos[coinType];
     var suterShieldContract = new Contract(
       info.suterShiledContractABI,
@@ -75,7 +75,7 @@ class Login extends React.Component {
         );
       }
       await suterShieldClient.init();
-      await suterShieldClient.register(inputValue);
+      await suterShieldClient.register(privateKey);
     } catch (error) {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
