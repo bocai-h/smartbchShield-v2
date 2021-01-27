@@ -14,6 +14,7 @@ class Login extends React.Component {
     inputValue: '',
     toggleShowPrivateKey: false,
     proccessing: false,
+    btnTxt: 'Login',
   };
 
   constructor(props) {
@@ -25,11 +26,20 @@ class Login extends React.Component {
 
   handleInputChange(e) {
     let value = e.target.value;
-    this.setState({ inputValue: value });
+    this.setState({ inputValue: value, btnTxt: 'Login' });
+    if (value !== '' && !this.isPrivateKeyValid(value)) {
+      this.setState({ btnTxt: 'invalidPrivateKeyTips' });
+    }
   }
   toggleShowPrivateKey() {
     this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
+
+  isPrivateKeyValid(privateKey) {
+    let reg = /^(?=.*[a-z])(?=.*\d)[^]{16,64}$/;
+    return reg.test(privateKey);
+  }
+
   async login() {
     this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
@@ -80,7 +90,8 @@ class Login extends React.Component {
 
   render() {
     let { intl, setBeforeFilter } = this.props;
-    let { inputValue, toggleShowPrivateKey, proccessing } = this.state;
+    let { inputValue, toggleShowPrivateKey, proccessing, btnTxt } = this.state;
+    let submitable = inputValue !== '' && this.isPrivateKeyValid(inputValue);
     return (
       <>
         {proccessing ? <SpinModal intl={intl} /> : ''}
@@ -94,6 +105,11 @@ class Login extends React.Component {
                 value={inputValue}
                 type={toggleShowPrivateKey ? 'text' : 'password'}
                 onChange={this.handleInputChange}
+                className={
+                  inputValue != '' && !this.isPrivateKeyValid(inputValue)
+                    ? 'invalidPrivateKey'
+                    : ''
+                }
               />
               <div className="inputAppend">
                 <img
@@ -107,10 +123,10 @@ class Login extends React.Component {
                 shape="round"
                 block
                 className="loginBtn"
-                disabled={inputValue === ''}
+                disabled={!submitable}
                 onClick={this.login}
               >
-                {intl.get('Login')}
+                {intl.get(btnTxt)}
               </Button>
             </div>
             <div className="goToRegister">
