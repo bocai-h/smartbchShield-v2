@@ -46,7 +46,7 @@ class SuterProtocol extends React.Component {
             },
             {
               t:
-                'd. You could either choose to the “Private Key Generator” or “Create By Yourself”. If you select the “Private Key Generator” item, the key generator will automatically generate the secret key for you. ',
+                'd.You could either choose “Private Key Generator” or “Pick Your Own Key”. If you select the “Private Key Generator” item, the key generator will automatically generate the secret key for you. ',
               img: require('../static/help03.png'),
             },
             {
@@ -86,7 +86,7 @@ class SuterProtocol extends React.Component {
             },
             {
               t:
-                'd. You could either choose to the “Private Key Generator” or “Create By Yourself”. If you select the “Private Key Generator” item, the key generator will automatically generate the secret key for you. ',
+                'd.You could either choose “Private Key Generator” or “Pick Your Own Key”. If you select the “Private Key Generator” item, the key generator will automatically generate the secret key for you. ',
               img: require('../static/help03.png'),
             },
             {
@@ -190,12 +190,12 @@ class SuterProtocol extends React.Component {
             },
             {
               t:
-                'd.你可以选择“私钥生成器”或“自己生成”。如果你选择“私钥生成器”, 私钥生成器将为您生成私钥。',
+                'd.你可以选择“私钥生成器”或“自选私钥”。如果你选择“私钥生成器”, 私钥生成器将为您生成私钥。',
               img: require('../static/help03.png'),
             },
             {
               t:
-                'e.点击“复制和下一步”。将您的私钥贴在“输入您的私钥”和“确认密钥”框中。在“我选择了足够随机的Suter账号私钥并将妥善保存改私钥”框打勾。然后点击“注册”并在Metamask钱包中授权该请求。同时，网站将为您下载一个文档文件，该文件中有您的私钥。请将其存储在安全的地方，或者把您的私钥抄在纸上，然后把该文档文件销毁。',
+                'e.点击“复制和下一步”。将您的私钥贴在“输入您的私钥”和“确认密钥”框中。在“我选择了足够随机的Suter账号私钥并将妥善保存改私钥”框打勾。然后点击“注册”并在Metamask钱包中授权该请求。同时，网站将为您下载一个文档文件，该文件中有您的私钥。请将其存储在安全的地方，或者把您的私钥抄在纸上，然后把该文档文件彻底删除。',
               img: require('../static/help04.png'),
             },
             {
@@ -233,7 +233,7 @@ class SuterProtocol extends React.Component {
             },
             {
               t:
-                'e.点击“复制和下一步”。将您的私钥贴在“输入您的私钥”和“确认密钥”框中。在“我选择了足够随机的Suter账号私钥并将妥善保存改私钥”框打勾。然后点击“注册”并在Metamask钱包中授权该请求。同时，网站将为您下载一个文档文件，该文件中有您的私钥。请将其存储在安全的地方，或者把您的私钥抄在纸上，然后把该文档文件销毁。',
+                'e.点击“复制和下一步”。将您的私钥贴在“输入您的私钥”和“确认密钥”框中。在“我选择了足够随机的Suter账号私钥并将妥善保存改私钥”框打勾。然后点击“注册”并在Metamask钱包中授权该请求。同时，网站将为您下载一个文档文件，该文件中有您的私钥。请将其存储在安全的地方，或者把您的私钥抄在纸上，然后把该文档文件彻底删除。',
               img: require('../static/help04.png'),
             },
             {
