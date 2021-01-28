@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import { Client } from '../tools';
+import { Client, openNotificationWithIcon } from '../tools';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -14,7 +14,7 @@ class Register extends React.Component {
     spin: false,
     agree: false,
     toggleShowPrivateKey: false,
-    buttonTxt: 'RegisterOrLogin'
+    buttonTxt: 'RegisterOrLogin',
   };
   constructor(props) {
     super(props);
@@ -26,16 +26,16 @@ class Register extends React.Component {
   }
   handleInputChange(e) {
     let value = e.target.value;
-    this.setState({ inputValue: value, buttonTxt: 'RegisterOrLogin'});
-    if(value !== "" && !this.isPrivateKeyValid(value)){
-      this.setState({ buttonTxt: 'invalidPrivateKeyTips'})
+    this.setState({ inputValue: value, buttonTxt: 'RegisterOrLogin' });
+    if (value !== '' && !this.isPrivateKeyValid(value)) {
+      this.setState({ buttonTxt: 'invalidPrivateKeyTips' });
     }
   }
-  handleCheckbox(e){
-    this.setState({ agree: !this.state.agree })
+  handleCheckbox(e) {
+    this.setState({ agree: !this.state.agree });
   }
-  toggleShowPrivateKey(){
-    this.setState({toggleShowPrivateKey: !this.state.toggleShowPrivateKey})
+  toggleShowPrivateKey() {
+    this.setState({ toggleShowPrivateKey: !this.state.toggleShowPrivateKey });
   }
   async register() {
     this.setState({ spin: true });
@@ -49,28 +49,37 @@ class Register extends React.Component {
     suterShieldContract.setProvider(window.ethereum);
     var lastestWeb3 = new Web3(window.ethereum);
     let suterShieldClient;
-    if (coinType !== 'eth') {
-      var suterShiledTokenContract = new Contract(
-        info.contractABI,
-        info.contractAddress,
-      );
-      suterShiledTokenContract.setProvider(window.ethereum);
-
-      suterShieldClient = new Client.ClientSuterERC20(
-        lastestWeb3,
-        suterShieldContract,
-        account,
-        suterShiledTokenContract,
-      );
-    } else {
-      suterShieldClient = new Client.ClientSuterETH(
-        lastestWeb3,
-        suterShieldContract,
-        account,
-      );
+    try {
+      if (coinType !== 'eth') {
+        var suterShiledTokenContract = new Contract(
+          info.contractABI,
+          info.contractAddress,
+        );
+        suterShiledTokenContract.setProvider(window.ethereum);
+        suterShieldClient = new Client.ClientSuterERC20(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+          suterShiledTokenContract,
+        );
+      } else {
+        suterShieldClient = new Client.ClientSuterETH(
+          lastestWeb3,
+          suterShieldContract,
+          account,
+        );
+      }
+      await suterShieldClient.init();
+      await suterShieldClient.register(inputValue);
+    } catch (error) {
+      if (error.code !== '') {
+        openNotificationWithIcon('Error', error.message, 'error');
+      } else {
+        openNotificationWithIcon('Error', error.toString(), 'warning');
+      }
+      this.setState({ spin: false });
+      return;
     }
-    await suterShieldClient.init();
-    await suterShieldClient.register(inputValue);
     // set client to form component
     setClient(suterShieldClient);
     this.setState({ spin: false });
@@ -80,14 +89,22 @@ class Register extends React.Component {
     this.props.cancelSelectCoin();
     this.setState({ visible: false });
   }
-  isPrivateKeyValid(privateKey){
-    let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{16,32}$/
-    return reg.test(privateKey)
+  isPrivateKeyValid(privateKey) {
+    let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{16,32}$/;
+    return reg.test(privateKey);
   }
   render() {
-    let { visible, inputValue, spin, agree, toggleShowPrivateKey, buttonTxt } = this.state;
+    let {
+      visible,
+      inputValue,
+      spin,
+      agree,
+      toggleShowPrivateKey,
+      buttonTxt,
+    } = this.state;
     let { intl } = this.props;
-    let submitable = inputValue !== '' && agree && this.isPrivateKeyValid(inputValue);
+    let submitable =
+      inputValue !== '' && agree && this.isPrivateKeyValid(inputValue);
     return (
       <>
         <Modal
@@ -101,30 +118,41 @@ class Register extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>{intl.get("RegisterOrLogin")}</h1>
-              <h1>{intl.get("SuterusuAccount")}</h1>
+              <h1>{intl.get('RegisterOrLogin')}</h1>
+              <h1>{intl.get('SuterusuAccount')}</h1>
             </div>
-            <div className="tip">{intl.get("RegisterWarning")}</div>
-            <p className="privateKeyTips">{intl.get("privateKeyTips")}</p>
+            <div className="tip">{intl.get('RegisterWarning')}</div>
+            <p className="privateKeyTips">{intl.get('privateKeyTips')}</p>
             <div className="inputContainer">
               <input
-                placeholder={intl.get("InsertYourprivatekey")}
+                placeholder={intl.get('InsertYourPrivatekey')}
                 value={inputValue}
-                type={toggleShowPrivateKey ? "text" : "password"}
-                className={ inputValue != "" && !this.isPrivateKeyValid(inputValue) ? "invalidPrivateKey" : ""}
+                type={toggleShowPrivateKey ? 'text' : 'password'}
+                className={
+                  inputValue != '' && !this.isPrivateKeyValid(inputValue)
+                    ? 'invalidPrivateKey'
+                    : ''
+                }
                 onChange={this.handleInputChange}
-              /> 
+              />
               <div className="inputAppend">
-                <img src={toggleShowPrivateKey ? closeEye : openEye} onClick={this.toggleShowPrivateKey} />
+                <img
+                  src={toggleShowPrivateKey ? closeEye : openEye}
+                  onClick={this.toggleShowPrivateKey}
+                />
               </div>
             </div>
             <div className="checkboxContainer">
-               <input type="checkbox" onChange={this.handleCheckbox}/> 
-               <p>{intl.get("RegisterAgree")}</p>
-              </div>
+              <input type="checkbox" onChange={this.handleCheckbox} />
+              <p>{intl.get('RegisterAgree')}</p>
+            </div>
             <div className="registerBtnContainer">
               <Button
-                className={`registerBtn ${inputValue != "" && !this.isPrivateKeyValid(inputValue) ? "invalidPrivateKey" : ""}`}
+                className={`registerBtn ${
+                  inputValue != '' && !this.isPrivateKeyValid(inputValue)
+                    ? 'invalidPrivateKey'
+                    : ''
+                }`}
                 shape="round"
                 block
                 disabled={!submitable}

@@ -6,13 +6,14 @@ export default defineConfig({
     type: 'none',
   },
   layout: false,
-  hash: false,
+  hash: true,
   mountElementId: 'website__entrypoint',
   inlineLimit: 25000,
   define: define,
   history: {
     type: 'browser',
   },
+  fastRefresh: {},
   routes: [
     { path: '/', component: '@/pages/index' },
     { path: '/app', component: '@/pages/app' },

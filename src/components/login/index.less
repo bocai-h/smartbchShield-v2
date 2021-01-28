@@ -1,0 +1,115 @@
+.suterProtocol {
+  .form {
+    .loginContainer {
+      display: flex;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 80px auto 0 auto;
+      .left {
+        .title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid #b9aaff;
+          border-radius: 15px;
+          padding: 10px 0px 10px 10px;
+          .tright {
+            img {
+              width: 50px;
+            }
+          }
+          .tleft {
+            h1 {
+              font-size: 24px;
+            }
+            p {
+              font-size: 14px;
+              margin-bottom: 0;
+            }
+          }
+        }
+        font-family: PingFangSC-Thin, sans-serif;
+        width: 30%;
+        @media only screen and (max-width: 600px) {
+          width: 100%;
+          padding: 0 20px;
+        }
+        h1,
+        p,
+        .goToRegister {
+          color: #b9aaff;
+        }
+        h1 {
+          font-size: 48px;
+          margin-bottom: 0;
+        }
+        p {
+          font-size: 21px;
+        }
+        .goToRegister {
+          font-size: 16px;
+          margin-top: 5px;
+          color: rgba(255, 255, 255, 0.5);
+          .registerLink {
+            color: #b9aaff;
+            font-weight: bold;
+          }
+        }
+        .btnContainer {
+          padding-bottom: 20px;
+          border-bottom: 1px solid#B9AAFF;
+          button {
+            border-color: #b9aaff;
+            color: #b9aaff;
+            background-color: transparent;
+            background-image: none;
+            &:hover {
+              background-image: linear-gradient(
+                to right,
+                rgba(185, 170, 255, 1),
+                rgba(171, 202, 255, 1)
+              );
+              color: #000000;
+            }
+          }
+          button[disabled] {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.3);
+            background-color: transparent;
+            background-image: none;
+          }
+        }
+        .inputContainer {
+          margin-top: 40px;
+          margin-bottom: 40px;
+          position: relative;
+          .inputAppend {
+            img {
+              cursor: pointer;
+            }
+            position: absolute;
+            top: 7px;
+            right: 8px;
+          }
+          input {
+            background-color: rgba(216, 216, 216, 0.1);
+            border: 1px solid rgba(216, 216, 216, 0.5);
+            width: 100%;
+            border-radius: 5px;
+            height: 40px;
+            padding-left: 5px;
+            color: rgba(255, 255, 255, 0.5);
+            outline: none;
+          }
+          input:focus {
+            background: rgba(216, 216, 216, 0.12);
+            border: 2px solid #b9aaff;
+          }
+          input.invalidPrivateKey {
+            border: 2px solid #ff578e;
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,17 +4,19 @@ import Balance from '../balance';
 import Fund from '../fund';
 import Transfer from '../transfer';
 import Burn from '../burn';
-import Register from '../register';
+import Login from '../login';
+import Register from '../newRegister';
 import WarningIcon from '../../static/warning.svg';
 import CloseIcon from '../../static/close.svg';
 class Form extends React.Component {
   state = {
-    registered: false,
     client: '',
     updateKey: '',
     balance: 0,
     suterShieldBalance: 0,
-    warningTips: true
+    warningTips: true,
+    logined: false,
+    beforeFilter: 'login',
   };
 
   constructor(props) {
@@ -22,6 +24,7 @@ class Form extends React.Component {
     this.setClient = this.setClient.bind(this);
     this.updateKeyFunc = this.updateKeyFunc.bind(this);
     this.setBalance = this.setBalance.bind(this);
+    this.setBeforeFilter = this.setBeforeFilter.bind(this);
     this.closeWarningTips = this.closeWarningTips.bind(this);
   }
   setBalance(balance, suterShieldBalance) {
@@ -35,82 +38,103 @@ class Form extends React.Component {
   }
 
   setClient(client) {
-    this.setState({ client: client, registered: true });
+    this.setState({ client: client, logined: true });
+  }
+
+  setBeforeFilter(ctype: string) {
+    this.setState({ beforeFilter: ctype });
   }
   closeWarningTips() {
-    this.setState({warningTips: false})
+    this.setState({ warningTips: false });
   }
 
   render() {
     let { account, coinType, intl } = this.props;
     let {
-      registered,
       client,
       updateKey,
       balance,
       suterShieldBalance,
-      warningTips
+      beforeFilter,
+      logined,
+      warningTips,
     } = this.state;
 
     return (
       <div className="form">
-        {!registered ? (
-          <Register
-            account={account}
-            coinType={coinType}
-            setClient={this.setClient}
-            cancelSelectCoin={this.props.cancelSelectCoin}
-            intl={intl}
-          />
-        ) : (
-          ''
-        )}
-        { warningTips ? <div className="tipsContainer">
-          <img src={WarningIcon} className="warningIcon"/>
-          <div>{intl.get("warningTips")}</div>
-          <img src={CloseIcon} className="closeIcon" onClick={this.closeWarningTips}/>
-        </div> : ""}
-        {registered ? (
-          <Balance
-            coinType={coinType}
-            client={client}
-            account={account}
-            key={updateKey}
-            setBalanceFunc={this.setBalance}
-            intl={intl}
-          />
-        ) : (
-          ''
-        )}
-        {registered ? (
-          <div className="operationContainer">
-            <Fund
-              coinType={coinType}
-              client={client}
-              account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={balance}
-              intl={intl}
-            />
-            <Transfer
-              coinType={coinType}
-              client={client}
-              account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={suterShieldBalance}
-              intl={intl}
-            />
-            <Burn
-              coinType={coinType}
-              client={client}
-              account={account}
-              updateKeyFunc={this.updateKeyFunc}
-              max={suterShieldBalance}
-              intl={intl}
+        {warningTips ? (
+          <div className="tipsContainer">
+            <img src={WarningIcon} className="warningIcon" />
+            <div>{intl.get('warningTips')}</div>
+            <img
+              src={CloseIcon}
+              className="closeIcon"
+              onClick={this.closeWarningTips}
             />
           </div>
         ) : (
           ''
+        )}
+
+        {!logined ? (
+          beforeFilter === 'login' ? (
+            <Login
+              intl={intl}
+              setClient={this.setClient}
+              account={account}
+              coinType={coinType}
+              setBeforeFilter={() => {
+                this.setBeforeFilter('register');
+              }}
+            />
+          ) : (
+            <Register
+              intl={intl}
+              setClient={this.setClient}
+              account={account}
+              coinType={coinType}
+              setBeforeFilter={() => {
+                this.setBeforeFilter('login');
+              }}
+            />
+          )
+        ) : (
+          <div>
+            <Balance
+              coinType={coinType}
+              client={client}
+              account={account}
+              key={updateKey}
+              setBalanceFunc={this.setBalance}
+              intl={intl}
+            />
+            <div className="operationContainer">
+              <Fund
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={balance}
+                intl={intl}
+              />
+              <Transfer
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={suterShieldBalance}
+                intl={intl}
+              />
+              <Burn
+                coinType={coinType}
+                client={client}
+                account={account}
+                updateKeyFunc={this.updateKeyFunc}
+                max={suterShieldBalance}
+                intl={intl}
+              />
+            </div>
+          </div>
         )}
       </div>
     );
