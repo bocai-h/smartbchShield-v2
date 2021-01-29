@@ -110,6 +110,7 @@ const CoinLogoMap = {
   eth: [ethLogo, seth, eth],
   dai: [daiLogo, sdai, dai],
   suter: [suterLogo, ssuter, suter],
+  doge: [],
 };
 
 export {
@@ -119,5 +120,5 @@ export {
   ethChainNameMap,
   tronChainNameMap,
   Client,
-  CoinLogoMap
+  CoinLogoMap,
 };

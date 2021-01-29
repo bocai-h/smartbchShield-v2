@@ -29,9 +29,12 @@
 
   .ant-layout-content {
     .home {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       .title {
         margin: 60px auto;
-        margin-top: 150px;
         margin-bottom: 57px;
         display: flex;
         flex-direction: column;
@@ -64,10 +67,8 @@
         }
       }
       .cardContainer {
+        max-width: 1200px;
         .ant-col {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
           div.card {
             position: relative;
             &:hover {
@@ -81,19 +82,19 @@
               }
             }
             color: #fff;
-            width: 260px;
+            width: 270px;
             border: 1px solid #1d1c1e;
             background: #1d1c1e;
             padding: 10px 0 10px 10px;
             border-radius: 15px;
-            margin-right: 20px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             height: 180px;
             div {
               position: absolute;
-              width: 249px;
+              width: 259px;
               &.USDT {
                 top: 26px;
               }
