@@ -104,5 +104,6 @@
   "ConfirmYourPrivateKey": "确认密钥",
   "AlreadyHaveAnAccount": "已经有了一个Suterusu账户?",
   "or": "或",
-  "ThisSuterAccountNotExists": "当前Suterusu账户不存在"
+  "ThisSuterAccountNotExists": "当前Suterusu账户不存在",
+  "Upcoming": "敬请期待"
 }

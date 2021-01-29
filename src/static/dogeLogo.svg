@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="133px" viewBox="0 0 100 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>形状结合</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="-1.03028697e-13 0 107 0 107 141 -1.03028697e-13 141"></polygon>
+    </defs>
+    <g id="页面-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="形状结合" transform="translate(-7.000000, -4.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="蒙版"></g>
+            <path d="M129,71.553375 C129,141.082444 67.325766,135.913392 67.325766,135.913392 L23.461858,135.913392 L23.461858,77.602909 L8,77.602909 L8,63.3189843 L23.4606468,63.3189843 L23.4606468,5.0048675 L61.1063832,5.0048675 C70.0121518,5.0048675 129,3.15549044 129,71.553375 Z M65.4726685,29.2017924 L48.1674024,29.2017924 L48.1674024,63.3177731 L75.3934016,63.3177731 L75.3934016,77.6016979 L48.1674024,77.6016979 L48.1674024,111.7156 L67.0152171,111.715486 C73.6210983,111.692529 104.610914,110.633389 104.560975,72.0244999 C104.508834,31.8069071 71.9451868,29.2017924 65.4726685,29.2017924 Z" stroke="#B5B5B5" stroke-width="1.5552" fill-rule="nonzero" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

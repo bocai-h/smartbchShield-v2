@@ -114,16 +114,18 @@ class SuterProtocol extends React.Component {
               t: 'a. Select the token you wish to transfer privately.',
             },
             {
-              t:
-                'b. Enter the amount of tokens you want to stake (the unit of measurement is Unit, the unit ratio for each token is different, please refer to Suter Shield Q&A: Why Suter Shield’s tokens use Unit as the unit of measurement).',
+              t: 'b.Input your private key and login.',
+              img: require('../static/help02.png'),
             },
             {
-              t: 'c. Enter your Suter account private key to stake.',
+              t:
+                'c. Enter the amount of tokens you want to stake (the unit of measurement is Unit, the unit ratio for each token is different, please refer to Suter Shield Q&A: Why Suter Shield’s tokens use Unit as the unit of measurement).',
+              img: require('../static/help05.png'),
             },
             {
               t:
                 'd. After the above steps are completed, your Suter account will display the updated Suter token amount in units, and the native token amount in your Ethereum account will decrease correspondingly. The Suter token, which is the anonymized version of the native token are usually presented as “s”+the name of the native token. For example, ETH will be sETH in Suter network, and USDT will be sUSDT, Suter will be sSUTER.',
-              img: require('../static/help03.png'),
+              img: require('../static/help06.png'),
             },
           ],
         },
@@ -136,11 +138,12 @@ class SuterProtocol extends React.Component {
             },
             {
               t: 'b. Login to your Suter account.',
+              img: require('../static/help02.png'),
             },
             {
               t:
                 'c. Enter the amount of Suter token and the receiver Suter account public key to transfer.',
-              img: require('../static/help04.png'),
+              img: require('../static/help07.png'),
             },
           ],
         },
@@ -156,14 +159,16 @@ class SuterProtocol extends React.Component {
             },
             {
               t: 'c. Login to your Suter account.',
+              img: require('../static/help02.png'),
             },
             {
               t:
                 'd. Enter the amount of Suter token in units you wish to withdrawal.',
+              img: require('../static/help08.png'),
             },
             {
               t:
-                'e. The amount of Suter token in your Suter account will be reduced by the entered amount, and the same amount of token minus fee will be returned to your Ethereum account.                ',
+                'e. The amount of Suter token in your Suter account will be reduced by the entered amount, and the same amount of token minus fee will be returned to your Ethereum account.',
             },
           ],
         },
@@ -248,40 +253,42 @@ class SuterProtocol extends React.Component {
           ],
         },
         {
-          active: true,
-          t: '2.将您的代币存入Suter Shield智能合约，并获得相应代币的匿名版本',
+          active: false,
+          t: '2.将您的代币存入Suter Shield智能合约，并获得相应代币的匿名版本。',
           o: [
             {
-              t: 'a. 选择您需要隐私转账的代币。',
-              img: require('../static/help01.png'),
+              t: 'a.选择您需要隐私转账的代币。',
+            },
+            {
+              t: 'b.输入您的私钥并登录。',
+              img: require('../static/help02.png'),
             },
             {
               t:
-                'b. 输入您要存入的代币数量（度量单位为Unit，每个代币的单位汇率不同，请参阅Suter Shield问答：为什么Suter Shield的代币使用Unit作为度量单位）',
-            },
-            {
-              t: 'c. 输入您的Suter帐户私钥。',
+                'c.输入您要存入的代币数量（度量单位为Unit，每个代币的单位汇率不同，请参阅Suter Shield问答：为什么Suter Shield的代币使用Unit作为度量单位），确认存入。',
+              img: require('../static/help05.png'),
             },
             {
               t:
-                'd. 完成上述步骤后，您的Suter帐户将显示更新后的Suter令牌数量（单位是Units），而以太坊帐户中的代币数量将相应减少。 Suter代币是原始代币的匿名版本，通常显示为“ s” +原始代币的名称。 例如，在Suter网络中，ETH将显示为sETH，USDT将显示为sUSDT，Suter将显示为sSUTER。',
-              img: require('../static/help03.png'),
+                'd.完成上述步骤后，您的Suter帐户将显示更新后的Suter令牌数量（单位是Units），而以太坊帐户中的代币数量将相应减少。 Suter代币是原始代币的匿名版本，通常显示为“ s” +原始代币的名称。 例如，在Suter网络中，ETH将显示为sETH，USDT将显示为sUSDT，Suter将显示为sSUTER转账您的Suter代币。',
+              img: require('../static/help06.png'),
             },
           ],
         },
         {
           active: false,
-          t: '3.转账您的Suter代币',
+          t: '3.转账您的Suter代币。',
           o: [
             {
-              t: 'a. 选择您需要隐私转账的代币。',
+              t: 'a.选择您需要隐私转账的代币。',
             },
             {
-              t: 'b. 登录您的Suter帐户。',
+              t: 'b.登录您的Suter帐户',
+              img: require('../static/help02.png'),
             },
             {
-              t: 'c. 输入Suter代币数量和接收方Suter帐户公钥进行转账。',
-              img: require('../static/help03.png'),
+              t: 'c. 输入Suter代币数量和接收方Suter帐户公钥进行转账',
+              img: require('../static/help07.png'),
             },
           ],
         },
@@ -290,20 +297,22 @@ class SuterProtocol extends React.Component {
           t: '4.取出您的Suter代币',
           o: [
             {
-              t: 'a.连接您的Metamask钱包。',
+              t: 'a. 连接您的Metamask钱包。',
             },
             {
               t: 'b. 选择您需要隐私转账的代币。',
             },
             {
               t: 'c. 登录到您的Suter帐户。',
+              img: require('../static/help02.png'),
             },
             {
-              t: 'd. 输入您要提取的Suter代币数量。',
+              t: 'd. 输入您要提取的Suter代币数量，并确认取出。',
+              img: require('../static/help08.png'),
             },
             {
               t:
-                'e.您的Suter账户中的Suter代币数量将相应减少，并且相同数量的代币减去费用将会被退回到您的以太坊账户中。',
+                'e. 您的Suter账户中的Suter代币数量将相应减少，并且相同数量的代币减去费用将会被退回到您的以太坊账户中。',
             },
           ],
         },

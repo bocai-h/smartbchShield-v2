@@ -1,16 +1,18 @@
 import React from 'react';
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Tooltip } from 'antd';
 import './index.less';
 import ethLogo from '../../static/ethLogo.svg';
 import daiLogo from '../../static/daiLogo.svg';
 import usdtLogo from '../../static/usdtLogo.svg';
 import suterLogo from '../../static/suterLogo.svg';
+import dogeLogo from '../../static/dogeLogo.svg';
 import { openNotificationWithIcon } from '../tools';
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.connectWalletTip = this.connectWalletTip.bind(this);
     this.homeTitle = this.homeTitle.bind(this);
+    this.upcoming = this.upcoming.bind(this);
   }
 
   connectWalletTip() {
@@ -21,6 +23,11 @@ class Home extends React.Component {
       'info',
       2,
     );
+  }
+
+  upcoming() {
+    let { intl } = this.props;
+    openNotificationWithIcon(intl.get('Tips'), intl.get('Upcoming'), 'info', 2);
   }
 
   developingTip() {
@@ -71,8 +78,13 @@ class Home extends React.Component {
             </div>
           </Col>
         </Row>
-        <Row className="cardContainer">
-          <Col span={24}>
+        <Row
+          className="cardContainer"
+          justify="start"
+          wrap={true}
+          gutter={[0, 32]}
+        >
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <div
               className="card"
               onClick={
@@ -91,6 +103,8 @@ class Home extends React.Component {
                 <img src={ethLogo} alt="eth logo" />
               </div>
             </div>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <div
               className="card"
               onClick={
@@ -109,6 +123,8 @@ class Home extends React.Component {
                 <img src={daiLogo} alt="dai logo" />
               </div>
             </div>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <div
               className="card"
               onClick={
@@ -127,6 +143,8 @@ class Home extends React.Component {
                 <img src={usdtLogo} alt="usdt logo" />
               </div>
             </div>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <div
               className="card"
               onClick={
@@ -145,6 +163,23 @@ class Home extends React.Component {
                 <img src={suterLogo} alt="suter logo" />
               </div>
             </div>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+            <Tooltip
+              title={intl.get('Upcoming')}
+              placement="rightTop"
+              color="#b9aaff"
+            >
+              <div className="card" onClick={this.upcoming}>
+                <div>
+                  <h1>DOGE</h1>
+                  <p>Transfer DOGE to SDOGE</p>
+                </div>
+                <div className="DOGE">
+                  <img src={dogeLogo} alt="doge logo" />
+                </div>
+              </div>
+            </Tooltip>
           </Col>
         </Row>
       </div>
