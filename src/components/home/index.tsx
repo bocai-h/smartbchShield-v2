@@ -167,21 +167,24 @@ class Home extends React.Component {
             </div>
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={6}>
-            <Tooltip
-              title={intl.get('Upcoming')}
-              placement="rightTop"
-              color="#b9aaff"
+            <div
+              className="card"
+              onClick={
+                account === ''
+                  ? this.connectWalletTip
+                  : () => {
+                      selectCoin('renBTC');
+                    }
+              }
             >
-              <div className="card" onClick={this.upcoming}>
-                <div>
-                  <h1>RenBTC</h1>
-                  <p>Upcoming</p>
-                </div>
-                <div className="RenBTC">
-                  <img src={renBTCLogo} alt="RenBTC logo" />
-                </div>
+              <div>
+                <h1>RENBTC</h1>
+                <p>Transfer RENBTC to SRENBTC</p>
               </div>
-            </Tooltip>
+              <div className="renBTC">
+                <img src={renBTCLogo} alt="renBTC logo" />
+              </div>
+            </div>
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip

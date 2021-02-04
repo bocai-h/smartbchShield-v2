@@ -9,4945 +9,6341 @@ export default {
       coinBalanceDesc: 'USDT',
       valueDesc: 'Suter USDT',
       unit: 'USDT',
-      suterShieldUnit: 10**6,
+      suterShieldUnit: 10 ** 6,
       contractABI: [
         {
-          "inputs": [],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          inputs: [],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Approval",
-          "type": "event"
+          name: 'Approval',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Paused",
-          "type": "event"
+          name: 'Paused',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "previousAdminRole",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'previousAdminRole',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "newAdminRole",
-              "type": "bytes32"
-            }
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'newAdminRole',
+              type: 'bytes32',
+            },
           ],
-          "name": "RoleAdminChanged",
-          "type": "event"
+          name: 'RoleAdminChanged',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleGranted",
-          "type": "event"
+          name: 'RoleGranted',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleRevoked",
-          "type": "event"
+          name: 'RoleRevoked',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'from',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Transfer",
-          "type": "event"
+          name: 'Transfer',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Unpaused",
-          "type": "event"
+          name: 'Unpaused',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "DEFAULT_ADMIN_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'DEFAULT_ADMIN_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MINTER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'MINTER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "PAUSER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'PAUSER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
           ],
-          "name": "allowance",
-          "outputs": [
+          name: 'allowance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "approve",
-          "outputs": [
+          name: 'approve',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "balanceOf",
-          "outputs": [
+          name: 'balanceOf',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burnFrom",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burnFrom',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "decimals",
-          "outputs": [
+          inputs: [],
+          name: 'decimals',
+          outputs: [
             {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
+              internalType: 'uint8',
+              name: '',
+              type: 'uint8',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "subtractedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'subtractedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "decreaseAllowance",
-          "outputs": [
+          name: 'decreaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleAdmin",
-          "outputs": [
+          name: 'getRoleAdmin',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'index',
+              type: 'uint256',
+            },
           ],
-          "name": "getRoleMember",
-          "outputs": [
+          name: 'getRoleMember',
+          outputs: [
             {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleMemberCount",
-          "outputs": [
+          name: 'getRoleMemberCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "grantRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'grantRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "hasRole",
-          "outputs": [
+          name: 'hasRole',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "addedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'addedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "increaseAllowance",
-          "outputs": [
+          name: 'increaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "mint",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'mint',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "name",
-          "outputs": [
+          inputs: [],
+          name: 'name',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "pause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          inputs: [],
+          name: 'pause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "paused",
-          "outputs": [
+          inputs: [],
+          name: 'paused',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "renounceRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'renounceRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "revokeRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'revokeRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "symbol",
-          "outputs": [
+          inputs: [],
+          name: 'symbol',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalSupply",
-          "outputs": [
+          inputs: [],
+          name: 'totalSupply',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transfer",
-          "outputs": [
+          name: 'transfer',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transferFrom",
-          "outputs": [
+          name: 'transferFrom',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unpause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        }
+          inputs: [],
+          name: 'unpause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
       ],
-      contractAddress: "0xe3c380c4E63AD99F8f994f416cce0cb28d0dAB5D",
-      suterShiledContractABI: [   
+      contractAddress: '0xe3c380c4E63AD99F8f994f416cce0cb28d0dAB5D',
+      suterShiledContractABI: [
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "fund",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'fund',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "c",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'c',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "s",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 's',
+              type: 'uint256',
+            },
           ],
-          "name": "register",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'register',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "_token",
-              "type": "address"
+              internalType: 'address',
+              name: '_token',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_transfer",
-              "type": "address"
+              internalType: 'address',
+              name: '_transfer',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_burn",
-              "type": "address"
+              internalType: 'address',
+              name: '_burn',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "string",
-              "name": "label",
-              "type": "string"
+              indexed: false,
+              internalType: 'string',
+              name: 'label',
+              type: 'string',
             },
             {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: true,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "LogUint256",
-          "type": "event"
+          name: 'LogUint256',
+          type: 'event',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setBurnFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setBurnFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochBase",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochBase',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochBase",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochBase',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochLength",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochLength',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochLength",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochLength',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address payable",
-              "name": "_suterAgency",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '_suterAgency',
+              type: 'address',
+            },
           ],
-          "name": "setSuterAgency",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setSuterAgency',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setTransferFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setTransferFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "name": "setUnit",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setUnit',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "C",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'C',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "D",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'D',
+              type: 'tuple',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
           ],
-          "name": "transfer",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
+          name: 'transfer',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "indexed": false,
-              "internalType": "struct Utils.G1Point[]",
-              "name": "parties",
-              "type": "tuple[]"
-            }
+              indexed: false,
+              internalType: 'struct Utils.G1Point[]',
+              name: 'parties',
+              type: 'tuple[]',
+            },
           ],
-          "name": "TransferOccurred",
-          "type": "event"
+          name: 'TransferOccurred',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochBase",
-          "outputs": [
+          inputs: [],
+          name: 'epochBase',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochLength",
-          "outputs": [
+          inputs: [],
+          name: 'epochLength',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getAccountState",
-          "outputs": [
+          name: 'getAccountState',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_available",
-              "type": "tuple[2]"
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_available',
+              type: 'tuple[2]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_pending",
-              "type": "tuple[2]"
-            }
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_pending',
+              type: 'tuple[2]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "internalType": "uint256",
-              "name": "epoch",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'epoch',
+              type: 'uint256',
+            },
           ],
-          "name": "getBalance",
-          "outputs": [
+          name: 'getBalance',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2][]",
-              "name": "accounts",
-              "type": "tuple[2][]"
-            }
+              internalType: 'struct Utils.G1Point[2][]',
+              name: 'accounts',
+              type: 'tuple[2][]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getGuess",
-          "outputs": [
+          name: 'getGuess',
+          outputs: [
             {
-              "internalType": "bytes",
-              "name": "y_guess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'y_guess',
+              type: 'bytes',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "lastGlobalUpdate",
-          "outputs": [
+          inputs: [],
+          name: 'lastGlobalUpdate',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "name": "lastRollOver",
-          "outputs": [
+          name: 'lastRollOver',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MAX",
-          "outputs": [
+          inputs: [],
+          name: 'MAX',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "yHash",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'yHash',
+              type: 'bytes32',
+            },
           ],
-          "name": "registered",
-          "outputs": [
+          name: 'registered',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "suterAgency",
-          "outputs": [
+          inputs: [],
+          name: 'suterAgency',
+          outputs: [
             {
-              "internalType": "address payable",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBalance",
-          "outputs": [
+          inputs: [],
+          name: 'totalBalance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBurnFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalBurnFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalDeposits",
-          "outputs": [
+          inputs: [],
+          name: 'totalDeposits',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalFundCount",
-          "outputs": [
+          inputs: [],
+          name: 'totalFundCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalTransferFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalTransferFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalUsers",
-          "outputs": [
+          inputs: [],
+          name: 'totalUsers',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unit",
-          "outputs": [
+          inputs: [],
+          name: 'unit',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+          stateMutability: 'view',
+          type: 'function',
+        },
       ],
-      suterShiledContractAddress: "0x3D1db46CA7170d30F2b2a9795061ADbd0C4B8F04",
-      decimal: 6
+      suterShiledContractAddress: '0x3D1db46CA7170d30F2b2a9795061ADbd0C4B8F04',
+      decimal: 6,
     },
     eth: {
       suterShiledBalanceDesc: 'Suter ETH',
       coinBalanceDesc: 'ETH',
       valueDesc: 'Suter ETH',
       unit: 'ETH',
-      suterShieldUnit: 10**16,
+      suterShieldUnit: 10 ** 16,
       suterShiledContractABI: [
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "_transfer",
-              "type": "address"
+              internalType: 'address',
+              name: '_transfer',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_burn",
-              "type": "address"
+              internalType: 'address',
+              name: '_burn',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "string",
-              "name": "label",
-              "type": "string"
+              indexed: false,
+              internalType: 'string',
+              name: 'label',
+              type: 'string',
             },
             {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: true,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "LogUint256",
-          "type": "event"
+          name: 'LogUint256',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "indexed": false,
-              "internalType": "struct Utils.G1Point[]",
-              "name": "parties",
-              "type": "tuple[]"
-            }
+              indexed: false,
+              internalType: 'struct Utils.G1Point[]',
+              name: 'parties',
+              type: 'tuple[]',
+            },
           ],
-          "name": "TransferOccurred",
-          "type": "event"
+          name: 'TransferOccurred',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MAX",
-          "outputs": [
+          inputs: [],
+          name: 'MAX',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochBase",
-          "outputs": [
+          inputs: [],
+          name: 'epochBase',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochLength",
-          "outputs": [
+          inputs: [],
+          name: 'epochLength',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "fund",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
+          name: 'fund',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getAccountState",
-          "outputs": [
+          name: 'getAccountState',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_available",
-              "type": "tuple[2]"
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_available',
+              type: 'tuple[2]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_pending",
-              "type": "tuple[2]"
-            }
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_pending',
+              type: 'tuple[2]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "internalType": "uint256",
-              "name": "epoch",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'epoch',
+              type: 'uint256',
+            },
           ],
-          "name": "getBalance",
-          "outputs": [
+          name: 'getBalance',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2][]",
-              "name": "accounts",
-              "type": "tuple[2][]"
-            }
+              internalType: 'struct Utils.G1Point[2][]',
+              name: 'accounts',
+              type: 'tuple[2][]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getGuess",
-          "outputs": [
+          name: 'getGuess',
+          outputs: [
             {
-              "internalType": "bytes",
-              "name": "y_guess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'y_guess',
+              type: 'bytes',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "lastGlobalUpdate",
-          "outputs": [
+          inputs: [],
+          name: 'lastGlobalUpdate',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "name": "lastRollOver",
-          "outputs": [
+          name: 'lastRollOver',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "c",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'c',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "s",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 's',
+              type: 'uint256',
+            },
           ],
-          "name": "register",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'register',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "yHash",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'yHash',
+              type: 'bytes32',
+            },
           ],
-          "name": "registered",
-          "outputs": [
+          name: 'registered',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setBurnFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setBurnFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochBase",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochBase',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochBase",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochBase',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochLength",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochLength',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochLength",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochLength',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address payable",
-              "name": "_suterAgency",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '_suterAgency',
+              type: 'address',
+            },
           ],
-          "name": "setSuterAgency",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setSuterAgency',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setTransferFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setTransferFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "name": "setUnit",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setUnit',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "suterAgency",
-          "outputs": [
+          inputs: [],
+          name: 'suterAgency',
+          outputs: [
             {
-              "internalType": "address payable",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBalance",
-          "outputs": [
+          inputs: [],
+          name: 'totalBalance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBurnFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalBurnFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalDeposits",
-          "outputs": [
+          inputs: [],
+          name: 'totalDeposits',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalFundCount",
-          "outputs": [
+          inputs: [],
+          name: 'totalFundCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalTransferFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalTransferFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalUsers",
-          "outputs": [
+          inputs: [],
+          name: 'totalUsers',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "C",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'C',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "D",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'D',
+              type: 'tuple',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
           ],
-          "name": "transfer",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
+          name: 'transfer',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unit",
-          "outputs": [
+          inputs: [],
+          name: 'unit',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+          stateMutability: 'view',
+          type: 'function',
+        },
       ],
       suterShiledContractAddress: '0x340D47F5ba7fE9490A1edfB4473BF2Fd17e5cec5',
-      decimal: 18
+      decimal: 18,
     },
     dai: {
       suterShiledBalanceDesc: 'Suter DAI',
       coinBalanceDesc: 'DAI',
       valueDesc: 'Suter DAI',
       unit: 'DAI',
-      suterShieldUnit: 10**22,
-      contractABI:[
+      suterShieldUnit: 10 ** 22,
+      contractABI: [
         {
-          "inputs": [],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          inputs: [],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Approval",
-          "type": "event"
+          name: 'Approval',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Paused",
-          "type": "event"
+          name: 'Paused',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "previousAdminRole",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'previousAdminRole',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "newAdminRole",
-              "type": "bytes32"
-            }
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'newAdminRole',
+              type: 'bytes32',
+            },
           ],
-          "name": "RoleAdminChanged",
-          "type": "event"
+          name: 'RoleAdminChanged',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleGranted",
-          "type": "event"
+          name: 'RoleGranted',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleRevoked",
-          "type": "event"
+          name: 'RoleRevoked',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'from',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Transfer",
-          "type": "event"
+          name: 'Transfer',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Unpaused",
-          "type": "event"
+          name: 'Unpaused',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "DEFAULT_ADMIN_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'DEFAULT_ADMIN_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MINTER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'MINTER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "PAUSER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'PAUSER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
           ],
-          "name": "allowance",
-          "outputs": [
+          name: 'allowance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "approve",
-          "outputs": [
+          name: 'approve',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "balanceOf",
-          "outputs": [
+          name: 'balanceOf',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burnFrom",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burnFrom',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "decimals",
-          "outputs": [
+          inputs: [],
+          name: 'decimals',
+          outputs: [
             {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
+              internalType: 'uint8',
+              name: '',
+              type: 'uint8',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "subtractedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'subtractedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "decreaseAllowance",
-          "outputs": [
+          name: 'decreaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleAdmin",
-          "outputs": [
+          name: 'getRoleAdmin',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'index',
+              type: 'uint256',
+            },
           ],
-          "name": "getRoleMember",
-          "outputs": [
+          name: 'getRoleMember',
+          outputs: [
             {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleMemberCount",
-          "outputs": [
+          name: 'getRoleMemberCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "grantRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'grantRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "hasRole",
-          "outputs": [
+          name: 'hasRole',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "addedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'addedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "increaseAllowance",
-          "outputs": [
+          name: 'increaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "mint",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'mint',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "name",
-          "outputs": [
+          inputs: [],
+          name: 'name',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "pause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          inputs: [],
+          name: 'pause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "paused",
-          "outputs": [
+          inputs: [],
+          name: 'paused',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "renounceRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'renounceRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "revokeRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'revokeRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "symbol",
-          "outputs": [
+          inputs: [],
+          name: 'symbol',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalSupply",
-          "outputs": [
+          inputs: [],
+          name: 'totalSupply',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transfer",
-          "outputs": [
+          name: 'transfer',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transferFrom",
-          "outputs": [
+          name: 'transferFrom',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unpause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        }
+          inputs: [],
+          name: 'unpause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
       ],
       contractAddress: '0xf095E20aD872fff20036afa156F132340d060B83',
-      suterShiledContractABI:[
+      suterShiledContractABI: [
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "fund",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'fund',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "c",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'c',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "s",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 's',
+              type: 'uint256',
+            },
           ],
-          "name": "register",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'register',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "_token",
-              "type": "address"
+              internalType: 'address',
+              name: '_token',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_transfer",
-              "type": "address"
+              internalType: 'address',
+              name: '_transfer',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_burn",
-              "type": "address"
+              internalType: 'address',
+              name: '_burn',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "string",
-              "name": "label",
-              "type": "string"
+              indexed: false,
+              internalType: 'string',
+              name: 'label',
+              type: 'string',
             },
             {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: true,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "LogUint256",
-          "type": "event"
+          name: 'LogUint256',
+          type: 'event',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setBurnFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setBurnFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochBase",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochBase',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochBase",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochBase',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochLength",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochLength',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochLength",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochLength',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address payable",
-              "name": "_suterAgency",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '_suterAgency',
+              type: 'address',
+            },
           ],
-          "name": "setSuterAgency",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setSuterAgency',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setTransferFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setTransferFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "name": "setUnit",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setUnit',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "C",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'C',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "D",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'D',
+              type: 'tuple',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
           ],
-          "name": "transfer",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
+          name: 'transfer',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "indexed": false,
-              "internalType": "struct Utils.G1Point[]",
-              "name": "parties",
-              "type": "tuple[]"
-            }
+              indexed: false,
+              internalType: 'struct Utils.G1Point[]',
+              name: 'parties',
+              type: 'tuple[]',
+            },
           ],
-          "name": "TransferOccurred",
-          "type": "event"
+          name: 'TransferOccurred',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochBase",
-          "outputs": [
+          inputs: [],
+          name: 'epochBase',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochLength",
-          "outputs": [
+          inputs: [],
+          name: 'epochLength',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getAccountState",
-          "outputs": [
+          name: 'getAccountState',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_available",
-              "type": "tuple[2]"
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_available',
+              type: 'tuple[2]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_pending",
-              "type": "tuple[2]"
-            }
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_pending',
+              type: 'tuple[2]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "internalType": "uint256",
-              "name": "epoch",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'epoch',
+              type: 'uint256',
+            },
           ],
-          "name": "getBalance",
-          "outputs": [
+          name: 'getBalance',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2][]",
-              "name": "accounts",
-              "type": "tuple[2][]"
-            }
+              internalType: 'struct Utils.G1Point[2][]',
+              name: 'accounts',
+              type: 'tuple[2][]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getGuess",
-          "outputs": [
+          name: 'getGuess',
+          outputs: [
             {
-              "internalType": "bytes",
-              "name": "y_guess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'y_guess',
+              type: 'bytes',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "lastGlobalUpdate",
-          "outputs": [
+          inputs: [],
+          name: 'lastGlobalUpdate',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "name": "lastRollOver",
-          "outputs": [
+          name: 'lastRollOver',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MAX",
-          "outputs": [
+          inputs: [],
+          name: 'MAX',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "yHash",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'yHash',
+              type: 'bytes32',
+            },
           ],
-          "name": "registered",
-          "outputs": [
+          name: 'registered',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "suterAgency",
-          "outputs": [
+          inputs: [],
+          name: 'suterAgency',
+          outputs: [
             {
-              "internalType": "address payable",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBalance",
-          "outputs": [
+          inputs: [],
+          name: 'totalBalance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBurnFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalBurnFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalDeposits",
-          "outputs": [
+          inputs: [],
+          name: 'totalDeposits',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalFundCount",
-          "outputs": [
+          inputs: [],
+          name: 'totalFundCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalTransferFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalTransferFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalUsers",
-          "outputs": [
+          inputs: [],
+          name: 'totalUsers',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unit",
-          "outputs": [
+          inputs: [],
+          name: 'unit',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+          stateMutability: 'view',
+          type: 'function',
+        },
       ],
       suterShiledContractAddress: '0x70E22CD2Ed11491ECC5257D5fd607F1B3422581A',
-      decimal: 18
+      decimal: 18,
     },
     suter: {
       suterShiledBalanceDesc: 'Suter SUTER',
       coinBalanceDesc: 'SUTER',
       valueDesc: 'Suter SUTER',
       unit: 'SUTER',
-      suterShieldUnit: 10**22,
-      contractABI:[
+      suterShieldUnit: 10 ** 22,
+      contractABI: [
         {
-          "inputs": [],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          inputs: [],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Approval",
-          "type": "event"
+          name: 'Approval',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Paused",
-          "type": "event"
+          name: 'Paused',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "previousAdminRole",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'previousAdminRole',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "newAdminRole",
-              "type": "bytes32"
-            }
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'newAdminRole',
+              type: 'bytes32',
+            },
           ],
-          "name": "RoleAdminChanged",
-          "type": "event"
+          name: 'RoleAdminChanged',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleGranted",
-          "type": "event"
+          name: 'RoleGranted',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
           ],
-          "name": "RoleRevoked",
-          "type": "event"
+          name: 'RoleRevoked',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'from',
+              type: 'address',
             },
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              indexed: true,
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "Transfer",
-          "type": "event"
+          name: 'Transfer',
+          type: 'event',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "Unpaused",
-          "type": "event"
+          name: 'Unpaused',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "DEFAULT_ADMIN_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'DEFAULT_ADMIN_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MINTER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'MINTER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "PAUSER_ROLE",
-          "outputs": [
+          inputs: [],
+          name: 'PAUSER_ROLE',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
           ],
-          "name": "allowance",
-          "outputs": [
+          name: 'allowance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "approve",
-          "outputs": [
+          name: 'approve',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "balanceOf",
-          "outputs": [
+          name: 'balanceOf',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "burnFrom",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burnFrom',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "decimals",
-          "outputs": [
+          inputs: [],
+          name: 'decimals',
+          outputs: [
             {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
+              internalType: 'uint8',
+              name: '',
+              type: 'uint8',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "subtractedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'subtractedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "decreaseAllowance",
-          "outputs": [
+          name: 'decreaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleAdmin",
-          "outputs": [
+          name: 'getRoleAdmin',
+          outputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'index',
+              type: 'uint256',
+            },
           ],
-          "name": "getRoleMember",
-          "outputs": [
+          name: 'getRoleMember',
+          outputs: [
             {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
           ],
-          "name": "getRoleMemberCount",
-          "outputs": [
+          name: 'getRoleMemberCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "grantRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'grantRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "hasRole",
-          "outputs": [
+          name: 'hasRole',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "addedValue",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'addedValue',
+              type: 'uint256',
+            },
           ],
-          "name": "increaseAllowance",
-          "outputs": [
+          name: 'increaseAllowance',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "mint",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'mint',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "name",
-          "outputs": [
+          inputs: [],
+          name: 'name',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "pause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          inputs: [],
+          name: 'pause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "paused",
-          "outputs": [
+          inputs: [],
+          name: 'paused',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "renounceRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'renounceRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
             },
             {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
           ],
-          "name": "revokeRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'revokeRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "symbol",
-          "outputs": [
+          inputs: [],
+          name: 'symbol',
+          outputs: [
             {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalSupply",
-          "outputs": [
+          inputs: [],
+          name: 'totalSupply',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transfer",
-          "outputs": [
+          name: 'transfer',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
           ],
-          "name": "transferFrom",
-          "outputs": [
+          name: 'transferFrom',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unpause",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        }
+          inputs: [],
+          name: 'unpause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
       ],
       contractAddress: '0x12339e04d2fA260E56133a58dc1aCC3c5051CDD1',
-      suterShiledContractABI:[
+      suterShiledContractABI: [
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "burn",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "unitAmount",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
             },
             {
-              "internalType": "bytes",
-              "name": "encGuess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
           ],
-          "name": "fund",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'fund',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
             },
             {
-              "internalType": "uint256",
-              "name": "c",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'c',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "s",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 's',
+              type: 'uint256',
+            },
           ],
-          "name": "register",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'register',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address",
-              "name": "_token",
-              "type": "address"
+              internalType: 'address',
+              name: '_token',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_transfer",
-              "type": "address"
+              internalType: 'address',
+              name: '_transfer',
+              type: 'address',
             },
             {
-              "internalType": "address",
-              "name": "_burn",
-              "type": "address"
+              internalType: 'address',
+              name: '_burn',
+              type: 'address',
             },
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
+          stateMutability: 'nonpayable',
+          type: 'constructor',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "indexed": false,
-              "internalType": "string",
-              "name": "label",
-              "type": "string"
+              indexed: false,
+              internalType: 'string',
+              name: 'label',
+              type: 'string',
             },
             {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
+              indexed: true,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
           ],
-          "name": "LogUint256",
-          "type": "event"
+          name: 'LogUint256',
+          type: 'event',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setBurnFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setBurnFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochBase",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochBase',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochBase",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochBase',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_epochLength",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_epochLength',
+              type: 'uint256',
+            },
           ],
-          "name": "setEpochLength",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setEpochLength',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "address payable",
-              "name": "_suterAgency",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '_suterAgency',
+              type: 'address',
+            },
           ],
-          "name": "setSuterAgency",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setSuterAgency',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "multiplier",
-              "type": "uint256"
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
             },
             {
-              "internalType": "uint256",
-              "name": "dividend",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
           ],
-          "name": "setTransferFeeStrategy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setTransferFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256",
-              "name": "_unit",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
           ],
-          "name": "setUnit",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          name: 'setUnit',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "C",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'C',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "D",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'D',
+              type: 'tuple',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "u",
-              "type": "tuple"
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
           ],
-          "name": "transfer",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
+          name: 'transfer',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
         },
         {
-          "anonymous": false,
-          "inputs": [
+          anonymous: false,
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "indexed": false,
-              "internalType": "struct Utils.G1Point[]",
-              "name": "parties",
-              "type": "tuple[]"
-            }
+              indexed: false,
+              internalType: 'struct Utils.G1Point[]',
+              name: 'parties',
+              type: 'tuple[]',
+            },
           ],
-          "name": "TransferOccurred",
-          "type": "event"
+          name: 'TransferOccurred',
+          type: 'event',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "BURN_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'BURN_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochBase",
-          "outputs": [
+          inputs: [],
+          name: 'epochBase',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "epochLength",
-          "outputs": [
+          inputs: [],
+          name: 'epochLength',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getAccountState",
-          "outputs": [
+          name: 'getAccountState',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_available",
-              "type": "tuple[2]"
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_available',
+              type: 'tuple[2]',
             },
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2]",
-              "name": "y_pending",
-              "type": "tuple[2]"
-            }
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_pending',
+              type: 'tuple[2]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[]",
-              "name": "y",
-              "type": "tuple[]"
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
             },
             {
-              "internalType": "uint256",
-              "name": "epoch",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: 'epoch',
+              type: 'uint256',
+            },
           ],
-          "name": "getBalance",
-          "outputs": [
+          name: 'getBalance',
+          outputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point[2][]",
-              "name": "accounts",
-              "type": "tuple[2][]"
-            }
+              internalType: 'struct Utils.G1Point[2][]',
+              name: 'accounts',
+              type: 'tuple[2][]',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "components": [
+              components: [
                 {
-                  "internalType": "bytes32",
-                  "name": "x",
-                  "type": "bytes32"
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
                 },
                 {
-                  "internalType": "bytes32",
-                  "name": "y",
-                  "type": "bytes32"
-                }
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
               ],
-              "internalType": "struct Utils.G1Point",
-              "name": "y",
-              "type": "tuple"
-            }
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
           ],
-          "name": "getGuess",
-          "outputs": [
+          name: 'getGuess',
+          outputs: [
             {
-              "internalType": "bytes",
-              "name": "y_guess",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'y_guess',
+              type: 'bytes',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "lastGlobalUpdate",
-          "outputs": [
+          inputs: [],
+          name: 'lastGlobalUpdate',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
           ],
-          "name": "lastRollOver",
-          "outputs": [
+          name: 'lastRollOver',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "MAX",
-          "outputs": [
+          inputs: [],
+          name: 'MAX',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "bytes32",
-              "name": "yHash",
-              "type": "bytes32"
-            }
+              internalType: 'bytes32',
+              name: 'yHash',
+              type: 'bytes32',
+            },
           ],
-          "name": "registered",
-          "outputs": [
+          name: 'registered',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "suterAgency",
-          "outputs": [
+          inputs: [],
+          name: 'suterAgency',
+          outputs: [
             {
-              "internalType": "address payable",
-              "name": "",
-              "type": "address"
-            }
+              internalType: 'address payable',
+              name: '',
+              type: 'address',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBalance",
-          "outputs": [
+          inputs: [],
+          name: 'totalBalance',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalBurnFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalBurnFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalDeposits",
-          "outputs": [
+          inputs: [],
+          name: 'totalDeposits',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalFundCount",
-          "outputs": [
+          inputs: [],
+          name: 'totalFundCount',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalTransferFee",
-          "outputs": [
+          inputs: [],
+          name: 'totalTransferFee',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "totalUsers",
-          "outputs": [
+          inputs: [],
+          name: 'totalUsers',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_DIVIDEND",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_DIVIDEND',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "TRANSFER_FEE_MULTIPLIER",
-          "outputs": [
+          inputs: [],
+          name: 'TRANSFER_FEE_MULTIPLIER',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
+          stateMutability: 'view',
+          type: 'function',
         },
         {
-          "inputs": [],
-          "name": "unit",
-          "outputs": [
+          inputs: [],
+          name: 'unit',
+          outputs: [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+          stateMutability: 'view',
+          type: 'function',
+        },
       ],
       suterShiledContractAddress: '0x02a32b975c2c1FbF1367B19c79eC1BFB5cb45746',
-      decimal: 18
+      decimal: 18,
     },
-  }
+    renBTC: {
+      suterShiledBalanceDesc: 'Suter RENBTC',
+      coinBalanceDesc: 'RENBTC',
+      valueDesc: 'Suter RENBTC',
+      unit: 'RENBTC',
+      suterShieldUnit: 10 ** 18,
+      contractABI: [
+        {
+          inputs: [],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
+            {
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
+          ],
+          name: 'Approval',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'Paused',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'previousAdminRole',
+              type: 'bytes32',
+            },
+            {
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'newAdminRole',
+              type: 'bytes32',
+            },
+          ],
+          name: 'RoleAdminChanged',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
+          ],
+          name: 'RoleGranted',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
+          ],
+          name: 'RoleRevoked',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'from',
+              type: 'address',
+            },
+            {
+              indexed: true,
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
+            },
+            {
+              indexed: false,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
+          ],
+          name: 'Transfer',
+          type: 'event',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'Unpaused',
+          type: 'event',
+        },
+        {
+          inputs: [],
+          name: 'DEFAULT_ADMIN_ROLE',
+          outputs: [
+            {
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'MINTER_ROLE',
+          outputs: [
+            {
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'PAUSER_ROLE',
+          outputs: [
+            {
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'owner',
+              type: 'address',
+            },
+            {
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
+          ],
+          name: 'allowance',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'approve',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'balanceOf',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'burnFrom',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'decimals',
+          outputs: [
+            {
+              internalType: 'uint8',
+              name: '',
+              type: 'uint8',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'subtractedValue',
+              type: 'uint256',
+            },
+          ],
+          name: 'decreaseAllowance',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+          ],
+          name: 'getRoleAdmin',
+          outputs: [
+            {
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'uint256',
+              name: 'index',
+              type: 'uint256',
+            },
+          ],
+          name: 'getRoleMember',
+          outputs: [
+            {
+              internalType: 'address',
+              name: '',
+              type: 'address',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+          ],
+          name: 'getRoleMemberCount',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'grantRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'hasRole',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'spender',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'addedValue',
+              type: 'uint256',
+            },
+          ],
+          name: 'increaseAllowance',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'to',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'mint',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'name',
+          outputs: [
+            {
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'pause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'paused',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'renounceRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'role',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'address',
+              name: 'account',
+              type: 'address',
+            },
+          ],
+          name: 'revokeRole',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'symbol',
+          outputs: [
+            {
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalSupply',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'transfer',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: 'sender',
+              type: 'address',
+            },
+            {
+              internalType: 'address',
+              name: 'recipient',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: 'amount',
+              type: 'uint256',
+            },
+          ],
+          name: 'transferFrom',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'unpause',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+      ],
+      contractAddress: '0xf46aD8C7F0D5c481D0D2D0996f46A7F6C5F65C4f',
+      suterShiledContractABI: [
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
+            {
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
+            },
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
+            },
+            {
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
+            {
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
+          ],
+          name: 'burn',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
+            {
+              internalType: 'uint256',
+              name: 'unitAmount',
+              type: 'uint256',
+            },
+            {
+              internalType: 'bytes',
+              name: 'encGuess',
+              type: 'bytes',
+            },
+          ],
+          name: 'fund',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
+            {
+              internalType: 'uint256',
+              name: 'c',
+              type: 'uint256',
+            },
+            {
+              internalType: 'uint256',
+              name: 's',
+              type: 'uint256',
+            },
+          ],
+          name: 'register',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_token',
+              type: 'address',
+            },
+            {
+              internalType: 'address',
+              name: '_transfer',
+              type: 'address',
+            },
+            {
+              internalType: 'address',
+              name: '_burn',
+              type: 'address',
+            },
+            {
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: 'string',
+              name: 'label',
+              type: 'string',
+            },
+            {
+              indexed: true,
+              internalType: 'uint256',
+              name: 'value',
+              type: 'uint256',
+            },
+          ],
+          name: 'LogUint256',
+          type: 'event',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
+            },
+            {
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
+          ],
+          name: 'setBurnFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: '_epochBase',
+              type: 'uint256',
+            },
+          ],
+          name: 'setEpochBase',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: '_epochLength',
+              type: 'uint256',
+            },
+          ],
+          name: 'setEpochLength',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address payable',
+              name: '_suterAgency',
+              type: 'address',
+            },
+          ],
+          name: 'setSuterAgency',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: 'multiplier',
+              type: 'uint256',
+            },
+            {
+              internalType: 'uint256',
+              name: 'dividend',
+              type: 'uint256',
+            },
+          ],
+          name: 'setTransferFeeStrategy',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: '_unit',
+              type: 'uint256',
+            },
+          ],
+          name: 'setUnit',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[]',
+              name: 'C',
+              type: 'tuple[]',
+            },
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'D',
+              type: 'tuple',
+            },
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
+            },
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'u',
+              type: 'tuple',
+            },
+            {
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
+          ],
+          name: 'transfer',
+          outputs: [],
+          stateMutability: 'payable',
+          type: 'function',
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              indexed: false,
+              internalType: 'struct Utils.G1Point[]',
+              name: 'parties',
+              type: 'tuple[]',
+            },
+          ],
+          name: 'TransferOccurred',
+          type: 'event',
+        },
+        {
+          inputs: [],
+          name: 'BURN_FEE_DIVIDEND',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'BURN_FEE_MULTIPLIER',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'epochBase',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'epochLength',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
+          ],
+          name: 'getAccountState',
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_available',
+              type: 'tuple[2]',
+            },
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[2]',
+              name: 'y_pending',
+              type: 'tuple[2]',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[]',
+              name: 'y',
+              type: 'tuple[]',
+            },
+            {
+              internalType: 'uint256',
+              name: 'epoch',
+              type: 'uint256',
+            },
+          ],
+          name: 'getBalance',
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point[2][]',
+              name: 'accounts',
+              type: 'tuple[2][]',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: 'bytes32',
+                  name: 'x',
+                  type: 'bytes32',
+                },
+                {
+                  internalType: 'bytes32',
+                  name: 'y',
+                  type: 'bytes32',
+                },
+              ],
+              internalType: 'struct Utils.G1Point',
+              name: 'y',
+              type: 'tuple',
+            },
+          ],
+          name: 'getGuess',
+          outputs: [
+            {
+              internalType: 'bytes',
+              name: 'y_guess',
+              type: 'bytes',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'lastGlobalUpdate',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: '',
+              type: 'bytes32',
+            },
+          ],
+          name: 'lastRollOver',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'MAX',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'yHash',
+              type: 'bytes32',
+            },
+          ],
+          name: 'registered',
+          outputs: [
+            {
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'suterAgency',
+          outputs: [
+            {
+              internalType: 'address payable',
+              name: '',
+              type: 'address',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalBalance',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalBurnFee',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalDeposits',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalFundCount',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalTransferFee',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'totalUsers',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'TRANSFER_FEE_DIVIDEND',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'TRANSFER_FEE_MULTIPLIER',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'unit',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+      ],
+      suterShiledContractAddress: '0xE33D61c5707166757bB829907Aa74aBEe6ca6335',
+      decimal: 18,
+    },
+  },
 };

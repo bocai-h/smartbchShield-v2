@@ -34,6 +34,7 @@ class Portal extends Component {
     totalDeposits: 0,
     totalUsers: 0,
     suterPrice: 0,
+    renBTCPrice: 0,
     daiPrice: 0,
     ethPrice: 0,
     totalFeesUSDLoading: true,
@@ -194,6 +195,61 @@ class Portal extends Component {
     this.setState({ suterPrice: suterPrice * 2 });
   }
 
+  async getRenBTCPrice() {
+    let renBTCBTCPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=renbtcbtc',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        renBTCBTCPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch RenBTC/BTC price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch RenBTC/BTC price error',
+        'warning',
+        4.5,
+      );
+    }
+
+    let BTCUSDTPrice = 0;
+    try {
+      let response = await axios.get(
+        'huobi_api/market/detail/merged?symbol=btcusdt',
+      );
+      if (response.status == 200) {
+        let price = response.data.tick.bid[0];
+        BTCUSDTPrice = parseFloat(price);
+      } else {
+        openNotificationWithIcon(
+          'Price Api Error',
+          'Fetch BTC/USDT price error',
+          'error',
+          4.5,
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      openNotificationWithIcon(
+        'Network Error',
+        'Fetch BTC/USDT price error',
+        'warning',
+        4.5,
+      );
+    }
+    this.setState({ renBTCPrice: renBTCBTCPrice * BTCUSDTPrice });
+  }
+
   async getETHPrice() {
     let ethPrice = 0;
     try {
@@ -252,26 +308,59 @@ class Portal extends Component {
     this.setState({ daiPrice: daiPrice });
   }
 
-  async getTotalUser() {
-    let totalUsers = 0;
-    let pools = [
+  pools() {
+    let { suterPrice, daiPrice, ethPrice, renBTCPrice } = this.state;
+    let poolInfos = [
       [
         CoinInfos['eth'].suterShiledContractAddress,
         CoinInfos['eth'].suterShiledContractABI,
+        CoinInfos['eth'].decimal,
+        CoinInfos['eth'].suterShieldUnit,
+        ethPrice,
       ],
       [
         CoinInfos['usdt'].suterShiledContractAddress,
         CoinInfos['usdt'].suterShiledContractABI,
+        CoinInfos['usdt'].decimal,
+        CoinInfos['usdt'].suterShieldUnit,
+        1,
+        CoinInfos['usdt'].contractAddress,
+        CoinInfos['usdt'].contractABI,
       ],
       [
         CoinInfos['dai'].suterShiledContractAddress,
         CoinInfos['dai'].suterShiledContractABI,
+        CoinInfos['dai'].decimal,
+        CoinInfos['dai'].suterShieldUnit,
+        daiPrice,
+        CoinInfos['dai'].contractAddress,
+        CoinInfos['dai'].contractABI,
       ],
       [
         CoinInfos['suter'].suterShiledContractAddress,
         CoinInfos['suter'].suterShiledContractABI,
+        CoinInfos['suter'].decimal,
+        CoinInfos['suter'].suterShieldUnit,
+        suterPrice,
+        CoinInfos['suter'].contractAddress,
+        CoinInfos['suter'].contractABI,
+      ],
+      [
+        CoinInfos['renBTC'].suterShiledContractAddress,
+        CoinInfos['renBTC'].suterShiledContractABI,
+        CoinInfos['renBTC'].decimal,
+        CoinInfos['renBTC'].suterShieldUnit,
+        renBTCPrice,
+        CoinInfos['renBTC'].contractAddress,
+        CoinInfos['renBTC'].contractABI,
       ],
     ];
+    return poolInfos;
+  }
+
+  async getTotalUser() {
+    let totalUsers = 0;
+    let pools = this.pools();
     for (const item of pools) {
       var suterShieldContract = new Contract(item[1], item[0]);
       suterShieldContract.setProvider(
@@ -285,24 +374,7 @@ class Portal extends Component {
 
   async totalDeposits() {
     let totalDepositCount = 0;
-    let pools = [
-      [
-        CoinInfos['eth'].suterShiledContractAddress,
-        CoinInfos['eth'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['usdt'].suterShiledContractAddress,
-        CoinInfos['usdt'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['dai'].suterShiledContractAddress,
-        CoinInfos['dai'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['suter'].suterShiledContractAddress,
-        CoinInfos['suter'].suterShiledContractABI,
-      ],
-    ];
+    let pools = this.pools();
     for (const item of pools) {
       var suterShieldContract = new Contract(item[1], item[0]);
       suterShieldContract.setProvider(
@@ -316,53 +388,17 @@ class Portal extends Component {
       totalDepositsLoading: false,
     });
   }
-
   async getTotalUSDDeposited() {
     let totalValue = 0;
-    let pools = [
-      [
-        CoinInfos['eth'].suterShiledContractAddress,
-        CoinInfos['eth'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['usdt'].suterShiledContractAddress,
-        CoinInfos['usdt'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['dai'].suterShiledContractAddress,
-        CoinInfos['dai'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['suter'].suterShiledContractAddress,
-        CoinInfos['suter'].suterShiledContractABI,
-      ],
-    ];
+    let pools = this.pools();
+
     for (const item of pools) {
       var suterShieldContract = new Contract(item[1], item[0]);
       suterShieldContract.setProvider(
         new Web3.providers.HttpProvider(JSONRPC_URL),
       );
       let amount = await suterShieldContract.methods.totalDeposits().call();
-      if (item[0] === CoinInfos['eth'].suterShiledContractAddress) {
-        let info = CoinInfos['eth'];
-        totalValue +=
-          ((amount * 1.0 * info.suterShieldUnit) / 10 ** info.decimal) *
-          this.state.ethPrice;
-      } else if (item[0] === CoinInfos['usdt'].suterShiledContractAddress) {
-        let info = CoinInfos['usdt'];
-        totalValue +=
-          (amount * 1.0 * info.suterShieldUnit) / 10 ** info.decimal;
-      } else if (item[0] === CoinInfos['dai'].suterShiledContractAddress) {
-        let info = CoinInfos['dai'];
-        totalValue +=
-          ((amount * 1.0 * info.suterShieldUnit) / 10 ** info.decimal) *
-          this.state.daiPrice;
-      } else if (item[0] === CoinInfos['suter'].suterShiledContractAddress) {
-        let info = CoinInfos['suter'];
-        totalValue +=
-          ((amount * 1.0 * info.suterShieldUnit) / 10 ** info.decimal) *
-          this.state.suterPrice;
-      }
+      totalValue += ((amount * 1.0 * item[3]) / 10 ** item[2]) * item[4];
     }
     this.setState({
       totalUSDDeposited: totalValue,
@@ -371,25 +407,11 @@ class Portal extends Component {
   }
 
   async getTotalFeesUSD() {
+    let { ethPrice } = this.state;
     let totalFeesValue = 0;
-    let pools = [
-      [
-        CoinInfos['eth'].suterShiledContractAddress,
-        CoinInfos['eth'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['usdt'].suterShiledContractAddress,
-        CoinInfos['usdt'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['dai'].suterShiledContractAddress,
-        CoinInfos['dai'].suterShiledContractABI,
-      ],
-      [
-        CoinInfos['suter'].suterShiledContractAddress,
-        CoinInfos['suter'].suterShiledContractABI,
-      ],
-    ];
+    let pools = this.pools();
+
+    let ethInfo = CoinInfos['eth'];
     for (const item of pools) {
       var suterShieldContract = new Contract(item[1], item[0]);
       suterShieldContract.setProvider(
@@ -399,30 +421,10 @@ class Portal extends Component {
       let transferFee = await suterShieldContract.methods
         .totalTransferFee()
         .call();
-      let ethInfo = CoinInfos['eth'];
-      if (item[0] === CoinInfos['eth'].suterShiledContractAddress) {
-        totalFeesValue +=
-          ((burnFee * 1.0) / 10 ** ethInfo.decimal) * this.state.ethPrice;
-        totalFeesValue +=
-          ((transferFee * 1.0) / 10 ** ethInfo.decimal) * this.state.ethPrice;
-      } else if (item[0] === CoinInfos['usdt'].suterShiledContractAddress) {
-        let info = CoinInfos['usdt'];
-        totalFeesValue += (burnFee * 1.0) / 10 ** info.decimal;
-        totalFeesValue +=
-          ((transferFee * 1.0) / 10 ** ethInfo.decimal) * this.state.ethPrice;
-      } else if (item[0] === CoinInfos['dai'].suterShiledContractAddress) {
-        let info = CoinInfos['dai'];
-        totalFeesValue +=
-          ((burnFee * 1.0) / 10 ** info.decimal) * this.state.daiPrice;
-        totalFeesValue +=
-          ((transferFee * 1.0) / 10 ** ethInfo.decimal) * this.state.ethPrice;
-      } else if (item[0] === CoinInfos['suter'].suterShiledContractAddress) {
-        let info = CoinInfos['suter'];
-        totalFeesValue +=
-          ((burnFee * 1.0) / 10 ** info.decimal) * this.state.suterPrice;
-        totalFeesValue +=
-          ((transferFee * 1.0) / 10 ** ethInfo.decimal) * this.state.ethPrice;
-      }
+
+      totalFeesValue += ((burnFee * 1.0) / 10 ** item[2]) * item[4];
+      totalFeesValue +=
+        ((transferFee * 1.0) / 10 ** ethInfo.decimal) * ethPrice;
     }
     this.setState({ totalFeesUSD: totalFeesValue, totalFeesUSDLoading: false });
   }
