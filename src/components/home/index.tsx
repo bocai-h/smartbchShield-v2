@@ -5,6 +5,7 @@ import ethLogo from '../../static/ethLogo.svg';
 import daiLogo from '../../static/daiLogo.svg';
 import usdtLogo from '../../static/usdtLogo.svg';
 import suterLogo from '../../static/suterLogo.svg';
+import renBTCLogo from '../../static/renBTCLogo.svg';
 import dogeLogo from '../../static/dogeLogo.svg';
 import tornLogo from '../../static/tornLogo.svg';
 import { openNotificationWithIcon } from '../tools';
@@ -166,6 +167,26 @@ class Home extends React.Component {
             </div>
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+            <div
+              className="card"
+              onClick={
+                account === ''
+                  ? this.connectWalletTip
+                  : () => {
+                      selectCoin('renBTC');
+                    }
+              }
+            >
+              <div>
+                <h1>RENBTC</h1>
+                <p>Transfer RENBTC to SRENBTC</p>
+              </div>
+              <div className="renBTC">
+                <img src={renBTCLogo} alt="renBTC logo" />
+              </div>
+            </div>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -174,7 +195,7 @@ class Home extends React.Component {
               <div className="card" onClick={this.upcoming}>
                 <div>
                   <h1>DOGE</h1>
-                  <p>Transfer DOGE to SDOGE</p>
+                  <p>Upcoming</p>
                 </div>
                 <div className="DOGE">
                   <img src={dogeLogo} alt="doge logo" />
@@ -191,7 +212,7 @@ class Home extends React.Component {
               <div className="card" onClick={this.upcoming}>
                 <div>
                   <h1>TORN</h1>
-                  <p>Transfer TORN to STORN</p>
+                  <p>Upcoming</p>
                 </div>
                 <div className="TORN">
                   <img src={tornLogo} alt="torn logo" />

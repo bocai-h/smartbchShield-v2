@@ -5,6 +5,7 @@ import usdtLogo from '../../static/usdtLogo.svg';
 import ethLogo from '../../static/ethLogo.svg';
 import daiLogo from '../../static/daiLogo.svg';
 import suterLogo from '../../static/suterLogo.svg';
+import renBTCLogo from '../../static/renBTCLogo.svg';
 import susdt from '../../static/S_USDT.svg';
 import usdt from '../../static/USDT.svg';
 import seth from '../../static/S_ETH.svg';
@@ -13,6 +14,8 @@ import sdai from '../../static/S_DAI.svg';
 import dai from '../../static/DAI.svg';
 import ssuter from '../../static/S_SUTER.svg';
 import suter from '../../static/SUTER.svg';
+import srenBTC from '../../static/S_RENBTC.svg';
+import renBTC from '../../static/RENBTC.svg';
 
 const Client = require('../../../suterusu-protocol/lib/suterusu.js');
 // const Client = require('/Users/jiangchongyang/Desktop/chongyang/waibao/suterusu-protocol/lib/suterusu.js');
@@ -110,7 +113,7 @@ const CoinLogoMap = {
   eth: [ethLogo, seth, eth],
   dai: [daiLogo, sdai, dai],
   suter: [suterLogo, ssuter, suter],
-  doge: [],
+  renBTC: [renBTCLogo, srenBTC, renBTC],
 };
 
 export {
