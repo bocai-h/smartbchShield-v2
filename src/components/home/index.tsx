@@ -8,6 +8,7 @@ import suterLogo from '../../static/suterLogo.svg';
 import renBTCLogo from '../../static/renBTCLogo.svg';
 import dogeLogo from '../../static/dogeLogo.svg';
 import tornLogo from '../../static/tornLogo.svg';
+import suterUsdtLpLogo from '../../static/suterUsdtLpLogo.svg';
 import { openNotificationWithIcon } from '../tools';
 class Home extends React.Component {
   constructor(props) {
@@ -216,6 +217,23 @@ class Home extends React.Component {
                 </div>
                 <div className="TORN">
                   <img src={tornLogo} alt="torn logo" />
+                </div>
+              </div>
+            </Tooltip>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+            <Tooltip
+              title={intl.get('Upcoming')}
+              placement="rightTop"
+              color="#b9aaff"
+            >
+              <div className="card" onClick={this.upcoming}>
+                <div>
+                  <h1>SUTER/USDT Lp</h1>
+                  <p>Upcoming</p>
+                </div>
+                <div className="suterUsdtLp">
+                  <img src={suterUsdtLpLogo} alt="suterUsdtLp logo" />
                 </div>
               </div>
             </Tooltip>
