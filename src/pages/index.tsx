@@ -701,27 +701,35 @@ class Portal extends Component {
                   </div>
                 </div>
               </div>
-              <div className="toturialVideo" style={{ marginTop: '40px' }}>
-                <Video
-                  autoPlay
-                  loop
-                  muted
-                  controls={[
-                    'PlayPause',
-                    'Seek',
-                    'Time',
-                    'Volume',
-                    'Fullscreen',
-                  ]}
-                  onCanPlayThrough={() => {
-                    // Do stuff
-                  }}
-                >
-                  <source
-                    src="https://sutershield.s3-ap-southeast-1.amazonaws.com/tutorial.mp4"
-                    type="video/mp4"
-                  />
-                </Video>
+            </div>
+            <div className="portal-section">
+              <div className="flex-item">
+                <div
+                  className="slogan"
+                  dangerouslySetInnerHTML={{ __html: intl.get('VideoSlogan') }}
+                ></div>
+                <div className="toturialVideo" style={{ marginTop: '40px' }}>
+                  <Video
+                    autoPlay
+                    loop
+                    muted
+                    controls={[
+                      'PlayPause',
+                      'Seek',
+                      'Time',
+                      'Volume',
+                      'Fullscreen',
+                    ]}
+                    onCanPlayThrough={() => {
+                      // Do stuff
+                    }}
+                  >
+                    <source
+                      src="https://sutershield.s3-ap-southeast-1.amazonaws.com/tutorial.mp4"
+                      type="video/mp4"
+                    />
+                  </Video>
+                </div>
               </div>
             </div>
             <div className="portal-section">
