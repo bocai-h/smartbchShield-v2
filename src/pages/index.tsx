@@ -708,7 +708,7 @@ class Portal extends Component {
                   className="slogan"
                   dangerouslySetInnerHTML={{ __html: intl.get('VideoSlogan') }}
                 ></div>
-                <div className="toturialVideo" style={{ marginTop: '40px' }}>
+                <div className="toturialVideo">
                   <Video
                     autoPlay
                     loop
