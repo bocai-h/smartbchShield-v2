@@ -705,7 +705,7 @@ class Portal extends Component {
             <div className="portal-section">
               <div className="flex-item">
                 <div
-                  className="slogan"
+                  className="section-title"
                   dangerouslySetInnerHTML={{ __html: intl.get('VideoSlogan') }}
                 ></div>
                 <div className="toturialVideo">
