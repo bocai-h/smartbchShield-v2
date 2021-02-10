@@ -229,8 +229,8 @@ class Home extends React.Component {
             >
               <div className="card" onClick={this.upcoming}>
                 <div>
-                  <h1>SUTER/USDT Lp</h1>
-                  <p>Upcoming</p>
+                  <h1>SUTER/USDT</h1>
+                  <p>Lp token</p>
                 </div>
                 <div className="suterUsdtLp">
                   <img src={suterUsdtLpLogo} alt="suterUsdtLp logo" />
