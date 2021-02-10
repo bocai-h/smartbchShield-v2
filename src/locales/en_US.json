@@ -82,6 +82,7 @@
   "SloganDescription": "Suter Shield allows the users to enjoy the cutting-edge private payment functionality provided by the Suterusu protocol. The <a target=\"_blank\" href=\"https://medium.com/suterusu/an-introduction-to-the-suterusu-protocol-fe890bc49ead\">Suterusu protocol</a> is based on our original <a href=\"https://medium.com/suterusu/new-development-on-the-zk-consnark-scheme-8a4ec673bbb4\" target=\"_blank\">ZK-ConSNARK</a> technology, which strikes a perfect balance between performance and security.",
   "TransferAnonymous": "Transfer Anonymous",
   "Slogan2": "How <strong>Suter Shield</strong>&nbsp; works",
+  "VideoSlogan": "Step by step guide to use <strong>Suter Shield</strong>",
   "Register": "Register",
   "RegisterDescription": "The user can register a new Suter account by inputting a random private key. The corresponding public key is the identifier of the newly created Suter account.",
   "FundDescription": "The user invokes the fund module and converts ETH or ERC-20 to Suter-ETH or Suter-ERC-20 token. The converted token will be added to the new account using homomorphic public-key encryption. The native token will be sent to the fund contract, which would be like a stream of water entering an ocean.",

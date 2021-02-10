@@ -84,6 +84,7 @@
   "SloganDescription": "Suter Shield让用户调用<a href=\"https://mp.weixin.qq.com/s?__biz=MzIwMDk4Mzk0Mg==&mid=2247483832&idx=1&sn=a5dc5febcabefd90fde672dabd00014a&chksm=96f59551a1821c478c6464d769245bd6c5d70183ae0b3a720ddb6aeb18396d74907749a2c22e&token=882592475&lang=zh_CN#rd\" target=\"_blank\">Suterusu协议</a>, 使用领先的隐私支付功能。Suterusu协议基于我们原创的<a href=\"https://mp.weixin.qq.com/s/35XGc2f-_mJVp1COjw9EDQ\" target=\"_blank\">ZK-ConSNARK</a>技术，该技术在性能和安全性之间达到完美的平衡。",
   "TransferAnonymous": "Transfer Anonymous",
   "Slogan2": "<strong>Suter Shield</strong>&nbsp; 是如何工作的",
+  "VideoSlogan": "使用 <strong>Suter Shield</strong>&nbsp; 指南",
   "Register": "注册",
   "RegisterDescription": "用户输入随机的私钥来注册新的Suter账号。相应的公钥为新创建的Suter账号的身份标记。",
   "FundDescription": "用户调用Fund模块将ETH或ERC-20代币转换为匿名化的s-ETH或s-ERC-20代币。原代币将被存储到Fund合约里，这就好比水滴入海，无踪可觅。",
