@@ -9,6 +9,7 @@ import renBTCLogo from '../../static/renBTCLogo.svg';
 import dogeLogo from '../../static/dogeLogo.svg';
 import tornLogo from '../../static/tornLogo.svg';
 import suterUsdtLpLogo from '../../static/suterUsdtLpLogo.svg';
+import aaveLogo from '../../static/aaveLogo.svg';
 import { openNotificationWithIcon } from '../tools';
 class Home extends React.Component {
   constructor(props) {
@@ -212,11 +213,11 @@ class Home extends React.Component {
             >
               <div className="card" onClick={this.upcoming}>
                 <div>
-                  <h1>TORN</h1>
-                  <p>Upcoming</p>
+                  <h1>SUTER/USDT</h1>
+                  <p>Lp token</p>
                 </div>
-                <div className="TORN">
-                  <img src={tornLogo} alt="torn logo" />
+                <div className="suterUsdtLp">
+                  <img src={suterUsdtLpLogo} alt="suterUsdtLp logo" />
                 </div>
               </div>
             </Tooltip>
@@ -229,11 +230,28 @@ class Home extends React.Component {
             >
               <div className="card" onClick={this.upcoming}>
                 <div>
-                  <h1>SUTER/USDT</h1>
-                  <p>Lp token</p>
+                  <h1>AAVE</h1>
+                  <p>Upcoming</p>
                 </div>
-                <div className="suterUsdtLp">
-                  <img src={suterUsdtLpLogo} alt="suterUsdtLp logo" />
+                <div className="TORN">
+                  <img src={aaveLogo} alt="aave logo" />
+                </div>
+              </div>
+            </Tooltip>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+            <Tooltip
+              title={intl.get('Upcoming')}
+              placement="rightTop"
+              color="#b9aaff"
+            >
+              <div className="card" onClick={this.upcoming}>
+                <div>
+                  <h1>TORN</h1>
+                  <p>Upcoming</p>
+                </div>
+                <div className="TORN">
+                  <img src={tornLogo} alt="torn logo" />
                 </div>
               </div>
             </Tooltip>
