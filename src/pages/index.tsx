@@ -704,7 +704,7 @@ class Portal extends Component {
             </div>
             <div className="portal-section">
               <div className="flex-item">
-                <div
+                {/* <div
                   className="section-title"
                   dangerouslySetInnerHTML={{ __html: intl.get('VideoSlogan') }}
                 ></div>
@@ -729,7 +729,7 @@ class Portal extends Component {
                       type="video/mp4"
                     />
                   </Video>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="portal-section">
