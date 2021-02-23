@@ -13,17 +13,22 @@ body {
   .ant-dropdown-menu-submenu-title {
     font-family: Helvetica;
     font-size: 14px !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: #fff !important;
     letter-spacing: 0 !important;
     line-height: 24px !important;
   }
   .ant-dropdown-menu-item > a,
   .ant-dropdown-menu-submenu-title > a,
   .ant-dropdown-menu-item-group-title {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: #fff !important;
   }
   .ant-dropdown-menu-item-active {
     background-color: transparent !important;
+    a {
+      &:hover {
+        color: #b9aaff !important;
+      }
+    }
   }
 
   .ant-notification-notice-message {
@@ -98,7 +103,7 @@ body {
                 color: #b9aaff;
               }
               a {
-                color: rgba(255, 255, 255, 0.5);
+                color: #fff;
                 &:hover {
                   color: #b9aaff;
                 }

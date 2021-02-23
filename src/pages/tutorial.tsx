@@ -1,7 +1,6 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Dropdown } from 'antd';
 const { Header, Footer, Content } = Layout;
-import { Dropdown } from 'antd';
 import intl from 'react-intl-universal';
 import Logo from '../static/suterShield.svg';
 import mLogo from '../static/logo.svg';
@@ -11,6 +10,7 @@ import medium from '../static/medium.svg';
 import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
+import { Nav, DropMenu } from '../components/nav';
 import { MenuOutlined } from '@ant-design/icons';
 
 const locales = {
@@ -405,12 +405,7 @@ class SuterProtocol extends React.Component {
       <Layout className="suterProtocol">
         <Header>
           <div className="head-top">
-            <div className="left">
-              <a href="/">
-                <img src={Logo} className="logo pc" />
-                <img src={mLogo} className="logo mobbile" />
-              </a>
-            </div>
+            <Nav intl={intl} indexURL="/app" currentNav="tutorial" />
           </div>
           <div className="header-btn">
             <div className="top-btn">
@@ -427,6 +422,14 @@ class SuterProtocol extends React.Component {
                 中
               </i>
             </div>
+            <Dropdown
+              overlay={DropMenu(intl, 'tutorial')}
+              className="mobbile-MenuOutlined"
+            >
+              <span onClick={e => e.preventDefault()}>
+                <MenuOutlined className="MenuOutlined" />
+              </span>
+            </Dropdown>
           </div>
         </Header>
         <Content>
