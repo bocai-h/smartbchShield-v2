@@ -13,7 +13,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: shield.{{ .Values.ingress.domain }}
+  - host: ethshield.{{ .Values.ingress.domain }}
     http:
       paths:
         - path: /
