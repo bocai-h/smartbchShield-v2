@@ -7,8 +7,7 @@ import intl from 'react-intl-universal';
 import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import detectEthereumProvider from '@metamask/detect-provider';
 import 'antd/dist/antd.css';
-import Logo from '../static/suterShield.svg';
-import mLogo from '../static/logo.svg';
+import { Nav, DropMenu } from '../components/nav';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
@@ -95,7 +94,9 @@ class SuterProtocol extends React.Component {
 
   async connectMetaMask() {
     // Will trigger accountsChanged event when refresh page
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
     this.setState({ showConnectModal: false });
     this.setCurrentAccount(accounts[0]);
   }
@@ -140,7 +141,7 @@ class SuterProtocol extends React.Component {
     });
   }
 
-  handleAccountChanged(accounts){
+  handleAccountChanged(accounts) {
     let { account } = this.state;
     if (accounts.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
@@ -153,12 +154,14 @@ class SuterProtocol extends React.Component {
       );
       window.location.reload();
     } else if (accounts[0] !== account) {
-      this.setCurrentAccount(accounts[0])
+      this.setCurrentAccount(accounts[0]);
     }
   }
 
   accountChanged() {
-    window.ethereum.on('accountsChanged', (accounts) => { this.handleAccountChanged(accounts) });
+    window.ethereum.on('accountsChanged', accounts => {
+      this.handleAccountChanged(accounts);
+    });
     // window.ethereum.on('accountsChanged', function(accounts) {
     //   openNotificationWithIcon(
     //     intl.get('MetamaskAccountChanged'),
@@ -350,51 +353,7 @@ class SuterProtocol extends React.Component {
         <Layout className="suterProtocol">
           <Header>
             <div className="head-top">
-              <div className="left">
-                <a href="/app">
-                  <img src={Logo} className="logo pc" />
-                  <img src={mLogo} className="logo mobbile" />
-                </a>
-                <ul className="item-ul">
-                  <li>
-                    <a href="/stats" target="_blank">
-                      {intl.get('Stats')}
-                    </a>
-                  </li>
-                  <li>
-                    <Tooltip title={intl.get('ComingSoon')}>
-                      <a
-                        href="#"
-                        target="_blank"
-                        onClick={e => e.preventDefault()}
-                      >
-                        {intl.get('Mining')}
-                      </a>
-                    </Tooltip>
-                  </li>
-                  <li>
-                    <a href="/tutorial" target="_blank">
-                      {intl.get('Tutorial')}
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/qa" target="_blank">
-                      {intl.get('Q&A')}
-                    </a>
-                  </li>
-                  <li>
-                    <Dropdown
-                      overlay={menu}
-                      arrow
-                      placement="bottomCenter"
-                      onClick={e => e.preventDefault()}
-                    >
-                      <a>{intl.get('Info')}</a>
-                    </Dropdown>
-                  </li>
-                </ul>
-                {/* <div className="menuContainer">{menu}</div> */}
-              </div>
+              <Nav intl={intl} indexURL="/app" currentNav="/" />
             </div>
             <div className="header-btn">
               {account === '' ? (
@@ -428,8 +387,10 @@ class SuterProtocol extends React.Component {
                   中
                 </i>
               </div>
-
-              <Dropdown overlay={menu1} className="mobbile-MenuOutlined">
+              <Dropdown
+                overlay={DropMenu(intl, '/')}
+                className="mobbile-MenuOutlined"
+              >
                 <span onClick={e => e.preventDefault()}>
                   <MenuOutlined className="MenuOutlined" />
                 </span>

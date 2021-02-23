@@ -5,6 +5,7 @@ export default {
   ETH_CHAIN_ID: '0x3',
   ETHERSCAN: 'https://ropsten.etherscan.io',
   JSONRPC_URL: 'https://ropsten.infura.io/v3/d80602309b7c48e78b80a372a3f6c825',
+  QA_URL: 'https://shield.staging.suterusu.io/qa',
   CoinInfos: {
     usdt: {
       suterShiledBalanceDesc: 'Suter USDT',
