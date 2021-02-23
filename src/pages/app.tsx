@@ -159,20 +159,20 @@ class SuterProtocol extends React.Component {
   }
 
   accountChanged() {
-    window.ethereum.on('accountsChanged', accounts => {
-      this.handleAccountChanged(accounts);
-    });
-    // window.ethereum.on('accountsChanged', function(accounts) {
-    //   openNotificationWithIcon(
-    //     intl.get('MetamaskAccountChanged'),
-    //     intl.get('PageWillRefresh'),
-    //     'warning',
-    //     4.5,
-    //   );
-    //   setTimeout(() => {
-    //     window.location.reload();
-    //   }, 2000);
+    // window.ethereum.on('accountsChanged', accounts => {
+    //   this.handleAccountChanged(accounts);
     // });
+    window.ethereum.on('accountsChanged', function(accounts) {
+      openNotificationWithIcon(
+        intl.get('MetamaskAccountChanged'),
+        intl.get('PageWillRefresh'),
+        'warning',
+        4.5,
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    });
   }
 
   checkEthNetworkType() {
