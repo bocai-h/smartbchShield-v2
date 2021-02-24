@@ -1,7 +1,11 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import './index.less';
-import { CoinLogoMap, MessageWithAlink, openNotificationWithIcon } from '../tools';
+import {
+  CoinLogoMap,
+  MessageWithAlink,
+  openNotificationWithIcon,
+} from '../tools';
 import PublicKeyModal from '../publicKeyModal';
 import SpinModal from '../spinModal';
 
@@ -9,10 +13,10 @@ class Transfer extends React.Component {
   state = {
     myAddressModal: false,
     transferValue: 0,
-    inputFill: "",
+    inputFill: '',
     transferAddress: '',
     proccesing: false,
-    buttonTxt: "EnterAnAmount"
+    buttonTxt: 'EnterAnAmount',
   };
   constructor(props) {
     super(props);
@@ -28,7 +32,7 @@ class Transfer extends React.Component {
     this.inputRef = c;
   }
   adjustPointer() {
-    let pos = this.inputRef.value.length - "Unit".length - 1;
+    let pos = this.inputRef.value.length - 'Unit'.length - 1;
     this.inputRef.selectionStart = pos;
     this.inputRef.selectionEnd = pos;
   }
@@ -42,45 +46,56 @@ class Transfer extends React.Component {
   handleTransferValue(e) {
     let { intl } = this.props;
     let { transferAddress } = this.state;
-    let value = parseInt(e.target.value.replace("Unit", '').replace(/,/gi, ''));
+    let value = parseInt(e.target.value.replace('Unit', '').replace(/,/gi, ''));
     if (value < 0 || isNaN(value)) {
       value = 0;
     }
     if (value > 10000000000) {
       value = 10000000000;
     }
-    if(value === 0){
-      this.setState({buttonTxt: "EnterAnAmount"})
-    }else{
-      if(transferAddress.length !== 130){
-        this.setState({buttonTxt: "InvalidSuterAccount"})
-      }else{
-        this.setState({buttonTxt: "ConfirmTransfer"})
+    if (value === 0) {
+      this.setState({ buttonTxt: 'EnterAnAmount' });
+    } else {
+      if (transferAddress.length !== 130) {
+        this.setState({ buttonTxt: 'InvalidSuterAccount' });
+      } else {
+        this.setState({ buttonTxt: 'ConfirmTransfer' });
       }
     }
     let { max } = this.props;
     if (value > max) {
-      this.setState({buttonTxt: "InsufficientBalance"})
+      this.setState({ buttonTxt: 'InsufficientBalance' });
       // value = max;
       // openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
-    this.setState({ transferValue: value, inputFill: `${value.toLocaleString()} Unit` }, ()=>{
-      this.adjustPointer();
-    });
+    this.setState(
+      { transferValue: value, inputFill: `${value.toLocaleString()} Unit` },
+      () => {
+        this.adjustPointer();
+      },
+    );
   }
 
   handleTransferAddress(e) {
-    let suterAccountAddress = e.target.value.replace(/(^\s*)|(\s*$)/g, "");
-    this.setState({buttonTxt: "ConfirmTransfer"})
-    if(suterAccountAddress.length !== 130){
-      this.setState({buttonTxt: "InvalidSuterAccount"})
+    let suterAccountAddress = e.target.value.replace(/(^\s*)|(\s*$)/g, '');
+    this.setState({ buttonTxt: 'ConfirmTransfer' });
+    if (suterAccountAddress.length !== 130) {
+      this.setState({ buttonTxt: 'InvalidSuterAccount' });
       // openNotificationWithIcon('Warning', intl.get("InvalidAddress"), 'warn', 4);
     }
-    this.setState({ transferAddress: suterAccountAddress});
+    this.setState({ transferAddress: suterAccountAddress });
   }
   maxFill() {
     let { max } = this.props;
-    this.setState({ transferValue: max, inputFill: `${max.toLocaleString()} Unit` });
+    this.setState({
+      transferValue: max,
+      inputFill: `${max.toLocaleString()} Unit`,
+    });
+    if (this.state.transferAddress.length !== 130) {
+      this.setState({ buttonTxt: 'InvalidSuterAccount' });
+    } else {
+      this.setState({ buttonTxt: 'ConfirmTransfer' });
+    }
   }
 
   async transfer() {
@@ -109,7 +124,12 @@ class Transfer extends React.Component {
       10,
     );
 
-    this.setState({ transferValue: 0, transferAddress: '',  inputFill: '', proccesing: false });
+    this.setState({
+      transferValue: 0,
+      transferAddress: '',
+      inputFill: '',
+      proccesing: false,
+    });
     updateKeyFunc();
   }
   render() {
@@ -121,7 +141,7 @@ class Transfer extends React.Component {
       transferAddress,
       proccesing,
       inputFill,
-      buttonTxt
+      buttonTxt,
     } = this.state;
     return (
       <div className="transfer">
@@ -142,7 +162,7 @@ class Transfer extends React.Component {
           <div className="inputContainer">
             <input
               placeholder="0 Unit"
-              className={`${transferValue > max ? "insufficientInput" : ""}`}
+              className={`${transferValue > max ? 'insufficientInput' : ''}`}
               value={inputFill}
               ref={this.assignRef}
               onChange={this.handleTransferValue}
@@ -161,16 +181,32 @@ class Transfer extends React.Component {
               placeholder={intl.get('PleaseInputSuterAccountAddressHere')}
               value={transferAddress}
               onChange={this.handleTransferAddress}
-              className={(transferValue !== 0 || transferAddress.length!== 0) && transferAddress.length !== 130 ? "invalidAddress" : ""}
+              className={
+                (transferValue !== 0 || transferAddress.length !== 0) &&
+                transferAddress.length !== 130
+                  ? 'invalidAddress'
+                  : ''
+              }
             />
           </div>
           <div className="confirmContainer">
             <Button
-              className={`confirm ${transferValue===0? 'grey' : ''} ${transferValue > max ? "insufficientInput" : ""} ${(transferValue !== 0 || transferAddress.length!== 0) && transferAddress.length !== 130 ? "invalidAddress" : ""}`}
+              className={`confirm ${transferValue === 0 ? 'grey' : ''} ${
+                transferValue > max ? 'insufficientInput' : ''
+              } ${
+                (transferValue !== 0 || transferAddress.length !== 0) &&
+                transferAddress.length !== 130
+                  ? 'invalidAddress'
+                  : ''
+              }`}
               shape="round"
               block
               onClick={this.transfer}
-              disabled={transferValue <= 0 || transferValue > max || transferAddress.length !== 130}
+              disabled={
+                transferValue <= 0 ||
+                transferValue > max ||
+                transferAddress.length !== 130
+              }
             >
               {intl.get(buttonTxt)}
             </Button>
