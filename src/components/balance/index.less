@@ -1,10 +1,13 @@
 .suterProtocol {
   .balanceContainer {
+    div.ant-col {
+      @media only screen and (max-width: 600px) {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+      }
+    }
     font-family: PingFangSC-Thin, sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
     border: 1px solid rgba(105, 85, 192, 1);
     background-image: linear-gradient(
       to right,
@@ -14,7 +17,7 @@
     border-radius: 20px;
     padding: 20px 0 20px 20px;
     // margin: 40px 150px;
-    max-width: 1140px;
+    max-width: 1130px;
     margin: 0 auto;
     margin-top: 20px;
 
@@ -29,7 +32,6 @@
     }
     .balanceInfoContainer {
       display: flex;
-      justify-content: space-between;
       .info {
         margin-left: 20px;
         .value {
@@ -37,9 +39,18 @@
         }
       }
     }
+    .coinBalance {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .suterShieldBalance {
+      display: flex;
+    }
+
     .three {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
       margin-top: 33px;
       .unit {
@@ -62,14 +73,14 @@
         margin-left: -5px;
       }
     }
-    .pcLogo {
-      @media screen and (max-width: 1024px) {
-        display: none;
-      }
-    }
     .unit {
       p {
         color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    .logo {
+      @media only screen and (max-width: 600px) {
+        display: none !important;
       }
     }
   }
