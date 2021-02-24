@@ -1,15 +1,19 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import './index.less';
-import { CoinLogoMap, MessageWithAlink, openNotificationWithIcon } from '../tools';
+import {
+  CoinLogoMap,
+  MessageWithAlink,
+  openNotificationWithIcon,
+} from '../tools';
 import SpinModal from '../spinModal';
 
 class Burn extends React.Component {
   state = {
     inputValue: 0,
-    inputFill: "",
+    inputFill: '',
     proccesing: false,
-    buttonTxt: "EnterAnAmount"
+    buttonTxt: 'EnterAnAmount',
   };
   constructor(props) {
     super(props);
@@ -23,13 +27,13 @@ class Burn extends React.Component {
     this.inputRef = c;
   }
   adjustPointer() {
-    let pos = this.inputRef.value.length - "Unit".length - 1;
+    let pos = this.inputRef.value.length - 'Unit'.length - 1;
     this.inputRef.selectionStart = pos;
     this.inputRef.selectionEnd = pos;
   }
   handleInputChange(e) {
     let { intl } = this.props;
-    let value = parseInt(e.target.value.replace("Unit", '').replace(/,/gi, ''));
+    let value = parseInt(e.target.value.replace('Unit', '').replace(/,/gi, ''));
     if (isNaN(value)) {
       value = 0;
     }
@@ -39,20 +43,23 @@ class Burn extends React.Component {
     if (value > 10000000000) {
       value = 10000000000;
     }
-    if(value === 0){
-      this.setState({buttonTxt: "EnterAnAmount"})
-    }else{
-      this.setState({buttonTxt: "ConfirmBurn"})
+    if (value === 0) {
+      this.setState({ buttonTxt: 'EnterAnAmount' });
+    } else {
+      this.setState({ buttonTxt: 'ConfirmBurn' });
     }
     let { max } = this.props;
     if (value > max) {
-      this.setState({buttonTxt: "InsufficientBalance"})
+      this.setState({ buttonTxt: 'InsufficientBalance' });
       // value = max;
       // openNotificationWithIcon('Warning', intl.get("BalanceNotEnough"), 'warn', 4);
     }
-    this.setState({ inputFill: `${value.toLocaleString()} Unit`, inputValue: value}, () => {
-      this.adjustPointer();
-    });
+    this.setState(
+      { inputFill: `${value.toLocaleString()} Unit`, inputValue: value },
+      () => {
+        this.adjustPointer();
+      },
+    );
   }
   async burn() {
     let { client, intl, coinType } = this.props;
@@ -83,13 +90,17 @@ class Burn extends React.Component {
     );
 
     // refetch suter shield balance
-    this.setState({ inputValue: 0, inputFill: "" });
+    this.setState({ inputValue: 0, inputFill: '' });
     this.setState({ proccesing: false });
     this.props.updateKeyFunc();
   }
   maxFill() {
     let { max } = this.props;
-    this.setState({ inputValue: max, inputFill: `${max.toLocaleString()} Unit` });
+    this.setState({
+      inputValue: max,
+      inputFill: `${max.toLocaleString()} Unit`,
+    });
+    this.setState({ buttonTxt: 'ConfirmBurn' });
   }
   render() {
     let { coinType, intl, max } = this.props;
@@ -106,7 +117,7 @@ class Burn extends React.Component {
           <div className="inputContainer">
             <input
               placeholder="0 Unit"
-              className={`${inputValue > max ? "insufficientInput" : ""}`}
+              className={`${inputValue > max ? 'insufficientInput' : ''}`}
               type="text"
               value={inputFill}
               ref={this.assignRef}
@@ -120,12 +131,19 @@ class Burn extends React.Component {
             </div>
           </div>
           <p>
-            {intl.get('YouWillReceive')} {inputValue.toLocaleString()} Unit {info.unit}(=
-            {(inputValue * 1.0 * info.suterShieldUnit / (10**info.decimal)).toLocaleString()} {info.unit})
+            {intl.get('YouWillReceive')} {inputValue.toLocaleString()} Unit{' '}
+            {info.unit}(=
+            {(
+              (inputValue * 1.0 * info.suterShieldUnit) /
+              10 ** info.decimal
+            ).toLocaleString()}{' '}
+            {info.unit})
           </p>
           <div className="confirmContainer">
             <Button
-              className={`confirm ${inputValue===0? 'grey' : ''} ${inputValue > max ? "insufficientInput" : ""}`}
+              className={`confirm ${inputValue === 0 ? 'grey' : ''} ${
+                inputValue > max ? 'insufficientInput' : ''
+              }`}
               shape="round"
               block
               onClick={this.burn}
