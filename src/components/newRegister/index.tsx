@@ -7,7 +7,7 @@ import {
   MobileBrowserCheck,
 } from '../tools';
 import SpinModal from '../spinModal';
-import ConfirmModal from '../confirmModal';
+import ConfirmModal from '../registerConfirmModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -15,7 +15,7 @@ import './index.less';
 var FileSaver = require('file-saver');
 var randomstring = require('randomstring');
 var Contract = require('web3-eth-contract');
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
     generatedPrivateKey: '',
     toggleShowPrivateKey: false,
@@ -223,11 +223,7 @@ class Login extends React.Component {
         {proccessing ? <SpinModal intl={intl} /> : ''}
         {confirmModal ? (
           <ConfirmModal
-            okText={intl.get('ConfirmRegister')}
-            cancelText={intl.get('Cancel')}
-            title="Warning"
-            content="请备份好您的私钥"
-            visible={true}
+            intl={intl}
             handleOk={this.confirmRegister}
             handleCancel={this.closeConfirmModal}
           />
@@ -378,4 +374,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default Register;

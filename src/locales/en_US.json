@@ -106,5 +106,6 @@
   "or": "or",
   "ThisSuterAccountNotExists": "This Suterusu Account Not Exists",
   "Upcoming": "Upcoming",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+  "RegisterTips": "Please back up your private key"
 }
