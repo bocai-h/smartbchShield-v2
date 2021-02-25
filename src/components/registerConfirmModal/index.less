@@ -1,0 +1,76 @@
+.registerConfirmModal {
+  .privateKeyGeneratorInput {
+    .inputContainer {
+      position: relative;
+
+      .inputAppend {
+        img {
+          cursor: pointer;
+        }
+
+        position: absolute;
+        top: 7px;
+        right: 8px;
+      }
+
+      input {
+        background-color: rgba(216, 216, 216, 0.1);
+        border: 1px solid rgba(216, 216, 216, 0.5);
+        width: 100%;
+        border-radius: 5px;
+        height: 40px;
+        padding-left: 5px;
+        color: rgba(255, 255, 255, 0.5);
+        outline: none;
+      }
+
+      input:focus {
+        background: rgba(216, 216, 216, 0.12);
+        border: 2px solid #b9aaff;
+      }
+    }
+  }
+  button {
+    border-color: #b9aaff;
+    background-color: transparent;
+    background-image: none;
+    color: #b9aaff;
+
+    &:hover {
+      background-image: linear-gradient(
+        to right,
+        rgba(185, 170, 255, 1),
+        rgba(171, 202, 255, 1)
+      );
+      color: #000000;
+    }
+  }
+  button.confirm {
+    background-color: #b9aaff;
+    color: #000000;
+  }
+  .ant-modal-content {
+    .ant-modal-header {
+      background: #1d1c1e !important;
+      border-bottom: none;
+      border-radius: 20px 20px 0 0;
+    }
+    .ant-modal-close-x {
+      .anticon {
+        color: #b9aaff !important;
+      }
+    }
+    .ant-modal-title {
+      color: #b9aaff !important;
+    }
+    .ant-modal-body {
+      color: #b9aaff !important;
+    }
+    .ant-modal-footer {
+      border-top: none;
+    }
+    background: #1d1c1e !important;
+    border: 1px solid #b9aaff;
+    border-radius: 20px;
+  }
+}

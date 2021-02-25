@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Client, openNotificationWithIcon, CoinLogoMap } from '../tools';
+import {
+  Client,
+  openNotificationWithIcon,
+  CoinLogoMap,
+  MobileBrowserCheck,
+} from '../tools';
 import SpinModal from '../spinModal';
+import ConfirmModal from '../registerConfirmModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -9,7 +15,7 @@ import './index.less';
 var FileSaver = require('file-saver');
 var randomstring = require('randomstring');
 var Contract = require('web3-eth-contract');
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
     generatedPrivateKey: '',
     toggleShowPrivateKey: false,
@@ -20,6 +26,7 @@ class Login extends React.Component {
     agree: false,
     registerBtnTxt: 'InputYourPrivateKey',
     proccessing: false,
+    confirmModal: false,
   };
 
   constructor(props) {
@@ -34,6 +41,9 @@ class Login extends React.Component {
     );
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.register = this.register.bind(this);
+    this.openConfirmModal = this.openConfirmModal.bind(this);
+    this.closeConfirmModal = this.closeConfirmModal.bind(this);
+    this.confirmRegister = this.confirmRegister.bind(this);
   }
 
   toggleShowPrivateKey() {
@@ -41,14 +51,15 @@ class Login extends React.Component {
   }
 
   async register() {
-    this.setState({ proccessing: true });
     let { account, coinType, setClient } = this.props;
     let { privateKey } = this.state;
-    this.downloadString(
-      privateKey,
-      `${this.fileNameGenerator('privateKey')}.txt`,
-    );
-
+    if (!MobileBrowserCheck()) {
+      this.downloadString(
+        privateKey,
+        `${this.fileNameGenerator('privateKey')}.txt`,
+      );
+    }
+    this.setState({ proccessing: true });
     let info = CoinInfos[coinType];
     var suterShieldContract = new Contract(
       info.suterShiledContractABI,
@@ -171,20 +182,21 @@ class Login extends React.Component {
   }
 
   downloadString(text, fileName) {
-    // var blob = new Blob([text], { type: fileType });
-    // var a = document.createElement('a');
-    // a.download = fileName;
-    // a.href = URL.createObjectURL(blob);
-    // a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
-    // a.style.display = 'none';
-    // document.body.appendChild(a);
-    // a.click();
-    // document.body.removeChild(a);
-    // setTimeout(function() {
-    //   URL.revokeObjectURL(a.href);
-    // }, 1500);
     var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     FileSaver.saveAs(blob, fileName);
+  }
+
+  openConfirmModal() {
+    this.setState({ confirmModal: true });
+  }
+
+  closeConfirmModal() {
+    this.setState({ confirmModal: false });
+  }
+
+  confirmRegister() {
+    this.closeConfirmModal();
+    this.register();
   }
 
   render() {
@@ -199,6 +211,7 @@ class Login extends React.Component {
       agree,
       registerBtnTxt,
       proccessing,
+      confirmModal,
     } = this.state;
     let submitable =
       privateKey !== '' &&
@@ -208,6 +221,17 @@ class Login extends React.Component {
     return (
       <>
         {proccessing ? <SpinModal intl={intl} /> : ''}
+        {confirmModal ? (
+          <ConfirmModal
+            intl={intl}
+            handleOk={this.confirmRegister}
+            handleCancel={this.closeConfirmModal}
+            generatedPrivateKey={generatedPrivateKey}
+            copyGeneratedPrivateKey={this.copyGeneratedPrivateKey}
+          />
+        ) : (
+          ''
+        )}
         <div className="registerContainer">
           <div className="left">
             <div className="title">
@@ -327,7 +351,11 @@ class Login extends React.Component {
                     shape="round"
                     block
                     disabled={!submitable}
-                    onClick={this.register}
+                    onClick={
+                      MobileBrowserCheck()
+                        ? this.openConfirmModal
+                        : this.register
+                    }
                   >
                     {intl.get(registerBtnTxt)}
                   </Button>
@@ -348,4 +376,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default Register;
