@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
 import './index.less';
-
+var FileSaver = require('file-saver');
 var randomstring = require('randomstring');
 var Contract = require('web3-eth-contract');
 class Login extends React.Component {
@@ -46,7 +46,6 @@ class Login extends React.Component {
     let { privateKey } = this.state;
     this.downloadString(
       privateKey,
-      'text/text',
       `${this.fileNameGenerator('privateKey')}.txt`,
     );
 
@@ -171,19 +170,21 @@ class Login extends React.Component {
     this.setState({ createdByYourself: true });
   }
 
-  downloadString(text, fileType, fileName) {
-    var blob = new Blob([text], { type: fileType });
-    var a = document.createElement('a');
-    a.download = fileName;
-    a.href = URL.createObjectURL(blob);
-    a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function() {
-      URL.revokeObjectURL(a.href);
-    }, 1500);
+  downloadString(text, fileName) {
+    // var blob = new Blob([text], { type: fileType });
+    // var a = document.createElement('a');
+    // a.download = fileName;
+    // a.href = URL.createObjectURL(blob);
+    // a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
+    // a.style.display = 'none';
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a);
+    // setTimeout(function() {
+    //   URL.revokeObjectURL(a.href);
+    // }, 1500);
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    FileSaver.saveAs(blob, fileName);
   }
 
   render() {
