@@ -32,6 +32,7 @@
   "To": "to",
   "Max": "Max",
   "ConfirmFund": "Confirm Fund",
+  "ConfirmRegister": "Confirm Register",
   "Transfer": "Transfer",
   "MySuterAccountAddress": "My Suter Account Address",
   "PleaseInputSuterAccountAddressHere": "Please Input Suter Account Address Here",
@@ -104,5 +105,6 @@
   "AlreadyHaveAnAccount": "Already have an account?",
   "or": "or",
   "ThisSuterAccountNotExists": "This Suterusu Account Not Exists",
-  "Upcoming": "Upcoming"
+  "Upcoming": "Upcoming",
+  "Cancel": "Cancel"
 }

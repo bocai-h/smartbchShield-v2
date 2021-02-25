@@ -95,6 +95,22 @@ const fetchSuterPrice = async () => {
   return suterPrice;
 };
 
+const MobileBrowserCheck = (): boolean => {
+  let check = false;
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  ) {
+    // true for mobile device
+    check = true;
+  } else {
+    // false for not mobile device
+    check = false;
+  }
+  return check;
+};
+
 const ethChainNameMap = {
   '0x1': 'Ethereum Main Network (MainNet)',
   '0x3': 'Ropsten Test Network',
@@ -124,4 +140,5 @@ export {
   tronChainNameMap,
   Client,
   CoinLogoMap,
+  MobileBrowserCheck,
 };

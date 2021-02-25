@@ -35,6 +35,7 @@
   "To": "到",
   "Max": "最大",
   "ConfirmFund": "确认质押",
+  "ConfirmRegister": "确认注册",
   "Transfer": "隐私转账",
   "MySuterAccountAddress": "我的Suter账户地址",
   "PleaseInputSuterAccountAddressHere": "请输入Suter Account 地址",
@@ -106,5 +107,6 @@
   "AlreadyHaveAnAccount": "已经有了一个Suterusu账户?",
   "or": "或",
   "ThisSuterAccountNotExists": "当前Suterusu账户不存在",
-  "Upcoming": "敬请期待"
+  "Upcoming": "敬请期待",
+  "Cancel": "取消"
 }
