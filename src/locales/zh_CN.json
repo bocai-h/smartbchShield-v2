@@ -109,5 +109,7 @@
   "ThisSuterAccountNotExists": "当前Suterusu账户不存在",
   "Upcoming": "敬请期待",
   "Cancel": "取消",
-  "RegisterTips": "请备份好您的私钥"
+  "RegisterTips": "请备份好您的私钥",
+  "CopyPrivateKey": "复制私钥",
+  "Warning": "警告"
 }

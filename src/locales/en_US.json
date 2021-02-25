@@ -107,5 +107,7 @@
   "ThisSuterAccountNotExists": "This Suterusu Account Not Exists",
   "Upcoming": "Upcoming",
   "Cancel": "Cancel",
-  "RegisterTips": "Please back up your private key"
+  "RegisterTips": "Please back up your private key",
+  "CopyPrivateKey": "Copy Private Key",
+  "Warning": "Warning"
 }

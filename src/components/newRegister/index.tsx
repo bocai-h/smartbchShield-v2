@@ -226,6 +226,8 @@ class Register extends React.Component {
             intl={intl}
             handleOk={this.confirmRegister}
             handleCancel={this.closeConfirmModal}
+            generatedPrivateKey={generatedPrivateKey}
+            copyGeneratedPrivateKey={this.copyGeneratedPrivateKey}
           />
         ) : (
           ''
