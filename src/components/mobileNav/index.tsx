@@ -31,7 +31,7 @@ const MobileNav = props => {
         visible={visible}
         height={100}
       >
-        {DropMenu(props.intl, '/')}
+        {DropMenu(props.intl, props.currentNav)}
       </Drawer>
     </div>
   );
