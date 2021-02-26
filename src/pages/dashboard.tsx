@@ -1,10 +1,8 @@
 import React from 'react';
-import { Layout, Dropdown } from 'antd';
+import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 import intl from 'react-intl-universal';
 import 'antd/dist/antd.css';
-import Logo from '../static/suterShield.svg';
-import mLogo from '../static/logo.svg';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
@@ -12,8 +10,8 @@ import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
 import Dashboard from '@/components/dashboard';
-import { Nav, DropMenu } from '../components/nav';
-import { MenuOutlined } from '@ant-design/icons';
+import { Nav } from '../components/nav';
+import MobileNav from '../components/mobileNav';
 
 const locales = {
   'en-US': require('../locales/en_US'),
@@ -112,14 +110,9 @@ class SuterProtocol extends React.Component {
                 中
               </i>
             </div>
-            <Dropdown
-              overlay={DropMenu(intl, 'stats')}
-              className="mobbile-MenuOutlined"
-            >
-              <span onClick={e => e.preventDefault()}>
-                <MenuOutlined className="MenuOutlined" />
-              </span>
-            </Dropdown>
+            <div className="mobileNavContainer">
+              <MobileNav intl={intl} currentNav="stats" />
+            </div>
           </div>
         </Header>
         <Content>

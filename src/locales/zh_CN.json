@@ -63,11 +63,11 @@
   "ETHNetworkError": "以太坊网络错误!",
   "PleaseChangeMetamaskTo": "请将MetaMask网络切换到",
   "Network": "网络",
-  "CurrentETHDeposited": "ETH当前存币量",
-  "CurrentStableCoinsDeposited": "稳定币当前存币量",
+  "CurrentETHDeposited": "ETH总锁仓量",
+  "CurrentStableCoinsDeposited": "稳定币总锁仓量",
   "TotalFeesUSD": "手续费总量",
-  "TotalETHDeposited": "ETH历史存币总额",
-  "TotalUSDDeposited": "历史存币总额",
+  "TotalETHDeposited": "ETH总交易量",
+  "TotalUSDDeposited": "USD总交易量",
   "TotalDeposits": "总存款笔数",
   "TotalUsers": "总用户数",
   "EnterAnAmount": "输入数量",
@@ -111,5 +111,6 @@
   "Cancel": "取消",
   "RegisterTips": "请备份好您的私钥",
   "CopyPrivateKey": "复制私钥",
-  "Warning": "警告"
+  "Warning": "警告",
+  "DiscoverMore": "发现更多"
 }

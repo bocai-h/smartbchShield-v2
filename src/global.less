@@ -1,4 +1,10 @@
 body {
+  .mobileNavContainer {
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: block;
+    }
+  }
   .ant-spin-dot-item {
     background-color: #b9aaff;
   }

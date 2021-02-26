@@ -8,6 +8,7 @@ import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import detectEthereumProvider from '@metamask/detect-provider';
 import 'antd/dist/antd.css';
 import { Nav, DropMenu } from '../components/nav';
+import MobileNav from '../components/mobileNav';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
@@ -246,108 +247,6 @@ class SuterProtocol extends React.Component {
     const canConnectWallet =
       account === '' && metamaskInstalled && ethNetwork == ETH_CHAIN_ID;
     const scanLink = `${ETHERSCAN}/address/${account}`;
-    const menu = (
-      <Menu>
-        <Menu.Item key="compliance">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={intl.get('ComplianceUrl')}
-          >
-            {intl.get('Compliance')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="privacyTips">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={intl.get('PrivacyTipsUrl')}
-          >
-            {intl.get('PrivacyTips')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="about">
-          <Tooltip title={intl.get('ComingSoon')}>
-            <a
-              rel="noopener noreferrer"
-              onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-            >
-              {intl.get('About')}
-            </a>
-          </Tooltip>
-        </Menu.Item>
-      </Menu>
-    );
-
-    const menu1 = (
-      <Menu>
-        <Menu.Item key="stats">
-          <a target="_blank" rel="noopener noreferrer" href="/stats">
-            {intl.get('Stats')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="mining">
-          <Tooltip title={intl.get('ComingSoon')}>
-            <a
-              rel="noopener noreferrer"
-              onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-            >
-              {intl.get('Mining')}
-            </a>
-          </Tooltip>
-        </Menu.Item>
-        <Menu.Item key="tutorial">
-          <a target="_blank" rel="noopener noreferrer" href="/tutorial">
-            {intl.get('Tutorial')}
-          </a>
-        </Menu.Item>
-        <Menu.Item key="q&a">
-          <a target="_blank" rel="noopener noreferrer" href="/qa">
-            {intl.get('Q&A')}
-          </a>
-        </Menu.Item>
-        <Menu.ItemGroup title={intl.get('Info')}>
-          <Menu.Item key="compliance">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={intl.get('ComplianceUrl')}
-            >
-              {intl.get('Compliance')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="privacyTips">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={intl.get('PrivacyTipsUrl')}
-            >
-              {intl.get('PrivacyTips')}
-            </a>
-          </Menu.Item>
-          <Menu.Item key="about">
-            <Tooltip title={intl.get('ComingSoon')}>
-              <a
-                rel="noopener noreferrer"
-                onClick={e => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-              >
-                {intl.get('About')}
-              </a>
-            </Tooltip>
-          </Menu.Item>
-        </Menu.ItemGroup>
-      </Menu>
-    );
-
     return (
       this.state.initDone && (
         <Layout className="suterProtocol">
@@ -387,14 +286,9 @@ class SuterProtocol extends React.Component {
                   中
                 </i>
               </div>
-              <Dropdown
-                overlay={DropMenu(intl, '/')}
-                className="mobbile-MenuOutlined"
-              >
-                <span onClick={e => e.preventDefault()}>
-                  <MenuOutlined className="MenuOutlined" />
-                </span>
-              </Dropdown>
+              <div className="mobileNavContainer">
+                <MobileNav intl={intl} currentNav="/" />
+              </div>
             </div>
           </Header>
           <Content>
