@@ -8,6 +8,7 @@ import { openNotificationWithIcon, ethChainNameMap } from '../components/tools';
 import detectEthereumProvider from '@metamask/detect-provider';
 import 'antd/dist/antd.css';
 import { Nav, DropMenu } from '../components/nav';
+import MobileNav from '../components/mobileNav';
 import twitter from '../static/twitter.svg';
 import telegram from '../static/telegram.svg';
 import medium from '../static/medium.svg';
@@ -387,14 +388,9 @@ class SuterProtocol extends React.Component {
                   中
                 </i>
               </div>
-              <Dropdown
-                overlay={DropMenu(intl, '/')}
-                className="mobbile-MenuOutlined"
-              >
-                <span onClick={e => e.preventDefault()}>
-                  <MenuOutlined className="MenuOutlined" />
-                </span>
-              </Dropdown>
+              <div className="mobileNavContainer">
+                <MobileNav intl={intl} />
+              </div>
             </div>
           </Header>
           <Content>

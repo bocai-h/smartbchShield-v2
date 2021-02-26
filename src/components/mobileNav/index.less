@@ -1,0 +1,53 @@
+.mobileNav {
+  color: #b9aaff;
+  .ant-drawer-header,
+  .ant-drawer-content {
+    background-color: rgba(36, 28, 70, 0.9);
+  }
+  .ant-drawer-header {
+    .ant-drawer-title {
+      color: #b9aaff;
+    }
+    border-bottom: 1px solid #d8d8d8;
+    .ant-drawer-close {
+      .anticon {
+        color: #b9aaff !important;
+      }
+    }
+  }
+  .ant-drawer-body {
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+      background-color: transparent !important;
+    }
+    .ant-menu {
+      // width: 160px !important;
+      background: transparent !important;
+      // border: 1px solid #b9aaff !important;
+      border: none;
+    }
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      font-family: PingFangSC-Thin, sans-serif;
+      font-size: 18px !important;
+      color: #fff !important;
+      letter-spacing: 0 !important;
+      line-height: 24px !important;
+    }
+    .ant-menu-item > a,
+    .ant-menu-submenu-title > a,
+    .ant-menu-item-group-title {
+      font-family: PingFangSC-Thin, sans-serif;
+      font-size: 18px !important;
+      color: #fff !important;
+    }
+    .ant-menu-item-active {
+      background-color: transparent !important;
+      // background-color: #b9aaff !important;
+      a {
+        &:hover {
+          color: #b9aaff !important;
+        }
+      }
+    }
+  }
+}
