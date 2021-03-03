@@ -71,7 +71,7 @@
   "EnterAnAmount": "Enter an amount",
   "InsufficientBalance": "Insufficient balance",
   "InvalidSuterAccount": "Invalid Address",
-  "warningTips": "Suter Shield was audited. However, it is still an experimental software. Please use at your own risk.",
+  "warningTips": "Suter Shield was audited by <a href=\"https://peckshield.com\" target=\"_blank\"><strong>PeckShield</strong></a>. Here is our <a href=\"https://github.com/peckshield/publications/blob/master/audit_reports/PeckShield-Audit-Report-Suterusu-v1.0.pdf\" target=\"_blank\">audit report</a>. However, it is still an experimental software. Please use at your own risk.",
   "privateKeyTips": "The private key you enter must contain at least 16 characters, but no more than 64 characters. It must also contain at least one lowercase letter and one digital number.",
   "invalidPrivateKeyTips": "Invalid Private Key",
   "Stats": "Stats",

@@ -1,8 +1,13 @@
 .suterProtocol {
-  .form{
-    .tipsContainer{
-      color: #FF578E;
-      background: #1D1C1E;
+  .form {
+    .tipsContainer {
+      color: rgba(255, 87, 142, 0.5);
+      a {
+        color: #ff578e;
+        font-weight: 800;
+        text-decoration: underline;
+      }
+      background: #1d1c1e;
       margin: 0 auto;
       border-radius: 10px;
       text-align: center;
@@ -10,17 +15,21 @@
       display: flex;
       justify-content: space-between;
       padding: 10px 20px;
-      max-width: 800px;
-      @media only screen and (max-width: 480px){
+      max-width: 1020px;
+      @media only screen and (max-width: 480px) {
         max-width: 350px;
+        padding: 10px 5px;
       }
-      .closeIcon{
+      .closeIcon {
         cursor: pointer;
         margin-left: 10px;
       }
-      .warningIcon{
+      .warningIcon {
         margin-right: 10px;
       }
+    }
+    .zh-CN.tipsContainer {
+      max-width: 800px;
     }
   }
   .operationContainer {
@@ -29,7 +38,7 @@
     flex-wrap: wrap;
     max-width: 1140px;
     margin: 0 auto;
-    margin-top: 30px;  
+    margin-top: 30px;
     .ant-card {
       background: #1d1c1e;
       border: 1px solid #1d1c1e;
