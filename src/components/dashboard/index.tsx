@@ -1,9 +1,10 @@
 import React from 'react';
-import { Spin } from 'antd';
+import { Spin, Popover, Row, Col } from 'antd';
 import './index.less';
 import Web3 from 'web3';
 import axios from 'axios';
 import { openNotificationWithIcon } from '../../components/tools';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 var Contract = require('web3-eth-contract');
 class Dashboard extends React.Component {
@@ -362,8 +363,28 @@ class Dashboard extends React.Component {
       totalDepositsLoading: false,
     });
   }
+
+  feePoolTipsContent() {
+    let { intl } = this.props;
+    return (
+      <div>
+        <a href={XSUTER_URL} target="_blank">
+          {intl.get('FeePoolTips')}
+        </a>
+      </div>
+    );
+  }
+
+  numberFormat(amount) {
+    let { intl } = this.props;
+    let formatted = amount.toLocaleString(intl.options.currentLocale, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    return formatted;
+  }
+
   render() {
-    // console.log(this.state)
     let { intl } = this.props;
     let {
       currentETHDeposited,
@@ -373,8 +394,6 @@ class Dashboard extends React.Component {
       totalDeposits,
       totalUSDDeposited,
       totalUsers,
-    } = this.state;
-    let {
       currentETHDepositedLoading,
       currentStableCoinsDepositedLoading,
       totalFeesUSDLoading,
@@ -382,72 +401,124 @@ class Dashboard extends React.Component {
       totalUSDDepositedLoading,
       totalDepositsLoading,
       totalUsersLoading,
+      ethPrice,
     } = this.state;
     return (
-      <div className="dashboardContainer">
-        <div className="cardContainer">
-          <div className="card">
-            <h2>{intl.get('CurrentETHDeposited')}</h2>
-            {currentETHDepositedLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>{currentETHDeposited.toLocaleString()}</h1>
-            )}
-          </div>
-          <div className="card">
-            <h2>{intl.get('TotalETHDeposited')}</h2>
-            {totalETHDepositedLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>{totalETHDeposited.toLocaleString()}</h1>
-            )}
-          </div>
-          <div className="card">
-            <h2>{intl.get('TotalUsers')}</h2>
-            {totalUsersLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>{totalUsers.toLocaleString()}</h1>
-            )}
-          </div>
-        </div>
-        <div className="cardContainer">
-          <div className="card">
-            <h2>{intl.get('CurrentStableCoinsDeposited')}</h2>
-            {currentStableCoinsDepositedLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>${currentStableCoinsDeposited.toLocaleString()}</h1>
-            )}
-          </div>
-          <div className="card">
-            <h2>{intl.get('TotalUSDDeposited')}</h2>
-            {totalUSDDepositedLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>${totalUSDDeposited.toLocaleString()}</h1>
-            )}
-          </div>
-        </div>
-        <div className="cardContainer">
-          <div className="card">
-            <h2>{intl.get('TotalFeesUSD')}</h2>
-            {totalFeesUSDLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>${totalFeesUSD.toLocaleString()}</h1>
-            )}
-          </div>
-          <div className="card">
-            <h2>{intl.get('TotalDeposits')}</h2>
-            {totalDepositsLoading ? (
-              <Spin size="large" />
-            ) : (
-              <h1>{totalDeposits.toLocaleString()}</h1>
-            )}
-          </div>
-        </div>
-      </div>
+      <>
+        <Row
+          className="dashboardContainer"
+          justify="space-between"
+          gutter={[{ xs: 8 }]}
+        >
+          <Col xs={24} sm={12} md={8} lg={8} xl={8}>
+            <div className="card totalUSDDeposited">
+              <h2>{intl.get('TotalUSDDeposited')}</h2>
+              {totalUSDDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>${this.numberFormat(totalUSDDeposited)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalValueLockedInUSD')}</h2>
+              {totalUSDDepositedLoading ||
+              currentStableCoinsDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>
+                  $
+                  {this.numberFormat(
+                    currentETHDeposited * ethPrice +
+                      currentStableCoinsDeposited,
+                  )}
+                </h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalDeposits')}</h2>
+              {totalDepositsLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>{this.numberFormat(totalDeposits)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalUsers')}</h2>
+              {totalUsersLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>{this.numberFormat(totalUsers)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalETHDeposited')}</h2>
+              {totalETHDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>{this.numberFormat(totalETHDeposited)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('CurrentETHDeposited')}</h2>
+              {currentETHDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>{this.numberFormat(currentETHDeposited)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('CurrentStableCoinsDeposited')}</h2>
+              {currentStableCoinsDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>${this.numberFormat(currentStableCoinsDeposited)}</h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalStableCoinsDeposited')}</h2>
+              {totalUSDDepositedLoading || totalETHDepositedLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>
+                  $
+                  {this.numberFormat(
+                    totalUSDDeposited - totalETHDeposited * ethPrice,
+                  )}
+                </h1>
+              )}
+            </div>
+          </Col>
+          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+            <div className="card">
+              <div className="titleContainer">
+                <h2>{intl.get('TotalFeesUSD')}</h2>
+                <Popover content={this.feePoolTipsContent()} trigger="click">
+                  <InfoCircleOutlined />
+                </Popover>
+              </div>
+              {totalFeesUSDLoading ? (
+                <Spin size="large" />
+              ) : (
+                <h1>${this.numberFormat(totalFeesUSD)}</h1>
+              )}
+            </div>
+          </Col>
+        </Row>
+      </>
     );
   }
 }

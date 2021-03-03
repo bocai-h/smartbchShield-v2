@@ -63,9 +63,11 @@ class Form extends React.Component {
     return (
       <div className="form">
         {warningTips ? (
-          <div className="tipsContainer">
+          <div className={`tipsContainer ${intl.options.currentLocale}`}>
             <img src={WarningIcon} className="warningIcon" />
-            <div>{intl.get('warningTips')}</div>
+            <div
+              dangerouslySetInnerHTML={{ __html: intl.get('warningTips') }}
+            ></div>
             <img
               src={CloseIcon}
               className="closeIcon"
