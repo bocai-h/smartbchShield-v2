@@ -62,7 +62,7 @@
   "PleaseChangeMetamaskTo": "Please change MetaMask to",
   "Network": "network",
   "CurrentETHDeposited": "Total Value Locked in ETH",
-  "CurrentStableCoinsDeposited": "Total Value Locked in USD",
+  "CurrentStableCoinsDeposited": "Total Value Locked in Stable Coin",
   "TotalFeesUSD": "Total Fees USD",
   "TotalETHDeposited": "Total Transaction Volume in ETH",
   "TotalUSDDeposited": "Total Transaction Volume in USD",
@@ -110,5 +110,8 @@
   "RegisterTips": "Please back up your private key",
   "CopyPrivateKey": "Copy Private Key",
   "Warning": "Warning",
-  "DiscoverMore": "Discover More"
+  "DiscoverMore": "Discover More",
+  "FeePoolTips": "To be distributed to xSuter holders",
+  "TotalValueLockedInUSD": "Total Value Locked in USD",
+  "TotalStableCoinsDeposited": "Total Transaction Volume in Stable Coin"
 }

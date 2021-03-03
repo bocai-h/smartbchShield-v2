@@ -67,7 +67,7 @@
   "CurrentStableCoinsDeposited": "稳定币总锁仓量",
   "TotalFeesUSD": "手续费总量",
   "TotalETHDeposited": "ETH总交易量",
-  "TotalUSDDeposited": "USD总交易量",
+  "TotalUSDDeposited": "总交易量(USD)",
   "TotalDeposits": "总存款笔数",
   "TotalUsers": "总用户数",
   "EnterAnAmount": "输入数量",
@@ -112,5 +112,8 @@
   "RegisterTips": "请备份好您的私钥",
   "CopyPrivateKey": "复制私钥",
   "Warning": "警告",
-  "DiscoverMore": "发现更多"
+  "DiscoverMore": "发现更多",
+  "FeePoolTips": "将分配给xSuter持有人",
+  "TotalValueLockedInUSD": "总锁仓量",
+  "TotalStableCoinsDeposited": "稳定币总交易量"
 }
