@@ -1,3 +1,4 @@
+@import '../../variables.less';
 .suterProtocol {
   .operationContainer {
     .transfer {
@@ -5,11 +6,18 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        .titleContainer {
+          display: flex;
+          .anticon {
+            color: @chainColor !important;
+          }
+        }
         p.myAddress {
-          color: #b9aaff;
+          color: @chainColor;
           cursor: pointer;
           position: relative;
           top: 6px;
+          font-size: 13px;
           &:hover {
             text-decoration: underline;
           }
@@ -46,8 +54,8 @@
           background: rgba(216, 216, 216, 0.12);
           border: 2px solid #b9aaff;
         }
-        input.insufficientInput{
-          border: 2px solid #FF578E;
+        input.insufficientInput {
+          border: 2px solid #ff578e;
         }
         .inputAppend {
           position: absolute;
@@ -105,8 +113,8 @@
           background: rgba(216, 216, 216, 0.12);
           border: 2px solid #b9aaff;
         }
-        textarea.invalidAddress{
-          border: 2px solid #FF578E;
+        textarea.invalidAddress {
+          border: 2px solid #ff578e;
         }
       }
       .confirmContainer {
@@ -116,7 +124,7 @@
           color: rgba(105, 85, 192, 1);
           background-color: transparent;
           background-image: none;
-          &:hover{
+          &:hover {
             background-image: linear-gradient(
               to right,
               rgba(185, 170, 255, 1),
@@ -131,11 +139,12 @@
           background-color: transparent;
           background-image: none;
         }
-        button.insufficientInput, button.invalidAddress{
-          border-color:#FF578E;
-          color: #FF578E;
+        button.insufficientInput,
+        button.invalidAddress {
+          border-color: #ff578e;
+          color: #ff578e;
         }
-        button.grey{
+        button.grey {
           border-color: #979797;
           color: #979797;
         }

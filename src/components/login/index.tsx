@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Client, openNotificationWithIcon, CoinLogoMap } from '../tools';
-import SpinModal from '../spinModal';
+import LoadingModal from '../loadingModal';
 import Web3 from 'web3';
 import openEye from '../../static/openEye.svg';
 import closeEye from '../../static/closeEye.svg';
@@ -93,7 +93,7 @@ class Login extends React.Component {
     let submitable = inputValue !== '' && this.isPrivateKeyValid(inputValue);
     return (
       <>
-        {proccessing ? <SpinModal intl={intl} /> : ''}
+        {proccessing ? <LoadingModal intl={intl} /> : ''}
         <div className="loginContainer">
           <div className="left">
             <div className="title">

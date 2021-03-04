@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Tooltip } from 'antd';
 import './index.less';
 import {
   CoinLogoMap,
@@ -8,7 +8,7 @@ import {
 } from '../tools';
 import PublicKeyModal from '../publicKeyModal';
 import SpinModal from '../spinModal';
-
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 class Transfer extends React.Component {
   state = {
     myAddressModal: false,
@@ -154,7 +154,16 @@ class Transfer extends React.Component {
             intl={intl}
           />
           <div className="title">
-            <h1>{intl.get('Transfer')}</h1>
+            <div className="titleContainer">
+              <h1>{intl.get('Transfer')}</h1>
+              <Tooltip
+                placement="topLeft"
+                title={intl.get('transferFeeTips')}
+                trigger={['hover', 'click']}
+              >
+                <ExclamationCircleOutlined className="i" />
+              </Tooltip>
+            </div>
             <p className="myAddress" onClick={this.openMyAddressModal}>
               {intl.get('MySuterAccountAddress')}
             </p>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Tooltip } from 'antd';
 import './index.less';
 import {
   CoinLogoMap,
@@ -7,7 +7,7 @@ import {
   openNotificationWithIcon,
 } from '../tools';
 import SpinModal from '../spinModal';
-
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 class Burn extends React.Component {
   state = {
     inputValue: 0,
@@ -110,7 +110,16 @@ class Burn extends React.Component {
       <div className="burn">
         {proccesing ? <SpinModal intl={intl} /> : ''}
         <Card style={{ width: 350 }}>
-          <h1>{intl.get('Burn')}</h1>
+          <div className="titleContainer">
+            <h1>{intl.get('Burn')}</h1>
+            <Tooltip
+              placement="topLeft"
+              title={intl.get('burnFeeTips')}
+              trigger={['hover', 'click']}
+            >
+              <ExclamationCircleOutlined className="i" />
+            </Tooltip>
+          </div>
           <p>
             {intl.get('Burn')} S{info.unit} {intl.get('To')} {info.unit}
           </p>
