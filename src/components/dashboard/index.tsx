@@ -506,7 +506,7 @@ class Dashboard extends React.Component {
             <div className="card">
               <div className="titleContainer">
                 <h2>{intl.get('TotalFeesUSD')}</h2>
-                <Popover content={this.feePoolTipsContent()} trigger="click">
+                <Popover content={this.feePoolTipsContent()} trigger="hover">
                   <InfoCircleOutlined />
                 </Popover>
               </div>

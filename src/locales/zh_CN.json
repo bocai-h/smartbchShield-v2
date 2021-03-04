@@ -47,7 +47,7 @@
   "YouWillReceive": "你将会收到",
   "Copy": "复制",
   "Copied": "已复制",
-  "pkTips": "Suter ERC20-20 帐号由一个ElGamal公钥识别。当用户调用质押功能，转移功能和销毁功能时，它将作为输入。",
+  "pkTips": "Suter ERC20帐号由一个ElGamal公钥识别。当用户调用质押功能，转移功能和销毁功能时，它将作为输入。",
   "YourSuterAccountAddress": "你的Suter账户地址",
   "processing": "处理中",
   "yourRequest": "您的请求",
@@ -115,5 +115,8 @@
   "DiscoverMore": "发现更多",
   "FeePoolTips": "将分配给xSuter持有人",
   "TotalValueLockedInUSD": "总锁仓量",
-  "TotalStableCoinsDeposited": "稳定币总交易量"
+  "TotalStableCoinsDeposited": "稳定币总交易量",
+  "LoadingTips": "请您耐心等待一会儿",
+  "transferFeeTips": "我们将收取transfer操作消耗的gas fee的20%作为服务费用",
+  "burnFeeTips": "我们将收取burn操作中用户提取的token的1%作为服务费用"
 }

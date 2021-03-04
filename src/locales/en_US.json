@@ -46,7 +46,7 @@
   "YourSuterAccountAddress": "Your Suter Account Address",
   "Copy": "Copy",
   "Copied": "Copied",
-  "pkTips": "A Suter erc-20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.",
+  "pkTips": "A Suter ERC20 token account is identified by a ElGamal public key. It serves as inputs whenever the users invoke the Fund, Transfer, and Burn contracts.",
   "processing": "Processing",
   "yourRequest": "Your Request",
   "spinTips": "Don't refresh your page and it might take up to 2 to 3 minutes to complete your request.",
@@ -113,5 +113,8 @@
   "DiscoverMore": "Discover More",
   "FeePoolTips": "To be distributed to xSuter holders",
   "TotalValueLockedInUSD": "Total Value Locked in USD",
-  "TotalStableCoinsDeposited": "Total Transaction Volume in Stable Coin"
+  "TotalStableCoinsDeposited": "Total Transaction Volume in Stable Coin",
+  "LoadingTips": "Please wait patiently for a while",
+  "transferFeeTips": "We will charge you 20% of gas fee for the transfer operation as our service fee.",
+  "burnFeeTips": "We will charge you 1% of your withdrawn tokens for your burn operation as our service fee."
 }
