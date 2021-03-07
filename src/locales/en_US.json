@@ -115,6 +115,6 @@
   "TotalValueLockedInUSD": "Total Value Locked in USD",
   "TotalStableCoinsDeposited": "Total Transaction Volume in Stable Coin",
   "LoadingTips": "Please wait patiently for a while",
-  "transferFeeTips": "We will charge you 20% of gas fee for the transfer operation as our service fee.",
-  "burnFeeTips": "We will charge you 1% of your withdrawn tokens for your burn operation as our service fee."
+  "transferFeeTips": "Network will charge you 20% of gas fee for the transfer operation as our service fee.",
+  "burnFeeTips": "Network will charge you 1% of your withdrawn tokens for your burn operation as our service fee."
 }
