@@ -65,15 +65,46 @@ const MessageWithAlink = props => {
   );
 };
 
+// const fetchSuterPrice = async () => {
+//   let suterPrice = 0;
+//   try {
+//     let response = await axios.get(
+//       'kucoin_api/api/v1/market/orderbook/level1?symbol=SUTER-USDT',
+//     );
+//     if (response.status == 200) {
+//       let price = response.data.data.price;
+//       suterPrice = parseFloat(price);
+//     } else {
+//       console.log(response);
+//       openNotificationWithIcon(
+//         'Price Api Error',
+//         'Fetch suter price error',
+//         'error',
+//         4.5,
+//       );
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     openNotificationWithIcon(
+//       'Network Error',
+//       'Fetch suter price error',
+//       'warning',
+//       4.5,
+//     );
+//   }
+//   return suterPrice;
+// };
+
 const fetchSuterPrice = async () => {
   let suterPrice = 0;
+  // let start_time = Math.floor(new Date() / 1000);
   try {
     let response = await axios.get(
-      'kucoin_api/api/v1/market/orderbook/level1?symbol=SUTER-USDT',
+      `mxc_api/open/api/v2/market/deals?symbol=SUTER_USDT&limit=1`,
     );
     if (response.status == 200) {
-      let price = response.data.data.price;
-      suterPrice = parseFloat(price);
+      let data = response.data.data[0];
+      suterPrice = parseFloat(data['trade_price']);
     } else {
       console.log(response);
       openNotificationWithIcon(
@@ -140,5 +171,6 @@ export {
   tronChainNameMap,
   Client,
   CoinLogoMap,
+  fetchSuterPrice,
   MobileBrowserCheck,
 };

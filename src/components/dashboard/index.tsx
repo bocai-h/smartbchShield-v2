@@ -3,7 +3,10 @@ import { Spin, Popover, Row, Col } from 'antd';
 import './index.less';
 import Web3 from 'web3';
 import axios from 'axios';
-import { openNotificationWithIcon } from '../../components/tools';
+import {
+  openNotificationWithIcon,
+  fetchSuterPrice,
+} from '../../components/tools';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
 var Contract = require('web3-eth-contract');
@@ -33,7 +36,7 @@ class Dashboard extends React.Component {
   }
   async componentDidMount() {
     this.getCurrentETHDeposited();
-    await this.fetchSuterPrice();
+    await fetchSuterPrice();
     await this.getRenBTCPrice();
     await this.getDaiPrice();
     await this.getETHPrice();
@@ -54,35 +57,6 @@ class Dashboard extends React.Component {
       currentETHDeposited: balance,
       currentETHDepositedLoading: false,
     });
-  }
-
-  async fetchSuterPrice() {
-    let suterPrice = 0;
-    try {
-      let response = await axios.get(
-        'kucoin_api/api/v1/market/orderbook/level1?symbol=SUTER-USDT',
-      );
-      if (response.status == 200) {
-        let price = response.data.data.price;
-        suterPrice = parseFloat(price);
-      } else {
-        openNotificationWithIcon(
-          'Price Api Error',
-          'Fetch suter price error',
-          'error',
-          4.5,
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      openNotificationWithIcon(
-        'Network Error',
-        'Fetch suter price error',
-        'warning',
-        4.5,
-      );
-    }
-    this.setState({ suterPrice: suterPrice * 2 });
   }
 
   async getETHPrice() {
