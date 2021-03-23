@@ -31,6 +31,16 @@ export default defineConfig({
       pathRewrite: { '^/huobi_api': '' },
       changeOrigin: true,
     },
+    '/binance_api': {
+      target: 'https://api.binance.com',
+      pathRewrite: { '^/binance_api': '' },
+      changeOrigin: true,
+    },
+    '/mxc_api': {
+      target: 'https://www.mxc.com',
+      pathRewrite: { '^/mxc_api': '' },
+      changeOrigin: true,
+    },
   },
   theme: {
     'primary-color': '#6955C0',
