@@ -118,5 +118,6 @@
   "TotalStableCoinsDeposited": "稳定币总交易量",
   "LoadingTips": "请您耐心等待一会儿",
   "transferFeeTips": "网络将收取transfer操作消耗的gas fee的20%作为服务费用",
-  "burnFeeTips": "网络将收取burn操作中用户提取的token的1%作为服务费用"
+  "burnFeeTips": "网络将收取burn操作中用户提取的token的1%作为服务费用",
+  "EpochError": "Epoch 错误, 请重新尝试"
 }

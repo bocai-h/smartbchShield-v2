@@ -73,7 +73,7 @@ class Burn extends React.Component {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
       } else {
-        openNotificationWithIcon('Error', error.toString(), 'error');
+        openNotificationWithIcon('Error', intl.get('EpochError'), 'error');
       }
       this.setState({ proccesing: false });
       return;

@@ -109,7 +109,7 @@ class Transfer extends React.Component {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
       } else {
-        openNotificationWithIcon('Error', error.toString(), 'warning');
+        openNotificationWithIcon('Error', intl.get('EpochError'), 'error');
       }
       this.setState({ proccesing: false });
       return;
