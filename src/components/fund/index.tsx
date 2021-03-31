@@ -77,7 +77,7 @@ class Fund extends React.Component {
       if (error.code !== '') {
         openNotificationWithIcon('Error', error.message, 'error');
       } else {
-        openNotificationWithIcon('Error', error.toString(), 'error');
+        openNotificationWithIcon('Error', intl.get('EpochError'), 'error');
       }
       this.setState({ processing: false });
       return;

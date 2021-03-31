@@ -188,7 +188,7 @@ class Home extends React.Component {
               </div>
             </div>
           </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+          {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -204,8 +204,8 @@ class Home extends React.Component {
                 </div>
               </div>
             </Tooltip>
-          </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+          </Col> */}
+          {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -221,8 +221,8 @@ class Home extends React.Component {
                 </div>
               </div>
             </Tooltip>
-          </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+          </Col> */}
+          {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -238,8 +238,8 @@ class Home extends React.Component {
                 </div>
               </div>
             </Tooltip>
-          </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+          </Col> */}
+          {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -255,7 +255,7 @@ class Home extends React.Component {
                 </div>
               </div>
             </Tooltip>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     );
