@@ -5,6 +5,7 @@ import {
   openNotificationWithIcon,
   CoinLogoMap,
   MobileBrowserCheck,
+  RegisterGasEstimate,
 } from '../tools';
 import SpinModal from '../spinModal';
 import ConfirmModal from '../registerConfirmModal';
@@ -27,6 +28,9 @@ class Register extends React.Component {
     registerBtnTxt: 'InputYourPrivateKey',
     proccessing: false,
     confirmModal: false,
+    registerTipsZh: '',
+    registerTipsEn: '',
+    gasNotEnough: false,
   };
 
   constructor(props) {
@@ -44,6 +48,25 @@ class Register extends React.Component {
     this.openConfirmModal = this.openConfirmModal.bind(this);
     this.closeConfirmModal = this.closeConfirmModal.bind(this);
     this.confirmRegister = this.confirmRegister.bind(this);
+    this.checkGasIsEnough = this.checkGasIsEnough.bind(this);
+  }
+
+  async componentDidMount() {
+    let { coinType } = this.props;
+    let registerTipsZh = `您的私钥只适用于访问当前SUTER-${coinType.toUpperCase()}账号,它不能访问其他任何您的Suter账号 `;
+    let registerTipsEn = `This private key is for the access of SUTER-${coinType.toUpperCase()} account.It cannot be used to access any other Suter account.`;
+    this.setState({
+      registerTipsZh: registerTipsZh,
+      registerTipsEn: registerTipsEn,
+    });
+
+    await this.checkGasIsEnough();
+  }
+
+  async checkGasIsEnough() {
+    let { account } = this.props;
+    let gasEnough = await RegisterGasEstimate(account);
+    this.setState({ gasNotEnough: !gasEnough });
   }
 
   toggleShowPrivateKey() {
@@ -51,11 +74,13 @@ class Register extends React.Component {
   }
 
   async register() {
-    let { account, coinType, setClient } = this.props;
-    let { privateKey } = this.state;
+    let { account, coinType, setClient, intl } = this.props;
+    let { privateKey, registerTipsZh, registerTipsEn } = this.state;
+    let registerTips =
+      intl.options.currentLocale === 'en-US' ? registerTipsEn : registerTipsZh;
     if (!MobileBrowserCheck()) {
       this.downloadString(
-        privateKey,
+        `${registerTips}\n${privateKey}`,
         `${this.fileNameGenerator('privateKey')}.txt`,
       );
     }
@@ -212,6 +237,9 @@ class Register extends React.Component {
       registerBtnTxt,
       proccessing,
       confirmModal,
+      registerTipsZh,
+      registerTipsEn,
+      gasNotEnough,
     } = this.state;
     let submitable =
       privateKey !== '' &&
@@ -252,6 +280,11 @@ class Register extends React.Component {
                   </span>
                   .
                 </div>
+                <p className="registerTips">
+                  {intl.options.currentLocale === 'en-US'
+                    ? registerTipsEn
+                    : registerTipsZh}
+                </p>
                 <div className="btnContainer">
                   {!PrivateKeyGenerated ? (
                     <Button
@@ -346,6 +379,11 @@ class Register extends React.Component {
                   <input type="checkbox" onChange={this.handleCheckbox} />
                   <p>{intl.get('RegisterAgree')}</p>
                 </div>
+                {gasNotEnough ? (
+                  <p className="gasNotEnoughTips">{intl.get('GasNotEnough')}</p>
+                ) : (
+                  ''
+                )}
                 <div className="btnContainer">
                   <Button
                     shape="round"
