@@ -16,7 +16,8 @@ import ssuter from '../../static/S_SUTER.svg';
 import suter from '../../static/SUTER.svg';
 import srenBTC from '../../static/S_RENBTC.svg';
 import renBTC from '../../static/RENBTC.svg';
-
+import Web3 from 'web3';
+const BigNumber = require('bignumber.js');
 const Client = require('../../../suterusu-protocol/lib/suterusu.js');
 // const Client = require('/Users/jiangchongyang/Desktop/chongyang/waibao/suterusu-protocol/lib/suterusu.js');
 
@@ -142,6 +143,23 @@ const MobileBrowserCheck = (): boolean => {
   return check;
 };
 
+const RegisterGasEstimate = async (account): boolean => {
+  let check = false;
+  // get account bnb balance
+  let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
+  let bnbBalanceWithDecimal = await newWeb3.eth.getBalance(account);
+
+  // BSC price is always 10Gwei
+  // let gasPrice = 10000000000;
+  let gasPrice = await newWeb3.eth.getGasPrice();
+  let gas = 144760;
+  let gasPriceBn = new BigNumber(gasPrice);
+  let gasFee = gasPriceBn.times(gas); // trueinus(gas);
+
+  check = new BigNumber(bnbBalanceWithDecimal).minus(gasFee) >= 0;
+  return check;
+};
+
 const ethChainNameMap = {
   '0x1': 'Ethereum Main Network (MainNet)',
   '0x3': 'Ropsten Test Network',
@@ -173,4 +191,5 @@ export {
   CoinLogoMap,
   fetchSuterPrice,
   MobileBrowserCheck,
+  RegisterGasEstimate,
 };
