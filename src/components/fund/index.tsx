@@ -74,7 +74,7 @@ class Fund extends React.Component {
         result = await client.deposit(inputValue.toString());
       }
     } catch (error) {
-      if (error.code !== '') {
+      if (error.code) {
         openNotificationWithIcon('Error', error.message, 'error');
       } else {
         openNotificationWithIcon('Error', intl.get('EpochError'), 'error');

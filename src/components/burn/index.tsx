@@ -70,7 +70,7 @@ class Burn extends React.Component {
     try {
       result = await client.withdraw(inputValue);
     } catch (error) {
-      if (error.code !== '') {
+      if (error.code) {
         openNotificationWithIcon('Error', error.message, 'error');
       } else {
         openNotificationWithIcon('Error', intl.get('EpochError'), 'error');
