@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
   }
   async componentDidMount() {
     this.getCurrentETHDeposited();
-    await fetchSuterPrice();
+    await this.getSuterPrice();
     await this.getRenBTCPrice();
     await this.getDaiPrice();
     await this.getETHPrice();
@@ -57,6 +57,11 @@ class Dashboard extends React.Component {
       currentETHDeposited: balance,
       currentETHDepositedLoading: false,
     });
+  }
+
+  async getSuterPrice() {
+    let suterPrice = await fetchSuterPrice();
+    this.setState({ suterPrice: suterPrice });
   }
 
   async getETHPrice() {
@@ -92,7 +97,7 @@ class Dashboard extends React.Component {
     let renBTCBTCPrice = 0;
     try {
       let response = await axios.get(
-        'huobi_api/market/detail/merged?symbol=renbtcbtc',
+        'huobi_api/market/detail/merged?symbol=renbtc',
       );
       if (response.status == 200) {
         let price = response.data.tick.bid[0];
