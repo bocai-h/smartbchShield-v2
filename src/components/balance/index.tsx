@@ -26,7 +26,21 @@ class Balance extends React.Component {
     let { setBalanceFunc } = this.props;
     let { balance, suterShieldBalance } = this.state;
     setBalanceFunc(balance, suterShieldBalance);
+
+    this.interval = setInterval(async () => {
+      await this.getBalance();
+      await this.suterShieldBalance();
+      let { balance, suterShieldBalance } = this.state;
+      let { setBalanceFunc } = this.props;
+      setBalanceFunc(balance, suterShieldBalance);
+    }, 3000);
   }
+
+  componentWillUnmount() {
+    console.log('clear interval');
+    clearInterval(this.interval);
+  }
+
   async getBalance() {
     let { account, coinType } = this.props;
     let info = CoinInfos[coinType];
@@ -59,9 +73,11 @@ class Balance extends React.Component {
     if (!client) {
       return;
     }
-    let balance = await client.readBalanceFromContract();
+    // let balance = await client.readBalanceFromContract();
+    let balance = client.account.balance();
     this.setState({ suterShieldBalance: balance });
   }
+
   transformRate(a, b) {
     let molecular = a;
     let denominator = b;
