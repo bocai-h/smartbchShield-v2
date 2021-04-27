@@ -118,5 +118,5 @@
   "transferFeeTips": "Network will charge you 20% of gas fee for the transfer operation as our service fee.",
   "burnFeeTips": "Network will charge you 1% of your withdrawn tokens for your burn operation as our service fee.",
   "EpochError": "Epoch time expired. Please try again. If the transaction is still reverted, please consider switching to a better network.",
-  "GasNotEnough": "Warning, your account does not have sufficient BNB to pay for the gas fee!"
+  "GasNotEnough": "Warning, your account does not have sufficient ETH to pay for the gas fee!"
 }
