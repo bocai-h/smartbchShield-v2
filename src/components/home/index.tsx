@@ -6,10 +6,7 @@ import daiLogo from '../../static/daiLogo.svg';
 import usdtLogo from '../../static/usdtLogo.svg';
 import suterLogo from '../../static/suterLogo.svg';
 import renBTCLogo from '../../static/renBTCLogo.svg';
-import dogeLogo from '../../static/dogeLogo.svg';
-import tornLogo from '../../static/tornLogo.svg';
-import suterUsdtLpLogo from '../../static/suterUsdtLpLogo.svg';
-import aaveLogo from '../../static/aaveLogo.svg';
+import SHIBLogo from '../../static/SHIBLogo.svg';
 import { openNotificationWithIcon } from '../tools';
 class Home extends React.Component {
   constructor(props) {
@@ -188,7 +185,7 @@ class Home extends React.Component {
               </div>
             </div>
           </Col>
-          {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
               placement="rightTop"
@@ -196,15 +193,15 @@ class Home extends React.Component {
             >
               <div className="card" onClick={this.upcoming}>
                 <div>
-                  <h1>DOGE</h1>
+                  <h1>SHIB</h1>
                   <p>Upcoming</p>
                 </div>
-                <div className="DOGE">
-                  <img src={dogeLogo} alt="doge logo" />
+                <div className="SHIB">
+                  <img src={SHIBLogo} alt="SHIB logo" />
                 </div>
               </div>
             </Tooltip>
-          </Col> */}
+          </Col>
           {/* <Col xs={24} sm={24} md={8} lg={8} xl={6}>
             <Tooltip
               title={intl.get('Upcoming')}
