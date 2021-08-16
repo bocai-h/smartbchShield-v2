@@ -21,12 +21,14 @@
     ]
   },
   "dependencies": {
+    "@alitajs/sentry": "^1.0.3",
     "@ant-design/pro-layout": "^5.0.12",
     "@metamask/detect-provider": "^1.2.0",
     "@types/file-saver": "^2.0.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.23",
     "axios": "^0.21.1",
+    "echarts": "^5.1.2",
     "bignumber": "^1.1.0",
     "ethjs-contract": "^0.2.3",
     "ethjs-query": "^0.3.8",

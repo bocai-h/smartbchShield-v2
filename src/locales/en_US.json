@@ -1,5 +1,5 @@
 {
-  "ComingSoon": "Coming soon",
+  "ComingSoon": "Coming Soon",
   "Dashboard": "Dashboard",
   "Q&A": "Q&A",
   "Compliance": "Compliance",
@@ -24,7 +24,7 @@
   "SuterusuAccount": "Suterusu Account",
   "RegisterWarning": "Please use our key generator or use a key that is as random as your Metamask wallet private key as the Suter account private key, and copy it on paper for safekeeping.",
   "NeverShareYourPrivateKey": "Never share your private key with others",
-  "InsertYourPrivatekey": "Input Your Private Key",
+  "InsertYourPrivatekey": "Input Your {coinType} Suter Shield Private Key ",
   "RegisterAgree": "I choose a sufficiently random Suter Account private key. I will be responsible for its security.",
   "Balance": "Balance",
   "Fund": "Fund",
@@ -94,7 +94,7 @@
   "Slogan3Description2": "The miners might still be able to observe the payment records between different Suter accounts when they verify the transactions. We adopt homomorphic public key encryption to ensure the transferred amount confidentiality and apply zero-knowledge proof to guarantee the anonymity of the Suter accounts.",
   "PleaseConnectToMetaMask": "Please Connect To MetaMask",
   "invalidConfirmPrivateKeyTips": "Confirm Private Key is Invalid",
-  "InputYourPrivateKey": "Input Your Private Key",
+  "InputYourPrivateKey": "Input Your {coinType} Suter Shield Private Key",
   "Login": "Login",
   "YourSuterusuAccount": "Your Suterusu Account",
   "DoNotHaveAAccount": "Don't have a account?",
@@ -106,6 +106,8 @@
   "or": "or",
   "ThisSuterAccountNotExists": "This Suterusu Account Not Exists",
   "Upcoming": "Upcoming",
+  "h": "h",
+  "days": "days",
   "Cancel": "Cancel",
   "RegisterTips": "Please back up your private key",
   "CopyPrivateKey": "Copy Private Key",
@@ -118,5 +120,33 @@
   "transferFeeTips": "Network will charge you 20% of gas fee for the transfer operation as our service fee.",
   "burnFeeTips": "Network will charge you 1% of your withdrawn tokens for your burn operation as our service fee.",
   "EpochError": "Epoch time expired. Please try again. If the transaction is still reverted, please consider switching to a better network.",
-  "GasNotEnough": "Warning, your account does not have sufficient ETH to pay for the gas fee!"
+  "GasNotEnough": "Warning, your account does not have sufficient ETH to pay for the gas fee!",
+
+  "CreatePool": "Create Pool",
+
+  "habit": "Common tokens",
+  "placeholder": "Search by token name or address",
+  "noResultName": "Didn't see your token?",
+  "noResultCreate": "Create a new privacy pool for your token",
+  "addPool": "Create a new pool",
+  "searchHint": "Search for token into the privacy pool",
+
+  "poolTitle": "Create a new pool",
+  "poolAdr": "Enter contract address",
+  "poolUnit": "Select Unit value",
+  "poolCommit": "Confirm create infor",
+  "poolAdrName": "ERC20 Token Contract Address",
+  "poolPlaceholder": "Please enter the ERC20 token contract address",
+  "poolNext": "Next",
+  "poolBack": "Back",
+  "poolUnitHint": "Note: The redder spectrum your Unit is set to be in, the closer the total token amounts reach the limit the underlying algorithm can handle. Since each unit of different token has different dollar value, we suggest the developer also take the token's minimum transaction amount acceptable to the users into account when setting the corresponding token unit.",
+  "poolUnitName": "Unit",
+  "poolCommitTitle": "Pool Name",
+  "poolFee": "Fee",
+  "poolConfirm": "Confirm",
+
+  "IllegalAdr": "Illegal Address",
+  "CreatePoolError": "Create Pool Error",
+  "CreatePoolSuccess": "Create Pool Success",
+  "PoolAlreadyExist": "This privacy pool already exists"
 }

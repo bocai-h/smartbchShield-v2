@@ -1,13 +1,15 @@
+@import '../../variables.less';
+
 .suterProtocol {
   .ant-layout-header {
-    @media only screen and (max-width: 600px) {
-      padding: 0 5px;
+    @media only screen and (max-width: 767px) {
+      padding: 0 10px;
     }
 
     .connectWalletBtn {
       text-transform: uppercase;
-      border-color: #b9aaff;
-      color: #b9aaff;
+      border-color: @chainColor;
+      color: @chainColor;
       background-color: #0b000e;
     }
     .langBtn {
@@ -34,93 +36,327 @@
       flex-direction: column;
       align-items: center;
       .title {
-        margin: 60px auto;
-        margin-bottom: 57px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: PingFangSC-Thin, sans-serif;
+        font-family: 'Poppins-ExtraLight';
+
+        margin: 70px auto;
 
         h1 {
           font-weight: 400;
           font-size: 40px;
           margin-bottom: 0rem;
-          color: #b9aaff;
-          @media only screen and (max-width: 600px) {
-            font-size: 30px;
-          }
+          color: @chainColor;
+          font-family: 'Poppins-ExtraLight';
+
           span.boldFont {
             font-weight: bold;
+            font-style: oblique;
+            font-family: 'Poppins-Bold';
+          }
+
+          @media only screen and (max-width: 767px) {
+            font-size: 30px;
+
+            span.boldFont {
+              display: block;
+            }
           }
         }
+
         button.tutorialBtn {
-          border-color: #b9aaff;
-          color: #b9aaff;
+          border-color: @chainColor;
+          color: @chainColor;
           background-color: #0b000e;
-          // font-size: 18px;
-          margin-top: 10px;
+          margin-top: 30px;
+          font-family: Poppins-Regular;
+
           &:hover {
-            background-color: #b9aaff;
+            background-color: @chainColor;
             color: #0b000e;
           }
         }
       }
-      .cardContainer {
-        max-width: 1200px;
-        .ant-col {
-          div.card {
-            position: relative;
-            &:hover {
-              border: 1px solid #b9aaff;
-              cursor: pointer;
-              h1 {
-                color: #b9aaff;
-              }
-              p {
-                color: rgb(185, 170, 255, 0.5);
-              }
+
+      .hint {
+        width: 498px;
+        font-size: 15px;
+        color: #b9aaff;
+        margin-bottom: 10px;
+        font-family: Poppins-Regular, Poppins;
+      }
+
+      .search {
+        width: 500px;
+        border-radius: 10px;
+        background-color: #1d1c1e;
+        border: 2px solid rgba(185, 170, 255, 0.3);
+
+        display: flex;
+        flex-direction: column;
+
+        transition: all 0.3s;
+
+        .search_input {
+          height: 50px;
+
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          padding: 0px 20px;
+
+          .search_input_coin {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-style: normal;
+
+            font-size: 18px;
+            font-weight: 400;
+            color: #ffffff;
+            background-color: transparent;
+            font-family: Poppins-Regular, Poppins;
+
+            &::placeholder {
+              font-size: 18px;
+              font-weight: 400;
+              color: rgba(255, 255, 255, 0.5);
+              font-family: Poppins-Regular, Poppins;
             }
-            color: #fff;
-            width: 270px;
-            border: 1px solid #1d1c1e;
-            background: #1d1c1e;
-            padding: 10px 0 10px 10px;
-            border-radius: 15px;
-            margin: 0 auto;
+          }
+
+          .searchOutlined {
+            font-size: 25px;
+            color: #b9aaff !important;
+            font-family: 'Poppins-Regular';
+          }
+        }
+
+        .coin {
+          display: flex;
+          flex-direction: column;
+          animation: SHOWCOIN 0.7s ease-in-out;
+
+          overflow: hidden;
+
+          .habit {
+            border-top: 2px solid rgba(185, 170, 255, 0.3);
+            border-bottom: 2px solid rgba(185, 170, 255, 0.3);
+
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            height: 180px;
-            div {
-              position: absolute;
-              width: 259px;
-              &.USDT {
-                top: 26px;
-              }
-              &.DAI {
-                top: 28px;
-              }
-              &.ETH {
-                top: 15px;
-              }
-              &.SUTER {
-                top: 13px;
-              }
-              h1 {
-                margin-bottom: 0;
-                color: #fff;
-              }
-              p {
-                margin-bottom: 0;
-                color: rgba(255, 255, 255, 0.5);
-                font-family: PingFangSC-Thin, sans-serif;
-              }
-              img {
-                float: right;
+            flex-direction: column;
+
+            padding: 15px 0px 5px 20px;
+
+            .habit_name {
+              font-size: 14px;
+              font-weight: 400;
+              color: #b9aaff;
+              line-height: 14px;
+              font-family: 'Poppins-Regular';
+
+              margin-bottom: 10px;
+            }
+
+            .habit_list {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+
+              flex-wrap: wrap;
+
+              .habit_coin {
+                min-width: 70px;
+
+                border-radius: 8px;
+                border: 1px solid #979797;
+
+                display: flex;
+                align-items: center;
+
+                padding: 4px 8px 4px 4px;
+
+                margin-right: 20px;
+
+                margin-bottom: 15px;
+
+                transition: all 0.3s;
+
+                img {
+                  width: 17px;
+                  height: 17px;
+                  border-radius: 100%;
+                }
+
+                .habit_coin_name {
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #ffffff;
+                  line-height: 14px;
+                  font-family: Poppins-Regular, Poppins;
+
+                  transition: all 0.3s;
+
+                  margin-left: 5px;
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  border: 1px solid #b9aaff;
+
+                  .habit_coin_name {
+                    color: #b9aaff;
+                  }
+                }
               }
             }
           }
+
+          .list {
+            display: flex;
+            flex-direction: column;
+
+            max-height: 230px;
+
+            overflow-y: scroll;
+
+            overflow-x: hidden;
+
+            padding: 13px 0px;
+
+            .list_coin {
+              display: flex;
+              align-items: center;
+
+              padding: 10px 20px;
+
+              transition: all 0.3s;
+
+              img {
+                width: 21px;
+                height: 21px;
+                border-radius: 100%;
+              }
+
+              .list_coin_item {
+                display: flex;
+                flex-direction: column;
+
+                margin-left: 7px;
+
+                .list_coin_item_name {
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #ffffff;
+                  line-height: 14px;
+                  font-family: Poppins-Regular, Poppins;
+                }
+
+                .list_coin_item_chain {
+                  font-size: 10px;
+                  font-weight: 400;
+                  line-height: 10px;
+                  color: rgba(255, 255, 255, 0.5);
+                  font-family: Poppins-Regular, Poppins;
+
+                  margin-top: 7px;
+                }
+              }
+
+              &:hover {
+                cursor: pointer;
+                background: rgba(185, 170, 255, 0.1);
+              }
+            }
+
+            .noResult {
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+
+              .noResult_name {
+                color: #fff;
+              }
+
+              .noResult_create {
+                cursor: pointer;
+                color: #b9aaff;
+              }
+            }
+          }
+
+          .addPool {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-top: 2px solid rgba(185, 170, 255, 0.3);
+
+            cursor: pointer;
+
+            .addPool_img {
+              font-size: 21px;
+              margin-right: 7px;
+              color: #b9aaff !important;
+            }
+
+            .addPool_name {
+              font-size: 14px;
+              font-weight: 400;
+              color: #b9aaff;
+              line-height: 14px;
+              font-family: Poppins-Regular, Poppins;
+            }
+          }
+        }
+
+        @keyframes SHOWCOIN {
+          from {
+            opacity: 0;
+            height: 0px;
+          }
+
+          to {
+            opacity: 1;
+            height: 414px;
+          }
+        }
+
+        &:hover {
+          border: 2px solid #b9aaff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .suterProtocol {
+    .ant-layout-content {
+      .hint {
+        width: 338px !important;
+        font-size: 14px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .search {
+        width: 340px !important;
+
+        .search_input_coin {
+          font-size: 14px !important;
+
+          &::placeholder {
+            font-size: 15px !important;
+            font-family: 'Poppins-Regular';
+          }
+        }
+
+        .list_coin_item_chain {
+          word-break: break-all;
         }
       }
     }

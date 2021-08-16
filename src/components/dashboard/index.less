@@ -1,3 +1,5 @@
+@import '../../variables.less';
+
 .suterProtocol {
   .dashboardContainer {
     margin-top: 25px;
@@ -5,64 +7,209 @@
     max-width: 1140px;
 
     div.card {
-      margin-bottom: 20px;
-      position: relative;
-
-      &:hover {
-        border: 1px solid #b9aaff;
-      }
+      max-width: 350px;
 
       color: #fff;
-      width: 350px;
-      border: 1px solid #1d1c1e;
+      border-radius: 10px;
+
       background: #1d1c1e;
-      padding: 20px 10px;
-      border-radius: 15px;
-      justify-content: space-between;
-      align-items: flex-end;
-      height: 120px;
+
+      border: 1px solid #1d1c1e;
+
+      position: relative;
+
+      padding: 17px 20px;
+
+      margin-bottom: 30px;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      .spin {
+        margin: 9px 0px;
+      }
+
+      .ratio {
+        display: flex;
+        align-items: center;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Poppins-Regular, Poppins;
+
+        .h,
+        .days {
+          display: flex;
+          align-items: center;
+
+          .up {
+            color: #1aeac4;
+          }
+
+          .down {
+            color: #fc4c8c;
+          }
+
+          .h_label,
+          .days_label {
+            margin-left: 5px;
+          }
+        }
+
+        .h {
+          margin-right: 20px;
+        }
+      }
+
+      &:hover {
+        border: 1px solid @chainColor;
+      }
 
       h2 {
-        color: #b9aaff;
-        font-family: PingFangSC-Thin, sans-serif;
-        font-size: 16px;
+        color: @chainColor;
+        font-size: 14px;
+        line-height: 14px;
+        font-weight: 400;
+        font-family: Poppins-Regular, Poppins;
+
+        margin: 0;
       }
 
       h1 {
         color: #fff;
-        font-family: PingFangSC-Thin, sans-serif;
-        font-size: 24px;
+        font-size: 30px;
+        line-height: 30px;
+        font-weight: 500;
+        font-family: Poppins-Medium, Poppins;
+
+        margin: 13px 0px;
       }
 
       .titleContainer {
         display: flex;
+        align-items: center;
 
         .anticon {
           margin-left: 5px;
-          color: #b9aaff !important;
+          color: @chainColor !important;
         }
       }
     }
-  }
-  @media screen and (max-width: 1024px) {
-    .dashboardContainer {
-      max-width: 354px;
-      margin: 25px auto 0 auto !important;
-      div.card {
-        width: 100%;
-        h1 {
-          font-size: 20px;
-        }
-        h2 {
+
+    div.chart {
+      height: 270px;
+      max-width: 540px;
+
+      border-radius: 10px;
+      background: #1d1c1e;
+
+      margin-bottom: 30px;
+
+      padding: 17px 20px;
+
+      display: flex;
+      flex-direction: column;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      .chartSpin {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .chart_head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .chart_name {
           font-size: 14px;
+          font-weight: 400;
+          color: #b9aaff;
+          line-height: 14px;
+          font-family: Poppins-Regular, Poppins;
+        }
+
+        .ratio {
+          display: flex;
+          align-items: center;
+
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 14px;
+          color: rgba(255, 255, 255, 0.5);
+          font-family: Poppins-Regular, Poppins;
+
+          .h,
+          .days {
+            display: flex;
+            align-items: center;
+
+            .up {
+              color: #1aeac4;
+            }
+
+            .down {
+              color: #fc4c8c;
+            }
+
+            .h_label,
+            .days_label {
+              margin-left: 5px;
+            }
+          }
+
+          .h {
+            margin-right: 20px;
+          }
         }
       }
-      div.totalUSDDeposited {
-        background-image: linear-gradient(
-          to right,
-          rgba(60, 37, 107, 0.5),
-          rgba(60, 37, 107, 0)
-        );
+
+      .chart_amount {
+        font-size: 30px;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 30px;
+        font-family: Poppins-Medium, Poppins;
+
+        margin: 10px 0px;
+      }
+
+      .chart_date {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Poppins-Regular, Poppins;
+
+        margin-bottom: 5px;
+      }
+
+      #volumes,
+      #users {
+        flex: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .suterProtocol {
+    .dashboardContainer {
+      div.card {
+        margin-bottom: 20px;
+      }
+
+      div.chart {
+        max-width: 350px;
+        margin-bottom: 20px;
+
+        padding: 15px 10px;
       }
     }
   }

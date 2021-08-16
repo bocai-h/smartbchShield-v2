@@ -116,7 +116,8 @@ class Transfer extends React.Component {
     }
     let txHash = result.transactionHash;
     const message = intl.get('ViewInEtherScan');
-    const aLink = `${ETHERSCAN}/tx/${txHash}`;
+    const aLink = `${window.blockchain.scan_url}/tx/${txHash}`;
+
     openNotificationWithIcon(
       `${intl.get('Transfer')} ${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
@@ -134,7 +135,6 @@ class Transfer extends React.Component {
   }
   render() {
     let { coinType, client, intl, max } = this.props;
-    let info = CoinInfos[coinType];
     let {
       myAddressModal,
       transferValue,
@@ -181,7 +181,7 @@ class Transfer extends React.Component {
               <span className="maxBtn" onClick={this.maxFill}>
                 {intl.get('Max')}
               </span>
-              <img src={CoinLogoMap[coinType][1]} width="20px" />
+              <img src={window.globalCoinInfos[coinType].s_logo} width="20px" />
             </div>
           </div>
           <div className="addressInputContainer">

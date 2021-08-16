@@ -85,19 +85,24 @@ class Register extends React.Component {
       );
     }
     this.setState({ proccessing: true });
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
+    let abi = info.is_platform_coin ? SuterPlatformCoinABI : SuterERC20ABI;
+
     var suterShieldContract = new Contract(
-      info.suterShiledContractABI,
-      info.suterShiledContractAddress,
+      abi,
+      info.suter_shields_contract_address,
     );
+
     suterShieldContract.setProvider(window.ethereum);
+
     var lastestWeb3 = new Web3(window.ethereum);
     let suterShieldClient;
+
     try {
-      if (coinType !== 'eth') {
+      if (!info.is_platform_coin) {
         var suterShiledTokenContract = new Contract(
-          info.contractABI,
-          info.contractAddress,
+          ERC20ABI,
+          info.contract_address,
         );
         suterShiledTokenContract.setProvider(window.ethereum);
 
@@ -268,7 +273,7 @@ class Register extends React.Component {
                 <p>{intl.get('YourSuterusuAccount')}</p>
               </div>
               <div className="tright">
-                <img src={CoinLogoMap[coinType][0]} />
+                <img src={window.globalCoinInfos[coinType].logo} />
               </div>
             </div>
             {!createdByYourself ? (
@@ -337,9 +342,9 @@ class Register extends React.Component {
               <div className="createByYourself">
                 <p className="privateKeyTips">{intl.get('privateKeyTips')}</p>
                 <div className="inputContainer">
-                  <p>{intl.get('InputYourPrivateKey')}</p>
+                  <p>{intl.get('InputYourPrivateKey', { coinType })}</p>
                   <input
-                    placeholder={intl.get('InputYourPrivateKey')}
+                    placeholder={intl.get('InputYourPrivateKey', { coinType })}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
                     onChange={this.handlePrivateKeyInput}
                     className={
@@ -359,7 +364,7 @@ class Register extends React.Component {
                 <div className="inputContainer" style={{ marginTop: '20px' }}>
                   <p>{intl.get('ConfirmYourPrivateKey')}</p>
                   <input
-                    placeholder={intl.get('InputYourPrivateKey')}
+                    placeholder={intl.get('InputYourPrivateKey', { coinType })}
                     type={toggleShowPrivateKey ? 'text' : 'password'}
                     onChange={this.handleConfirmPrivateKeyInput}
                     className={
