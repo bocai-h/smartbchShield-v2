@@ -22,6 +22,8 @@ export default {
 
   SuterShieldV1: 'https://v1.ethshield.suterusu.io',
   SuterShieldV2: 'https://ethshield.suterusu.io',
+  SuterusuProtocolV2:
+    'https://docs.suterusu.io/suterusu-protocol-1/suterusu-protocol-v2',
 
   factoryContractAddress: '0x3aDf6023951f8A38792056ec1cB8e7C2Dee7b148',
 

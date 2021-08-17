@@ -1,153 +1,268 @@
 @import '../../variables.less';
+
 .suterProtocol {
   .operationContainer {
     .transfer {
+      @media only screen and (max-width: 600px) {
+        .ant-card {
+          width: 360px !important;
+        }
+      }
+
+      p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 16px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Poppins-Regular, Poppins;
+
+        margin-bottom: 13px;
+      }
+
       .title {
         display: flex;
-        justify-content: space-between;
         align-items: flex-end;
+        justify-content: space-between;
+
+        margin-bottom: 20px;
+
         .titleContainer {
           display: flex;
-          .anticon {
-            color: @chainColor !important;
+
+          h1 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 32px;
+            color: @chainColor;
+            font-family: Poppins-Medium, Poppins;
           }
         }
-        p.myAddress {
-          color: @chainColor;
-          cursor: pointer;
-          position: relative;
-          top: 6px;
-          font-size: 13px;
-          font-family: 'Poppins-Regular';
 
-          &:hover {
-            text-decoration: underline;
+        p.myAddress {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 16px;
+          color: @chainColor;
+          font-family: Poppins-Medium, Poppins;
+          cursor: pointer;
+          text-decoration: underline;
+
+          @media only screen and (max-width: 600px) {
+            font-size: 13px !important;
+            line-height: 13px !important;
           }
         }
       }
-      .inputContainer {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        position: relative;
-        // display: flex;
-        input {
-          background-color: rgba(216, 216, 216, 0.1);
-          border: 1px solid rgba(216, 216, 216, 0.5);
-          width: 100%;
-          border-radius: 5px;
-          height: 40px;
-          // border-right: 0;
-          // border-top-right-radius: 0;
-          // border-bottom-right-radius: 0;
-          padding-left: 5px;
-          color: rgba(255, 255, 255, 0.5);
+
+      .handler {
+        display: flex;
+        justify-content: space-between;
+
+        @media only screen and (max-width: 600px) {
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: space-between !important;
         }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
+
+        .addressInputContainer {
+          flex: 1;
+
+          textarea {
+            background: rgba(216, 216, 216, 0.1);
+            border: 1px solid #979797;
+            width: 100%;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            height: 90px;
+            outline: none;
+
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 18px;
+            font-family: Poppins-Regular, Poppins;
+            padding: 12px 10px;
+          }
+
+          textarea::placeholder {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 18px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: Poppins-Regular, Poppins;
+          }
+
+          textarea:focus {
+            background: rgba(216, 216, 216, 0.12);
+            border: 2px solid @chainColor;
+          }
+
+          textarea.invalidAddress {
+            border: 2px solid #ff578e;
+          }
         }
-        /* Firefox */
-        input[type='text'] {
-          -moz-appearance: textfield;
-          outline: none;
-        }
-        input:focus {
-          background: rgba(216, 216, 216, 0.12);
-          border: 2px solid #b9aaff;
-        }
-        input.insufficientInput {
-          border: 2px solid #ff578e;
-        }
-        .inputAppend {
-          position: absolute;
-          top: 7px;
-          right: 0;
-          // border: 1px solid rgba(216, 216, 216, 0.5);
-          border-radius: 5px;
-          display: flex;
-          align-items: center;
-          border-left: 0;
-          // background-color: rgba(216, 216, 216, 0.1);
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          padding: 0 10px;
-          .maxBtn {
-            border: 1px solid #b9aaff;
-            color: #b9aaff;
+
+        .inputContainer {
+          flex: 1;
+          margin-left: 70px;
+          position: relative;
+
+          @media only screen and (max-width: 600px) {
+            margin-left: 0px !important;
+            margin-top: 20px !important;
+          }
+
+          input {
+            background-color: rgba(216, 216, 216, 0.1);
+            border: 1px solid #979797;
+            width: 100%;
+            border-radius: 10px;
+
+            height: 50px;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 18px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: Poppins-Regular, Poppins;
+            padding: 12px 10px;
+          }
+          input::placeholder {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 18px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: Poppins-Regular, Poppins;
+          }
+          /* Chrome, Safari, Edge, Opera */
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          /* Firefox */
+          input[type='text'] {
+            -moz-appearance: textfield;
+            outline: none;
+          }
+          input:focus {
+            background: rgba(216, 216, 216, 0.12);
+            border: 2px solid @chainColor;
+          }
+          input.insufficientInput {
+            border: 2px solid #ff578e;
+          }
+
+          .inputAppend {
+            top: 39px;
+            right: 0px;
+            position: absolute;
+
             border-radius: 5px;
-            margin-right: 8px;
-            padding: 1px 5px;
-            cursor: pointer;
-            &:hover {
-              background-color: #b9aaff;
-              color: #000000;
+
+            display: flex;
+            align-items: center;
+
+            border-left: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            padding: 0 10px;
+
+            .maxBtn {
+              border: 1px solid @chainColor;
+              color: @chainColor;
+              border-radius: 10px;
+              margin-right: 10px;
+              padding: 2px 10px;
+              cursor: pointer;
+
+              &:hover {
+                background-color: @chainColor;
+                color: #000000;
+              }
+            }
+          }
+
+          .fee {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 25px;
+
+            .hint {
+              display: flex;
+
+              font-size: 15px;
+              font-weight: 400;
+              line-height: 20px;
+              color: rgba(255, 255, 255, 0.5);
+              font-family: Poppins-Regular, Poppins;
+
+              .anticon {
+                font-size: 12px !important;
+                color: #73777a !important;
+                margin-left: 3px !important;
+              }
+            }
+
+            .amount {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .val {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 17px;
+                color: rgba(255, 255, 255, 0.3);
+                font-family: Poppins-Regular, Poppins;
+
+                margin-left: 5px;
+              }
             }
           }
         }
       }
-      .addressInputContainer {
-        margin-top: 20px;
-        textarea {
-          background-color: rgba(216, 216, 216, 0.1);
-          border: 1px solid rgba(216, 216, 216, 0.5);
-          width: 100%;
-          border-radius: 5px;
-          height: 40px;
-          padding-left: 5px;
-          color: rgba(255, 255, 255, 0.5);
-          height: 50px;
-          outline: none;
-        }
-        textarea::-ms-input-placeholder {
-          text-align: center;
-          font-size: 12px;
-          height: 50px;
-          line-height: 50px;
-          font-family: 'Poppins-Regular';
-        }
-        textarea::-webkit-input-placeholder {
-          text-align: center;
-          font-size: 13px;
-          height: 50px;
-          line-height: 50px;
-          font-family: 'Poppins-Regular';
-        }
-        textarea:focus {
-          background: rgba(216, 216, 216, 0.12);
-          border: 2px solid #b9aaff;
-        }
-        textarea.invalidAddress {
-          border: 2px solid #ff578e;
-        }
-      }
+
       .confirmContainer {
-        margin-top: 20px;
+        margin-top: 49px;
+
         button {
-          border-color: #b9aaff;
-          color: rgba(105, 85, 192, 1);
+          border-color: @chainColor;
+          color: @chainColor;
           background-color: transparent;
           background-image: none;
+
+          height: 46px;
+          border-radius: 23px;
+          border: 1px solid #979797;
+
+          font-size: 18px;
+          font-weight: 400;
+          color: #979797;
+          line-height: 18px;
+          font-family: Poppins-Regular, Poppins;
+
           &:hover {
-            background-image: linear-gradient(
-              to right,
-              rgba(185, 170, 255, 1),
-              rgba(171, 202, 255, 1)
-            );
+            background-image: @confirmBtnBackground;
             color: #000000;
           }
         }
+
         button[disabled] {
-          border-color: #b9aaff;
-          color: rgba(105, 85, 192, 1);
+          border-color: @chainColor;
+          color: @chainColor;
           background-color: transparent;
           background-image: none;
         }
+
         button.insufficientInput,
         button.invalidAddress {
           border-color: #ff578e;
           color: #ff578e;
         }
+
         button.grey {
           border-color: #979797;
           color: #979797;

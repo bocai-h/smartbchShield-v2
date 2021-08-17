@@ -62,9 +62,10 @@ class Home extends React.Component {
     super(props);
     this.connectWalletTip = this.connectWalletTip.bind(this);
     this.homeTitle = this.homeTitle.bind(this);
-    this.useV2 = this.useV2.bind(this);
+    this.learnV2 = this.learnV2.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onInput = this.onInput.bind(this);
+    this.useV1 = this.useV1.bind(this);
     this.showCoinList = this.showCoinList.bind(this);
     this.closeCoinList = this.closeCoinList.bind(this);
 
@@ -162,8 +163,12 @@ class Home extends React.Component {
     );
   }
 
-  useV2() {
-    window.open(SuterShieldV2, '_blank');
+  learnV2() {
+    window.open(SuterusuProtocolV2, '_blank');
+  }
+
+  useV1() {
+    window.open(SuterShieldV1, '_blank');
   }
 
   homeTitle() {
@@ -362,44 +367,68 @@ class Home extends React.Component {
 
     return (
       <div className="home" onClick={this.closeCoinList}>
-        <Row>
-          <Col span={24}>
-            <div className="title">
-              {this.homeTitle()}
+        <div className="kernel">
+          <Row>
+            <Col span={24}>
+              <div className="title">
+                {this.homeTitle()}
 
-              <div className="useV2" onClick={this.useV2}>
-                {intl.get('useV2')}
+                <div className="learn" onClick={this.learnV2}>
+                  {intl.get('learnV2')}
+                </div>
               </div>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
 
-        <div className="hint">{intl.get('searchHint')}</div>
+          <div className="hint">{intl.get('searchHint')}</div>
 
-        <Spin size="large" spinning={loading} onClick={this.showCoinList}>
-          <div className="search" onClick={this.showCoinList}>
-            <div className="search_input">
-              <input
-                type="text"
-                className="search_input_coin"
-                placeholder={intl.get('placeholder')}
-                onFocus={this.onFocus}
-                onInput={this.onInput}
-              />
+          <Spin size="large" spinning={loading} onClick={this.showCoinList}>
+            <div className="search" onClick={this.showCoinList}>
+              <div className="search_input">
+                <input
+                  type="text"
+                  className="search_input_coin"
+                  placeholder={intl.get('placeholder')}
+                  onFocus={this.onFocus}
+                  onInput={this.onInput}
+                />
 
-              <SearchOutlined className="searchOutlined" />
-            </div>
+                <SearchOutlined className="searchOutlined" />
+              </div>
 
-            {showCoinList ? (
-              <div className="coin">
-                <div className="habit">
-                  <span className="habit_name">{intl.get('habit')}</span>
+              {showCoinList ? (
+                <div className="coin">
+                  <div className="habit">
+                    <span className="habit_name">{intl.get('habit')}</span>
 
-                  <div className="habit_list">
-                    {habit.map((it, index) => {
+                    <div className="habit_list">
+                      {habit.map((it, index) => {
+                        return (
+                          <div
+                            className="habit_coin"
+                            key={index}
+                            onClick={
+                              account === ''
+                                ? this.connectWalletTip
+                                : () => {
+                                    selectCoin(it.name);
+                                  }
+                            }
+                          >
+                            <img src={it.logo} />
+
+                            <span className="habit_coin_name">{it.name}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="list">
+                    {result.map((it, index) => {
                       return (
                         <div
-                          className="habit_coin"
+                          className="list_coin"
                           key={index}
                           onClick={
                             account === ''
@@ -409,85 +438,75 @@ class Home extends React.Component {
                                 }
                           }
                         >
-                          <img src={it.logo} />
+                          <img src={it.coin_logo} />
 
-                          <span className="habit_coin_name">{it.name}</span>
+                          <div className="list_coin_item">
+                            <span className="list_coin_item_name">
+                              {it.name}
+                            </span>
+
+                            <span className="list_coin_item_chain">
+                              {it.contract_address}
+                            </span>
+                          </div>
                         </div>
                       );
                     })}
-                  </div>
-                </div>
 
-                <div className="list">
-                  {result.map((it, index) => {
-                    return (
-                      <div
-                        className="list_coin"
-                        key={index}
-                        onClick={
-                          account === ''
-                            ? this.connectWalletTip
-                            : () => {
-                                selectCoin(it.name);
-                              }
-                        }
-                      >
-                        <img src={it.coin_logo} />
+                    {!result.length ? (
+                      // <div className="noResult">
+                      //   <span className="noResult_name">
+                      //     {intl.get('noResultName')}
+                      //   </span>
 
-                        <div className="list_coin_item">
-                          <span className="list_coin_item_name">{it.name}</span>
+                      //   <span
+                      //     onClick={this.createPool}
+                      //     className="noResult_create"
+                      //   >
+                      //     {intl.get('noResultCreate')}
+                      //   </span>
+                      // </div>
 
-                          <span className="list_coin_item_chain">
-                            {it.contract_address}
-                          </span>
-                        </div>
+                      <div className="noResult">
+                        <span className="noResult_name">
+                          {intl.get('noResult')}
+                        </span>
                       </div>
-                    );
-                  })}
+                    ) : (
+                      ''
+                    )}
+                  </div>
 
-                  {!result.length ? (
-                    // <div className="noResult">
-                    //   <span className="noResult_name">
-                    //     {intl.get('noResultName')}
-                    //   </span>
-
-                    //   <span
-                    //     onClick={this.createPool}
-                    //     className="noResult_create"
-                    //   >
-                    //     {intl.get('noResultCreate')}
-                    //   </span>
-                    // </div>
-
-                    <div className="noResult">
-                      <span className="noResult_name">
-                        {intl.get('noResult')}
-                      </span>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
-
-                {/* <div className="addPool" onClick={this.createPool}>
+                  {/* <div className="addPool" onClick={this.createPool}>
                   <PlusCircleOutlined className="addPool_img" />
 
                   <span className="addPool_name">{intl.get('addPool')}</span>
                 </div> */}
 
-                <Tooltip title={intl.get('ComingSoon')}>
-                  <div className="addPool">
-                    <PlusCircleOutlined className="addPool_img" />
+                  <Tooltip title={intl.get('ComingSoon')}>
+                    <div className="addPool">
+                      <PlusCircleOutlined className="addPool_img" />
 
-                    <span className="addPool_name">{intl.get('addPool')}</span>
-                  </div>
-                </Tooltip>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-        </Spin>
+                      <span className="addPool_name">
+                        {intl.get('addPool')}
+                      </span>
+                    </div>
+                  </Tooltip>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+          </Spin>
+        </div>
+
+        <div className="useV1">
+          {intl.get('useV1')}
+          <span className="link" onClick={this.useV1}>
+            {intl.get('link')}
+          </span>
+          ?
+        </div>
       </div>
     );
   }

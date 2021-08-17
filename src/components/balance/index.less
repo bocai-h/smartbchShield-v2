@@ -1,27 +1,39 @@
+@import '../../variables.less';
+
 .suterProtocol {
   .balanceContainer {
+    position: relative;
+
+    .value {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+      color: rgba(255, 255, 255, 0.5);
+
+      font-family: Poppins-Regular, Poppins;
+    }
+
     div.ant-col {
       @media only screen and (max-width: 600px) {
         display: flex;
+        margin-top: 40px;
         justify-content: flex-start;
-        margin-top: 20px;
       }
     }
 
     font-family: 'Poppins-ExtraLight';
 
-    border: 1px solid rgba(105, 85, 192, 1);
-    background-image: linear-gradient(
-      to right,
-      rgba(60, 37, 107, 0.5),
-      rgba(60, 37, 107, 0)
-    );
+    border: 1px solid @chainColor;
+    background-image: linear-gradient(to right, #3c256b80, #3c256b00);
     border-radius: 20px;
-    padding: 20px 0 20px 20px;
-    // margin: 40px 150px;
-    max-width: 1130px;
+    padding: 35px 20px;
+    max-width: 1140px;
     margin: 0 auto;
     margin-top: 20px;
+
+    @media only screen and (max-width: 600px) {
+      padding: 0px 20px 40px 20px !important;
+    }
 
     h1,
     h2,
@@ -32,13 +44,31 @@
     p {
       margin-bottom: 0;
     }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 18px;
+      font-family: Poppins-Regular, Poppins;
+      margin-bottom: 27px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 22px;
+      font-family: Poppins-Regular, Poppins;
+      margin-bottom: 7px;
+    }
+
     .balanceInfoContainer {
       display: flex;
+      align-items: center;
+
       .info {
-        margin-left: 20px;
-        .value {
-          color: rgba(255, 255, 255, 0.5);
-        }
+        margin-left: 25px;
       }
     }
     .coinBalance {
@@ -52,22 +82,23 @@
 
     .three {
       display: flex;
-      justify-content: flex-end;
       align-items: center;
-      margin-top: 33px;
+      justify-content: flex-end;
+
+      margin-top: 45px;
+
+      @media only screen and (max-width: 600px) {
+        margin-top: 20px !important;
+      }
+
       .unit {
-        margin-left: 20px;
+        margin-left: 25px;
         position: relative;
-        h1 {
-          margin: 0;
-        }
+
         .i {
-          color: red;
           position: absolute;
           top: -5px;
           right: -16px;
-          font-size: 18px;
-          font-family: 'Poppins-Regular';
         }
       }
     }
@@ -85,6 +116,13 @@
       @media only screen and (max-width: 600px) {
         display: none !important;
       }
+    }
+
+    .token_logo {
+      top: -11px;
+      right: -20px;
+      height: 115px;
+      position: absolute;
     }
   }
 }

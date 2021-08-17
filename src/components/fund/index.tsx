@@ -1,12 +1,9 @@
 import React from 'react';
 import { Card, Button } from 'antd';
 import './index.less';
-import {
-  CoinLogoMap,
-  MessageWithAlink,
-  openNotificationWithIcon,
-} from '../tools';
+import { MessageWithAlink, openNotificationWithIcon } from '../tools';
 import SpinModal from '../spinModal';
+import { Sentry } from 'umi';
 
 class Fund extends React.Component {
   state = {
@@ -32,7 +29,6 @@ class Fund extends React.Component {
     this.inputRef.selectionEnd = pos;
   }
   handleInputChange(e) {
-    let { intl } = this.props;
     let value = parseInt(e.target.value.replace('Unit', '').replace(/,/gi, ''));
     if (isNaN(value)) {
       value = 0;
@@ -80,6 +76,7 @@ class Fund extends React.Component {
         openNotificationWithIcon('Error', intl.get('EpochError'), 'error');
       }
       this.setState({ processing: false });
+      Sentry.captureException(error);
       return;
     }
     let txHash = result.transactionHash;
@@ -95,8 +92,8 @@ class Fund extends React.Component {
     );
     // refetch suter shield balance
     this.setState({ inputValue: 0, inputFill: '' });
-    this.props.updateKeyFunc();
     this.setState({ processing: false });
+    this.props.updateKeyFunc();
   }
 
   maxFill() {
@@ -114,7 +111,7 @@ class Fund extends React.Component {
     return (
       <div className="fund">
         {processing ? <SpinModal intl={intl} /> : ''}
-        <Card style={{ width: 350 }}>
+        <Card style={{ width: 360 }}>
           <h1>{intl.get('Fund')}</h1>
           <p>
             {intl.get('Deposit')} {info.name} {intl.get('To')} S{info.name}
