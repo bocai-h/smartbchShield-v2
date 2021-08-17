@@ -199,7 +199,7 @@ class SuterProtocol extends React.Component {
         4.5,
       );
       setTimeout(() => {
-        window.location.reload();
+        // window.location.reload();
       }, 2000);
     });
   }
@@ -213,10 +213,7 @@ class SuterProtocol extends React.Component {
         'warning',
         4.5,
       );
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      window.location.reload();
     } else if (accounts[0] !== account) {
       this.setCurrentAccount(accounts[0]);
     }
@@ -231,7 +228,7 @@ class SuterProtocol extends React.Component {
         4.5,
       );
       setTimeout(() => {
-        window.location.reload();
+        // window.location.reload();
       }, 2000);
     });
   }
