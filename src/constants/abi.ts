@@ -1,152 +1,196 @@
 const SuterPlatformCoinABI = [
   {
+    anonymous: false,
     inputs: [
       {
-        internalType: 'address',
-        name: '_transfer',
-        type: 'address',
+        indexed: false,
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
       },
       {
-        internalType: 'address',
-        name: '_burn',
-        type: 'address',
-      },
-      {
+        indexed: false,
         internalType: 'uint256',
-        name: '_unit',
+        name: 'unitAmount',
         type: 'uint256',
       },
     ],
-    stateMutability: 'nonpayable',
-    type: 'constructor',
+    name: 'BurnSuccess',
+    type: 'event',
   },
   {
     anonymous: false,
     inputs: [
       {
         indexed: false,
-        internalType: 'string',
-        name: 'label',
-        type: 'string',
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+    ],
+    name: 'FundSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
       },
       {
         indexed: true,
-        internalType: 'uint256',
-        name: 'value',
-        type: 'uint256',
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
       },
     ],
-    name: 'LogUint256',
+    name: 'OwnershipTransferred',
     type: 'event',
   },
   {
     anonymous: false,
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
         indexed: false,
-        internalType: 'struct Utils.G1Point[]',
-        name: 'parties',
-        type: 'tuple[]',
+        internalType: 'bytes32[2]',
+        name: 'y_tuple',
+        type: 'bytes32[2]',
       },
     ],
-    name: 'TransferOccurred',
+    name: 'RegisterSuccess',
     type: 'event',
   },
   {
-    inputs: [],
-    name: 'BURN_FEE_DIVIDEND',
-    outputs: [
+    anonymous: false,
+    inputs: [
       {
+        indexed: false,
         internalType: 'uint256',
-        name: '',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'dividend',
         type: 'uint256',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    name: 'SetBurnFeeStrategySuccess',
+    type: 'event',
   },
   {
-    inputs: [],
-    name: 'BURN_FEE_MULTIPLIER',
-    outputs: [
+    anonymous: false,
+    inputs: [
       {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
+        indexed: false,
+        internalType: 'address',
+        name: 'token',
+        type: 'address',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    name: 'SetERC20TokenSuccess',
+    type: 'event',
   },
   {
-    inputs: [],
-    name: 'MAX',
-    outputs: [
+    anonymous: false,
+    inputs: [
       {
+        indexed: false,
         internalType: 'uint256',
-        name: '',
+        name: 'epochBase',
         type: 'uint256',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    name: 'SetEpochBaseSuccess',
+    type: 'event',
   },
   {
-    inputs: [],
-    name: 'TRANSFER_FEE_DIVIDEND',
-    outputs: [
+    anonymous: false,
+    inputs: [
       {
+        indexed: false,
         internalType: 'uint256',
-        name: '',
+        name: 'epochLength',
         type: 'uint256',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    name: 'SetEpochLengthSuccess',
+    type: 'event',
   },
   {
-    inputs: [],
-    name: 'TRANSFER_FEE_MULTIPLIER',
-    outputs: [
+    anonymous: false,
+    inputs: [
       {
+        indexed: false,
+        internalType: 'address',
+        name: 'suterAgency',
+        type: 'address',
+      },
+    ],
+    name: 'SetSuterAgencySuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
         internalType: 'uint256',
-        name: '',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'dividend',
         type: 'uint256',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    name: 'SetTransferFeeStrategySuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'unit',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetUnitSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'bytes32[2][]',
+        name: 'parties',
+        type: 'bytes32[2][]',
+      },
+    ],
+    name: 'TransferSuccess',
+    type: 'event',
   },
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'uint256',
@@ -154,21 +198,9 @@ const SuterPlatformCoinABI = [
         type: 'uint256',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'u',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'bytes',
@@ -184,6 +216,96 @@ const SuterPlatformCoinABI = [
     name: 'burn',
     outputs: [],
     stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'sink',
+        type: 'address',
+      },
+      {
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bytes32[2]',
+        name: 'u',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'bytes',
+        name: 'proof',
+        type: 'bytes',
+      },
+      {
+        internalType: 'bytes',
+        name: 'encGuess',
+        type: 'bytes',
+      },
+    ],
+    name: 'burnTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'burn_fee_dividend',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'burn_fee_multiplier',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'currentEpoch',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'currentTimestamp',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
     type: 'function',
   },
   {
@@ -215,21 +337,9 @@ const SuterPlatformCoinABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'uint256',
@@ -250,58 +360,22 @@ const SuterPlatformCoinABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
     ],
     name: 'getAccountState',
     outputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
+        internalType: 'bytes32[2][2]',
         name: 'y_available',
-        type: 'tuple[2]',
+        type: 'bytes32[2][2]',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
+        internalType: 'bytes32[2][2]',
         name: 'y_pending',
-        type: 'tuple[2]',
+        type: 'bytes32[2][2]',
       },
     ],
     stateMutability: 'view',
@@ -310,21 +384,9 @@ const SuterPlatformCoinABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
+        internalType: 'bytes32[2][]',
+        name: 'y_tuples',
+        type: 'bytes32[2][]',
       },
       {
         internalType: 'uint256',
@@ -335,21 +397,9 @@ const SuterPlatformCoinABI = [
     name: 'getBalance',
     outputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2][]',
+        internalType: 'bytes32[2][2][]',
         name: 'accounts',
-        type: 'tuple[2][]',
+        type: 'bytes32[2][2][]',
       },
     ],
     stateMutability: 'view',
@@ -358,21 +408,9 @@ const SuterPlatformCoinABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
     ],
     name: 'getGuess',
@@ -384,6 +422,42 @@ const SuterPlatformCoinABI = [
       },
     ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_transfer',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_burn',
+        type: 'address',
+      },
+    ],
+    name: 'initializeBase',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_transfer',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_burn',
+        type: 'address',
+      },
+    ],
+    name: 'initializeSuterETH',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -403,7 +477,7 @@ const SuterPlatformCoinABI = [
     inputs: [
       {
         internalType: 'bytes32',
-        name: '',
+        name: 'yHash',
         type: 'bytes32',
       },
     ],
@@ -419,23 +493,24 @@ const SuterPlatformCoinABI = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'owner',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
+        internalType: 'bytes32[2]',
+        name: 'y_tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'uint256',
@@ -470,6 +545,13 @@ const SuterPlatformCoinABI = [
       },
     ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -565,7 +647,7 @@ const SuterPlatformCoinABI = [
     name: 'suterAgency',
     outputs: [
       {
-        internalType: 'address payable',
+        internalType: 'address',
         name: '',
         type: 'address',
       },
@@ -654,72 +736,24 @@ const SuterPlatformCoinABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'C',
-        type: 'tuple[]',
+        internalType: 'bytes32[2][]',
+        name: 'C_tuples',
+        type: 'bytes32[2][]',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'D',
-        type: 'tuple',
+        internalType: 'bytes32[2]',
+        name: 'D_tuple',
+        type: 'bytes32[2]',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
+        internalType: 'bytes32[2][]',
+        name: 'y_tuples',
+        type: 'bytes32[2][]',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'u',
-        type: 'tuple',
+        internalType: 'bytes32[2]',
+        name: 'u_tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'bytes',
@@ -730,6 +764,45 @@ const SuterPlatformCoinABI = [
     name: 'transfer',
     outputs: [],
     stateMutability: 'payable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'transfer_fee_dividend',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'transfer_fee_multiplier',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
     type: 'function',
   },
   {
@@ -746,26 +819,199 @@ const SuterPlatformCoinABI = [
     type: 'function',
   },
 ];
-
 const SuterERC20ABI = [
   {
+    anonymous: false,
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        indexed: false,
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+    ],
+    name: 'BurnSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+    ],
+    name: 'FundSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'OwnershipTransferred',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'bytes32[2]',
+        name: 'y_tuple',
+        type: 'bytes32[2]',
+      },
+    ],
+    name: 'RegisterSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'dividend',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetBurnFeeStrategySuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'token',
+        type: 'address',
+      },
+    ],
+    name: 'SetERC20TokenSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'epochBase',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetEpochBaseSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'epochLength',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetEpochLengthSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'suterAgency',
+        type: 'address',
+      },
+    ],
+    name: 'SetSuterAgencySuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'dividend',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetTransferFeeStrategySuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'unit',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetUnitSuccess',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'bytes32[2][]',
+        name: 'parties',
+        type: 'bytes32[2][]',
+      },
+    ],
+    name: 'TransferSuccess',
+    type: 'event',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'uint256',
@@ -773,21 +1019,9 @@ const SuterERC20ABI = [
         type: 'uint256',
       },
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'u',
-        type: 'tuple',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'bytes',
@@ -808,21 +1042,125 @@ const SuterERC20ABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'address',
+        name: 'sink',
+        type: 'address',
+      },
+      {
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bytes32[2]',
+        name: 'u',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'bytes',
+        name: 'proof',
+        type: 'bytes',
+      },
+      {
+        internalType: 'bytes',
+        name: 'encGuess',
+        type: 'bytes',
+      },
+    ],
+    name: 'burnTo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'burn_fee_dividend',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'burn_fee_multiplier',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'currentEpoch',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'currentTimestamp',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'epochBase',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'epochLength',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
       },
       {
         internalType: 'uint256',
@@ -843,34 +1181,84 @@ const SuterERC20ABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
+        internalType: 'bytes32[2]',
         name: 'y',
-        type: 'tuple',
+        type: 'bytes32[2]',
+      },
+    ],
+    name: 'getAccountState',
+    outputs: [
+      {
+        internalType: 'bytes32[2][2]',
+        name: 'y_available',
+        type: 'bytes32[2][2]',
+      },
+      {
+        internalType: 'bytes32[2][2]',
+        name: 'y_pending',
+        type: 'bytes32[2][2]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2][]',
+        name: 'y_tuples',
+        type: 'bytes32[2][]',
       },
       {
         internalType: 'uint256',
-        name: 'c',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 's',
+        name: 'epoch',
         type: 'uint256',
       },
     ],
-    name: 'register',
+    name: 'getBalance',
+    outputs: [
+      {
+        internalType: 'bytes32[2][2][]',
+        name: 'accounts',
+        type: 'bytes32[2][2][]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2]',
+        name: 'y',
+        type: 'bytes32[2]',
+      },
+    ],
+    name: 'getGuess',
+    outputs: [
+      {
+        internalType: 'bytes',
+        name: 'y_guess',
+        type: 'bytes',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_transfer',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_burn',
+        type: 'address',
+      },
+    ],
+    name: 'initializeBase',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -892,33 +1280,105 @@ const SuterERC20ABI = [
         name: '_burn',
         type: 'address',
       },
-      {
-        internalType: 'uint256',
-        name: '_unit',
-        type: 'uint256',
-      },
     ],
+    name: 'initializeSuterERC20',
+    outputs: [],
     stateMutability: 'nonpayable',
-    type: 'constructor',
+    type: 'function',
   },
   {
-    anonymous: false,
-    inputs: [
+    inputs: [],
+    name: 'lastGlobalUpdate',
+    outputs: [
       {
-        indexed: false,
-        internalType: 'string',
-        name: 'label',
-        type: 'string',
-      },
-      {
-        indexed: true,
         internalType: 'uint256',
-        name: 'value',
+        name: '',
         type: 'uint256',
       },
     ],
-    name: 'LogUint256',
-    type: 'event',
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32',
+        name: 'yHash',
+        type: 'bytes32',
+      },
+    ],
+    name: 'lastRollOver',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2]',
+        name: 'y_tuple',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'uint256',
+        name: 'c',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 's',
+        type: 'uint256',
+      },
+    ],
+    name: 'register',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32',
+        name: 'yHash',
+        type: 'bytes32',
+      },
+    ],
+    name: 'registered',
+    outputs: [
+      {
+        internalType: 'bool',
+        name: '',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
@@ -934,6 +1394,19 @@ const SuterERC20ABI = [
       },
     ],
     name: 'setBurnFeeStrategy',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_token',
+        type: 'address',
+      },
+    ],
+    name: 'setERC20Token',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -1009,372 +1482,11 @@ const SuterERC20ABI = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'C',
-        type: 'tuple[]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'D',
-        type: 'tuple',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'u',
-        type: 'tuple',
-      },
-      {
-        internalType: 'bytes',
-        name: 'proof',
-        type: 'bytes',
-      },
-    ],
-    name: 'transfer',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        indexed: false,
-        internalType: 'struct Utils.G1Point[]',
-        name: 'parties',
-        type: 'tuple[]',
-      },
-    ],
-    name: 'TransferOccurred',
-    type: 'event',
-  },
-  {
-    inputs: [],
-    name: 'BURN_FEE_DIVIDEND',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'BURN_FEE_MULTIPLIER',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'epochBase',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'epochLength',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-    ],
-    name: 'getAccountState',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
-        name: 'y_available',
-        type: 'tuple[2]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
-        name: 'y_pending',
-        type: 'tuple[2]',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
-      },
-      {
-        internalType: 'uint256',
-        name: 'epoch',
-        type: 'uint256',
-      },
-    ],
-    name: 'getBalance',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2][]',
-        name: 'accounts',
-        type: 'tuple[2][]',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-    ],
-    name: 'getGuess',
-    outputs: [
-      {
-        internalType: 'bytes',
-        name: 'y_guess',
-        type: 'bytes',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'lastGlobalUpdate',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'bytes32',
-        name: '',
-        type: 'bytes32',
-      },
-    ],
-    name: 'lastRollOver',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'MAX',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'bytes32',
-        name: 'yHash',
-        type: 'bytes32',
-      },
-    ],
-    name: 'registered',
-    outputs: [
-      {
-        internalType: 'bool',
-        name: '',
-        type: 'bool',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [],
     name: 'suterAgency',
     outputs: [
       {
-        internalType: 'address payable',
+        internalType: 'address',
         name: '',
         type: 'address',
       },
@@ -1461,8 +1573,54 @@ const SuterERC20ABI = [
     type: 'function',
   },
   {
+    inputs: [
+      {
+        internalType: 'bytes32[2][]',
+        name: 'C_tuples',
+        type: 'bytes32[2][]',
+      },
+      {
+        internalType: 'bytes32[2]',
+        name: 'D_tuple',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'bytes32[2][]',
+        name: 'y_tuples',
+        type: 'bytes32[2][]',
+      },
+      {
+        internalType: 'bytes32[2]',
+        name: 'u_tuple',
+        type: 'bytes32[2]',
+      },
+      {
+        internalType: 'bytes',
+        name: 'proof',
+        type: 'bytes',
+      },
+    ],
+    name: 'transfer',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
     inputs: [],
-    name: 'TRANSFER_FEE_DIVIDEND',
+    name: 'transfer_fee_dividend',
     outputs: [
       {
         internalType: 'uint256',
@@ -1475,7 +1633,7 @@ const SuterERC20ABI = [
   },
   {
     inputs: [],
-    name: 'TRANSFER_FEE_MULTIPLIER',
+    name: 'transfer_fee_multiplier',
     outputs: [
       {
         internalType: 'uint256',
@@ -1501,155 +1659,111 @@ const SuterERC20ABI = [
   },
 ];
 
-const SuterUSDTABI = [
+const MiningPlatformCoinContractABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-      {
-        internalType: 'uint256',
-        name: 'unitAmount',
-        type: 'uint256',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'u',
-        type: 'tuple',
-      },
-      {
-        internalType: 'bytes',
-        name: 'proof',
-        type: 'bytes',
-      },
-      {
-        internalType: 'bytes',
-        name: 'encGuess',
-        type: 'bytes',
-      },
-    ],
-    name: 'burn',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-      {
-        internalType: 'uint256',
-        name: 'unitAmount',
-        type: 'uint256',
-      },
-      {
-        internalType: 'bytes',
-        name: 'encGuess',
-        type: 'bytes',
-      },
-    ],
-    name: 'fund',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-      {
-        internalType: 'uint256',
-        name: 'c',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 's',
-        type: 'uint256',
-      },
-    ],
-    name: 'register',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
+        internalType: 'contract IERC20',
         name: '_token',
         type: 'address',
       },
       {
-        internalType: 'address',
-        name: '_transfer',
-        type: 'address',
-      },
-      {
-        internalType: 'address',
-        name: '_burn',
-        type: 'address',
+        internalType: 'uint256',
+        name: '_startblock',
+        type: 'uint256',
       },
       {
         internalType: 'uint256',
-        name: '_unit',
+        name: '_endblock',
         type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: '_withUpdate',
+        type: 'bool',
+      },
+    ],
+    name: 'addPool',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+      {
+        components: [
+          {
+            internalType: 'bytes32',
+            name: 'x',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'bytes32',
+            name: 'y',
+            type: 'bytes32',
+          },
+        ],
+        internalType: 'struct Utils.G1Point',
+        name: 'y',
+        type: 'tuple',
+      },
+      {
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bytes',
+        name: 'encGuess',
+        type: 'bytes',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'massUpdatePools',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'reclaimReward',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'contract SuterERC20',
+        name: '_StuerBase',
+        type: 'address',
+      },
+      {
+        internalType: 'contract IERC20',
+        name: '_Stuertoken',
+        type: 'address',
       },
     ],
     stateMutability: 'nonpayable',
@@ -1659,218 +1773,354 @@ const SuterUSDTABI = [
     anonymous: false,
     inputs: [
       {
-        indexed: false,
-        internalType: 'string',
-        name: 'label',
-        type: 'string',
+        indexed: true,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
       },
       {
-        indexed: true,
+        indexed: false,
         internalType: 'uint256',
-        name: 'value',
+        name: 'amount',
         type: 'uint256',
       },
     ],
-    name: 'LogUint256',
+    name: 'Deposit',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'OwnershipTransferred',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'ReclaimReward',
     type: 'event',
   },
   {
     inputs: [
       {
         internalType: 'uint256',
-        name: 'multiplier',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'dividend',
+        name: '_amount',
         type: 'uint256',
       },
     ],
-    name: 'setBurnFeeStrategy',
+    name: 'registerMultiplier',
     outputs: [],
     stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_epochBase',
-        type: 'uint256',
-      },
-    ],
-    name: 'setEpochBase',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_epochLength',
-        type: 'uint256',
-      },
-    ],
-    name: 'setEpochLength',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address payable',
-        name: '_suterAgency',
-        type: 'address',
-      },
-    ],
-    name: 'setSuterAgency',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'multiplier',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'dividend',
-        type: 'uint256',
-      },
-    ],
-    name: 'setTransferFeeStrategy',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_unit',
-        type: 'uint256',
-      },
-    ],
-    name: 'setUnit',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'C',
-        type: 'tuple[]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'D',
-        type: 'tuple',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'u',
-        type: 'tuple',
-      },
-      {
-        internalType: 'bytes',
-        name: 'proof',
-        type: 'bytes',
-      },
-    ],
-    name: 'transfer',
-    outputs: [],
-    stateMutability: 'payable',
     type: 'function',
   },
   {
     anonymous: false,
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
         indexed: false,
-        internalType: 'struct Utils.G1Point[]',
-        name: 'parties',
-        type: 'tuple[]',
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
       },
     ],
-    name: 'TransferOccurred',
+    name: 'RegisterMultiplier',
     type: 'event',
   },
   {
     inputs: [],
-    name: 'BURN_FEE_DIVIDEND',
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_coefficient1',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_coefficient2',
+        type: 'uint256',
+      },
+    ],
+    name: 'setcoefficient',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'point1',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'point2',
+        type: 'uint256',
+      },
+    ],
+    name: 'setdivide',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'setinit',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_StuPerblock',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStuPerblock',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'oldPerblock',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'newPerblock',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetStuPerblock',
+    type: 'event',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'updatePool',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'withdrawRegisterSuter',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'WithdrawRegisterSuter',
+    type: 'event',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'withdrawStutoken',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'Write',
+    type: 'event',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'contract IERC20',
+        name: '_token',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: '_startblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_endblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_lastRewardblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_totalStake',
+        type: 'uint256',
+      },
+    ],
+    name: 'writepooldate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address[]',
+        name: '_user',
+        type: 'address[]',
+      },
+      {
+        internalType: 'uint256[]',
+        name: '_amount',
+        type: 'uint256[]',
+      },
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'writeuserdate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_Multiplier',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_releasetime',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: '_status',
+        type: 'bool',
+      },
+    ],
+    name: 'writeuserLock',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'Base',
     outputs: [
       {
         internalType: 'uint256',
@@ -1883,7 +2133,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'BURN_FEE_MULTIPLIER',
+    name: 'coefficient1',
     outputs: [
       {
         internalType: 'uint256',
@@ -1896,7 +2146,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'epochBase',
+    name: 'coefficient2',
     outputs: [
       {
         internalType: 'uint256',
@@ -1909,7 +2159,20 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'epochLength',
+    name: 'divide_one',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'divide_two',
     outputs: [
       {
         internalType: 'uint256',
@@ -1923,145 +2186,17 @@ const SuterUSDTABI = [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-    ],
-    name: 'getAccountState',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
-        name: 'y_available',
-        type: 'tuple[2]',
-      },
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2]',
-        name: 'y_pending',
-        type: 'tuple[2]',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[]',
-        name: 'y',
-        type: 'tuple[]',
-      },
-      {
         internalType: 'uint256',
-        name: 'epoch',
+        name: '_pid',
         type: 'uint256',
       },
-    ],
-    name: 'getBalance',
-    outputs: [
       {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point[2][]',
-        name: 'accounts',
-        type: 'tuple[2][]',
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: 'bytes32',
-            name: 'x',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'bytes32',
-            name: 'y',
-            type: 'bytes32',
-          },
-        ],
-        internalType: 'struct Utils.G1Point',
-        name: 'y',
-        type: 'tuple',
-      },
-    ],
-    name: 'getGuess',
-    outputs: [
-      {
-        internalType: 'bytes',
-        name: 'y_guess',
-        type: 'bytes',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'lastGlobalUpdate',
+    name: 'getalleward',
     outputs: [
       {
         internalType: 'uint256',
@@ -2075,12 +2210,12 @@ const SuterUSDTABI = [
   {
     inputs: [
       {
-        internalType: 'bytes32',
-        name: '',
-        type: 'bytes32',
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
       },
     ],
-    name: 'lastRollOver',
+    name: 'getallpoolreward',
     outputs: [
       {
         internalType: 'uint256',
@@ -2093,26 +2228,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'MAX',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'bytes32',
-        name: 'yHash',
-        type: 'bytes32',
-      },
-    ],
-    name: 'registered',
+    name: 'init',
     outputs: [
       {
         internalType: 'bool',
@@ -2125,10 +2241,154 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'suterAgency',
+    name: 'locktime',
     outputs: [
       {
-        internalType: 'address payable',
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+    ],
+    name: 'pendingStu',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    name: 'poolinfo',
+    outputs: [
+      {
+        internalType: 'contract IERC20',
+        name: 'token',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'startblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'endblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'lastRewardblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'accStuPerShare',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'totalStake',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'registerAmount',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+    ],
+    name: 'releaseAmount',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'releasedays',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'StuerBase',
+    outputs: [
+      {
+        internalType: 'contract SuterERC20',
         name: '',
         type: 'address',
       },
@@ -2138,7 +2398,20 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalBalance',
+    name: 'Stuertoken',
+    outputs: [
+      {
+        internalType: 'contract IERC20',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'StuPerblock',
     outputs: [
       {
         internalType: 'uint256',
@@ -2151,7 +2424,226 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalBurnFee',
+    name: 'total',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'userlock',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'Multiplier',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'releasetime',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: 'status',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'users',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'pending',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'rewarded',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'rewardDebt',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+];
+
+const MiningERC20ContractABI = [
+  {
+    inputs: [
+      {
+        internalType: 'contract SuterERC20',
+        name: '_StuerBase',
+        type: 'address',
+      },
+      {
+        internalType: 'contract IERC20',
+        name: '_Stuertoken',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'Deposit',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'OwnershipTransferred',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'ReclaimReward',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'RegisterMultiplier',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'oldPerblock',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'newPerblock',
+        type: 'uint256',
+      },
+    ],
+    name: 'SetStuPerminutes',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'WithdrawRegisterSuter',
+    type: 'event',
+  },
+  {
+    inputs: [],
+    name: 'Base',
     outputs: [
       {
         internalType: 'uint256',
@@ -2164,7 +2656,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalDeposits',
+    name: 'StuPerblock',
     outputs: [
       {
         internalType: 'uint256',
@@ -2177,7 +2669,61 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalFundCount',
+    name: 'StuerBase',
+    outputs: [
+      {
+        internalType: 'contract SuterERC20',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'Stuertoken',
+    outputs: [
+      {
+        internalType: 'contract IERC20',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'contract IERC20',
+        name: '_token',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: '_startblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_endblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: '_withUpdate',
+        type: 'bool',
+      },
+    ],
+    name: 'addPool',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'coefficient1',
     outputs: [
       {
         internalType: 'uint256',
@@ -2190,7 +2736,65 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalTransferFee',
+    name: 'coefficient2',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+      {
+        components: [
+          {
+            internalType: 'bytes32',
+            name: 'x',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'bytes32',
+            name: 'y',
+            type: 'bytes32',
+          },
+        ],
+        internalType: 'struct Utils.G1Point',
+        name: 'y',
+        type: 'tuple',
+      },
+      {
+        internalType: 'uint256',
+        name: 'unitAmount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bytes',
+        name: 'encGuess',
+        type: 'bytes',
+      },
+    ],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'divide_one',
     outputs: [
       {
         internalType: 'uint256',
@@ -2203,7 +2807,50 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'totalUsers',
+    name: 'divide_two',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+    ],
+    name: 'getalleward',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'getallpoolreward',
     outputs: [
       {
         internalType: 'uint256',
@@ -2216,7 +2863,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'TRANSFER_FEE_DIVIDEND',
+    name: 'locktime',
     outputs: [
       {
         internalType: 'uint256',
@@ -2229,7 +2876,145 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'TRANSFER_FEE_MULTIPLIER',
+    name: 'massUpdatePools',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+    ],
+    name: 'pendingStu',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    name: 'poolinfo',
+    outputs: [
+      {
+        internalType: 'contract IERC20',
+        name: 'token',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'startblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'endblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'lastRewardblock',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'accStuPerShare',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'totalStake',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'reclaimReward',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'registerAmount',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'registerMultiplier',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_user',
+        type: 'address',
+      },
+    ],
+    name: 'releaseAmount',
     outputs: [
       {
         internalType: 'uint256',
@@ -2242,7 +3027,7 @@ const SuterUSDTABI = [
   },
   {
     inputs: [],
-    name: 'unit',
+    name: 'releasedays',
     outputs: [
       {
         internalType: 'uint256',
@@ -2251,6 +3036,186 @@ const SuterUSDTABI = [
       },
     ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_StuPerblock',
+        type: 'uint256',
+      },
+    ],
+    name: 'setStuPerblock',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_coefficient1',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_coefficient2',
+        type: 'uint256',
+      },
+    ],
+    name: 'setcoefficient',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'point1',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'point2',
+        type: 'uint256',
+      },
+    ],
+    name: 'setdivide',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_pid',
+        type: 'uint256',
+      },
+    ],
+    name: 'updatePool',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'userlock',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'Multiplier',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'releasetime',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: 'status',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'users',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'pending',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'rewarded',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'rewardDebt',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'withdrawRegisterSuter',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'withdrawStutoken',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
 ];
@@ -2880,9 +3845,10 @@ const factoryContractABI = [
 ];
 
 export {
-  ERC20ABI,
-  SuterUSDTABI,
-  SuterERC20ABI,
-  factoryContractABI,
   SuterPlatformCoinABI,
+  SuterERC20ABI,
+  MiningPlatformCoinContractABI,
+  MiningERC20ContractABI,
+  ERC20ABI,
+  factoryContractABI,
 };

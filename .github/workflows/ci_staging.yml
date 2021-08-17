@@ -51,7 +51,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: suter-shield
+        ECR_REPOSITORY: suter-ethshield-v2
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
@@ -76,4 +76,4 @@ jobs:
         HELM_BIN: ${{ steps.helm-install.outputs.helm-path }}
       run: |
         echo "Helm upgrade suter shield $IMAGE_TAG"
-        $HELM_BIN upgrade suter-shield-staging $GITHUB_WORKSPACE/deploy/suter-shield-website --set=image.tag=$IMAGE_TAG
+        $HELM_BIN upgrade suter-shield-staging-v2 $GITHUB_WORKSPACE/deploy/suter-shield-website --set=image.tag=$IMAGE_TAG

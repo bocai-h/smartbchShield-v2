@@ -5,6 +5,7 @@ const elgamal = require('./utils/elgamal.js');
 const aes = require('./utils/aes.js');
 const Service = require('./utils/service.js');
 const ABICoder = require('web3-eth-abi');
+const BigNumber = require('bignumber.js');
 const { soliditySha3 } = require('web3-utils');
 
 var sleep = wait =>
@@ -75,13 +76,13 @@ class ClientBase {
     this._transfers = new Set();
 
     /**
-        Register the TransferOccurred event for this client.
+        Register the TransferSuccess event for this client.
         Since a transfer is triggered by a sender, it is necessary to register this event to notify a transfer "receiver" to keep track of local account state (without manually synchronizing with contract).
         */
     this.suter.events
-      .TransferOccurred({})
+      .TransferSuccess({})
       .on('data', event => {
-        console.log('Receive TransferOccurred event');
+        console.log('Receive TransferSuccess event');
         if (that._transfers.has(event.transactionHash)) {
           // This is the sender of the transfer operation, hence we will simply return.
           that._transfers.delete(event.transactionHash);
@@ -227,25 +228,6 @@ class ClientBase {
     return await suter.methods.registered(hashedKey).call();
   }
 
-  //async changeBurnFeeStrategy (multiplier, dividend) {
-  //var that = this;
-  //var nonce = web3.utils.toBN(utils.randomUint256()).toString();
-  //var [c, s] = utils.signFeeStrategy(that.suter.options.address, multiplier, dividend, 'burn', nonce, that.account.keypair);
-  //let transaction = that.suter.methods.changeBurnFeeStrategy(multiplier, dividend, nonce, c, s)
-  //.send({from: that.home, gas: that.gasLimit})
-  //.on('transactionHash', (hash) => {
-  //console.log("Change burn fee submitted (txHash = \"" + hash + "\").");
-  //})
-  //.on('receipt', (receipt) => {
-  //console.log("Change burn fee successful.");
-  //})
-  //.on('error', (error) => {
-  //console.log("Change burn fee failed: " + error);
-  //throw error;
-  //});
-  //return transaction;
-  //}
-
   async setBurnFeeStrategy(multiplier, dividend) {
     var that = this;
     let transaction = that.suter.methods
@@ -263,25 +245,6 @@ class ClientBase {
       });
     return transaction;
   }
-
-  //async changeTransferFeeStrategy (multiplier, dividend) {
-  //var that = this;
-  //var nonce = web3.utils.toBN(utils.randomUint256()).toString();
-  //var [c, s] = utils.signFeeStrategy(that.suter.options.address, multiplier, dividend, 'transfer', nonce, that.account.keypair);
-  //let transaction = that.suter.methods.changeTransferFeeStrategy(multiplier, dividend, nonce, c, s)
-  //.send({from: that.home, gas: that.gasLimit})
-  //.on('transactionHash', (hash) => {
-  //console.log("Change transfer fee submitted (txHash = \"" + hash + "\").");
-  //})
-  //.on('receipt', (receipt) => {
-  //console.log("Change transfer fee successful.");
-  //})
-  //.on('error', (error) => {
-  //console.log("Change transfer fee failed: " + error);
-  //throw error;
-  //});
-  //return transaction;
-  //}
 
   async setTransferFeeStrategy(multiplier, dividend) {
     var that = this;
@@ -309,8 +272,14 @@ class ClientBase {
       .on('transactionHash', hash => {
         console.log('Set epoch base submitted (txHash = "' + hash + '").');
       })
-      .on('receipt', receipt => {
-        console.log('Set epoch base successful.');
+      .on('receipt', async receipt => {
+        that.epochBase = epochBase;
+        that.account._state.lastRollOver = await that._getEpoch();
+        that.account._state.nonceUsed = true;
+        console.log(
+          'Set epoch base successful. Client lastRollOver updated to: ',
+          that.account._state.lastRollOver,
+        );
       })
       .on('error', error => {
         console.log('Set epohc base failed: ' + error);
@@ -327,8 +296,14 @@ class ClientBase {
       .on('transactionHash', hash => {
         console.log('Set epoch length submitted (txHash = "' + hash + '").');
       })
-      .on('receipt', receipt => {
-        console.log('Set epoch length successful.');
+      .on('receipt', async receipt => {
+        that.epochLength = epochLength;
+        that.account._state.lastRollOver = await that._getEpoch();
+        that.account._state.nonceUsed = true;
+        console.log(
+          'Set epoch length successful. Client lastRollOver updated to: ',
+          that.account._state.lastRollOver,
+        );
       })
       .on('error', error => {
         console.log('Set epohc length failed: ' + error);
@@ -359,11 +334,9 @@ class ClientBase {
     Get the epoch corresponding to the given timestamp (if not given, use current time).
     This epoch is based on time, and does not start from 0, because it simply divides the timestamp by epoch length.
 
-    TODO: should change to block based.
-
     @param timestamp The given timestamp. Use current time if it is not given.
 
-    @return The epoch corresponding to the timestamp (current time if not given).
+    @return The epoch corresponding to the counter (current time if not given).
     */
   async _getEpoch(counter) {
     var that = this;
@@ -383,8 +356,6 @@ class ClientBase {
 
   /**
     Get seconds away from next epoch change.
-
-    TODO: should change to block based.
     */
   async _away() {
     var that = this;
@@ -588,7 +559,8 @@ class ClientBase {
 
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction.
     */
-  async withdraw(value, burnGasLimit) {
+
+  async withdraw(destination, value, burnGasLimit) {
     var that = this;
     that.checkRegistered();
     that.checkValue();
@@ -602,6 +574,7 @@ class ClientBase {
           account.balance() +
           '.',
       );
+
     var wait = await that._away();
     //var seconds = Math.ceil(wait / 1000);
     var unit = that.epochBase == 0 ? 'blocks' : 'seconds';
@@ -615,7 +588,10 @@ class ClientBase {
           unit +
           ' for the release of your funds... ',
       );
-      return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
+
+      return sleep(wait * that.epochUnitTime).then(() =>
+        that.withdraw(destination, value, burnGasLimit),
+      );
     }
     if (state.nonceUsed) {
       console.log(
@@ -625,7 +601,10 @@ class ClientBase {
           unit +
           ', until the next epoch...',
       );
-      return sleep(wait * that.epochUnitTime).then(() => that.withdraw(value));
+
+      return sleep(wait * that.epochUnitTime).then(() =>
+        that.withdraw(destination, value, burnGasLimit),
+      );
     }
 
     if (that.epochBase == 0) {
@@ -639,8 +618,9 @@ class ClientBase {
             unit +
             ', until the next epoch...',
         );
+
         return sleep(wait * that.epochUnitTime).then(() =>
-          this.withdraw(value),
+          that.withdraw(destination, value, burnGasLimit),
         );
       }
     }
@@ -659,8 +639,9 @@ class ClientBase {
             unit +
             ', until the next epoch...',
         );
+
         return sleep(wait * that.epochUnitTime).then(() =>
-          this.withdraw(value),
+          that.withdraw(destination, value, burnGasLimit),
         );
       }
     }
@@ -689,9 +670,28 @@ class ClientBase {
       '0x' +
       aes.encrypt(new BN(account.available()).toString(16), account.aesKey);
 
-    if (burnGasLimit === undefined) burnGasLimit = 3000000;
-    let transaction = that.suter.methods
-      .burn(account.publicKeySerialized(), value, u, proof, encGuess)
+    if (!burnGasLimit) burnGasLimit = 3000000;
+
+    var transaction;
+
+    if (!destination) {
+      transaction = that.suter.methods.burn(
+        account.publicKeySerialized(),
+        value,
+        u,
+        proof,
+        encGuess,
+      );
+    } else
+      transaction = that.suter.methods.burnTo(
+        destination,
+        account.publicKeySerialized(),
+        value,
+        u,
+        proof,
+        encGuess,
+      );
+    transaction = transaction
       .send({ from: that.home, gas: burnGasLimit })
       .on('transactionHash', hash => {
         console.log('Withdrawal submitted (txHash = "' + hash + '").');
@@ -719,8 +719,12 @@ class ClientBase {
       .on('error', error => {
         console.log('Withdrawal failed: ' + error);
       });
-
-    console.log('Client epoch: ', state.lastRollOver);
+    console.log('Client currentEpoch: ', currentEpoch);
+    console.log('Client submitted epoch: ', state.lastRollOver);
+    console.log(
+      'Server current epoch: ',
+      await that.suter.methods.currentEpoch().call(),
+    );
 
     return transaction;
   }
@@ -734,10 +738,12 @@ class ClientBase {
 
     @param receiver A serialized public key representing a Suter receiver.
     @param value The amount to be transfered, in terms of unit.
+    @param decoys An array of suter users (represented by public keys) to anonymize the transfer.
+    @param transferGasLimit The max gas allowed to use for the transfer operation.
 
     @return A promise that is resolved (or rejected) with the execution status of the deposit transaction. 
     */
-  async transfer(receiver, value, transferGasLimit) {
+  async transfer(receiver, value, decoys, transferGasLimit) {
     /*
         Estimation of running time for a transfer.
         */
@@ -765,6 +771,14 @@ class ClientBase {
     var that = this;
     that.checkRegistered();
     that.checkValue();
+
+    if (decoys === undefined) decoys = [];
+    receiver = receiver.trim();
+    decoys = decoys.map(decoy => decoy.trim());
+
+    const anonymitySize = 2 + decoys.length;
+    if (anonymitySize & (anonymitySize - 1))
+      throw 'Size of anonymity set must be a power of 2!';
 
     // Check that the receiver is also registered
     var serializedReceiver = bn128.encodedToSerialized(receiver);
@@ -796,7 +810,7 @@ class ClientBase {
           ' for the release of your funds...',
       );
       return sleep(wait * that.epochUnitTime).then(() =>
-        that.transfer(receiver, value),
+        that.transfer(receiver, value, decoys, transferGasLimit),
       );
     }
     if (state.nonceUsed) {
@@ -808,7 +822,7 @@ class ClientBase {
           ' until the next epoch...',
       );
       return sleep(wait * that.epochUnitTime).then(() =>
-        that.transfer(receiver, value),
+        that.transfer(receiver, value, decoys, transferGasLimit),
       );
     }
 
@@ -824,12 +838,11 @@ class ClientBase {
             ', until the next epoch...',
         );
         return sleep(wait * that.epochUnitTime).then(() =>
-          that.transfer(receiver, value),
+          that.transfer(receiver, value, decoys, transferGasLimit),
         );
       }
     }
 
-    const anonymitySize = 2;
     if (that.epochBase == 1) {
       var estimated = estimate(anonymitySize, false);
       if (estimated > that.epochLength)
@@ -856,7 +869,7 @@ class ClientBase {
             ', until the next epoch...',
         );
         return sleep(wait * that.epochUnitTime).then(() =>
-          that.transfer(receiver, value),
+          that.transfer(receiver, value, decoys, transferGasLimit),
         );
       }
     }
@@ -867,13 +880,36 @@ class ClientBase {
     if (bn128.pointEqual(receiver, account.publicKey()))
       throw new Error('Sending to yourself is currently unsupported.');
 
-    var y = [account.publicKey()].concat([receiver]);
-    var index = [0, 1];
-    if (Math.round(Math.random()) == 1) {
-      // shuffle sender and receiver
-      swap(y, 0, 1);
-      swap(index, 0, 1);
+    decoys = decoys.map(decoy =>
+      bn128.unserialize(bn128.encodedToSerialized(decoy)),
+    );
+
+    // Shuffle all participants
+    var y = [account.publicKey()].concat([receiver]).concat(decoys);
+    var index = [];
+    var m = y.length;
+    while (m != 0) {
+      var i = Math.floor(Math.random() * m);
+      m--;
+      swap(y, i, m);
+      if (bn128.pointEqual(y[m], account.publicKey())) index[0] = m;
+      else if (bn128.pointEqual(y[m], receiver)) index[1] = m;
     }
+
+    // make sure sender and receiver have opposite parity
+    if (index[0] % 2 == index[1] % 2) {
+      var temp = y[index[1]];
+      y[index[1]] = y[index[1] + (index[1] % 2 == 0 ? 1 : -1)];
+      y[index[1] + (index[1] % 2 == 0 ? 1 : -1)] = temp;
+      index[1] = index[1] + (index[1] % 2 == 0 ? 1 : -1);
+    }
+
+    //var index = [0, 1];
+    //if (Math.round(Math.random()) == 1) {
+    //// shuffle sender and receiver
+    //swap(y, 0, 1);
+    //swap(index, 0, 1);
+    //}
 
     var serializedY = y.map(bn128.serialize);
 
@@ -884,18 +920,25 @@ class ClientBase {
 
     var unserialized = encBalances.map(ct => elgamal.unserialize(ct));
     if (unserialized.some(ct => ct[0].eq(bn128.zero) && ct[1].eq(bn128.zero)))
-      throw new Error(
-        'Please make sure both sender and receiver are registered.',
-      );
+      throw new Error('Please make sure all participants are registered.');
 
     var r = bn128.randomScalar();
 
-    var ciphertexts = [];
-    ciphertexts[index[0]] = elgamal.encrypt(new BN(-value), y[index[0]], r);
-    ciphertexts[index[1]] = elgamal.encrypt(new BN(value), y[index[1]], r);
+    var ciphertexts = y.map((party, i) => {
+      if (i == index[0]) return elgamal.encrypt(new BN(-value), party, r);
+      else if (i == index[1]) return elgamal.encrypt(new BN(value), party, r);
+      else return elgamal.encrypt(new BN(0), party, r);
+    });
+    var C = ciphertexts.map(ct => ct[0]);
+    var D = ciphertexts[0][1]; // same for all ct[i][1]
 
-    var C = [ciphertexts[0][0], ciphertexts[1][0]];
-    var D = ciphertexts[0][1]; // same as ciphertexts[1][1]
+    //var ciphertexts = [];
+    //ciphertexts[index[0]] = elgamal.encrypt(new BN(-value), y[index[0]], r);
+    //ciphertexts[index[1]] = elgamal.encrypt(new BN(value), y[index[1]], r);
+
+    //var C = [ciphertexts[0][0], ciphertexts[1][0]];
+    //var D = ciphertexts[0][1]; // same as ciphertexts[1][1]
+
     var CL = unserialized.map((ct, i) => ct[0].add(C[i]));
     var CR = unserialized.map(ct => ct[1].add(D));
 
@@ -930,14 +973,14 @@ class ClientBase {
     // console.log("Suter balance: ", (await this.web3.eth.getBalance(that.suter.options.address)));
     // console.log("Agency balance: ", (await this.web3.eth.getBalance(await that.suter.methods.suterAgency().call())));
 
-    if (transferGasLimit === undefined) transferGasLimit = 5470000;
+    if (transferGasLimit === undefined)
+      transferGasLimit = 6470000 + 500000 * decoys.length;
+    var maxFeeValue = that.web3.utils
+      .toBN(new BigNumber(transferGasLimit * gasPrice))
+      .toString();
     let transaction = that.suter.methods
       .transfer(C, D, serializedY, u, proof)
-      .send({
-        from: that.home,
-        value: transferGasLimit * gasPrice,
-        gas: transferGasLimit,
-      })
+      .send({ from: that.home, value: maxFeeValue, gas: transferGasLimit })
       .on('transactionHash', hash => {
         that._transfers.add(hash);
         console.log('Transfer submitted (txHash = "' + hash + '")');
@@ -964,7 +1007,7 @@ class ClientBase {
       })
       .on('error', error => {
         console.log('Transfer failed: ' + error);
-        throw new Error(error);
+        throw error;
       });
 
     console.log('Client epoch: ', state.lastRollOver);
