@@ -43,28 +43,33 @@ class Balance extends React.Component {
 
   async getBalance() {
     let { account, coinType } = this.props;
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
     let balance = 0;
-    if (coinType !== 'eth') {
+
+    if (!info.is_platform_coin) {
       var suterShiledTokenContract = new Contract(
-        info.contractABI,
-        info.contractAddress,
+        ERC20ABI,
+        info.contract_address,
       );
-      suterShiledTokenContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
-      );
-      // console.log(suterShiledTokenContract)
+
+      suterShiledTokenContract.setProvider(window.ethereum);
+
       let balanceWithDecimal = await suterShiledTokenContract.methods
         .balanceOf(account)
         .call();
+
       balance = (balanceWithDecimal * 1.0) / 10 ** info.decimal;
     } else {
-      let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
+      let newWeb3 = new Web3(
+        new Web3.providers.HttpProvider(window.blockchain.jrpc),
+      );
       let balanceWithDecimal = await newWeb3.eth.getBalance(account);
       balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     }
     this.setState({
-      balance: parseInt((balance * 10 ** info.decimal) / info.suterShieldUnit),
+      balance: parseInt(
+        (balance * 10 ** info.decimal) / 10 ** info.suter_shields_unit,
+      ),
     });
   }
 
@@ -87,7 +92,7 @@ class Balance extends React.Component {
 
   render() {
     let { coinType, intl } = this.props;
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
     let { balance, suterShieldBalance, processing } = this.state;
     return (
       <>
@@ -103,21 +108,23 @@ class Balance extends React.Component {
           >
             <div>
               <h1>
-                {info.suterShiledBalanceDesc} {intl.get('Balance')}
+                {`Suter ${info.name}`} {intl.get('Balance')}
               </h1>
               <div className="balanceInfoContainer">
                 <div>
-                  <img src={CoinLogoMap[coinType][1]} />
+                  <img src={window.globalCoinInfos[coinType].s_logo} />
                 </div>
                 <div className="info">
                   <h2>{suterShieldBalance.toLocaleString()}</h2>
                   <p className="value">
-                    {info.valueDesc}(=
+                    {`Suter ${info.name}`}(=
                     {(
-                      (suterShieldBalance * 1.0 * info.suterShieldUnit) /
+                      (suterShieldBalance *
+                        1.0 *
+                        10 ** info.suter_shields_unit) /
                       10 ** info.decimal
                     ).toLocaleString()}{' '}
-                    {info.unit})
+                    {info.name})
                   </p>
                 </div>
               </div>
@@ -126,21 +133,21 @@ class Balance extends React.Component {
           <Col xs={24} sm={24} md={12} lg={8} xl={6} className="coinBalance">
             <div>
               <h1>
-                {info.coinBalanceDesc} {intl.get('Balance')}
+                {info.name} {intl.get('Balance')}
               </h1>
               <div className="balanceInfoContainer">
                 <div>
-                  <img src={CoinLogoMap[coinType][2]} />
+                  <img src={window.globalCoinInfos[coinType].coin_logo} />
                 </div>
                 <div className="info">
                   <h2>{balance.toLocaleString()} Unit</h2>
                   <p className="value">
-                    {info.unit}(=
+                    {info.name}(=
                     {(
-                      (balance * info.suterShieldUnit * 1.0) /
+                      (balance * 10 ** info.suter_shields_unit * 1.0) /
                       10 ** info.decimal
                     ).toLocaleString()}{' '}
-                    {info.unit})
+                    {info.name})
                   </p>
                 </div>
               </div>
@@ -149,12 +156,18 @@ class Balance extends React.Component {
           <Col xs={24} sm={24} md={12} lg={8} xl={6}>
             <div className="three">
               <div className="twoLogo">
-                <img src={CoinLogoMap[coinType][2]} />
-                <img src={CoinLogoMap[coinType][1]} className="ml-1" />
+                <img src={window.globalCoinInfos[coinType].coin_logo} />
+                <img
+                  src={window.globalCoinInfos[coinType].s_logo}
+                  className="ml-1"
+                />
               </div>
               <div className="unit">
                 <h1>
-                  {this.transformRate(info.suterShieldUnit, 10 ** info.decimal)}
+                  {this.transformRate(
+                    10 ** info.suter_shields_unit,
+                    10 ** info.decimal,
+                  )}
                 </h1>
                 <p>Unit</p>
                 <Tooltip
@@ -171,7 +184,10 @@ class Balance extends React.Component {
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={8} xl={6} className="logo">
-            <img src={CoinLogoMap[coinType][0]} style={{ float: 'right' }} />
+            <img
+              src={window.globalCoinInfos[coinType].logo}
+              style={{ float: 'right' }}
+            />
           </Col>
         </Row>
       </>

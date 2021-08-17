@@ -65,10 +65,10 @@ class Fund extends React.Component {
     let { client, intl, coinType } = this.props;
     let { inputValue } = this.state;
     this.setState({ processing: true });
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
     let result;
     try {
-      if (coinType === 'usdt') {
+      if (info.name == 'USDT') {
         result = await client.depositUSDT(inputValue.toString());
       } else {
         result = await client.deposit(inputValue.toString());
@@ -85,7 +85,8 @@ class Fund extends React.Component {
     let txHash = result.transactionHash;
 
     const message = intl.get('ViewInEtherScan');
-    const aLink = `${ETHERSCAN}/tx/${txHash}`;
+    const aLink = `${window.blockchain.scan_url}/tx/${txHash}`;
+
     openNotificationWithIcon(
       `${intl.get('Fund')} ${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
@@ -109,14 +110,14 @@ class Fund extends React.Component {
   render() {
     let { coinType, intl, max } = this.props;
     let { inputValue, inputFill, processing, buttonTxt } = this.state;
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
     return (
       <div className="fund">
         {processing ? <SpinModal intl={intl} /> : ''}
         <Card style={{ width: 350 }}>
           <h1>{intl.get('Fund')}</h1>
           <p>
-            {intl.get('Deposit')} {info.unit} {intl.get('To')} S{info.unit}
+            {intl.get('Deposit')} {info.name} {intl.get('To')} S{info.name}
           </p>
           <div className="inputContainer">
             <input
@@ -131,17 +132,20 @@ class Fund extends React.Component {
               <span className="maxBtn" onClick={this.maxFill}>
                 {intl.get('Max')}
               </span>
-              <img src={CoinLogoMap[coinType][2]} width="20px" />
+              <img
+                width="20px"
+                src={window.globalCoinInfos[coinType].coin_logo}
+              />
             </div>
           </div>
           <p>
             {isNaN(inputValue) ? 0 : inputValue.toLocaleString()} Unit{' '}
-            {info.unit} ={' '}
+            {info.name} ={' '}
             {(
-              (inputValue * 1.0 * info.suterShieldUnit) /
+              (inputValue * 1.0 * 10 ** info.suter_shields_unit) /
               10 ** info.decimal
             ).toLocaleString()}{' '}
-            {info.unit}
+            {info.name}
           </p>
           <div className="confirmContainer">
             <Button

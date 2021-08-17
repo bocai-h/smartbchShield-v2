@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@alitajs/sentry": "^1.0.3",
     "@ant-design/pro-layout": "^5.0.12",
     "@metamask/detect-provider": "^1.2.0",
     "@types/file-saver": "^2.0.1",
@@ -28,6 +29,7 @@
     "@umijs/test": "^3.2.23",
     "axios": "^0.21.1",
     "bignumber": "^1.1.0",
+    "echarts": "^5.1.2",
     "ethjs-contract": "^0.2.3",
     "ethjs-query": "^0.3.8",
     "file-saver": "^2.0.5",

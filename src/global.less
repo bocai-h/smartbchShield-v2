@@ -1,23 +1,66 @@
+@import './variables.less';
+
+@import './font/poppins.less';
+
 body {
+  font-family: 'Poppins-Regular';
+
   .mobileNavContainer {
     display: none;
     @media screen and (max-width: 1024px) {
       display: block;
     }
   }
+
+  .ant-slider-handle {
+    width: 21px !important;
+    height: 21px !important;
+    margin-top: -8px !important;
+    background: @chainColor !important;
+    border-color: @chainColor !important;
+  }
+
+  .ant-slider-rail {
+    height: 5px !important;
+    border-radius: 3px !important;
+    background: #858688 !important;
+  }
+
+  .ant-slider-track {
+    height: 5px !important;
+    border-radius: 3px !important;
+    background: @chainColor !important;
+  }
+
+  .ant-spin-blur::after {
+    opacity: 0.1;
+    border-radius: 10px;
+  }
+
+  .pool {
+    .ant-spin-blur::after {
+      opacity: 0.1;
+      border-radius: 23px;
+    }
+  }
+
   .ant-spin-dot-item {
     background-color: #b9aaff;
   }
+
   background: #0b000e !important;
   overflow-y: scroll;
+
   .ant-dropdown-menu {
-    width: 120px !important;
+    padding: 10px !important;
     background: #0b000e !important;
-    border: 1px solid #b9aaff !important;
+    border: 1px solid @chainColor !important;
   }
+
   .ant-dropdown-menu-item,
   .ant-dropdown-menu-submenu-title {
-    font-family: Helvetica;
+    font-family: 'Poppins-Regular';
+
     font-size: 14px !important;
     color: #fff !important;
     letter-spacing: 0 !important;
@@ -63,12 +106,13 @@ body {
 
   .ant-notification-hook-holder,
   .ant-notification-notice {
-    background: #231c43 !important;
-    border: 2px solid #b9aaff !important;
+    background: #1d1c1e !important;
+    border: 2px solid #463817 !important;
     border-radius: 10px !important;
     border-radius: 10px !important;
     color: rgba(255, 255, 255, 0.75) !important;
-    font-family: PingFangSC-Regular;
+    font-family: 'Poppins-Regular';
+
     font-size: 14px;
     letter-spacing: 0;
     line-height: 16px;
@@ -94,6 +138,7 @@ body {
     margin-left: 10px;
     position: relative;
     top: 6px;
+    font-family: 'Poppins-Regular';
   }
 }
 
@@ -107,8 +152,9 @@ body {
       justify-content: space-between;
       .head-top {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+
         .left {
           display: flex;
           .left-logo {
@@ -122,31 +168,29 @@ body {
           .item-ul {
             display: flex;
             margin: 0;
+
             li {
               list-style: none;
-              color: rgba(255, 255, 255, 0.5);
+              color: #fff;
               margin-right: 30px;
               cursor: pointer;
-              font-size: 1.2vw;
+              font-size: 14px;
+              font-family: 'Poppins-Regular';
+
               &:hover {
-                color: #b9aaff;
+                color: @chainColor;
               }
               a {
                 color: #fff;
                 &:hover {
-                  color: #b9aaff;
+                  color: @chainColor;
                 }
               }
             }
           }
         }
       }
-      // .ant-dropdown-menu{
-      // }
 
-      // img.pc{
-      //   display: block;
-      // }
       img.mobbile {
         display: none;
       }
@@ -191,9 +235,10 @@ body {
     // height: 476px;
     margin-right: 90px;
     h2 {
-      font-family: Helvetica;
+      font-family: 'Poppins-Regular';
+
       font-size: 36px;
-      color: #b9aaff;
+      color: @chainColor;
       letter-spacing: 0;
       list-style: height 40px;
       margin: 0;
@@ -203,11 +248,11 @@ body {
     ul {
       margin: 0;
       padding: 0;
-      // height: 308px;
-      // overflow-y: scroll;
+
       li {
         list-style: none;
-        font-family: Helvetica;
+        font-family: 'Poppins-Regular';
+
         font-size: 16px;
         color: rgba(255, 255, 255, 0.75);
         letter-spacing: 0;
@@ -224,8 +269,10 @@ body {
   .right {
     max-width: 720px;
     padding: 50px 0;
+
     h3 {
-      font-family: Helvetica;
+      font-family: 'Poppins-Regular';
+
       font-size: 20px;
       color: #ffffff;
       letter-spacing: 0;
@@ -260,15 +307,19 @@ body {
   display: flex;
   align-items: center;
   .launchAppBtn {
-    border-color: #b9aaff;
-    color: #b9aaff;
+    border-color: @chainColor;
+    color: @chainColor;
     background-color: #0b000e;
+    &:hover {
+      background-color: @chainColor !important;
+    }
   }
+
   .top-btn {
     width: 70px;
     height: 32px;
     margin-left: 20px;
-    border: 1px solid #b9aaff;
+    border: 1px solid @chainColor;
     border-radius: 17.5px;
     border-radius: 17.5px;
     display: flex;
@@ -283,13 +334,15 @@ body {
       justify-content: center;
       align-items: center;
       border-radius: 45%;
-      color: rgba(185, 170, 255, 0.75);
+      color: @chainColor;
       font-style: normal;
       font-size: 14px;
       cursor: pointer;
-      // color: #0B000E;
+
+      font-family: 'Poppins-Regular';
+
       &.active {
-        background: #b9aaff;
+        background: @chainColor;
         color: #0b000e;
       }
     }
@@ -309,9 +362,10 @@ body {
     }
   }
   .suterProtocol .ant-layout-content .home .title {
+    margin: 40px auto;
     text-align: center;
-    margin: 60px auto;
   }
+
   #website__entrypoint
     .suterProtocol
     .ant-layout-header
@@ -343,12 +397,7 @@ body {
       margin-bottom: 20px;
     }
   }
-  // .suterProtocol .ant-layout-header .mobble-English {
-  //   display: inline;
-  // }
-  // .suterProtocol .ant-layout-header .pc-English {
-  //   display: none;
-  // }
+
   .QA {
     justify-content: center;
     .left {
@@ -373,15 +422,16 @@ body {
     }
   }
   strong {
-    font-family: PingFangSC-Medium;
     font-style: oblique;
+    font-family: 'Poppins-Medium';
   }
   button {
     &:hover {
-      background-color: #b9aaff !important;
       color: #0b000e !important;
+      background-color: @chainColor !important;
     }
   }
+
   .portal-body {
     .portal-section {
       margin: 100px auto 0;
@@ -389,13 +439,22 @@ body {
       display: flex;
       .flex-item {
         flex: 1;
+        .launchAppBtn {
+          border-color: @chainColor;
+          color: @chainColor;
+          background-color: #0b000e;
+          &:hover {
+            background-color: @chainColor !important;
+          }
+        }
       }
       &:nth-of-type(1) {
         margin-top: 60px;
         .slogan {
-          font-family: PingFangSC-Medium;
+          font-family: 'Poppins-Medium';
+
           font-size: 48px;
-          color: #b9aaff;
+          color: @chainColor;
           letter-spacing: 0;
         }
         .description {
@@ -405,17 +464,19 @@ body {
           letter-spacing: 0;
           padding-right: 70px;
           font-weight: lighter;
+          font-family: 'Poppins-Regular';
         }
         button {
           margin-top: 36px;
-          border-color: #b9aaff;
+          border-color: @chainColor;
           background-color: #0b000e;
           height: 36px;
           padding: 0 24px;
           font-size: 14px;
-          color: #b9aaff;
+          color: @chainColor;
           letter-spacing: 0;
           text-transform: nonr;
+          font-family: 'Poppins-Regular';
         }
         img {
           width: 100%;
@@ -431,6 +492,7 @@ body {
           letter-spacing: 0;
           margin-bottom: 100px;
           width: 100%;
+          font-family: 'Poppins-Regular';
         }
         .flex-item-wrapper {
           display: flex;
@@ -453,6 +515,7 @@ body {
               font-size: 20px;
               color: #b9aaff;
               letter-spacing: 0;
+              font-family: 'Poppins-Regular';
             }
 
             img {
@@ -467,6 +530,7 @@ body {
             color: rgba(255, 255, 255, 0.77);
             letter-spacing: 0;
             font-weight: lighter;
+            font-family: 'Poppins-Regular';
           }
         }
       }
@@ -478,6 +542,7 @@ body {
           letter-spacing: 0;
           margin-bottom: 100px;
           width: 100%;
+          font-family: 'Poppins-Regular';
         }
       }
       &:nth-of-type(4) {
@@ -489,6 +554,8 @@ body {
           letter-spacing: 0;
           margin-bottom: 56px;
           padding-right: 140px;
+          font-family: 'Poppins-Regular';
+
           a {
             color: inherit;
           }
@@ -498,6 +565,7 @@ body {
           color: rgba(255, 255, 255, 0.77);
           letter-spacing: 0;
           font-weight: lighter;
+          font-family: 'Poppins-Regular';
         }
         img {
           width: 424px;
@@ -527,18 +595,21 @@ body {
               letter-spacing: 0;
               line-height: 41px;
               margin-bottom: 20px;
+              font-family: 'Poppins-Regular';
             }
             .title {
               font-size: 24px;
               color: #ffffff;
               letter-spacing: 0;
               line-height: 33px;
+              font-family: 'Poppins-Regular';
             }
             .subtitle {
               font-size: 14px;
               line-height: 19px;
               color: rgba(255, 255, 255, 0.5);
               letter-spacing: 0;
+              font-family: 'Poppins-Regular';
             }
           }
         }
@@ -578,6 +649,7 @@ body {
             color: #b9aaff;
             letter-spacing: 0;
             text-align: center;
+            font-family: 'Poppins-Regular';
           }
           .description {
             font-size: 12px;
@@ -585,6 +657,7 @@ body {
             letter-spacing: 0;
             text-align: center;
             padding: 0;
+            font-family: 'Poppins-Regular';
           }
           button {
             margin-top: 20px;
@@ -600,6 +673,7 @@ body {
             letter-spacing: 0;
             text-align: center;
             white-space: nowrap;
+            font-family: 'Poppins-Regular';
           }
           .flex-item-wrapper {
             flex-direction: column;
@@ -631,6 +705,7 @@ body {
             letter-spacing: 0;
             text-align: center;
             white-space: nowrap;
+            font-family: 'Poppins-Regular';
           }
         }
         &:nth-of-type(4) {
@@ -646,6 +721,7 @@ body {
             text-align: center;
             width: 100%;
             padding-right: 0;
+            font-family: 'Poppins-Regular';
           }
           img {
             width: 100%;

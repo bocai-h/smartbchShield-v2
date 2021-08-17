@@ -19,19 +19,24 @@ class PublicKeyModal extends React.Component {
   async publickKey() {
     let { client } = this.props;
     let pk = await client.account.publicKeyEncoded();
-    this.setState({ pk: pk });
+    this.setState({ pk });
   }
   copyPk() {
-    let {intl} = this.props;
+    let { intl } = this.props;
     const el = this.textArea;
     el.current.select();
     document.execCommand('copy');
-    openNotificationWithIcon(intl.get("Tips"), intl.get("Copied"), 'success', 1);
+    openNotificationWithIcon(
+      intl.get('Tips'),
+      intl.get('Copied'),
+      'success',
+      1,
+    );
     let { closeMyAddressModeal } = this.props;
     closeMyAddressModeal();
   }
   render() {
-    let { visible, closeMyAddressModeal, intl} = this.props;
+    let { visible, closeMyAddressModeal, intl } = this.props;
     let { pk } = this.state;
     return (
       <>
@@ -46,11 +51,9 @@ class PublicKeyModal extends React.Component {
         >
           <div>
             <div className="title">
-              <h1>{intl.get("YourSuterAccountAddress")}</h1>
+              <h1>{intl.get('YourSuterAccountAddress')}</h1>
             </div>
-            <div className="tip">
-              {intl.get("pkTips")}
-            </div>
+            <div className="tip">{intl.get('pkTips')}</div>
             <div className="inputContainer">
               <textarea value={pk} ref={this.textArea} readOnly />
             </div>
@@ -61,7 +64,7 @@ class PublicKeyModal extends React.Component {
                 block
                 onClick={this.copyPk}
               >
-                {intl.get("Copy")}
+                {intl.get('Copy')}
               </Button>
             </div>
           </div>

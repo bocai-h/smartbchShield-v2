@@ -16,6 +16,7 @@ export default defineConfig({
   routes: [
     { exact: true, path: '/', redirect: '/app' },
     { path: '/app', component: '@/pages/app' },
+    // { path: '/create_pool', component: '@/pages/pool' },
     { path: '/tutorial', exact: true, component: '@/pages/tutorial' },
     { path: '/stats', exact: true, component: '@/pages/dashboard' },
   ],
@@ -38,6 +39,16 @@ export default defineConfig({
     '/mxc_api': {
       target: 'https://www.mxc.com',
       pathRewrite: { '^/mxc_api': '' },
+      changeOrigin: true,
+    },
+    '/data_platform_api': {
+      target: 'https://data-platform.suterusu.io',
+      pathRewrite: { '^/data_platform_api': '' },
+      changeOrigin: true,
+    },
+    '/staging_data_platform_api': {
+      target: 'https://data-platform.staging.suterusu.io',
+      pathRewrite: { '^/staging_data_platform_api': '' },
       changeOrigin: true,
     },
   },

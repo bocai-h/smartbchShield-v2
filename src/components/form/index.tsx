@@ -110,6 +110,7 @@ class Form extends React.Component {
               setBalanceFunc={this.setBalance}
               intl={intl}
             />
+
             <div className="operationContainer">
               <Fund
                 coinType={coinType}

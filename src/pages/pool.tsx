@@ -14,9 +14,9 @@ import medium from '../static/medium.svg';
 import twitterLight from '../static/twitter_light.svg';
 import telegramLight from '../static/telegram_light.svg';
 import mediumLight from '../static/medium_light.svg';
-import Home from '../components/home';
-import Form from '../components/form';
 import ConnectModal from '../components/connectModal';
+
+import CreatePool from '../components/createPool';
 
 import { Sentry } from 'umi';
 
@@ -35,7 +35,6 @@ class SuterProtocol extends React.Component {
     web3Browser: false,
     ethNetwork: '',
     showConnectModal: false,
-    coinType: '',
     initDone: false,
     twitterLogo: twitter,
     telegramLogo: telegram,
@@ -50,20 +49,16 @@ class SuterProtocol extends React.Component {
     this.connectMetaMask = this.connectMetaMask.bind(this);
     this.checkEthNetworkType = this.checkEthNetworkType.bind(this);
     this.showConnectModal = this.showConnectModal.bind(this);
-    this.selectCoin = this.selectCoin.bind(this);
     this.closeConnectModal = this.closeConnectModal.bind(this);
-    this.cancelSelectCoin = this.cancelSelectCoin.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
     this.handleAccountChanged = this.handleAccountChanged.bind(this);
 
     this.requestBlockChain = this.requestBlockChain.bind(this);
-    this.requestSuterInfo = this.requestSuterInfo.bind(this);
   }
 
   async componentDidMount() {
     await this.requestBlockChain();
-    await this.requestSuterInfo();
 
     await this.loadLocales();
 
@@ -121,38 +116,11 @@ class SuterProtocol extends React.Component {
     }
   }
 
-  async requestSuterInfo() {
-    try {
-      let response = await axios.get(
-        `/${ShieldApi}/public_api/suter_info.json?blockchain_type=${CHAIN_NAME}`,
-      );
-      if (response.status == 200) {
-        (window as any)['suterInfo'] = response.data;
-      } else {
-        openNotificationWithIcon(
-          'suterInfo Api Error',
-          'Fetch suterInfo error',
-          'error',
-          4.5,
-        );
-      }
-    } catch (error) {
-      openNotificationWithIcon(
-        'Network Error',
-        'Fetch suterInfo error',
-        'warning',
-        4.5,
-      );
-      Sentry.captureException(error);
-    }
-  }
-
   setCurrentAccount = (account: string) => {
     const connectWalletTxt = account.slice(0, 7) + '...' + account.slice(-5);
-
     this.setState({
-      account,
-      connectWalletTxt,
+      account: account,
+      connectWalletTxt: connectWalletTxt,
     });
   };
 
@@ -253,14 +221,6 @@ class SuterProtocol extends React.Component {
     }
   }
 
-  selectCoin(coinType) {
-    this.setState({ coinType });
-  }
-
-  cancelSelectCoin() {
-    this.setState({ coinType: '' });
-  }
-
   lightFooterLogo = ctype => {
     if (ctype === 'twitter') {
       this.setState({ twitterLogo: twitterLight });
@@ -292,16 +252,14 @@ class SuterProtocol extends React.Component {
 
   render() {
     const {
-      connectWalletTxt,
       account,
-      metamaskInstalled,
       ethNetwork,
+      connectWalletTxt,
+      metamaskInstalled,
       showConnectModal,
-      coinType,
-      twitterLogo,
       telegramLogo,
+      twitterLogo,
       mediumLogo,
-
       initDone,
     } = this.state;
 
@@ -312,7 +270,7 @@ class SuterProtocol extends React.Component {
         <Layout className="suterProtocol">
           <Header>
             <div className="head-top">
-              <Nav intl={intl} indexURL="/app" currentNav="/" />
+              <Nav intl={intl} indexURL="/app" currentNav="pool" />
             </div>
             <div className="header-btn">
               {account === '' ? (
@@ -356,7 +314,7 @@ class SuterProtocol extends React.Component {
                 </i>
               </div>
               <div className="mobileNavContainer">
-                <MobileNav intl={intl} currentNav="/" />
+                <MobileNav intl={intl} currentNav="pool" />
               </div>
             </div>
           </Header>
@@ -370,20 +328,8 @@ class SuterProtocol extends React.Component {
             ) : (
               ''
             )}
-            {account === '' || coinType === '' ? (
-              <Home
-                account={account}
-                selectCoin={this.selectCoin}
-                intl={intl}
-              />
-            ) : (
-              <Form
-                account={account}
-                coinType={coinType}
-                cancelSelectCoin={this.cancelSelectCoin}
-                intl={intl}
-              />
-            )}
+
+            <CreatePool intl={intl} account={account} />
           </Content>
           <Footer>
             <a

@@ -62,10 +62,9 @@ class Burn extends React.Component {
     );
   }
   async burn() {
-    let { client, intl, coinType } = this.props;
+    let { client, intl } = this.props;
     let { inputValue } = this.state;
     this.setState({ proccesing: true });
-    let info = CoinInfos[coinType];
     let result;
     try {
       result = await client.withdraw(inputValue);
@@ -81,7 +80,8 @@ class Burn extends React.Component {
 
     let txHash = result.transactionHash;
     const message = intl.get('ViewInEtherScan');
-    const aLink = `${ETHERSCAN}/tx/${txHash}`;
+    const aLink = `${window.blockchain.scan_url}/tx/${txHash}`;
+
     openNotificationWithIcon(
       `${intl.get('Burn')} ${intl.get('TransactionHasSent')}`,
       <MessageWithAlink message={message} aLink={aLink} />,
@@ -105,7 +105,7 @@ class Burn extends React.Component {
   render() {
     let { coinType, intl, max } = this.props;
     let { inputValue, proccesing, inputFill, buttonTxt } = this.state;
-    let info = CoinInfos[coinType];
+    let info = window.globalCoinInfos[coinType];
     return (
       <div className="burn">
         {proccesing ? <SpinModal intl={intl} /> : ''}
@@ -121,7 +121,7 @@ class Burn extends React.Component {
             </Tooltip>
           </div>
           <p>
-            {intl.get('Burn')} S{info.unit} {intl.get('To')} {info.unit}
+            {intl.get('Burn')} S{info.name} {intl.get('To')} {info.name}
           </p>
           <div className="inputContainer">
             <input
@@ -136,17 +136,17 @@ class Burn extends React.Component {
               <span className="maxBtn" onClick={this.maxFill}>
                 {intl.get('Max')}
               </span>
-              <img src={CoinLogoMap[coinType][1]} width="20px" />
+              <img src={window.globalCoinInfos[coinType].s_logo} width="20px" />
             </div>
           </div>
           <p>
             {intl.get('YouWillReceive')} {inputValue.toLocaleString()} Unit{' '}
-            {info.unit}(=
+            {info.name}(=
             {(
-              (inputValue * 1.0 * info.suterShieldUnit) /
+              (inputValue * 1.0 * 10 ** info.suter_shields_unit) /
               10 ** info.decimal
             ).toLocaleString()}{' '}
-            {info.unit})
+            {info.name})
           </p>
           <div className="confirmContainer">
             <Button

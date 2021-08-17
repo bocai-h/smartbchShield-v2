@@ -1,350 +1,487 @@
 import React from 'react';
-import { Spin, Popover, Row, Col } from 'antd';
-import './index.less';
-import Web3 from 'web3';
+import { Spin, Popover, Row, Col, notification } from 'antd';
 import axios from 'axios';
-import {
-  openNotificationWithIcon,
-  fetchSuterPrice,
-} from '../../components/tools';
+import './index.less';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
-var Contract = require('web3-eth-contract');
+// 按需引入所需模块
+import * as echarts from 'echarts/core';
+import { CanvasRenderer } from 'echarts/renderers';
+import { LineChart, BarChart } from 'echarts/charts';
+import { TooltipComponent, GridComponent } from 'echarts/components';
+import { Sentry } from 'umi';
+
+// 注册
+echarts.use([
+  BarChart,
+  LineChart,
+  GridComponent,
+  CanvasRenderer,
+  TooltipComponent,
+]);
+
+const openNotificationWithIcon = (
+  title: string,
+  desc: any,
+  type: string,
+  duration: number = 0,
+  onClickFunc = () => {},
+) => {
+  notification[type]({
+    className: type,
+    message: title,
+    description: desc,
+    duration: duration,
+    onClick: onClickFunc,
+  });
+};
+
 class Dashboard extends React.Component {
   state = {
     currentETHDeposited: 0,
     currentStableCoinsDeposited: 0,
     totalFeesUSD: 0,
     totalETHDeposited: 0,
-    totalUSDDeposited: 0,
     totalDeposits: 0,
-    totalUsers: 0,
-    suterPrice: 0,
-    daiPrice: 0,
-    ethPrice: 0,
-    renBTCPrice: 0,
-    currentETHDepositedLoading: true,
-    currentStableCoinsDepositedLoading: true,
-    totalFeesUSDLoading: true,
-    totalETHDepositedLoading: true,
-    totalUSDDepositedLoading: true,
-    totalDepositsLoading: true,
-    totalUsersLoading: true,
+    TotalStableCoinsDeposited: 0,
+    totalValueLocked: 0,
+
+    total_value_locked_24hours_ratio: 0,
+    total_value_locked_7days_ratio: 0,
+    total_deposits_24hours_ratio: 0,
+    total_deposits_7days_ratio: 0,
+    total_platform_deposits_24hours_ratio: 0,
+    total_platform_deposits_7days_ratio: 0,
+    total_platform_locked_24hours_ratio: 0,
+    total_platform_locked_7days_ratio: 0,
+    total_stable_coin_deposits_24hours_ratio: 0,
+    total_stable_coin_deposits_7days_ratio: 0,
+    total_fees_24hours_ratio: 0,
+    total_fees_7days_ratio: 0,
+    total_stable_coin_locked_24hours_ratio: 0,
+    total_stable_coin_locked_7days_ratio: 0,
+    total_value_deposits_24hours_ratio: 0,
+    total_value_deposits_7days_ratio: 0,
+    total_users_24hours_ratio: 0,
+    total_users_7days_ratio: 0,
+
+    TotalUSDDepositedAmount: 0,
+    TotalUSDDepositedDate: '--',
+    TotalUsersAmount: 0,
+    TotalUsersDate: '--',
+
+    date: [],
+    users: [],
+    volumes: [],
+
+    TotalUSDDepositedLoading: true,
+    TotalUsersLoading: true,
+
+    loading: true,
   };
+
   constructor(props) {
     super(props);
   }
-  async componentDidMount() {
-    this.getCurrentETHDeposited();
-    await this.getSuterPrice();
-    await this.getRenBTCPrice();
-    await this.getDaiPrice();
-    await this.getETHPrice();
-    await this.getCurrentStableCoinsDeposited();
-    await this.getTotalFeesUSD();
-    await this.getTotalETHDeposited();
-    await this.getTotalUSDDeposited();
-    await this.totalDeposits();
-    await this.getTotalUser();
-  }
-  async getCurrentETHDeposited() {
-    let newWeb3 = new Web3(new Web3.providers.HttpProvider(JSONRPC_URL));
-    let balanceWithDecimal = await newWeb3.eth.getBalance(
-      CoinInfos['eth'].suterShiledContractAddress,
-    );
-    let balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
-    this.setState({
-      currentETHDeposited: balance,
-      currentETHDepositedLoading: false,
-    });
+
+  componentDidMount() {
+    this.requestCharts();
+    this.requestShieldStats();
   }
 
-  async getSuterPrice() {
-    let suterPrice = await fetchSuterPrice();
-    this.setState({ suterPrice: suterPrice });
-  }
-
-  async getETHPrice() {
-    let ethPrice = 0;
+  async requestShieldStats() {
     try {
       let response = await axios.get(
-        'huobi_api/market/detail/merged?symbol=ethusdt',
+        `/${ShieldApi}/public_api/shield_stats.json?blockchain_type=${CHAIN_NAME}`,
       );
+
       if (response.status == 200) {
-        let price = response.data.tick.bid[0];
-        ethPrice = parseFloat(price);
+        const {
+          total_value_locked,
+          total_deposits,
+          total_platform_deposits,
+          total_stable_coin_locked,
+          total_stable_coin_deposits,
+          total_platform_locked,
+          total_fees,
+
+          total_value_locked_24hours_ratio,
+          total_value_locked_7days_ratio,
+          total_deposits_24hours_ratio,
+          total_deposits_7days_ratio,
+          total_platform_deposits_24hours_ratio,
+          total_platform_deposits_7days_ratio,
+          total_platform_locked_24hours_ratio,
+          total_platform_locked_7days_ratio,
+          total_stable_coin_deposits_24hours_ratio,
+          total_stable_coin_deposits_7days_ratio,
+          total_fees_24hours_ratio,
+          total_fees_7days_ratio,
+          total_stable_coin_locked_24hours_ratio,
+          total_stable_coin_locked_7days_ratio,
+          total_value_deposits_24hours_ratio,
+          total_value_deposits_7days_ratio,
+          total_users_24hours_ratio,
+          total_users_7days_ratio,
+        } = response.data.data;
+
+        this.setState({
+          totalValueLocked: total_value_locked,
+          totalDeposits: total_deposits,
+          totalETHDeposited: total_platform_deposits,
+          currentETHDeposited: total_platform_locked,
+          currentStableCoinsDeposited: total_stable_coin_locked,
+          TotalStableCoinsDeposited: total_stable_coin_deposits,
+          totalFeesUSD: total_fees,
+
+          total_value_locked_24hours_ratio,
+          total_value_locked_7days_ratio,
+          total_deposits_24hours_ratio,
+          total_deposits_7days_ratio,
+          total_platform_deposits_24hours_ratio,
+          total_platform_deposits_7days_ratio,
+          total_platform_locked_24hours_ratio,
+          total_platform_locked_7days_ratio,
+          total_stable_coin_deposits_24hours_ratio,
+          total_stable_coin_deposits_7days_ratio,
+          total_fees_24hours_ratio,
+          total_fees_7days_ratio,
+          total_stable_coin_locked_24hours_ratio,
+          total_stable_coin_locked_7days_ratio,
+          total_value_deposits_24hours_ratio,
+          total_value_deposits_7days_ratio,
+          total_users_24hours_ratio,
+          total_users_7days_ratio,
+        });
       } else {
         openNotificationWithIcon(
-          'Price Api Error',
-          'Fetch ETH price error',
+          'shield_stats Api Error',
+          'Fetch shield_stats error',
           'error',
           4.5,
         );
       }
     } catch (error) {
-      console.log(error);
       openNotificationWithIcon(
         'Network Error',
-        'Fetch ETH price error',
+        'Fetch shield_stats error',
         'warning',
         4.5,
       );
+      Sentry.captureException(error);
     }
-    this.setState({ ethPrice: ethPrice });
+
+    this.setState({
+      loading: false,
+    });
   }
 
-  async getRenBTCPrice() {
-    let renBTCBTCPrice = 0;
+  async requestCharts() {
     try {
       let response = await axios.get(
-        'huobi_api/market/detail/merged?symbol=renbtc',
+        `/${ShieldApi}/public_api/charts.json?blockchain_type=${CHAIN_NAME}`,
       );
+
       if (response.status == 200) {
-        let price = response.data.tick.bid[0];
-        renBTCBTCPrice = parseFloat(price);
+        const charts = response.data.data;
+
+        const date = charts.map(res => res.date);
+
+        const users = charts.map(res => res.total_users);
+
+        const volumes = charts.map(res => res.total_transaction_volumes);
+
+        this.setState({
+          date,
+          users,
+          volumes,
+        });
+
+        this.volumesChart();
+        this.usersChart();
       } else {
         openNotificationWithIcon(
-          'Price Api Error',
-          'Fetch RenBTC/BTC price error',
+          'charts Api Error',
+          'Fetch charts error',
           'error',
           4.5,
         );
       }
     } catch (error) {
-      console.log(error);
       openNotificationWithIcon(
         'Network Error',
-        'Fetch RenBTC/BTC price error',
+        'Fetch charts error',
         'warning',
         4.5,
       );
+      Sentry.captureException(error);
     }
-
-    let BTCUSDTPrice = 0;
-    try {
-      let response = await axios.get(
-        'huobi_api/market/detail/merged?symbol=btcusdt',
-      );
-      if (response.status == 200) {
-        let price = response.data.tick.bid[0];
-        BTCUSDTPrice = parseFloat(price);
-      } else {
-        openNotificationWithIcon(
-          'Price Api Error',
-          'Fetch BTC/USDT price error',
-          'error',
-          4.5,
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      openNotificationWithIcon(
-        'Network Error',
-        'Fetch BTC/USDT price error',
-        'warning',
-        4.5,
-      );
-    }
-    this.setState({ renBTCPrice: renBTCBTCPrice * BTCUSDTPrice });
   }
 
-  async getDaiPrice() {
-    let daiPrice = 0;
-    try {
-      let response = await axios.get(
-        'huobi_api/market/detail/merged?symbol=daiusdt',
-      );
-      if (response.status == 200) {
-        let price = response.data.tick.bid[0];
-        daiPrice = parseFloat(price);
-      } else {
-        openNotificationWithIcon(
-          'Price Api Error',
-          'Fetch DAI price error',
-          'error',
-          4.5,
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      openNotificationWithIcon(
-        'Network Error',
-        'Fetch DAI price error',
-        'warning',
-        4.5,
-      );
-    }
-    this.setState({ daiPrice: daiPrice });
-  }
+  volumesChart() {
+    let { date, volumes } = this.state;
 
-  pools() {
-    let { suterPrice, daiPrice, ethPrice, renBTCPrice } = this.state;
-    let poolInfos = [
-      [
-        CoinInfos['eth'].suterShiledContractAddress,
-        CoinInfos['eth'].suterShiledContractABI,
-        CoinInfos['eth'].decimal,
-        CoinInfos['eth'].suterShieldUnit,
-        ethPrice,
-      ],
-      [
-        CoinInfos['usdt'].suterShiledContractAddress,
-        CoinInfos['usdt'].suterShiledContractABI,
-        CoinInfos['usdt'].decimal,
-        CoinInfos['usdt'].suterShieldUnit,
-        1,
-        CoinInfos['usdt'].contractAddress,
-        CoinInfos['usdt'].contractABI,
-      ],
-      [
-        CoinInfos['dai'].suterShiledContractAddress,
-        CoinInfos['dai'].suterShiledContractABI,
-        CoinInfos['dai'].decimal,
-        CoinInfos['dai'].suterShieldUnit,
-        daiPrice,
-        CoinInfos['dai'].contractAddress,
-        CoinInfos['dai'].contractABI,
-      ],
-      [
-        CoinInfos['suter'].suterShiledContractAddress,
-        CoinInfos['suter'].suterShiledContractABI,
-        CoinInfos['suter'].decimal,
-        CoinInfos['suter'].suterShieldUnit,
-        suterPrice,
-        CoinInfos['suter'].contractAddress,
-        CoinInfos['suter'].contractABI,
-      ],
-      [
-        CoinInfos['renBTC'].suterShiledContractAddress,
-        CoinInfos['renBTC'].suterShiledContractABI,
-        CoinInfos['renBTC'].decimal,
-        CoinInfos['renBTC'].suterShieldUnit,
-        renBTCPrice,
-        CoinInfos['renBTC'].contractAddress,
-        CoinInfos['renBTC'].contractABI,
-      ],
-    ];
-    return poolInfos;
-  }
+    let min = volumes.reduce((min, num) => (min > num ? num : min));
 
-  async getCurrentStableCoinsDeposited() {
-    let ethInfo = CoinInfos['eth'];
-    let totalValue = 0;
-    let pools = this.pools();
-    for (const item of pools) {
-      if (ethInfo.suterShiledContractAddress === item[0]) {
-        continue;
-      }
-      var suterShiledTokenContract = new Contract(item[6], item[5]);
-      suterShiledTokenContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
-      );
-      let balanceWithDecimal = await suterShiledTokenContract.methods
-        .balanceOf(item[0])
-        .call();
+    let option = {
+      xAxis: {
+        axisLabel: {
+          formatter: value => {
+            return `${value.slice(8)}`;
+          },
+        },
 
-      totalValue += ((balanceWithDecimal * 1.0) / 10 ** item[2]) * item[4];
-    }
+        axisLine: {
+          show: false,
+        },
+
+        axisTick: {
+          show: false,
+        },
+
+        type: 'category',
+
+        boundaryGap: false,
+
+        data: date,
+      },
+
+      yAxis: {
+        min,
+        show: false,
+        type: 'value',
+      },
+
+      grid: [
+        {
+          top: 0,
+          left: 7,
+          right: 7,
+          bottom: 20,
+        },
+      ],
+
+      tooltip: {
+        trigger: 'axis',
+        showContent: false,
+
+        axisPointer: {
+          type: 'line',
+          lineStyle: {
+            type: 'solid',
+            width: 1,
+            color: 'rgba(255,255,255,.1)',
+          },
+        },
+      },
+
+      series: [
+        {
+          smooth: true,
+          data: volumes,
+          type: 'line',
+          symbol: 'circle',
+          showSymbol: false,
+          symbolSize: 8,
+          itemStyle: {
+            normal: {
+              borderWidth: 2,
+              color: '#b9aaff',
+              borderColor: '#fff',
+              lineStyle: {
+                width: 2,
+                color: '#b9aaff',
+              },
+            },
+          },
+
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: 'rgba(185, 170, 255,0.25)',
+                },
+
+                {
+                  offset: 0.3,
+                  color: 'rgba(185, 170, 255,0.15)',
+                },
+
+                {
+                  offset: 1,
+                  color: 'rgba(185, 170, 255,0)',
+                },
+              ]),
+            },
+          },
+        },
+      ],
+
+      backgroundColor: '#1D1C1E',
+    };
+
+    this.setState({ TotalUSDDepositedLoading: false });
+
+    let myChart = echarts.init(document.getElementById('volumes'));
+
+    myChart.setOption(option);
+
+    let lastVolume = volumes[volumes.length - 1];
+
+    let lastDate = date[date.length - 1];
+
     this.setState({
-      currentStableCoinsDeposited: totalValue,
-      currentStableCoinsDepositedLoading: false,
+      TotalUSDDepositedAmount: lastVolume,
+      TotalUSDDepositedDate: lastDate,
+    });
+
+    myChart.getZr().on('mousemove', params => {
+      let pointInPixel = [params.offsetX, params.offsetY];
+
+      let pointInGrid = myChart.convertFromPixel(
+        { seriesIndex: 0 },
+        pointInPixel,
+      );
+
+      let TotalUSDDepositedAmount = volumes[pointInGrid[0]] || lastVolume;
+
+      let TotalUSDDepositedDate = date[pointInGrid[0]] || lastDate;
+
+      this.setState({
+        TotalUSDDepositedAmount,
+        TotalUSDDepositedDate,
+      });
+    });
+
+    myChart.on('globalout', () => {
+      this.setState({
+        TotalUSDDepositedAmount: lastVolume,
+        TotalUSDDepositedDate: lastDate,
+      });
     });
   }
 
-  async getTotalFeesUSD() {
-    let { ethPrice } = this.state;
-    let totalFeesValue = 0;
-    let pools = this.pools();
+  usersChart() {
+    let { date, users } = this.state;
 
-    let ethInfo = CoinInfos['eth'];
-    for (const item of pools) {
-      var suterShieldContract = new Contract(item[1], item[0]);
-      suterShieldContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
-      );
-      let burnFee = await suterShieldContract.methods.totalBurnFee().call();
-      let transferFee = await suterShieldContract.methods
-        .totalTransferFee()
-        .call();
+    let option = {
+      xAxis: {
+        axisLabel: {
+          formatter: value => {
+            return `${value.slice(8)}`;
+          },
+        },
 
-      totalFeesValue += ((burnFee * 1.0) / 10 ** item[2]) * item[4];
-      totalFeesValue +=
-        ((transferFee * 1.0) / 10 ** ethInfo.decimal) * ethPrice;
-    }
-    this.setState({ totalFeesUSD: totalFeesValue, totalFeesUSDLoading: false });
-  }
+        axisLine: {
+          show: false,
+        },
 
-  async getTotalETHDeposited() {
-    let ethInfo = CoinInfos['eth'];
-    var suterETHShieldContract = new Contract(
-      ethInfo.suterShiledContractABI,
-      ethInfo.suterShiledContractAddress,
-    );
-    suterETHShieldContract.setProvider(
-      new Web3.providers.HttpProvider(JSONRPC_URL),
-    );
-    let totalETHDeposited = await suterETHShieldContract.methods
-      .totalDeposits()
-      .call();
+        axisTick: {
+          show: false,
+        },
+
+        type: 'category',
+
+        boundaryGap: false,
+
+        data: date,
+      },
+
+      yAxis: {
+        show: false,
+        type: 'value',
+        min: users[0] - 10,
+      },
+
+      grid: [
+        {
+          top: 0,
+          left: 17,
+          right: 17,
+          bottom: 20,
+        },
+      ],
+
+      tooltip: {
+        trigger: 'axis',
+        showContent: false,
+
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+
+      series: [
+        {
+          data: users,
+          type: 'bar',
+          itemStyle: {
+            normal: {
+              barBorderRadius: [2, 2, 0, 0],
+
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: '#B7B5AF',
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(29, 28, 30, 0)',
+                },
+              ]),
+            },
+          },
+        },
+      ],
+
+      backgroundColor: '#1D1C1E',
+    };
+
+    this.setState({ TotalUsersLoading: false });
+
+    let myChart = echarts.init(document.getElementById('users'));
+
+    myChart.setOption(option);
+
+    let lastUser = users[users.length - 1];
+
+    let lastDate = date[date.length - 1];
+
     this.setState({
-      totalETHDepositedLoading: false,
-      totalETHDeposited:
-        (totalETHDeposited * 1.0 * ethInfo.suterShieldUnit) /
-        10 ** ethInfo.decimal,
+      TotalUsersAmount: lastUser,
+      TotalUsersDate: lastDate,
     });
-  }
 
-  async getTotalUSDDeposited() {
-    let totalValue = 0;
-    let pools = this.pools();
+    myChart.getZr().on('mousemove', params => {
+      let pointInPixel = [params.offsetX, params.offsetY];
 
-    for (const item of pools) {
-      var suterShieldContract = new Contract(item[1], item[0]);
-      suterShieldContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
+      let pointInGrid = myChart.convertFromPixel(
+        { seriesIndex: 0 },
+        pointInPixel,
       );
-      let amount = await suterShieldContract.methods.totalDeposits().call();
-      totalValue += ((amount * 1.0 * item[3]) / 10 ** item[2]) * item[4];
-    }
-    this.setState({
-      totalUSDDeposited: totalValue,
-      totalUSDDepositedLoading: false,
+
+      let TotalUsersAmount = users[pointInGrid[0]] || lastUser;
+
+      let TotalUsersDate = date[pointInGrid[0]] || lastDate;
+
+      this.setState({
+        TotalUsersAmount,
+        TotalUsersDate,
+      });
     });
-  }
 
-  async getTotalUser() {
-    let totalUsers = 0;
-    let pools = this.pools();
-    for (const item of pools) {
-      var suterShieldContract = new Contract(item[1], item[0]);
-      suterShieldContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
-      );
-      let userAmount = await suterShieldContract.methods.totalUsers().call();
-      totalUsers += parseInt(userAmount);
-    }
-    this.setState({ totalUsers: totalUsers, totalUsersLoading: false });
-  }
-
-  async totalDeposits() {
-    let totalDepositCount = 0;
-    let pools = this.pools();
-    for (const item of pools) {
-      var suterShieldContract = new Contract(item[1], item[0]);
-      suterShieldContract.setProvider(
-        new Web3.providers.HttpProvider(JSONRPC_URL),
-      );
-      let count = await suterShieldContract.methods.totalFundCount().call();
-      totalDepositCount += parseInt(count);
-    }
-    this.setState({
-      totalDeposits: totalDepositCount,
-      totalDepositsLoading: false,
+    myChart.on('globalout', () => {
+      this.setState({
+        TotalUsersAmount: lastUser,
+        TotalUsersDate: lastDate,
+      });
     });
   }
 
   feePoolTipsContent() {
     let { intl } = this.props;
+
     return (
       <div>
         <a href={XSUTER_URL} target="_blank">
@@ -363,125 +500,389 @@ class Dashboard extends React.Component {
     return formatted;
   }
 
+  ratioFormat(amount) {
+    let num = Number(amount || 0);
+
+    if (num >= 0) return `+${(num * 100).toFixed(2)}%`;
+
+    return `${(num * 100).toFixed(2)}%`;
+  }
+
+  ratioStatus(amount) {
+    let num = Number(amount || 0);
+
+    if (num >= 0) return 'up';
+
+    return 'down';
+  }
+
   render() {
     let { intl } = this.props;
+
     let {
       currentETHDeposited,
       currentStableCoinsDeposited,
       totalFeesUSD,
       totalETHDeposited,
+      totalValueLocked,
       totalDeposits,
-      totalUSDDeposited,
-      totalUsers,
-      currentETHDepositedLoading,
-      currentStableCoinsDepositedLoading,
-      totalFeesUSDLoading,
-      totalETHDepositedLoading,
-      totalUSDDepositedLoading,
-      totalDepositsLoading,
-      totalUsersLoading,
-      ethPrice,
+      TotalStableCoinsDeposited,
+
+      total_value_locked_7days_ratio,
+      total_value_locked_24hours_ratio,
+      total_deposits_24hours_ratio,
+      total_deposits_7days_ratio,
+      total_platform_deposits_24hours_ratio,
+      total_platform_deposits_7days_ratio,
+      total_platform_locked_24hours_ratio,
+      total_platform_locked_7days_ratio,
+      total_stable_coin_deposits_24hours_ratio,
+      total_stable_coin_deposits_7days_ratio,
+      total_fees_24hours_ratio,
+      total_fees_7days_ratio,
+      total_stable_coin_locked_24hours_ratio,
+      total_stable_coin_locked_7days_ratio,
+      total_value_deposits_24hours_ratio,
+      total_value_deposits_7days_ratio,
+      total_users_24hours_ratio,
+      total_users_7days_ratio,
+
+      TotalUSDDepositedAmount,
+      TotalUSDDepositedDate,
+      TotalUsersAmount,
+      TotalUsersDate,
+
+      loading,
+      TotalUSDDepositedLoading,
+      TotalUsersLoading,
     } = this.state;
+
     return (
       <>
-        <Row
-          className="dashboardContainer"
-          justify="space-between"
-          gutter={[{ xs: 8 }]}
-        >
-          <Col xs={24} sm={12} md={8} lg={8} xl={8}>
-            <div className="card totalUSDDeposited">
-              <h2>{intl.get('TotalUSDDeposited')}</h2>
-              {totalUSDDepositedLoading ? (
-                <Spin size="large" />
+        <Row justify="space-between" className="dashboardContainer">
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            <div className="chart">
+              <div className="chart_head">
+                <span className="chart_name">
+                  {intl.get('TotalUSDDeposited')}
+                </span>
+
+                <div className="ratio">
+                  <div className="h">
+                    <span
+                      className={this.ratioStatus(
+                        total_value_deposits_24hours_ratio,
+                      )}
+                    >
+                      {this.ratioFormat(total_value_deposits_24hours_ratio)}
+                    </span>
+
+                    <span className="h_label">(24{intl.get('h')})</span>
+                  </div>
+
+                  <div className="days">
+                    <span
+                      className={this.ratioStatus(
+                        total_value_deposits_7days_ratio,
+                      )}
+                    >
+                      {this.ratioFormat(total_value_deposits_7days_ratio)}
+                    </span>
+
+                    <span className="days_label">(7{intl.get('days')})</span>
+                  </div>
+                </div>
+              </div>
+
+              {TotalUSDDepositedLoading ? (
+                <div className="chartSpin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>${this.numberFormat(totalUSDDeposited)}</h1>
+                <>
+                  <span className="chart_amount">
+                    $
+                    {this.numberFormat(
+                      Number(Number(TotalUSDDepositedAmount).toFixed(2)),
+                    )}
+                  </span>
+
+                  <span className="chart_date">{TotalUSDDepositedDate}</span>
+
+                  <div id="volumes" />
+                </>
               )}
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            <div className="chart">
+              <div className="chart_head">
+                <span className="chart_name">{intl.get('TotalUsers')}</span>
+
+                <div className="ratio">
+                  <div className="h">
+                    <span
+                      className={this.ratioStatus(total_users_24hours_ratio)}
+                    >
+                      {this.ratioFormat(total_users_24hours_ratio)}
+                    </span>
+
+                    <span className="h_label">(24{intl.get('h')})</span>
+                  </div>
+
+                  <div className="days">
+                    <span className={this.ratioStatus(total_users_7days_ratio)}>
+                      {this.ratioFormat(total_users_7days_ratio)}
+                    </span>
+
+                    <span className="days_label">(7{intl.get('days')})</span>
+                  </div>
+                </div>
+              </div>
+
+              {TotalUsersLoading ? (
+                <div className="chartSpin">
+                  <Spin size="large" />
+                </div>
+              ) : (
+                <>
+                  <span className="chart_amount">
+                    {this.numberFormat(Number(TotalUsersAmount))}
+                  </span>
+
+                  <span className="chart_date">{TotalUsersDate}</span>
+
+                  <div id="users" />
+                </>
+              )}
+            </div>
+          </Col>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <h2>{intl.get('TotalValueLockedInUSD')}</h2>
-              {totalUSDDepositedLoading ||
-              currentStableCoinsDepositedLoading ? (
-                <Spin size="large" />
+
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>
-                  $
-                  {this.numberFormat(
-                    currentETHDeposited * ethPrice +
-                      currentStableCoinsDeposited,
-                  )}
-                </h1>
+                <h1>${this.numberFormat(Number(totalValueLocked))}</h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(
+                      total_value_locked_24hours_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_value_locked_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(total_value_locked_7days_ratio)}
+                  >
+                    {this.ratioFormat(total_value_locked_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <h2>{intl.get('TotalDeposits')}</h2>
-              {totalDepositsLoading ? (
-                <Spin size="large" />
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>{this.numberFormat(totalDeposits)}</h1>
+                <h1>{this.numberFormat(Number(totalDeposits))}</h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(total_deposits_24hours_ratio)}
+                  >
+                    {this.ratioFormat(total_deposits_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(total_deposits_7days_ratio)}
+                  >
+                    {this.ratioFormat(total_deposits_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
-            <div className="card">
-              <h2>{intl.get('TotalUsers')}</h2>
-              {totalUsersLoading ? (
-                <Spin size="large" />
-              ) : (
-                <h1>{this.numberFormat(totalUsers)}</h1>
-              )}
-            </div>
-          </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <h2>{intl.get('TotalETHDeposited')}</h2>
-              {totalETHDepositedLoading ? (
-                <Spin size="large" />
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>{this.numberFormat(totalETHDeposited)}</h1>
+                <h1>{this.numberFormat(Number(totalETHDeposited))}</h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(
+                      total_platform_deposits_24hours_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_platform_deposits_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(
+                      total_platform_deposits_7days_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_platform_deposits_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <h2>{intl.get('CurrentETHDeposited')}</h2>
-              {currentETHDepositedLoading ? (
-                <Spin size="large" />
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>{this.numberFormat(currentETHDeposited)}</h1>
+                <h1>{this.numberFormat(Number(currentETHDeposited))}</h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(
+                      total_platform_locked_24hours_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_platform_locked_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(
+                      total_platform_locked_7days_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_platform_locked_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <h2>{intl.get('CurrentStableCoinsDeposited')}</h2>
-              {currentStableCoinsDepositedLoading ? (
-                <Spin size="large" />
-              ) : (
-                <h1>${this.numberFormat(currentStableCoinsDeposited)}</h1>
-              )}
-            </div>
-          </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
-            <div className="card">
-              <h2>{intl.get('TotalStableCoinsDeposited')}</h2>
-              {totalUSDDepositedLoading || totalETHDepositedLoading ? (
-                <Spin size="large" />
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
                 <h1>
-                  $
-                  {this.numberFormat(
-                    totalUSDDeposited - totalETHDeposited * ethPrice,
-                  )}
+                  ${this.numberFormat(Number(currentStableCoinsDeposited))}
                 </h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(
+                      total_stable_coin_locked_24hours_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_stable_coin_locked_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(
+                      total_stable_coin_locked_7days_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_stable_coin_locked_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
+            <div className="card">
+              <h2>{intl.get('TotalStableCoinsDeposited')}</h2>
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
+              ) : (
+                <h1>${this.numberFormat(Number(TotalStableCoinsDeposited))}</h1>
+              )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span
+                    className={this.ratioStatus(
+                      total_stable_coin_deposits_24hours_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_stable_coin_deposits_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span
+                    className={this.ratioStatus(
+                      total_stable_coin_deposits_7days_ratio,
+                    )}
+                  >
+                    {this.ratioFormat(total_stable_coin_deposits_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
+            </div>
+          </Col>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8}>
             <div className="card">
               <div className="titleContainer">
                 <h2>{intl.get('TotalFeesUSD')}</h2>
@@ -492,11 +893,31 @@ class Dashboard extends React.Component {
                   <InfoCircleOutlined />
                 </Popover>
               </div>
-              {totalFeesUSDLoading ? (
-                <Spin size="large" />
+              {loading ? (
+                <div className="spin">
+                  <Spin size="large" />
+                </div>
               ) : (
-                <h1>${this.numberFormat(totalFeesUSD)}</h1>
+                <h1>${this.numberFormat(Number(totalFeesUSD))}</h1>
               )}
+
+              <div className="ratio">
+                <div className="h">
+                  <span className={this.ratioStatus(total_fees_24hours_ratio)}>
+                    {this.ratioFormat(total_fees_24hours_ratio)}
+                  </span>
+
+                  <span className="h_label">(24{intl.get('h')})</span>
+                </div>
+
+                <div className="days">
+                  <span className={this.ratioStatus(total_fees_7days_ratio)}>
+                    {this.ratioFormat(total_fees_7days_ratio)}
+                  </span>
+
+                  <span className="days_label">(7{intl.get('days')})</span>
+                </div>
+              </div>
             </div>
           </Col>
         </Row>
