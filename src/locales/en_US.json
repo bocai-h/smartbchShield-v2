@@ -126,6 +126,7 @@
 
   "habit": "Common tokens",
   "placeholder": "Search by token name or address",
+  "noResult": "No Result",
   "noResultName": "Didn't see your token?",
   "noResultCreate": "Create a new privacy pool for your token",
   "addPool": "Create a new pool",
@@ -148,5 +149,10 @@
   "IllegalAdr": "Illegal Address",
   "CreatePoolError": "Create Pool Error",
   "CreatePoolSuccess": "Create Pool Success",
-  "PoolAlreadyExist": "This privacy pool already exists"
+  "PoolAlreadyExist": "This privacy pool already exists",
+
+  "useV2": "You can use Suter Shield V2 ↗",
+  "Product": "Product",
+  "suterShieldV1": "Suter Shield V1",
+  "suterShieldV2": "Suter Shield V2"
 }

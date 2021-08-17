@@ -16,7 +16,7 @@ export default defineConfig({
   routes: [
     { exact: true, path: '/', redirect: '/app' },
     { path: '/app', component: '@/pages/app' },
-    { path: '/create_pool', component: '@/pages/pool' },
+    // { path: '/create_pool', component: '@/pages/pool' },
     { path: '/tutorial', exact: true, component: '@/pages/tutorial' },
     { path: '/stats', exact: true, component: '@/pages/dashboard' },
   ],

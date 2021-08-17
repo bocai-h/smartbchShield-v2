@@ -5,15 +5,25 @@ import mLogo from '../../static/logo.png';
 const DropMenu = (intl, currentNav) => {
   return (
     <Menu>
-      {currentNav !== 'pool' ? (
-        <Menu.Item key="pool">
-          <a target="_blank" rel="noopener noreferrer" href="/create_pool">
-            {intl.get('CreatePool')}
+      <Menu.ItemGroup title={intl.get('Product')}>
+        <Menu.Item key="v1">
+          <a target="_blank" rel="suter shield v1" href={SuterShieldV1}>
+            {intl.get('suterShieldV1')}
           </a>
         </Menu.Item>
-      ) : (
-        ''
-      )}
+
+        <Menu.Item key="v2">
+          <a target="_blank" rel="suter shield v2" href={SuterShieldV2}>
+            {intl.get('suterShieldV2')}
+          </a>
+        </Menu.Item>
+
+        {/* <Menu.Item key="pool">
+          <a target="_blank" rel="create pool" href="/create_pool">
+            {intl.get('CreatePool')}
+          </a>
+        </Menu.Item> */}
+      </Menu.ItemGroup>
 
       {currentNav !== 'stats' ? (
         <Menu.Item key="stats">
@@ -25,7 +35,7 @@ const DropMenu = (intl, currentNav) => {
         ''
       )}
 
-      {currentNav !== 'mining' ? (
+      {/* {currentNav !== 'mining' ? (
         <Menu.Item key="mining">
           <Tooltip title={intl.get('ComingSoon')}>
             <a
@@ -41,7 +51,7 @@ const DropMenu = (intl, currentNav) => {
         </Menu.Item>
       ) : (
         ''
-      )}
+      )} */}
 
       {currentNav !== 'tutorial' ? (
         <Menu.Item key="tutorial">
@@ -99,7 +109,7 @@ const DropMenu = (intl, currentNav) => {
 const Nav = props => {
   let { intl, indexURL, currentNav } = props;
 
-  const menu = (
+  const infoMenu = (
     <Menu>
       <Menu.Item key="compliance">
         <a
@@ -135,6 +145,28 @@ const Nav = props => {
     </Menu>
   );
 
+  const productMenu = (
+    <Menu>
+      <Menu.Item key="v1">
+        <a target="_blank" rel="suter shield v1" href={SuterShieldV1}>
+          {intl.get('suterShieldV1')}
+        </a>
+      </Menu.Item>
+
+      <Menu.Item key="v2">
+        <a target="_blank" rel="suter shield v2" href={SuterShieldV2}>
+          {intl.get('suterShieldV2')}
+        </a>
+      </Menu.Item>
+
+      {/* <Menu.Item key="pool">
+        <a target="_blank" rel="create pool" href="/create_pool">
+          {intl.get('CreatePool')}
+        </a>
+      </Menu.Item> */}
+    </Menu>
+  );
+
   return (
     <div className="left">
       <a href={indexURL} className="left-logo">
@@ -143,15 +175,16 @@ const Nav = props => {
       </a>
 
       <ul className="item-ul">
-        {currentNav !== 'pool' ? (
-          <li>
-            <a href="/create_pool" target="_blank">
-              {intl.get('CreatePool')}
-            </a>
-          </li>
-        ) : (
-          ''
-        )}
+        <li>
+          <Dropdown
+            arrow
+            overlay={productMenu}
+            placement="bottomCenter"
+            onClick={e => e.preventDefault()}
+          >
+            <a>{intl.get('Product')}</a>
+          </Dropdown>
+        </li>
 
         {currentNav !== 'stats' ? (
           <li>
@@ -163,7 +196,7 @@ const Nav = props => {
           ''
         )}
 
-        {currentNav !== 'mining' ? (
+        {/* {currentNav !== 'mining' ? (
           <li>
             <Tooltip title={intl.get('ComingSoon')}>
               <a
@@ -179,7 +212,7 @@ const Nav = props => {
           </li>
         ) : (
           ''
-        )}
+        )} */}
 
         {currentNav !== 'tutorial' ? (
           <li>
@@ -199,8 +232,8 @@ const Nav = props => {
 
         <li>
           <Dropdown
-            overlay={menu}
             arrow
+            overlay={infoMenu}
             placement="bottomCenter"
             onClick={e => e.preventDefault()}
           >

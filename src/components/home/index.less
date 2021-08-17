@@ -66,16 +66,43 @@
           }
         }
 
-        button.tutorialBtn {
-          border-color: @chainColor;
-          color: @chainColor;
-          background-color: #0b000e;
-          margin-top: 30px;
-          font-family: Poppins-Regular;
+        .useV2 {
+          width: 287px;
+          height: 36px;
+          background: @chainColor;
+          border-radius: 18px;
 
-          &:hover {
-            background-color: @chainColor;
-            color: #0b000e;
+          font-size: 14px;
+          font-weight: 500;
+          color: #0b0e12;
+          line-height: 14px;
+          font-family: Poppins-Medium, Poppins;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          margin-top: 25px;
+
+          cursor: pointer;
+
+          animation: SCALE 2.1s ease-in-out infinite;
+        }
+
+        @keyframes SCALE {
+          0% {
+            transform: scale(1);
+            opacity: 0.7;
+          }
+
+          50% {
+            transform: scale(1.03);
+            opacity: 1;
+          }
+
+          100% {
+            transform: scale(1);
+            opacity: 0.7;
           }
         }
       }
@@ -272,21 +299,61 @@
               }
             }
 
+            // .noResult {
+            //   display: flex;
+            //   align-items: center;
+            //   flex-direction: column;
+
+            //   .noResult_name {
+            //     color: #fff;
+            //   }
+
+            //   .noResult_create {
+            //     cursor: pointer;
+            //     color: #b9aaff;
+            //   }
+            // }
+
             .noResult {
               display: flex;
               align-items: center;
               flex-direction: column;
 
               .noResult_name {
-                color: #fff;
+                color: rgba(255, 255, 255, 0.8);
               }
 
               .noResult_create {
                 cursor: pointer;
-                color: #b9aaff;
+                color: #f3ba2f;
               }
             }
           }
+
+          // .addPool {
+          //   height: 52px;
+          //   display: flex;
+          //   align-items: center;
+          //   justify-content: center;
+
+          //   border-top: 2px solid rgba(185, 170, 255, 0.3);
+
+          //   cursor: pointer;
+
+          //   .addPool_img {
+          //     font-size: 21px;
+          //     margin-right: 7px;
+          //     color: #b9aaff !important;
+          //   }
+
+          //   .addPool_name {
+          //     font-size: 14px;
+          //     font-weight: 400;
+          //     color: #b9aaff;
+          //     line-height: 14px;
+          //     font-family: Poppins-Regular, Poppins;
+          //   }
+          // }
 
           .addPool {
             height: 52px;
@@ -296,19 +363,19 @@
 
             border-top: 2px solid rgba(185, 170, 255, 0.3);
 
-            cursor: pointer;
+            cursor: not-allowed;
 
             .addPool_img {
               font-size: 21px;
               margin-right: 7px;
-              color: #b9aaff !important;
+              color: rgba(255, 255, 255, 0.5) !important;
             }
 
             .addPool_name {
               font-size: 14px;
               font-weight: 400;
-              color: #b9aaff;
               line-height: 14px;
+              color: rgba(255, 255, 255, 0.5);
               font-family: Poppins-Regular, Poppins;
             }
           }

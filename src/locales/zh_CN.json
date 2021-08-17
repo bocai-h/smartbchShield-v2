@@ -129,6 +129,7 @@
 
   "habit": "常用代币",
   "placeholder": "搜索代币名称或代币合约地址",
+  "noResult": "没有结果",
   "noResultName": "没有找到代币?",
   "noResultCreate": "建立一个新的隐私池",
   "addPool": "建立新的隐私池",
@@ -151,5 +152,10 @@
   "IllegalAdr": "地址不合法：非代币合约地址",
   "CreatePoolError": "创建隐私池失败",
   "CreatePoolSuccess": "创建隐私池成功",
-  "PoolAlreadyExist": "该隐私池已存在"
+  "PoolAlreadyExist": "该隐私池已存在",
+
+  "useV2": "推荐您使用 Suter Shield V2版本 ↗",
+  "Product": "产品",
+  "suterShieldV1": "Suter Shield V1",
+  "suterShieldV2": "Suter Shield V2"
 }

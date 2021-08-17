@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spin, Row, Col, Button } from 'antd';
+import { Spin, Row, Col, Tooltip } from 'antd';
 import { openNotificationWithIcon } from '../tools';
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
@@ -62,6 +62,7 @@ class Home extends React.Component {
     super(props);
     this.connectWalletTip = this.connectWalletTip.bind(this);
     this.homeTitle = this.homeTitle.bind(this);
+    this.useV2 = this.useV2.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onInput = this.onInput.bind(this);
     this.showCoinList = this.showCoinList.bind(this);
@@ -159,6 +160,10 @@ class Home extends React.Component {
       'info',
       2,
     );
+  }
+
+  useV2() {
+    window.open(SuterShieldV2, '_blank');
   }
 
   homeTitle() {
@@ -362,11 +367,9 @@ class Home extends React.Component {
             <div className="title">
               {this.homeTitle()}
 
-              <Button className="tutorialBtn" shape="round" size="large">
-                <a href="/tutorial" target="_blank">
-                  {intl.get('CheckTutorial')}
-                </a>
-              </Button>
+              <div className="useV2" onClick={this.useV2}>
+                {intl.get('useV2')}
+              </div>
             </div>
           </Col>
         </Row>
@@ -443,16 +446,22 @@ class Home extends React.Component {
                   })}
 
                   {!result.length ? (
+                    // <div className="noResult">
+                    //   <span className="noResult_name">
+                    //     {intl.get('noResultName')}
+                    //   </span>
+
+                    //   <span
+                    //     onClick={this.createPool}
+                    //     className="noResult_create"
+                    //   >
+                    //     {intl.get('noResultCreate')}
+                    //   </span>
+                    // </div>
+
                     <div className="noResult">
                       <span className="noResult_name">
-                        {intl.get('noResultName')}
-                      </span>
-
-                      <span
-                        onClick={this.createPool}
-                        className="noResult_create"
-                      >
-                        {intl.get('noResultCreate')}
+                        {intl.get('noResult')}
                       </span>
                     </div>
                   ) : (
@@ -460,11 +469,19 @@ class Home extends React.Component {
                   )}
                 </div>
 
-                <div className="addPool" onClick={this.createPool}>
+                {/* <div className="addPool" onClick={this.createPool}>
                   <PlusCircleOutlined className="addPool_img" />
 
                   <span className="addPool_name">{intl.get('addPool')}</span>
-                </div>
+                </div> */}
+
+                <Tooltip title={intl.get('ComingSoon')}>
+                  <div className="addPool">
+                    <PlusCircleOutlined className="addPool_img" />
+
+                    <span className="addPool_name">{intl.get('addPool')}</span>
+                  </div>
+                </Tooltip>
               </div>
             ) : (
               ''

@@ -20,6 +20,9 @@ export default {
   CHAIN_NAME: 'eth',
   ShieldApi: 'data_platform_api',
 
+  SuterShieldV1: 'https://v1.ethshield.suterusu.io',
+  SuterShieldV2: 'https://ethshield.suterusu.io',
+
   factoryContractAddress: '0x3aDf6023951f8A38792056ec1cB8e7C2Dee7b148',
 
   ERC20ABI,
