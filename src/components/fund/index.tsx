@@ -130,7 +130,7 @@ class Fund extends React.Component {
                 {intl.get('Max')}
               </span>
               <img
-                width="20px"
+                width="30px"
                 src={window.globalCoinInfos[coinType].coin_logo}
               />
             </div>

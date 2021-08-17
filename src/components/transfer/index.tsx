@@ -120,7 +120,6 @@ class Transfer extends React.Component {
       !this.isERC20Adr(suterAccountAddress)
     ) {
       this.setState({ buttonTxt: 'InvalidSuterAccount' });
-      // openNotificationWithIcon('Warning', intl.get("InvalidAddress"), 'warn', 4);
     }
 
     this.setState({ transferAddress: suterAccountAddress }, () => {

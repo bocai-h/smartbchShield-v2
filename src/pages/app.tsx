@@ -213,7 +213,10 @@ class SuterProtocol extends React.Component {
         'warning',
         4.5,
       );
-      window.location.reload();
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } else if (accounts[0] !== account) {
       this.setCurrentAccount(accounts[0]);
     }

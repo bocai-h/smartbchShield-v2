@@ -31,7 +31,9 @@
   "RegisterAgree": "我选择了足够随机的Suter账号私钥并将妥善保存该私钥",
   "Balance": "余额",
   "Fund": "质押",
-  "RecipientAddress": "接收地址",
+  "RecipientAddress": "Suter Shield接收地址",
+  "SendRecipientAddress": "接收地址",
+  "Amount": "发送数量",
   "Deposit": "质押",
   "To": "到",
   "Max": "最大",
@@ -43,7 +45,6 @@
   "MySuterAccountAddress": "我的Suter账户地址",
   "PleaseInputSuterAccountAddressHere": "请输入 Account 地址",
   "ConfirmTransfer": "确认转账",
-  "ViewInBSCScan": "在BSC SCAN上查看",
   "TransactionHasSent": "交易已经发送!",
   "Burn": "销毁",
   "ConfirmBurn": "确认销毁",
@@ -162,5 +163,7 @@
   "link": " Suter Shield V1 ",
   "Product": "产品",
   "suterShieldV1": "Suter Shield V1",
-  "suterShieldV2": "Suter Shield V2"
+  "suterShieldV2": "Suter Shield V2",
+
+  "sendFeeTips": "在Suterusu二层网络中转账时将额外收取20%的Gas Fee作为服务费, 服务费将会加入到手续费池中。从Suterusu二层网络赎回到一层网络中时将收取用户赎回金额的1%作为服务费，服务费将会加入到手续费池中。"
 }
