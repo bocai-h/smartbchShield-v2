@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.less';
-import { CoinLogoMap } from '../tools';
+import LoadingModal from '../loadingModal';
 import Web3 from 'web3';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Row, Col, Tooltip } from 'antd';
-import LoadingModal from '../loadingModal';
 
 var Contract = require('web3-eth-contract');
 
@@ -17,12 +16,14 @@ class Balance extends React.Component {
   constructor(props) {
     super(props);
     this.getBalance = this.getBalance.bind(this);
+    this.suterShieldBalance = this.suterShieldBalance.bind(this);
   }
   async componentDidMount() {
     this.setState({ processing: true });
     await this.getBalance();
     await this.suterShieldBalance();
     this.setState({ processing: false });
+
     let { setBalanceFunc } = this.props;
     let { balance, suterShieldBalance } = this.state;
     setBalanceFunc(balance, suterShieldBalance);
@@ -37,7 +38,6 @@ class Balance extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('clear interval');
     clearInterval(this.interval);
   }
 
@@ -87,7 +87,9 @@ class Balance extends React.Component {
     let molecular = a;
     let denominator = b;
     let min = Math.min(molecular, denominator);
-    return `${molecular / min}:${denominator / min}`;
+    return `${Number.parseInt(
+      (molecular / min).toFixed(4),
+    )} : ${Number.parseInt((denominator / min).toFixed(4))}`;
   }
 
   render() {
@@ -169,7 +171,7 @@ class Balance extends React.Component {
                     10 ** info.decimal,
                   )}
                 </h1>
-                <p>Unit</p>
+                <p className="value">Unit</p>
                 <Tooltip
                   placement="topLeft"
                   title={intl.get('i')}
@@ -185,8 +187,8 @@ class Balance extends React.Component {
           </Col>
           <Col xs={24} sm={24} md={12} lg={8} xl={6} className="logo">
             <img
+              className="token_logo"
               src={window.globalCoinInfos[coinType].logo}
-              style={{ float: 'right' }}
             />
           </Col>
         </Row>

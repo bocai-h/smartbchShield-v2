@@ -3,11 +3,11 @@ import './index.less';
 import Balance from '../balance';
 import Fund from '../fund';
 import Transfer from '../transfer';
-import Burn from '../burn';
 import Login from '../login';
 import Register from '../newRegister';
 import WarningIcon from '../../static/warning.svg';
 import CloseIcon from '../../static/close.svg';
+
 class Form extends React.Component {
   state = {
     client: '',
@@ -28,7 +28,7 @@ class Form extends React.Component {
     this.closeWarningTips = this.closeWarningTips.bind(this);
   }
   setBalance(balance, suterShieldBalance) {
-    this.setState({ balance: balance, suterShieldBalance: suterShieldBalance });
+    this.setState({ balance, suterShieldBalance });
   }
   updateKeyFunc() {
     let key = Math.random()
@@ -38,7 +38,7 @@ class Form extends React.Component {
   }
 
   setClient(client) {
-    this.setState({ client: client, logined: true });
+    this.setState({ client, logined: true });
   }
 
   setBeforeFilter(ctype: string) {
@@ -119,7 +119,9 @@ class Form extends React.Component {
                 updateKeyFunc={this.updateKeyFunc}
                 max={balance}
                 intl={intl}
+                key={`Fund${balance}`}
               />
+
               <Transfer
                 coinType={coinType}
                 client={client}
@@ -127,14 +129,7 @@ class Form extends React.Component {
                 updateKeyFunc={this.updateKeyFunc}
                 max={suterShieldBalance}
                 intl={intl}
-              />
-              <Burn
-                coinType={coinType}
-                client={client}
-                account={account}
-                updateKeyFunc={this.updateKeyFunc}
-                max={suterShieldBalance}
-                intl={intl}
+                key={`Transfer${suterShieldBalance}`}
               />
             </div>
           </div>

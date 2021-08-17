@@ -31,370 +31,393 @@
 
   .ant-layout-content {
     .home {
+      flex: 1;
       display: flex;
-      justify-content: center;
       flex-direction: column;
-      align-items: center;
-      .title {
+
+      .kernel {
+        flex: 1;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        font-family: 'Poppins-ExtraLight';
-
-        margin: 70px auto;
-
-        h1 {
-          font-weight: 400;
-          font-size: 40px;
-          margin-bottom: 0rem;
-          color: @chainColor;
-          font-family: 'Poppins-ExtraLight';
-
-          span.boldFont {
-            font-weight: bold;
-            font-style: oblique;
-            font-family: 'Poppins-Bold';
-          }
-
-          @media only screen and (max-width: 767px) {
-            font-size: 30px;
-
-            span.boldFont {
-              display: block;
-            }
-          }
-        }
-
-        .useV2 {
-          width: 287px;
-          height: 36px;
-          background: @chainColor;
-          border-radius: 18px;
-
-          font-size: 14px;
-          font-weight: 500;
-          color: #0b0e12;
-          line-height: 14px;
-          font-family: Poppins-Medium, Poppins;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          margin-top: 25px;
-
-          cursor: pointer;
-
-          animation: SCALE 2.1s ease-in-out infinite;
-        }
-
-        @keyframes SCALE {
-          0% {
-            transform: scale(1);
-            opacity: 0.7;
-          }
-
-          50% {
-            transform: scale(1.03);
-            opacity: 1;
-          }
-
-          100% {
-            transform: scale(1);
-            opacity: 0.7;
-          }
-        }
-      }
-
-      .hint {
-        width: 498px;
-        font-size: 15px;
-        color: #b9aaff;
-        margin-bottom: 10px;
-        font-family: Poppins-Regular, Poppins;
-      }
-
-      .search {
-        width: 500px;
-        border-radius: 10px;
-        background-color: #1d1c1e;
-        border: 2px solid rgba(185, 170, 255, 0.3);
-
-        display: flex;
         flex-direction: column;
 
-        transition: all 0.3s;
-
-        .search_input {
-          height: 50px;
-
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          padding: 0px 20px;
-
-          .search_input_coin {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-style: normal;
-
-            font-size: 18px;
-            font-weight: 400;
-            color: #ffffff;
-            background-color: transparent;
-            font-family: Poppins-Regular, Poppins;
-
-            &::placeholder {
-              font-size: 18px;
-              font-weight: 400;
-              color: rgba(255, 255, 255, 0.5);
-              font-family: Poppins-Regular, Poppins;
-            }
-          }
-
-          .searchOutlined {
-            font-size: 25px;
-            color: #b9aaff !important;
-            font-family: 'Poppins-Regular';
-          }
-        }
-
-        .coin {
+        .title {
           display: flex;
           flex-direction: column;
-          animation: SHOWCOIN 0.7s ease-in-out;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Poppins-ExtraLight';
 
-          overflow: hidden;
+          margin: 70px auto 65px auto;
 
-          .habit {
-            border-top: 2px solid rgba(185, 170, 255, 0.3);
-            border-bottom: 2px solid rgba(185, 170, 255, 0.3);
+          h1 {
+            font-weight: 400;
+            font-size: 40px;
+            margin-bottom: 0rem;
+            color: @chainColor;
+            font-family: 'Poppins-ExtraLight';
 
-            display: flex;
-            flex-direction: column;
-
-            padding: 15px 0px 5px 20px;
-
-            .habit_name {
-              font-size: 14px;
-              font-weight: 400;
-              color: #b9aaff;
-              line-height: 14px;
-              font-family: 'Poppins-Regular';
-
-              margin-bottom: 10px;
+            span.boldFont {
+              font-weight: bold;
+              font-style: oblique;
+              font-family: 'Poppins-Bold';
             }
 
-            .habit_list {
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
+            @media only screen and (max-width: 767px) {
+              font-size: 30px;
 
-              flex-wrap: wrap;
-
-              .habit_coin {
-                min-width: 70px;
-
-                border-radius: 8px;
-                border: 1px solid #979797;
-
-                display: flex;
-                align-items: center;
-
-                padding: 4px 8px 4px 4px;
-
-                margin-right: 20px;
-
-                margin-bottom: 15px;
-
-                transition: all 0.3s;
-
-                img {
-                  width: 17px;
-                  height: 17px;
-                  border-radius: 100%;
-                }
-
-                .habit_coin_name {
-                  font-size: 14px;
-                  font-weight: 400;
-                  color: #ffffff;
-                  line-height: 14px;
-                  font-family: Poppins-Regular, Poppins;
-
-                  transition: all 0.3s;
-
-                  margin-left: 5px;
-                }
-
-                &:hover {
-                  cursor: pointer;
-                  border: 1px solid #b9aaff;
-
-                  .habit_coin_name {
-                    color: #b9aaff;
-                  }
-                }
+              span.boldFont {
+                display: block;
               }
             }
           }
 
-          .list {
-            display: flex;
-            flex-direction: column;
+          .learn {
+            width: 287px;
+            height: 36px;
+            background: @chainColor;
+            border-radius: 18px;
 
-            max-height: 230px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0b0e12;
+            line-height: 14px;
+            font-family: Poppins-Medium, Poppins;
 
-            overflow-y: scroll;
-
-            overflow-x: hidden;
-
-            padding: 13px 0px;
-
-            .list_coin {
-              display: flex;
-              align-items: center;
-
-              padding: 10px 20px;
-
-              transition: all 0.3s;
-
-              img {
-                width: 21px;
-                height: 21px;
-                border-radius: 100%;
-              }
-
-              .list_coin_item {
-                display: flex;
-                flex-direction: column;
-
-                margin-left: 7px;
-
-                .list_coin_item_name {
-                  font-size: 14px;
-                  font-weight: 400;
-                  color: #ffffff;
-                  line-height: 14px;
-                  font-family: Poppins-Regular, Poppins;
-                }
-
-                .list_coin_item_chain {
-                  font-size: 10px;
-                  font-weight: 400;
-                  line-height: 10px;
-                  color: rgba(255, 255, 255, 0.5);
-                  font-family: Poppins-Regular, Poppins;
-
-                  margin-top: 7px;
-                }
-              }
-
-              &:hover {
-                cursor: pointer;
-                background: rgba(185, 170, 255, 0.1);
-              }
-            }
-
-            // .noResult {
-            //   display: flex;
-            //   align-items: center;
-            //   flex-direction: column;
-
-            //   .noResult_name {
-            //     color: #fff;
-            //   }
-
-            //   .noResult_create {
-            //     cursor: pointer;
-            //     color: #b9aaff;
-            //   }
-            // }
-
-            .noResult {
-              display: flex;
-              align-items: center;
-              flex-direction: column;
-
-              .noResult_name {
-                color: rgba(255, 255, 255, 0.8);
-              }
-
-              .noResult_create {
-                cursor: pointer;
-                color: #f3ba2f;
-              }
-            }
-          }
-
-          // .addPool {
-          //   height: 52px;
-          //   display: flex;
-          //   align-items: center;
-          //   justify-content: center;
-
-          //   border-top: 2px solid rgba(185, 170, 255, 0.3);
-
-          //   cursor: pointer;
-
-          //   .addPool_img {
-          //     font-size: 21px;
-          //     margin-right: 7px;
-          //     color: #b9aaff !important;
-          //   }
-
-          //   .addPool_name {
-          //     font-size: 14px;
-          //     font-weight: 400;
-          //     color: #b9aaff;
-          //     line-height: 14px;
-          //     font-family: Poppins-Regular, Poppins;
-          //   }
-          // }
-
-          .addPool {
-            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-top: 2px solid rgba(185, 170, 255, 0.3);
+            margin-top: 25px;
 
-            cursor: not-allowed;
+            cursor: pointer;
 
-            .addPool_img {
-              font-size: 21px;
-              margin-right: 7px;
-              color: rgba(255, 255, 255, 0.5) !important;
+            animation: SCALE 2.1s ease-in-out infinite;
+          }
+
+          @keyframes SCALE {
+            0% {
+              transform: scale(1);
+              opacity: 0.7;
             }
 
-            .addPool_name {
-              font-size: 14px;
+            50% {
+              transform: scale(1.03);
+              opacity: 1;
+            }
+
+            100% {
+              transform: scale(1);
+              opacity: 0.7;
+            }
+          }
+        }
+
+        .hint {
+          width: 498px;
+          font-size: 15px;
+          color: #b9aaff;
+          margin-bottom: 10px;
+          font-family: Poppins-Regular, Poppins;
+        }
+
+        .search {
+          width: 500px;
+          border-radius: 10px;
+          background-color: #1d1c1e;
+          border: 2px solid rgba(185, 170, 255, 0.3);
+
+          display: flex;
+          flex-direction: column;
+
+          transition: all 0.3s;
+
+          .search_input {
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0px 20px;
+
+            .search_input_coin {
+              flex: 1;
+              border: none;
+              outline: none;
+              font-style: normal;
+
+              font-size: 18px;
               font-weight: 400;
-              line-height: 14px;
-              color: rgba(255, 255, 255, 0.5);
+              color: #ffffff;
+              background-color: transparent;
               font-family: Poppins-Regular, Poppins;
+
+              &::placeholder {
+                font-size: 18px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);
+                font-family: Poppins-Regular, Poppins;
+              }
+            }
+
+            .searchOutlined {
+              font-size: 25px;
+              color: #b9aaff !important;
+              font-family: 'Poppins-Regular';
             }
           }
-        }
 
-        @keyframes SHOWCOIN {
-          from {
-            opacity: 0;
-            height: 0px;
+          .coin {
+            display: flex;
+            flex-direction: column;
+            animation: SHOWCOIN 0.7s ease-in-out;
+
+            overflow: hidden;
+
+            .habit {
+              border-top: 2px solid rgba(185, 170, 255, 0.3);
+              border-bottom: 2px solid rgba(185, 170, 255, 0.3);
+
+              display: flex;
+              flex-direction: column;
+
+              padding: 15px 0px 5px 20px;
+
+              .habit_name {
+                font-size: 14px;
+                font-weight: 400;
+                color: #b9aaff;
+                line-height: 14px;
+                font-family: 'Poppins-Regular';
+
+                margin-bottom: 10px;
+              }
+
+              .habit_list {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                flex-wrap: wrap;
+
+                .habit_coin {
+                  min-width: 70px;
+
+                  border-radius: 8px;
+                  border: 1px solid #979797;
+
+                  display: flex;
+                  align-items: center;
+
+                  padding: 4px 8px 4px 4px;
+
+                  margin-right: 20px;
+
+                  margin-bottom: 15px;
+
+                  transition: all 0.3s;
+
+                  img {
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 100%;
+                  }
+
+                  .habit_coin_name {
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #ffffff;
+                    line-height: 14px;
+                    font-family: Poppins-Regular, Poppins;
+
+                    transition: all 0.3s;
+
+                    margin-left: 5px;
+                  }
+
+                  &:hover {
+                    cursor: pointer;
+                    border: 1px solid #b9aaff;
+
+                    .habit_coin_name {
+                      color: #b9aaff;
+                    }
+                  }
+                }
+              }
+            }
+
+            .list {
+              display: flex;
+              flex-direction: column;
+
+              max-height: 230px;
+
+              overflow-y: scroll;
+
+              overflow-x: hidden;
+
+              padding: 13px 0px;
+
+              .list_coin {
+                display: flex;
+                align-items: center;
+
+                padding: 10px 20px;
+
+                transition: all 0.3s;
+
+                img {
+                  width: 21px;
+                  height: 21px;
+                  border-radius: 100%;
+                }
+
+                .list_coin_item {
+                  display: flex;
+                  flex-direction: column;
+
+                  margin-left: 7px;
+
+                  .list_coin_item_name {
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #ffffff;
+                    line-height: 14px;
+                    font-family: Poppins-Regular, Poppins;
+                  }
+
+                  .list_coin_item_chain {
+                    font-size: 10px;
+                    font-weight: 400;
+                    line-height: 10px;
+                    color: rgba(255, 255, 255, 0.5);
+                    font-family: Poppins-Regular, Poppins;
+
+                    margin-top: 7px;
+                  }
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  background: rgba(185, 170, 255, 0.1);
+                }
+              }
+
+              // .noResult {
+              //   display: flex;
+              //   align-items: center;
+              //   flex-direction: column;
+
+              //   .noResult_name {
+              //     color: #fff;
+              //   }
+
+              //   .noResult_create {
+              //     cursor: pointer;
+              //     color: #b9aaff;
+              //   }
+              // }
+
+              .noResult {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+
+                .noResult_name {
+                  color: rgba(255, 255, 255, 0.8);
+                }
+
+                .noResult_create {
+                  cursor: pointer;
+                  color: @chainColor;
+                }
+              }
+            }
+
+            // .addPool {
+            //   height: 52px;
+            //   display: flex;
+            //   align-items: center;
+            //   justify-content: center;
+
+            //   border-top: 2px solid rgba(185, 170, 255, 0.3);
+
+            //   cursor: pointer;
+
+            //   .addPool_img {
+            //     font-size: 21px;
+            //     margin-right: 7px;
+            //     color: #b9aaff !important;
+            //   }
+
+            //   .addPool_name {
+            //     font-size: 14px;
+            //     font-weight: 400;
+            //     color: #b9aaff;
+            //     line-height: 14px;
+            //     font-family: Poppins-Regular, Poppins;
+            //   }
+            // }
+
+            .addPool {
+              height: 52px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              border-top: 2px solid rgba(185, 170, 255, 0.3);
+
+              cursor: not-allowed;
+
+              .addPool_img {
+                font-size: 21px;
+                margin-right: 7px;
+                color: rgba(255, 255, 255, 0.5) !important;
+              }
+
+              .addPool_name {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 14px;
+                color: rgba(255, 255, 255, 0.5);
+                font-family: Poppins-Regular, Poppins;
+              }
+            }
           }
 
-          to {
-            opacity: 1;
-            height: 414px;
+          @keyframes SHOWCOIN {
+            from {
+              opacity: 0;
+              height: 0px;
+            }
+
+            to {
+              opacity: 1;
+              height: 414px;
+            }
+          }
+
+          &:hover {
+            border: 2px solid #b9aaff;
           }
         }
+      }
 
-        &:hover {
-          border: 2px solid #b9aaff;
+      .useV1 {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: Poppins-Medium, Poppins;
+
+        margin: 50px auto 20px auto;
+
+        .link {
+          color: @chainColor;
+          text-decoration: underline;
+          cursor: pointer;
         }
       }
     }

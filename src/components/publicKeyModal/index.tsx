@@ -7,20 +7,25 @@ class PublicKeyModal extends React.Component {
   state = {
     pk: '',
   };
+
   constructor(props) {
     super(props);
     this.textArea = React.createRef();
     this.publickKey = this.publickKey.bind(this);
     this.copyPk = this.copyPk.bind(this);
   }
+
   componentDidMount() {
     this.publickKey();
   }
+
   async publickKey() {
-    let { client } = this.props;
+    let { client, publicKey } = this.props;
     let pk = await client.account.publicKeyEncoded();
     this.setState({ pk });
+    publicKey(pk);
   }
+
   copyPk() {
     let { intl } = this.props;
     const el = this.textArea;
@@ -35,6 +40,7 @@ class PublicKeyModal extends React.Component {
     let { closeMyAddressModeal } = this.props;
     closeMyAddressModeal();
   }
+
   render() {
     let { visible, closeMyAddressModeal, intl } = this.props;
     let { pk } = this.state;

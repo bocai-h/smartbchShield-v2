@@ -1,18 +1,21 @@
+@import '../../variables.less';
+
 .publicKeyContainer {
   .ant-modal-content {
     background: #1d1c1e !important;
     border: 1px solid #b9aaff;
     border-radius: 20px;
-    // width: 70%;
+
     .ant-modal-close-x {
       color: #b9aaff;
     }
+
     .title {
       h1 {
         color: #b9aaff;
         text-align: center;
-        font-family: 'Poppins-ExtraLight';
         margin-bottom: 0;
+        font-family: 'Poppins-ExtraLight';
       }
     }
     .tip {
@@ -24,6 +27,7 @@
     }
     .inputContainer {
       margin-top: 30px;
+
       textarea {
         background-color: rgba(216, 216, 216, 0.1);
         border: 1px solid rgba(216, 216, 216, 0.5);
@@ -41,12 +45,13 @@
       }
     }
     .copyBtnContainer {
-      text-align: center;
       margin-top: 20px;
+      text-align: center;
+
       button.copyBtn {
+        color: #000000;
         border-color: #b9aaff;
         background-color: #b9aaff;
-        color: #000000;
       }
     }
   }
