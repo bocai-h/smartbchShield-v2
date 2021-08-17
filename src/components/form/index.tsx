@@ -15,7 +15,7 @@ class Form extends React.Component {
     balance: 0,
     suterShieldBalance: 0,
     warningTips: true,
-    logined: false,
+    logined: true,
     beforeFilter: 'login',
   };
 

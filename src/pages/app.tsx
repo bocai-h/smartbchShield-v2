@@ -199,7 +199,7 @@ class SuterProtocol extends React.Component {
         4.5,
       );
       setTimeout(() => {
-        window.location.reload();
+        // window.location.reload();
       }, 2000);
     });
   }
@@ -228,7 +228,7 @@ class SuterProtocol extends React.Component {
         4.5,
       );
       setTimeout(() => {
-        window.location.reload();
+        // window.location.reload();
       }, 2000);
     });
   }

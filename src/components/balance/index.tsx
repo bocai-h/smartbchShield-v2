@@ -165,12 +165,12 @@ class Balance extends React.Component {
                 />
               </div>
               <div className="unit">
-                <h1>
+                <h2>
                   {this.transformRate(
                     10 ** info.suter_shields_unit,
                     10 ** info.decimal,
                   )}
-                </h1>
+                </h2>
                 <p className="value">Unit</p>
                 <Tooltip
                   placement="topLeft"
