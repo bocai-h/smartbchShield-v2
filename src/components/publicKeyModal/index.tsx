@@ -16,7 +16,7 @@ class PublicKeyModal extends React.Component {
   }
 
   componentDidMount() {
-    // this.publickKey();
+    this.publickKey();
   }
 
   async publickKey() {
