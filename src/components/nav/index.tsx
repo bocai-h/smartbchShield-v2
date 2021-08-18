@@ -64,7 +64,15 @@ const DropMenu = (intl, currentNav) => {
       )}
 
       <Menu.Item key="q&a">
-        <a target="_blank" rel="noopener noreferrer" href={QA_URL}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={
+            intl.options.currentLocale === 'zh-CN'
+              ? 'https://mp.weixin.qq.com/s/t6vRmVBLDWN4jBtUDSZeHw'
+              : 'https://medium.com/suterusu/suter-shield-general-faq-194133078695'
+          }
+        >
           {intl.get('Q&A')}
         </a>
       </Menu.Item>
@@ -225,7 +233,15 @@ const Nav = props => {
         )}
 
         <li>
-          <a href={QA_URL} rel="noopener noreferrer" target="_blank">
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href={
+              intl.options.currentLocale === 'zh-CN'
+                ? 'https://mp.weixin.qq.com/s/t6vRmVBLDWN4jBtUDSZeHw'
+                : 'https://medium.com/suterusu/suter-shield-general-faq-194133078695'
+            }
+          >
             {intl.get('Q&A')}
           </a>
         </li>

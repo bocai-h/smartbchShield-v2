@@ -35,16 +35,6 @@ class Home extends React.Component {
         logo:
           'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/DAI.svg',
       },
-      {
-        name: 'SUTER',
-        logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/SUTER.svg',
-      },
-      {
-        name: 'RENBTC',
-        logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/RENBTC.svg',
-      },
     ],
 
     list: [],
@@ -80,7 +70,7 @@ class Home extends React.Component {
   async requestCoin() {
     try {
       let response = await axios.get(
-        `/${ShieldApi}/public_api/suter_shield_coins.json?blockchain_type=${CHAIN_NAME}`,
+        `/${ShieldApi}/public_api/v2/suter_shield_coins.json?blockchain_type=${CHAIN_NAME}`,
       );
 
       if (response.status == 200) {
