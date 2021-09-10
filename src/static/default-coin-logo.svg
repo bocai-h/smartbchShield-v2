@@ -3,16 +3,16 @@
     <title>默认coin</title>
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="默认coin" transform="translate(1.000000, 1.000000)">
-            <g id="S_USDT" fill-rule="nonzero" stroke="#1969FF">
+            <g id="S_USDT" fill-rule="nonzero" stroke="#b9aaff">
                 <g id="tether-seeklogo.com">
                     <path d="M22.5,0 C34.92585,0 45,10.07415 45,22.5 C45,34.92585 34.9254,45 22.5,45 C10.0746,45 0,34.92855 0,22.5 C0,10.07145 10.0728,0 22.5,0" id="路径"></path>
                     <path d="M25.7153652,50.3399729 C21.7903109,47.131079 19.2846348,42.2509766 19.2846348,36.7846348 C19.2846348,31.3476088 21.7630643,26.4905512 25.6517565,23.2810684" id="路径" stroke-width="2" transform="translate(22.500000, 36.810521) rotate(-90.000000) translate(-22.500000, -36.810521) "></path>
                     <path d="M25.7153652,21.7275308 C21.7903109,18.5186369 19.2846348,13.6385346 19.2846348,8.17219271 C19.2846348,2.73516671 21.7630643,-2.12189084 25.6517565,-5.33137367" id="路径" stroke-width="2" transform="translate(22.500000, 8.198079) rotate(-270.000000) translate(-22.500000, -8.198079) "></path>
                 </g>
             </g>
-            <rect id="矩形" fill="#1969FF" x="10" y="20" width="5" height="5"></rect>
-            <rect id="矩形" fill="#1969FF" x="20" y="20" width="5" height="5"></rect>
-            <rect id="矩形" fill="#1969FF" x="30" y="20" width="5" height="5"></rect>
+            <rect id="矩形" fill="#b9aaff" x="10" y="20" width="5" height="5"></rect>
+            <rect id="矩形" fill="#b9aaff" x="20" y="20" width="5" height="5"></rect>
+            <rect id="矩形" fill="#b9aaff" x="30" y="20" width="5" height="5"></rect>
         </g>
     </g>
 </svg>

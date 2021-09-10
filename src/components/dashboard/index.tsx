@@ -286,11 +286,11 @@ class Dashboard extends React.Component {
           itemStyle: {
             normal: {
               borderWidth: 2,
-              color: '#1969FF',
+              color: '#b9aaff',
               borderColor: '#fff',
               lineStyle: {
                 width: 2,
-                color: '#1969FF',
+                color: '#b9aaff',
               },
             },
           },
