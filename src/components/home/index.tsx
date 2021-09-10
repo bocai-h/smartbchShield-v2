@@ -21,19 +21,9 @@ class Home extends React.Component {
 
     habit: [
       {
-        name: 'ETH',
+        name: 'FTM',
         logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/ETH.svg',
-      },
-      {
-        name: 'USDT',
-        logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/USDT.svg',
-      },
-      {
-        name: 'DAI',
-        logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/eth/static/DAI.svg',
+          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/ftm/fantom.svg',
       },
     ],
 
@@ -55,7 +45,6 @@ class Home extends React.Component {
     this.learnV2 = this.learnV2.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onInput = this.onInput.bind(this);
-    this.useV1 = this.useV1.bind(this);
     this.showCoinList = this.showCoinList.bind(this);
     this.closeCoinList = this.closeCoinList.bind(this);
 
@@ -155,10 +144,6 @@ class Home extends React.Component {
 
   learnV2() {
     window.open(SuterusuProtocolV2, '_blank');
-  }
-
-  useV1() {
-    window.open(SuterShieldV1, '_blank');
   }
 
   homeTitle() {
@@ -488,14 +473,6 @@ class Home extends React.Component {
               )}
             </div>
           </Spin>
-        </div>
-
-        <div className="useV1">
-          {intl.get('useV1')}
-          <span className="link" onClick={this.useV1}>
-            {intl.get('link')}
-          </span>
-          ?
         </div>
       </div>
     );

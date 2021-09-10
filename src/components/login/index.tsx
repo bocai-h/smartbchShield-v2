@@ -70,7 +70,7 @@ class Login extends React.Component {
         suterShiledTokenContract,
       );
     } else {
-      suterShieldClient = new Client.ClientSuterETH(
+      suterShieldClient = new Client.ClientSuterPlatformCoin(
         lastestWeb3,
         suterShieldContract,
         account,
