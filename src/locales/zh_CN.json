@@ -67,6 +67,7 @@
   "ETHNetworkError": "区块链网络错误!",
   "PleaseChangeMetamaskTo": "请将MetaMask网络切换到",
   "Network": "网络",
+  "NetworkError": "网络错误",
   "CurrentETHDeposited": "FTM总锁仓量",
   "CurrentStableCoinsDeposited": "稳定币总锁仓量",
   "TotalFeesUSD": "手续费总量",
