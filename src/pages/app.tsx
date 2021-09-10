@@ -214,7 +214,7 @@ class SuterProtocol extends React.Component {
           symbol: 'FTM',
           decimals: 18,
         },
-        chainName: 'Binance Smart Chain',
+        chainName: 'Fantom Chain',
         rpcUrls: [window.blockchain.jrpc],
         chainId: window.blockchain.chain_id,
         blockExplorerUrls: [window.blockchain.scan_url],
