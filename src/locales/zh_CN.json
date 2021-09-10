@@ -153,5 +153,9 @@
   "suterShieldV1": "Suter Shield V1",
   "suterShieldV2": "Suter Shield V2",
 
-  "sendFeeTips": "在Suterusu二层网络中转账时将额外收取20%的Gas Fee作为服务费, 服务费将会加入到手续费池中。从Suterusu二层网络赎回到一层网络中时将收取用户赎回金额的1%作为服务费，服务费将会加入到手续费池中。"
+  "sendFeeTips": "在Suterusu二层网络中转账时将额外收取20%的Gas Fee作为服务费, 服务费将会加入到手续费池中。从Suterusu二层网络赎回到一层网络中时将收取用户赎回金额的1%作为服务费，服务费将会加入到手续费池中。",
+
+  "connect.title": "连接钱包",
+  "connect.wallet.name": "选择钱包",
+  "connect.network.name": "选择网络"
 }

@@ -47,8 +47,8 @@
             <g id="编组-11" transform="translate(628.000000, 332.000000)">
                 <g id="编组-2">
                     <g id="编组-15">
-                        <rect id="矩形" stroke="#B9AAFF" x="0.5" y="0.5" width="149" height="35" rx="17.5"></rect>
-                        <text id="Check-Tutorial" font-family="Helvetica" font-size="14" font-weight="normal" fill="#B9AAFF">
+                        <rect id="矩形" stroke="#1969FF" x="0.5" y="0.5" width="149" height="35" rx="17.5"></rect>
+                        <text id="Check-Tutorial" font-family="Helvetica" font-size="14" font-weight="normal" fill="#1969FF">
                             <tspan x="29" y="23">Check Tutorial</tspan>
                         </text>
                     </g>
@@ -59,7 +59,7 @@
                 <g id="编组-14">
                     <g id="矩形">
                         <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
-                        <rect stroke="#B9AAFF" stroke-width="2" stroke-linejoin="square" fill="#1D1C1E" fill-rule="evenodd" x="1" y="1" width="358" height="370" rx="20"></rect>
+                        <rect stroke="#1969FF" stroke-width="2" stroke-linejoin="square" fill="#1D1C1E" fill-rule="evenodd" x="1" y="1" width="358" height="370" rx="20"></rect>
                     </g>
                 </g>
             </g>

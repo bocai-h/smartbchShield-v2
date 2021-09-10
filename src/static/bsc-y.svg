@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <g id="页面-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Shield-链接钱包弹窗" transform="translate(-1181.000000, -458.000000)" fill-rule="nonzero">
+            <g id="编组-19" transform="translate(967.000000, 450.000000)">
+                <g id="编组-9" transform="translate(170.000000, 0.000000)">
+                    <g id="椭圆形" transform="translate(44.000000, 8.000000)">
+                        <circle id="Oval" fill="#F3BA2F" cx="12" cy="12" r="12"></circle>
+                        <g id="编组" transform="translate(3.000000, 3.000000)">
+                            <polygon id="路径" fill="#FFFFFF" points="5.50874781 7.57709593 8.99907731 4.0754502 12.4912522 7.57894737 14.5221674 5.54136469 8.99907731 0 3.47783257 5.53951324"></polygon>
+                            <polygon id="矩形" fill="#FFFFFF" transform="translate(2.037267, 9.000000) rotate(45.000000) translate(-2.037267, -9.000000) " points="0.616214519 7.57894737 3.47783257 7.55943458 3.45831978 10.4210526 0.596701733 10.4405654"></polygon>
+                            <polygon id="路径" fill="#F3F3F3" points="5.21794952 10.4227617 8.70702335 13.9244732 12.1978 10.4210526 14.2291198 12.4575342 14.2281265 12.4586736 8.70702335 18 3.187623 12.4605251 3.18478497 12.4576767"></polygon>
+                            <polygon id="矩形" fill="#FFFFFF" transform="translate(15.962733, 9.000000) rotate(135.000000) translate(-15.962733, -9.000000) " points="14.5221674 7.55943458 17.3837855 7.57894737 17.4032983 10.4405654 14.5416802 10.4210526"></polygon>
+                            <polygon id="路径" fill="#FFFFFF" points="11.1589141 9.2357415 11.1598068 9.2357415 9 7.10526316 7.40387335 8.67971571 7.40372459 8.67971571 7.22044301 8.86065522 6.84212722 9.23383378 6.84212722 9.23383378 6.83915187 9.23676873 6.84212722 9.23985043 9 11.3684211 11.1598068 9.23794271 11.1608481 9.23676873"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

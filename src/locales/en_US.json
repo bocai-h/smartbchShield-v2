@@ -152,5 +152,9 @@
   "suterShieldV1": "Suter Shield V1",
   "suterShieldV2": "Suter Shield V2",
 
-  "sendFeeTips": "An additional 20% Gas Fee will be charged as a service fee when transferring money in the Suterusu Layer 2 network, and the service fee will be added to the fee pool. When redeeming from Suterusu's second-tier network to the first-tier network, 1% of the user's redemption amount will be charged as a service fee, and the service fee will be added to the handling fee pool."
+  "sendFeeTips": "An additional 20% Gas Fee will be charged as a service fee when transferring money in the Suterusu Layer 2 network, and the service fee will be added to the fee pool. When redeeming from Suterusu's second-tier network to the first-tier network, 1% of the user's redemption amount will be charged as a service fee, and the service fee will be added to the handling fee pool.",
+
+  "connect.title": "Connect Wallet",
+  "connect.wallet.name": "Select Wallet",
+  "connect.network.name": "Select Network"
 }
