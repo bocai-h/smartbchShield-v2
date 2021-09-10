@@ -17,7 +17,7 @@ export default {
   XSUTER_URL: 'https://shield.staging.suterusu.io/xsuter',
   SUTER_VM_URl: 'https://bridge.staging.suterusu.io',
 
-  CHAIN_NAME: 'ftm',
+  CHAIN_NAME: 'ftm_test',
   ShieldApi: 'staging_data_platform_api',
 
   SuterShieldV1: 'https://v1.ethshield.staging.suterusu.io',
