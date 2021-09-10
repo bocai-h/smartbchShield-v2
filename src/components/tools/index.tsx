@@ -66,37 +66,6 @@ const MessageWithAlink = props => {
   );
 };
 
-const fetchSuterPrice = async () => {
-  let suterPrice = 0;
-
-  try {
-    let response = await axios.get(
-      `mxc_api/open/api/v2/market/deals?symbol=SUTER_USDT&limit=1`,
-    );
-    if (response.status == 200) {
-      let data = response.data.data[0];
-      suterPrice = parseFloat(data['trade_price']);
-    } else {
-      console.log(response);
-      openNotificationWithIcon(
-        'Price Api Error',
-        'Fetch suter price error',
-        'error',
-        4.5,
-      );
-    }
-  } catch (error) {
-    console.log(error);
-    openNotificationWithIcon(
-      'Network Error',
-      'Fetch suter price error',
-      'warning',
-      4.5,
-    );
-  }
-  return suterPrice;
-};
-
 const MobileBrowserCheck = (): boolean => {
   let check = false;
   if (
@@ -138,19 +107,8 @@ const ethChainNameMap = {
   '0x4': 'Rinkeby Test Network',
   '0x5': 'Goerli Test Network',
   '0x2a': 'Kovan Test Network',
-};
-
-const tronChainNameMap = {
-  shasta: 'Shasta',
-  trongrid: 'MainNet',
-};
-
-const CoinLogoMap = {
-  usdt: [usdtLogo, susdt, usdt],
-  eth: [ethLogo, seth, eth],
-  dai: [daiLogo, sdai, dai],
-  suter: [suterLogo, ssuter, suter],
-  renBTC: [renBTCLogo, srenBTC, renBTC],
+  '0xfa2': 'Fantom Test Network',
+  '0xfa': 'Fantom Main Network',
 };
 
 export {
@@ -158,10 +116,7 @@ export {
   openNotificationWithKey,
   MessageWithAlink,
   ethChainNameMap,
-  tronChainNameMap,
   Client,
-  CoinLogoMap,
-  fetchSuterPrice,
   MobileBrowserCheck,
   RegisterGasEstimate,
 };

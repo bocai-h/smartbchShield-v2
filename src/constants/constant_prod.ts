@@ -9,7 +9,7 @@ import {
 export default {
   ENV: 'prod',
 
-  ETH_CHAIN_ID: '0x1',
+  ETH_CHAIN_ID: '0xfa',
   ETHERSCAN: 'https://etherscan.io',
   JSONRPC_URL: 'https://mainnet.infura.io/v3/d80602309b7c48e78b80a372a3f6c825',
 
@@ -17,7 +17,7 @@ export default {
   XSUTER_URL: 'https://shield.suterusu.io/xsuter',
   SUTER_VM_URl: 'https://bridge.suterusu.io',
 
-  CHAIN_NAME: 'eth',
+  CHAIN_NAME: 'ftm',
   ShieldApi: 'data_platform_api',
 
   SuterShieldV1: 'https://v1.ethshield.suterusu.io',
