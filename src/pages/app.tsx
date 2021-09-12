@@ -204,6 +204,42 @@ class SuterProtocol extends React.Component {
     });
   }
 
+  // 添加FTM
+  async addFTM() {
+    // FTM链添加信息
+    const params = [
+      {
+        nativeCurrency: {
+          name: 'FTM',
+          symbol: 'FTM',
+          decimals: 18,
+        },
+        chainName: 'Fantom Chain',
+        rpcUrls: [window.blockchain.jrpc],
+        chainId: window.blockchain.chain_id,
+        blockExplorerUrls: [window.blockchain.scan_url],
+      },
+    ];
+
+    try {
+      // 请求添加并选择
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params,
+      });
+    } catch (err) {
+      openNotificationWithIcon(
+        intl.get('NetworkError'),
+        `${intl.get('PleaseChangeMetamaskTo')} ${
+          ethChainNameMap[window.blockchain.chain_id]
+        } ${intl.get('Network')}`,
+        'warning',
+        4.5,
+      );
+      Sentry.captureException(err);
+    }
+  }
+
   handleAccountChanged(accounts) {
     let { account } = this.state;
     if (accounts.length === 0) {
@@ -238,11 +274,11 @@ class SuterProtocol extends React.Component {
 
   checkEthNetworkType() {
     this.setState({ ethNetwork: window.ethereum.chainId });
-
     if (
       window.ethereum &&
       window.ethereum.chainId != window.blockchain.chain_id
     ) {
+      this.addFTM();
       openNotificationWithIcon(
         intl.get('ETHNetworkError'),
         `${intl.get('PleaseChangeMetamaskTo')} ${

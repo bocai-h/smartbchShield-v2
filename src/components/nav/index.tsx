@@ -1,30 +1,10 @@
 import { Tooltip, Menu, Dropdown } from 'antd';
-import Logo from '../../static/suterShield.png';
+import Logo from '../../static/suterShield.svg';
 import mLogo from '../../static/logo.png';
 
 const DropMenu = (intl, currentNav) => {
   return (
     <Menu>
-      <Menu.ItemGroup title={intl.get('Product')}>
-        <Menu.Item key="v1">
-          <a target="_blank" rel="suter shield v1" href={SuterShieldV1}>
-            {intl.get('suterShieldV1')}
-          </a>
-        </Menu.Item>
-
-        <Menu.Item key="v2">
-          <a target="_blank" rel="suter shield v2" href={SuterShieldV2}>
-            {intl.get('suterShieldV2')}
-          </a>
-        </Menu.Item>
-
-        {/* <Menu.Item key="pool">
-          <a target="_blank" rel="create pool" href="/create_pool">
-            {intl.get('CreatePool')}
-          </a>
-        </Menu.Item> */}
-      </Menu.ItemGroup>
-
       {currentNav !== 'stats' ? (
         <Menu.Item key="stats">
           <a target="_blank" rel="noopener noreferrer" href="/stats">
@@ -153,28 +133,6 @@ const Nav = props => {
     </Menu>
   );
 
-  const productMenu = (
-    <Menu>
-      <Menu.Item key="v1">
-        <a target="_blank" rel="suter shield v1" href={SuterShieldV1}>
-          {intl.get('suterShieldV1')}
-        </a>
-      </Menu.Item>
-
-      <Menu.Item key="v2">
-        <a target="_blank" rel="suter shield v2" href={SuterShieldV2}>
-          {intl.get('suterShieldV2')}
-        </a>
-      </Menu.Item>
-
-      {/* <Menu.Item key="pool">
-        <a target="_blank" rel="create pool" href="/create_pool">
-          {intl.get('CreatePool')}
-        </a>
-      </Menu.Item> */}
-    </Menu>
-  );
-
   return (
     <div className="left">
       <a href={indexURL} className="left-logo">
@@ -183,17 +141,6 @@ const Nav = props => {
       </a>
 
       <ul className="item-ul">
-        <li>
-          <Dropdown
-            arrow
-            overlay={productMenu}
-            placement="bottomCenter"
-            onClick={e => e.preventDefault()}
-          >
-            <a>{intl.get('Product')}</a>
-          </Dropdown>
-        </li>
-
         {currentNav !== 'stats' ? (
           <li>
             <a href="/stats" target="_blank">
@@ -203,25 +150,6 @@ const Nav = props => {
         ) : (
           ''
         )}
-
-        {/* {currentNav !== 'mining' ? (
-          <li>
-            <Tooltip title={intl.get('ComingSoon')}>
-              <a
-                rel="noopener noreferrer"
-                onClick={e => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-              >
-                {intl.get('Mining')}
-              </a>
-            </Tooltip>
-          </li>
-        ) : (
-          ''
-        )} */}
-
         {currentNav !== 'tutorial' ? (
           <li>
             <a href="/tutorial" rel="noopener noreferrer" target="_blank">
