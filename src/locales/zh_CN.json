@@ -113,7 +113,7 @@
   "LoadingTips": "请您耐心等待一会儿",
   "transferFeeTips": "网络将收取transfer操作消耗的gas fee的20%作为服务费用",
   "burnFeeTips": "网络将收取burn操作中用户提取的token的1%作为服务费用",
-  "EpochError": "Epoch Time过期，请再试一次！如果该交易仍未通过，请考虑还一个更好的网络环境。",
+  "EpochError": "Epoch Time过期，请再试一次！如果该交易仍未通过，请考虑换一个更好的网络环境。",
   "GasNotEnough": "警告, 您的账户没有足够的FTM来支付gas费用!",
 
   "CreatePool": "建立隐私池",
