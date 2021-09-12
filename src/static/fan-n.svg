@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <g id="页面-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Shield-链接钱包弹窗" transform="translate(-997.000000, -569.000000)">
+            <g id="编组-19" transform="translate(967.000000, 561.000000)">
+                <g id="fantom-2" transform="translate(30.000000, 8.000000)">
+                    <circle id="Oval" fill="#6E6E6E" fill-rule="nonzero" cx="12" cy="12" r="12"></circle>
+                    <g id="fantom-ftm-logo" transform="translate(6.500000, 2.500000)" fill="#FFFFFF">
+                        <path d="M6.6,6.41457286 L9.9,4.46231156 L9.9,8.36683417 L6.6,6.41457286 Z M9.9,14.781407 L5.5,17.3844221 L1.1,14.781407 L1.1,10.2261307 L5.5,12.8291457 L9.9,10.2261307 L9.9,14.781407 Z M1.1,4.46231156 L4.4,6.41457286 L1.1,8.36683417 L1.1,4.46231156 Z M6.05,7.34422111 L9.35,9.29648241 L6.05,11.2487437 L6.05,7.34422111 Z M4.95,11.2487437 L1.65,9.29648241 L4.95,7.34422111 L4.95,11.2487437 Z M9.35,3.53266332 L5.5,5.7638191 L1.65,3.53266332 L5.5,1.20854271 L9.35,3.53266332 Z M0,3.16080402 L0,15.339196 L5.5,18.5 L11,15.339196 L11,3.16080402 L5.5,0 L0,3.16080402 Z" id="形状"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
