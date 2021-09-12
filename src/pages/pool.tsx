@@ -34,11 +34,11 @@ class SuterProtocol extends React.Component {
     connectWalletTxt: 'ConnectWallet',
     web3Browser: false,
     ethNetwork: '',
-    showConnectModal: false,
     initDone: false,
     twitterLogo: twitter,
     telegramLogo: telegram,
     mediumLogo: medium,
+    connectWallet: false,
   };
 
   constructor(props) {
@@ -48,13 +48,13 @@ class SuterProtocol extends React.Component {
     this.setCurrentAccount = this.setCurrentAccount.bind(this);
     this.connectMetaMask = this.connectMetaMask.bind(this);
     this.checkEthNetworkType = this.checkEthNetworkType.bind(this);
-    this.showConnectModal = this.showConnectModal.bind(this);
-    this.closeConnectModal = this.closeConnectModal.bind(this);
     this.lightFooterLogo = this.lightFooterLogo.bind(this);
     this.footerLogo = this.footerLogo.bind(this);
     this.handleAccountChanged = this.handleAccountChanged.bind(this);
 
     this.requestBlockChain = this.requestBlockChain.bind(this);
+    this.openConnectWallet = this.openConnectWallet.bind(this);
+    this.closeConnectWallet = this.closeConnectWallet.bind(this);
   }
 
   async componentDidMount() {
@@ -63,6 +63,18 @@ class SuterProtocol extends React.Component {
     await this.loadLocales();
 
     await this.checkMetaMaskStatus();
+  }
+
+  openConnectWallet() {
+    this.setState({
+      connectWallet: true,
+    });
+  }
+
+  closeConnectWallet() {
+    this.setState({
+      connectWallet: false,
+    });
   }
 
   loadLocales = async (lang = 'en-US') => {
@@ -129,16 +141,8 @@ class SuterProtocol extends React.Component {
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
-    this.setState({ showConnectModal: false });
+
     this.setCurrentAccount(accounts[0]);
-  }
-
-  showConnectModal() {
-    this.setState({ showConnectModal: true });
-  }
-
-  closeConnectModal() {
-    this.setState({ showConnectModal: false });
   }
 
   async checkMetaMaskStatus() {
@@ -253,14 +257,12 @@ class SuterProtocol extends React.Component {
   render() {
     const {
       account,
-      ethNetwork,
       connectWalletTxt,
-      metamaskInstalled,
-      showConnectModal,
       telegramLogo,
       twitterLogo,
       mediumLogo,
       initDone,
+      connectWallet,
     } = this.state;
 
     let lang = intl.options.currentLocale;
@@ -273,32 +275,16 @@ class SuterProtocol extends React.Component {
               <Nav intl={intl} indexURL="/app" currentNav="pool" />
             </div>
             <div className="header-btn">
-              {account === '' ? (
-                <Button
-                  className="connectWalletBtn"
-                  shape="round"
-                  onClick={this.showConnectModal}
-                  disabled={
-                    !(
-                      account === '' &&
-                      metamaskInstalled &&
-                      ethNetwork == window.blockchain.chain_id
-                    )
-                  }
-                >
-                  {intl.get(connectWalletTxt)}
-                </Button>
-              ) : (
-                <a
-                  href={`${window.blockchain.scan_url}/address/${account}`}
-                  target="_blank"
-                >
-                  <Button className="connectWalletBtn" shape="round">
-                    <div className="successDot"></div>
-                    {connectWalletTxt}
-                  </Button>
-                </a>
-              )}
+              <Button
+                onClick={this.openConnectWallet}
+                className="connectWalletBtn"
+                shape="round"
+              >
+                {account === '' ? '' : <div className="successDot"></div>}
+
+                {account === '' ? intl.get(connectWalletTxt) : connectWalletTxt}
+              </Button>
+
               <div className="top-btn">
                 <i
                   onClick={() => this.langChangeTo('en-US')}
@@ -319,17 +305,15 @@ class SuterProtocol extends React.Component {
             </div>
           </Header>
           <Content>
-            {showConnectModal ? (
-              <ConnectModal
-                connectMetaMask={this.connectMetaMask}
-                closeConnectModal={this.closeConnectModal}
-                intl={intl}
-              />
-            ) : (
-              ''
-            )}
-
             <CreatePool intl={intl} account={account} />
+
+            <ConnectModal
+              account={account}
+              connectWallet={connectWallet}
+              connectMetaMask={this.connectMetaMask}
+              closeConnectWallet={this.closeConnectWallet}
+              intl={intl}
+            />
           </Content>
           <Footer>
             <a

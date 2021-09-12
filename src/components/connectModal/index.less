@@ -1,35 +1,155 @@
-.connectWallet {
+@import '../../variables.less';
+
+.connectModal {
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+
   .ant-modal-content {
-    .ant-modal-close-x {
-      color: #b9aaff;
+    border-radius: 20px !important;
+    background: #0b0e12 !important;
+    border: 2px solid #b9aaff !important;
+    box-shadow: 0px 0px 20px 0px #0b0e12 !important;
+
+    .ant-modal-body {
+      padding: 0px !important;
     }
-    background: #1d1c1e !important;
-    border: 1px solid #b9aaff;
-    border-radius: 20px;
-    // width: 70%;
+  }
+
+  .connect {
+    display: flex;
+    flex-direction: column;
+
+    padding: 40px 20px 30px 20px;
+
     .title {
-      h1 {
-        color: #b9aaff;
-        margin-bottom: 0;
-        text-align: center;
-        font-family: 'Poppins-ExtraLight';
+      font-size: 28px;
+      font-weight: 400;
+      color: #b9aaff;
+      line-height: 28px;
+      text-align: center;
+      font-family: PingFangSC-Regular, PingFang SC;
+      cursor: pointer;
+    }
+
+    .wallet {
+      display: flex;
+      flex-direction: column;
+
+      margin-top: 30px;
+
+      .wallet-name {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Poppins-Regular, Poppins;
+      }
+
+      .wallet-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin-top: 15px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          margin-right: 20px;
+          overflow: hidden;
+          cursor: pointer;
+        }
       }
     }
-    .tip {
-      color: rgba(255, 255, 255, 0.5);
-      text-align: center;
-    }
-    .metaMaskContainer {
-      text-align: center;
-    }
-    .connectBtnContainer {
-      text-align: center;
-      margin-top: 20px;
-      button.connectWalletBtn {
-        border-color: #b9aaff;
-        color: #b9aaff;
-        background-color: #b9aaff;
-        color: #000000;
+
+    .network {
+      display: flex;
+      flex-direction: column;
+
+      margin-top: 30px;
+
+      .network-name {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Poppins-Regular, Poppins;
+      }
+
+      .network-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        margin-top: 15px;
+
+        .network-list-item {
+          width: 150px;
+          height: 40px;
+          border-radius: 10px;
+          background: rgba(216, 216, 216, 0.1);
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          margin-bottom: 10px;
+
+          cursor: pointer;
+
+          .dot-n {
+            display: none;
+          }
+
+          .dot-y {
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background: #39bc9a;
+
+            margin-right: 10px;
+          }
+
+          img {
+            width: 24px;
+            height: 24px;
+            border-radius: 100%;
+
+            margin-right: 10px;
+
+            overflow: hidden;
+          }
+
+          .network-list-item-name-y {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+            color: #b9aaff;
+            font-family: Poppins-Regular, Poppins;
+          }
+
+          .network-list-item-name-n {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: Poppins-Regular, Poppins;
+
+            transition: all 0.5s;
+          }
+
+          &:hover {
+            .network-list-item-name-n {
+              color: #b9aaff;
+            }
+          }
+        }
       }
     }
   }

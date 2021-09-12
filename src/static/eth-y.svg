@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <g id="页面-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Shield-链接钱包弹窗" transform="translate(-997.000000, -458.000000)" fill-rule="nonzero">
+            <g id="编组-19" transform="translate(967.000000, 450.000000)">
+                <g id="椭圆形" transform="translate(30.000000, 8.000000)">
+                    <circle id="Oval" fill="#627EEA" cx="12" cy="12" r="12"></circle>
+                    <g id="Group" transform="translate(6.750000, 3.000000)" fill="#FFFFFF">
+                        <polygon id="Path" fill-opacity="0.602" points="5.6235 0 5.6235 6.6525 11.24625 9.165"></polygon>
+                        <polygon id="Path" points="5.6235 0 0 9.165 5.6235 6.6525"></polygon>
+                        <polygon id="Path" fill-opacity="0.602" points="5.6235 13.476 5.6235 17.99625 11.25 10.212"></polygon>
+                        <polygon id="Path" points="5.6235 17.99625 5.6235 13.47525 0 10.212"></polygon>
+                        <polygon id="Path" fill-opacity="0.2" points="5.6235 12.42975 11.24625 9.165 5.6235 6.654"></polygon>
+                        <polygon id="Path" fill-opacity="0.602" points="0 9.165 5.6235 12.42975 5.6235 6.654"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
