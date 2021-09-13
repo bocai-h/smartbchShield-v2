@@ -137,7 +137,7 @@ const Nav = props => {
     <div className="left">
       <a href={indexURL} className="left-logo">
         <img src={Logo} className="logo pc" width="220px" />
-        <img src={mLogo} className="logo mobbile" width="23px" />
+        <img src={mLogo} className="logo mobbile" width="60px" />
       </a>
 
       <ul className="item-ul">
