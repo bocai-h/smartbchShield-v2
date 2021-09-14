@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>sutershield-icon-eth</title>
+    <defs>
+        <linearGradient x1="41.9233268%" y1="42.8009015%" x2="57.9597141%" y2="57.0917336%" id="linearGradient-1">
+            <stop stop-color="#003B94" offset="0%"></stop>
+            <stop stop-color="#1F4E94" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50.0074638%" x2="100%" y2="50.0074638%" id="linearGradient-2">
+            <stop stop-color="#3157A5" offset="0%"></stop>
+            <stop stop-color="#6280BE" offset="43%"></stop>
+            <stop stop-color="#A0B4DD" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="49.9925362%" x2="100%" y2="49.9925362%" id="linearGradient-3">
+            <stop stop-color="#CFCEE6" offset="0%"></stop>
+            <stop stop-color="#F0F0F0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sutershield-icon-eth" fill-rule="nonzero">
+            <rect id="矩形" fill-opacity="0" fill="#000000" x="0" y="0" width="200" height="200"></rect>
+            <polygon id="路径" fill="url(#linearGradient-1)" points="100 116.76 138.45 100 99.95 83.3 61.5 100.06"></polygon>
+            <polygon id="路径" fill="url(#linearGradient-2)" points="138.45 100 100 116.76 99.98 116.77 99.97 116.76 61.52 133.53 61.56 166.99 61.57 166.99 100.02 150.23 100.03 150.22 100.04 150.23 138.5 133.47 138.45 100"></polygon>
+            <polygon id="路径" fill="url(#linearGradient-3)" points="138.45 33.01 100 49.77 99.98 49.78 99.97 49.77 61.52 66.53 61.56 100 61.57 100 100.02 83.24 100.03 83.23 100.04 83.24 138.5 66.47 138.45 33.01"></polygon>
+        </g>
+    </g>
+</svg>
