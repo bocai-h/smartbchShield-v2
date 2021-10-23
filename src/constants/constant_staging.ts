@@ -22,7 +22,7 @@ export default {
   XSUTER_URL: 'https://shield.staging.suterusu.io/xsuter',
   SUTER_VM_URl: 'https://bridge.staging.suterusu.io',
 
-  CHAIN_NAME: 'ftm_test',
+  CHAIN_NAME: 'bch_test',
   ShieldApi: 'staging_data_platform_api',
   SuterusuProtocolV2:
     'https://docs.suterusu.io/suterusu-protocol-1/suterusu-protocol-v2',
