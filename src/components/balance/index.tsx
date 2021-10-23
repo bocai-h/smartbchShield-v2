@@ -60,9 +60,7 @@ class Balance extends React.Component {
 
       balance = (balanceWithDecimal * 1.0) / 10 ** info.decimal;
     } else {
-      let newWeb3 = new Web3(
-        new Web3.providers.HttpProvider(window.blockchain.jrpc),
-      );
+      let newWeb3 = new Web3(window.ethereum);
       let balanceWithDecimal = await newWeb3.eth.getBalance(account);
       balance = newWeb3.utils.fromWei(balanceWithDecimal, 'ether');
     }
