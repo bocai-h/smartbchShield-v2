@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 865446956870.dkr.ecr.ap-southeast-1.amazonaws.com/ftmshield-v2
+  repository: 865446956870.dkr.ecr.ap-southeast-1.amazonaws.com/bchshield-v2
   tag: 1.0.0
   pullPolicy: IfNotPresent
 
