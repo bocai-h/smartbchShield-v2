@@ -21,9 +21,9 @@ class Home extends React.Component {
 
     habit: [
       {
-        name: 'FTM',
+        name: 'BCH',
         logo:
-          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/ftm/fantom.svg',
+          'https://sutershield-logo.s3.ap-southeast-1.amazonaws.com/bch/bch.png',
       },
     ],
 

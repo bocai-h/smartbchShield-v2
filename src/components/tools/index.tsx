@@ -1,21 +1,5 @@
 import React from 'react';
 import { notification, Tooltip } from 'antd';
-import axios from 'axios';
-import usdtLogo from '../../static/usdtLogo.svg';
-import ethLogo from '../../static/ethLogo.svg';
-import daiLogo from '../../static/daiLogo.svg';
-import suterLogo from '../../static/suterLogo.svg';
-import renBTCLogo from '../../static/renBTCLogo.svg';
-import susdt from '../../static/S_USDT.svg';
-import usdt from '../../static/USDT.svg';
-import seth from '../../static/S_ETH.svg';
-import eth from '../../static/ETH.svg';
-import sdai from '../../static/S_DAI.svg';
-import dai from '../../static/DAI.svg';
-import ssuter from '../../static/S_SUTER.svg';
-import suter from '../../static/SUTER.svg';
-import srenBTC from '../../static/S_RENBTC.svg';
-import renBTC from '../../static/RENBTC.svg';
 import Web3 from 'web3';
 const BigNumber = require('bignumber.js');
 const Client = require('../../../suterusu-protocol/lib/suterusu.js');
@@ -109,6 +93,7 @@ const ethChainNameMap = {
   '0x2a': 'Kovan Test Network',
   '0xfa2': 'Fantom Test Network',
   '0xfa': 'Fantom Main Network',
+  '0x2711': 'BCH Test Network',
 };
 
 export {
