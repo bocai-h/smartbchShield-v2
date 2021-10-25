@@ -1,6 +1,6 @@
 import { Tooltip, Menu, Dropdown } from 'antd';
 import Logo from '../../static/suterShield.svg';
-import mLogo from '../../static/logo.png';
+import mLogo from '../../static/mlogo.svg';
 
 const DropMenu = (intl, currentNav) => {
   return (
@@ -137,7 +137,7 @@ const Nav = props => {
     <div className="left">
       <a href={indexURL} className="left-logo">
         <img src={Logo} className="logo pc" width="220px" />
-        <img src={mLogo} className="logo mobbile" width="70px" />
+        <img src={mLogo} className="logo mobbile" width="60px" />
       </a>
 
       <ul className="item-ul">

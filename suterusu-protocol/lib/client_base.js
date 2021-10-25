@@ -441,9 +441,8 @@ class ClientBase {
     that.account.setPending(
       elgamal.decrypt(encPending, that.account.privateKey()),
     );
-    that.account._state.lastRollOver = await that.suter.methods
-      .lastRollOver(that.account.publicKeyHash())
-      .call();
+    //that.account._state.lastRollOver = await that.suter.methods.lastRollOver(that.account.publicKeyHash()).call();
+    that.account._state.lastRollOver = await that._getEpoch();
     that.account._state.nonceUsed = true;
 
     console.log(
