@@ -17,7 +17,7 @@ export default {
   XSUTER_URL: 'https://shield.suterusu.io/xsuter',
   SUTER_VM_URl: 'https://bridge.suterusu.io',
 
-  CHAIN_NAME: 'ftm',
+  CHAIN_NAME: 'bch',
   ShieldApi: 'data_platform_api',
   SuterusuProtocolV2:
     'https://docs.suterusu.io/suterusu-protocol-1/suterusu-protocol-v2',
